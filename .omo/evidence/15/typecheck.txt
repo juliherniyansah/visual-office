@@ -1,0 +1,14 @@
+== api typecheck ==
+    tsc --noEmit -p .
+
+== web typecheck ==
+    tsc --noEmit -p .
+
+== LOC check (todo-15 files) ==
+  188 apps/api/src/services/officeProjector.ts
+   32 apps/api/src/services/agentHermes.ts
+   41 apps/api/src/routes/agentsHermes.ts
+   82 apps/web/src/stores/useOfficeStore.ts
+   44 apps/web/src/components/TaskTree.tsx
+   75 apps/web/src/components/AgentDetail.tsx
+  462 total

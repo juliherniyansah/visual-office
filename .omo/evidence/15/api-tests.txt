@@ -1,0 +1,7 @@
+$ bun test src/services/officeProjector.test.ts src/routes/agentsHermes.test.ts src/services/officeState.test.ts src/routes/office.test.ts src/realtime/gateway.test.ts
+bun test v1.3.14 (0d9b296a)
+
+ 34 pass
+ 0 fail
+ 158 expect() calls
+Ran 34 tests across 5 files. [16.35s]

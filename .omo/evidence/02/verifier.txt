@@ -1,0 +1,3 @@
+VERDICT: confirmed
+oracle independent checks: 1 bun test packages/shared 74 pass/0 fail/164 expect/4 files; 2 typecheck exit 0; 3 biome exit 0; 4 all plan section-10 collections have schemas
+note: remainder of oracle report truncated in transcript

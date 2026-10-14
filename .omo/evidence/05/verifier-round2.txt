@@ -1,0 +1,66 @@
+# T5a VERIFIER ROUND 2 (2026-10-09) - independent re-run
+Round 1: rejected (D1 resume from assigned 200; D2 tag bounds untested N14/N16; D3 run timestamps untested N3/N12).
+
+## Regression sweep (fresh, verifier)
+- rtk bun test apps/api: 169 pass / 0 fail / 641 expect() / 18 files [32.35s]  (matches worker)
+- rtk bun run typecheck: 6/6 "Exited with code 0"
+- rtk bunx biome check .: Checked 94 files, no fixes
+- Files changed since round-1 report: routes/tasks.ts, services/tasks.ts (product); routes/{tasks,directives,runs}.test.ts, services/{tasks,runs}.test.ts. Nothing under packages/ changed. No package.json changed (no new deps).
+- Test counts: routes/tasks 14, services/tasks 10, routes/directives 12, services/runs 12, routes/runs 10 (matches worker).
+- Weakening check: diff vs my round-1 copy (/tmp/opencode/verify5a-1) shows ONLY added lines in all 5 test files; the one removed line is the routes/runs.test.ts bun:test import (re-added with spyOn). No test deleted or loosened. New tests assert status + event rows + DB state, not trivial.
+
+## Defects
+D1 RESOLVED. routes/tasks.ts TASK_ACTIONS: pause {to paused, from [in_progress]}, resume {to in_progress, from [paused]}, cancel {to cancelled, from [planned,assigned,in_progress,paused,escalated]}. services/tasks.ts transitionTask checks allowedFrom (throws InvalidTransitionError) BEFORE assertTaskTransition and the CAS write.
+  Live boot (real index.ts, port 4917, throwaway DB redhunter_test_live_*_r2verify, EVENTS_DISPATCH=off, tasks seeded via services):
+   resume on assigned  -> 409, status assigned, events 2 -> 2
+   resume on paused    -> 200, status in_progress, events 4 -> 5
+   pause on assigned   -> 409, status assigned, events 2 -> 2
+   cancel on done      -> 409, status done, events 4 -> 4
+   also: GET /tasks?status=planned&status=planned 400; ?status[$ne]=x 200 (key ignored); POST 20kb body 413
+D2 RESOLVED. routes/directives.test.ts pins 32->201 / 33->400 tags and 64->201 / 65->400 chars. N14 and N16 KILLED (below).
+D3 RESOLVED. services/runs.test.ts: startedAt absent at queued/composing, set at first executing, unchanged through verifying->paused->executing->verifying->succeeded; endedAt set on succeeded, failed, escalated and >= startedAt. N3, N12, N12b KILLED.
+
+## Worker mutants, re-run by verifier on fresh copy /tmp/opencode/verify5a-r2-1 (runner inspected: restores from repo, flags sed no-ops)
+control 58/0
+ N3  endedAt only on succeeded            11/1 KILLED
+ N12 startedAt on any transition          11/1 KILLED
+ N12b startedAt re-stamped each executing 11/1 KILLED
+ N14 drop .max(MAX_TAGS)                  11/1 KILLED
+ N16 drop TagSchema.max(64)               11/1 KILLED
+ N4  drop id length guard                  9/1 KILLED
+ N4b guard off-by-one (>=)                 9/1 KILLED
+ N5  drop aggregate.kind filter           21/1 KILLED
+ D1  resume from undefined (route)        13/1 KILLED
+ D1b allowedFrom ignored (service)        22/2 KILLED
+restored-control 58/0
+
+## Verifier's own mutants (own script, copy /tmp/opencode/verify5a-r2-2, 8 work test files, control 90/0, restored 90/0)
+ R1  cancel from-list drops escalated     89/1 KILLED
+ R2  pause also allowed from assigned     90/0 SURVIVED - equivalent mutant: TASK_TRANSITIONS.assigned has no 'paused', so assertTaskTransition still rejects (409). Not a defect.
+ R3  resume also from assigned            89/1 KILLED
+ R4  task CAS filter drops status         89/1 KILLED
+ R5  directive text trim removed          88/2 KILLED
+ R6  issuedBy taken from body             89/1 KILLED
+ R7  16kb body limit -> 50mb              88/2 KILLED
+ R8  GET /tasks status accepts array (take first)  90/0 SURVIVED - see note N-1
+ R9  allowedFrom checks input.to not current      85/5 KILLED
+ R10 409 mapped to 400                    86/4 KILLED
+ R11 cancel targets done                  87/3 KILLED
+ R12 run.failed payload error dropped     89/1 KILLED
+ R13 fixed directive _id                  78/12 KILLED
+ R14 status query -> z.any()              12/2 KILLED (tasks.test.ts)
+
+## Notes (non-blocking)
+N-1. Repeated *valid* query params (?status=planned&status=planned) are rejected (400, verified live), but no test pins it: the existing case '?status=a&status=b' uses invalid values, so R8 survives. Not in plan acceptance; the real code is correct and the surviving mutant is harmless (picks one valid enum, no injection). Optional: change that test case to '?status=planned&status=planned'.
+N-2. Accepted known gaps unchanged (at-most-once emit, no run.status_changed in catalog, console.error fallthrough, outbox-signature test edits, assign service-only).
+
+## Cleanup
+- Live server (bash pid 1177151 / bun pid 1177153, cwd /tmp/opencode/verify5a-r2-2/apps/api) killed with TERM, tmux session vr2api killed, port 4917 free. Unrelated bun processes untouched.
+- Throwaway live DB dropped (ok 1). mongosh redhunter_test* filter -> []
+- No .env created. Scratch dirs left in /tmp/opencode/verify5a-r2-{1,2} (helper seed-probe.ts lives only in the copy).
+
+## Lessons
+- Route-level `from` whitelists that are subsets of the transition table produce equivalent mutants (R2); pin them with a direct unit test only if the table might later widen.
+- Repeated-param tests should use valid values, or the array path stays unproven.
+
+VERDICT: confirmed

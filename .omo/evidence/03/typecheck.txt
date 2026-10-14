@@ -1,0 +1,9 @@
+# cmd: bun run typecheck   (2026-10-09T01:36:29+00:00)
+$ bun run --filter '*' typecheck
+@redhunter/hermes typecheck: Exited with code 0
+@redhunter/adapters typecheck: Exited with code 0
+@redhunter/agent-runtime typecheck: Exited with code 0
+@redhunter/web typecheck: Exited with code 0
+@redhunter/shared typecheck: Exited with code 0
+@redhunter/api typecheck: Exited with code 0
+EXIT=0

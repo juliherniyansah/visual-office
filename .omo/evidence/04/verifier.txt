@@ -1,0 +1,56 @@
+T4 RH-API-002 re-verification after D1 fix (verifier, 2026-10-09)
+Previous verdict: rejected (D1). Reference for scope: copy of old verifier.txt (mtime preserved) at /tmp/opencode/old-verifier.txt.
+
+D1 STATUS: CLOSED
+Test re-read: apps/api/src/events/dispatcher.test.ts:133-174
+- :134 expect(MAX_DISPATCH_ATTEMPTS).toBe(5)
+- :151 loop uses literal `attempt <= 4`; each tick asserts row {attempts: attempt, dispatchedAt: null, lastError: 'sink exploded'},
+  events_dead count 0, nothing delivered.
+- :163-173 5th tick: row gone from events; events_dead {attempts: 5 (literal), lastError, type: 'agent.status_changed'},
+  deadAt instanceof Date; healthy event delivered (queue unblocked).
+Pins 5 precisely, both via constant and via behavior.
+
+MUTATION TABLE (own fresh full copy /tmp/opencode/v4b/tree; real tree never touched; copy restored + cmp-equal to real)
+test variant          | MAX=5        | MAX=6                                   | MAX=4
+original              | 10/10 pass   | FAIL: Expected 5, Received 6 (:134)     | FAIL: Expected 5, Received 4 (:134)
+constant line removed | 10/10 pass   | FAIL: Expected 0, Received 1            | FAIL: :153 toMatchObject "received value
+                      |              |   (behavior: row not dead on 5th tick)  |   must be a non-null object" (row dead on 4th tick)
+All mutants killed; behavior assertions alone kill both. Matches worker claim in .omo/evidence/04/mutation-d1.txt (not copied, re-derived).
+
+GATES (real tree, /home/programer/work/visual-office)
+- rtk bun test apps/api: 98 pass / 0 fail, 303 expect() (was 298; +5 new asserts), 11 files.
+- rtk bun run typecheck: 6/6 workspaces exit 0 (substitute for lsp_diagnostics, unavailable: TS7 native).
+- rtk bunx biome check .: 75 files, no fixes.
+
+ACCEPTANCE (all re-confirmed by the green run; evidence from first report unchanged since product source untouched)
+1 emit() inserts validated, server-owned envelope ........ PASS (outbox.test.ts)
+2 office delivery <= 500 ms ................................ PASS (dispatcher.test.ts:53, gateway.test.ts:125)
+3 io.use() rejects missing/invalid JWT, "unauthorized" .... PASS (gateway.test.ts:70,75; mutation-killed in first run)
+4 CORS foreign origin rejected ............................. PASS (gateway.test.ts:109; mutation-killed)
+5 EVENTS_DISPATCH=off ...................................... PASS (dispatcher.test.ts, gateway.test.ts; mutation-killed)
+6 connectionStateRecovery .................................. PASS (gateway.test.ts:147, client.recovered === true)
+7 restart replays undispatched ............................. PASS (dispatcher.test.ts:97)
+8 5 failures -> events_dead ................................ PASS (now pinned; see D1)
+
+SCOPE (/usr/bin/find . -newer /tmp/opencode/old-verifier.txt, excl node_modules/.codegraph)
+- apps/api/src/events/dispatcher.test.ts  (only source-tree change; test file)
+- .omo/boulder.json, .omo/evidence/04/{cleanup,mutation-d1,test}.txt, .omo/notepads/.../{issues,learnings}.md, .omo/run-continuation/*.json
+No product source changed (dispatcher.ts, outbox.ts, gateway.ts, rooms.ts, server.ts, index.ts, config, db, packages/shared).
+
+HYGIENE
+- redhunter_test_* DBs: [] (mongosh).
+- No .env files (find).
+- No console.log / any in apps/api/src/events (grep clean).
+- No stray visual-office bun processes (ps; whatsapp-monitor untouched).
+- Worker scratch dir for d1 already removed. My scratch (/tmp/opencode/v4, v4b, old-verifier.txt) deleted after writing this report.
+
+NOTEPADS
+- learnings.md:45-47 and issues.md:37-38 accurately describe the fix and mutation results. Nothing misleading.
+
+NEW DEFECTS
+None.
+
+NOTES (non-blocking, unchanged by design)
+- No outbox instance in index.ts / no emitting route yet (T5). canSubscribeRun default allow (T15). 1 s bounded close timeouts (bun 1.3.14).
+
+VERDICT: confirmed

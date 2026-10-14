@@ -1,0 +1,30 @@
+# Task 1 failure path - 2026-10-08T23:15:21+00:00
+## Step 1: inject deliberate type error into packages/shared/src/index.ts
+export const PACKAGE_NAME = '@redhunter/shared';
+const brokenValue: number = 'a';
+export { brokenValue };
+
+$ bun run typecheck
+$ bun run --filter '*' typecheck
+@redhunter/api typecheck: Exited with code 0
+@redhunter/shared typecheck: src/index.ts(2,7): error TS2322: Type 'string' is not assignable to type 'number'.
+@redhunter/hermes typecheck: Exited with code 0
+@redhunter/adapters typecheck: Exited with code 0
+@redhunter/agent-runtime typecheck: Exited with code 0
+@redhunter/shared typecheck: Exited with code 1
+@redhunter/web typecheck: Exited with code 0
+error: script "typecheck" exited with code 1
+exit=1
+
+## Step 2: revert packages/shared/src/index.ts
+export const PACKAGE_NAME = '@redhunter/shared';
+
+$ bun run typecheck
+$ bun run --filter '*' typecheck
+@redhunter/agent-runtime typecheck: Exited with code 0
+@redhunter/adapters typecheck: Exited with code 0
+@redhunter/shared typecheck: Exited with code 0
+@redhunter/hermes typecheck: Exited with code 0
+@redhunter/api typecheck: Exited with code 0
+@redhunter/web typecheck: Exited with code 0
+exit=0

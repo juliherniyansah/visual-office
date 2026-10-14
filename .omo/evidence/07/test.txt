@@ -1,0 +1,128 @@
+## T7 GREEN 2026-10-10T15:30:36Z bun 1.3.14
+$ bun test packages/agent-runtime
+bun test v1.3.14 (0d9b296a)
+ 119 pass
+ 0 fail
+ 1 snapshots, 1056 expect() calls
+Ran 119 tests across 7 files. [212.00ms]
+
+## per-test names (from junit.xml)
+ > barrel re-exports the prompt composer API
+snapshot hash > is sha256 over the canonical {layers, text, version} of the output
+snapshot hash > same input gives the same hash across calls
+snapshot hash > does not depend on object key insertion order
+snapshot hash > fixture composition (text, layers, hash) matches the stored snapshot
+snapshot hash > changes when constitution text content changes
+snapshot hash > changes when identity name content changes
+snapshot hash > changes when role forbidden content changes
+snapshot hash > changes when omo contract content changes
+snapshot hash > changes when skills item content changes
+snapshot hash > changes when memory item content changes
+snapshot hash > changes when rag item content changes
+snapshot hash > changes when project item content changes
+snapshot hash > changes when task directive content changes
+snapshot hash > changes when constitution version changes
+snapshot hash > changes when identity version changes
+snapshot hash > changes when rolePolicy version changes
+snapshot hash > changes when omoPolicy version changes
+snapshot hash > changes when skills version changes
+snapshot hash > changes when memory version changes
+snapshot hash > changes when rag version changes
+snapshot hash > changes when project version changes
+snapshot hash > changes when task version changes
+snapshot hash > all variant hashes are distinct from each other
+snapshot hash > a budget change that does not change the composition keeps the hash
+snapshot hash > a budget change that truncates a layer changes the hash
+estimateTokens (default chars/4, ceil) > &quot;&quot; -&gt; 0
+estimateTokens (default chars/4, ceil) > &quot;a&quot; -&gt; 1
+estimateTokens (default chars/4, ceil) > &quot;abcd&quot; -&gt; 1
+estimateTokens (default chars/4, ceil) > &quot;abcde&quot; -&gt; 2
+estimateTokens (default chars/4, ceil) > &quot;abcdefgh&quot; -&gt; 2
+estimateTokens (default chars/4, ceil) > &quot;abcdefghi&quot; -&gt; 3
+estimateTokens (default chars/4, ceil) > counts UTF-16 units, not code points
+estimateTokens (default chars/4, ceil) > does not trim whitespace
+estimateTokens (default chars/4, ceil) > chars per token constant is 4
+PromptBudgetError > is a typed Error with its own name
+assertBudget > accepts 0
+assertBudget > accepts 1
+assertBudget > accepts 16000
+assertBudget > rejects -1
+assertBudget > rejects 1.5
+assertBudget > rejects NaN
+assertBudget > rejects Infinity
+measureTokens > returns the estimator value for the text
+measureTokens > rejects estimator output -1
+measureTokens > rejects estimator output 0.5
+measureTokens > rejects estimator output NaN
+measureTokens > rejects estimator output Infinity
+TRUNCATION_ORDER > drops RAG first, then memory, then project, skills last
+fitFlexible > available 80 keeps the expected items
+fitFlexible > available 79 keeps the expected items
+fitFlexible > available 70 keeps the expected items
+fitFlexible > available 69 keeps the expected items
+fitFlexible > available 50 keeps the expected items
+fitFlexible > available 40 keeps the expected items
+fitFlexible > available 30 keeps the expected items
+fitFlexible > available 20 keeps the expected items
+fitFlexible > available 10 keeps the expected items
+fitFlexible > available 9 keeps the expected items
+fitFlexible > available 0 keeps the expected items
+fitFlexible > a large available keeps everything and does not mutate the input
+fitFlexible > uses the cost of the whole layer, not per item (fixed overhead drops with the layer)
+layer ids > nine layers in precedence order
+layer ids > layers 1-4 and 9 are fixed, 5-8 flexible
+renderItemsLayer > empty items render nothing (layer omitted)
+renderItemsLayer > skills renders a numbered header and one bullet per item
+renderItemsLayer > memory renders a numbered header and one bullet per item
+renderItemsLayer > rag renders a numbered header and one bullet per item
+renderItemsLayer > project renders a numbered header and one bullet per item
+renderItemsLayer > indents continuation lines so item text cannot start a layer header
+renderFixedLayer > constitution is copied verbatim under header 1
+renderFixedLayer > identity lists name, role, traits and voice
+renderFixedLayer > role policy states that tool permissions are enforced outside the prompt
+renderFixedLayer > omo policy lists expectations, limits, escalation chain and output contract
+renderFixedLayer > task renders directive, acceptance and constraints; empty lists say (none)
+renderFixedLayer > empty traits, lists and escalation chain render deterministically
+renderFixedLayer > a multi-line directive is indented under its bullet
+renderFixedLayer > multi-line free-text fields are indented in identity, role and omo layers
+renderFixedLayer > does not render the token budget (reserve does not depend on the budget)
+constitution.md > lives at packages/agent-runtime/constitution.md (absolute path)
+constitution.md > version 1 file says prompt rules are not security boundaries
+loadConstitution > default loader reads the file verbatim and tags the version
+loadConstitution > injected reader receives the constitution path
+loadConstitution > rejects an empty constitution &quot;&quot;
+loadConstitution > rejects an empty constitution &quot;  \n\t&quot;
+constitution in the composed prompt > layer 1 carries the loaded text and version
+constitution in the composed prompt > the real constitution adds no &quot;## &quot; layer-level headers
+composePrompt structure > text is the nine layers concatenated in precedence order
+composePrompt structure > layers[] records id, version and tokens for all nine layers in order
+composePrompt structure > tokens equals the sum of layer tokens and the estimate of the text
+composePrompt structure > default estimator is ceil(chars/4) per layer; text estimate never exceeds tokens
+composePrompt structure > reports composer version 1 and a sha256 hex hash
+composePrompt structure > output is JSON-serializable and satisfies PromptSnapshotSchema
+composePrompt structure > does not mutate a deeply frozen input and is deterministic
+pluggable estimator > is called with each rendered layer text and its values are used
+pluggable estimator > an invalid estimator result is rejected
+empty optional layers > are omitted from the text but still recorded with version and 0 tokens
+layer precedence is structural > later layers cannot add, remove or reorder layer headers
+layer precedence is structural > layers 1-4 come first, byte-for-byte, and the task layer comes last
+truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5 > everything fits
+truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5 > one token short: rag loses its last item
+truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5 > rag is emptied before memory shrinks
+truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5 > memory shrinks after rag is empty
+truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5 > project shrinks after memory is empty
+truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5 > skills shrink last
+truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5 > budget == reserve keeps only layers 1-4 and 9
+truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5 > budget == reserve + 1 still drops every flexible layer (no layer fits in 1 token)
+truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5 > budget == reserve uses the whole budget exactly
+reserve for layers 1-4 and 9 > budget below the reserve throws PromptBudgetError
+reserve for layers 1-4 and 9 > budget 0 throws PromptBudgetError
+reserve for layers 1-4 and 9 > non-integer or negative budget -1 throws PromptBudgetError
+reserve for layers 1-4 and 9 > non-integer or negative budget 1.5 throws PromptBudgetError
+reserve for layers 1-4 and 9 > non-integer or negative budget NaN throws PromptBudgetError
+reserve for layers 1-4 and 9 > non-integer or negative budget Infinity throws PromptBudgetError
+oversized RAG input > output stays within budget and only layer 7 shrinks
+oversized RAG input > keeps the longest prefix of RAG items that fits; layers 1-4 and 9 intact
+budget sweep (boundary safety) > char estimator: every budget from reserve to full fits, fixed layers intact, monotonic
+budget sweep (boundary safety) > default estimator: every budget from reserve to full fits, fixed layers intact, monotonic
+budget sweep (boundary safety) > truncation is deterministic

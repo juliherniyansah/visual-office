@@ -1,0 +1,77 @@
+/home/programer/work/visual-office/biome.json:10:5 deserialize ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Found an unknown key `ignore`.
+  
+     8 │   "files": {
+     9 │     "ignoreUnknown": false,
+  > 10 │     "ignore": ["node_modules", ".next", "dist", "build", ".turbo", ".cache", "coverage", ".playwright", "next-env.d.ts", "tailwindDirectives"]
+       │     ^^^^^^^^
+    11 │   },
+    12 │   "formatter": {
+  
+  i Known keys:
+  
+  - maxSize
+  - ignoreUnknown
+  - includes
+  - experimentalScannerIgnores
+  
+
+/home/programer/work/visual-office/biome.json:18:13 deserialize  DEPRECATED  ━━━━━━━━━━━━━━━━━━━━━━━
+
+  i The use of the recommended field has been deprecated, and will removed in the next major version of Biome. Use preset instead.
+  
+    16 │     "lineWidth": 100
+    17 │   },
+  > 18 │   "linter": {
+       │             ^
+  > 19 │     "enabled": true,
+  > 20 │     "rules": {
+  > 21 │       "recommended": true
+  > 22 │     }
+  > 23 │   },
+       │   ^
+    24 │   "organizeImports": {
+    25 │     "enabled": true
+  
+  i Migrate the configuration with the proper command
+  
+  $ biome migrate
+  
+
+/home/programer/work/visual-office/biome.json:24:3 deserialize ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Found an unknown key `organizeImports`.
+  
+    22 │     }
+    23 │   },
+  > 24 │   "organizeImports": {
+       │   ^^^^^^^^^^^^^^^^^
+    25 │     "enabled": true
+    26 │   }
+  
+  i Known keys:
+  
+  - $schema
+  - root
+  - extends
+  - vcs
+  - files
+  - formatter
+  - linter
+  - javascript
+  - json
+  - css
+  - graphql
+  - grit
+  - html
+  - overrides
+  - plugins
+  - assist
+  
+
+configuration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Biome exited because the configuration resulted in errors. Please fix them.
+  
+

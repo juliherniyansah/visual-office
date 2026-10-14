@@ -1,0 +1,27 @@
+--- office state (initial)
+{"success":true,"data":{"version":0,"floors":[{"id":1,"agents":[]},{"id":2,"agents":[{"agentId":"programming","deskId":"f2-programming","pose":"sitting","status":"idle","activityLabel":""},{"agentId":"game","deskId":"f2-game","pose":"sitting","status":"idle","activityLabel":""},{"agentId":"iot","deskId":"f2-iot","pose":"sitting","status":"idle","activityLabel":""},{"agentId":"ai_development","desk
+--- create project
+{"success":true,"data":{"id":"6192e2a4-2003-4fd1-8f84-bef31f430cc3","name":"QA proj","repoPath":"/tmp/x","defaultAdapter":"opencode"}} [201]
+--- create project relative
+{"success":false,"error":"Body request tidak valid"} [400]
+--- create project traversal
+{"success":false,"error":"Body request tidak valid"} [400]
+--- create project root
+{"success":true,"data":{"id":"7cb53d60-735e-49aa-bba0-a64a805a0314","name":"root","repoPath":"/","defaultAdapter":"opencode"}} [201]
+--- list projects
+{"success":true,"data":[{"id":"6192e2a4-2003-4fd1-8f84-bef31f430cc3","name":"QA proj","repoPath":"/tmp/x","defaultAdapter":"opencode"},{"id":"7cb53d60-735e-49aa-bba0-a64a805a0314","name":"root","repoPath":"/","defaultAdapter":"opencode"}]} [200]
+--- create knowledge
+{"success":true,"data":{"id":"bffdde03-1b0b-4a03-a8cd-37b48b22deec","title":"Doc","text":"hello world","tags":["a","b"]}} [201]
+--- create knowledge blank text
+{"success":false,"error":"Body request tidak valid"} [400]
+--- list knowledge
+{"success":true,"data":[{"id":"bffdde03-1b0b-4a03-a8cd-37b48b22deec","title":"Doc","text":"hello world","tags":["a","b"]}]} [200]
+--- no token POST
+{"success":false,"error":"Autentikasi diperlukan"} [401]
+--- PUT office
+[404]
+--- POST office
+[404]
+--- PATCH agent status
+[404]
+--- nosql inj

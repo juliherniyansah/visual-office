@@ -1,0 +1,13 @@
+{
+  "name": "@redhunter/assets",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun run scripts/generate-assets.ts",
+    "optimize": "bash scripts/optimize.sh"
+  },
+  "dependencies": {
+    "three": "^0.186.1"
+  }
+}

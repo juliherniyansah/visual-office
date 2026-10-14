@@ -1,0 +1,116 @@
+bun test v1.3.14 (0d9b296a)
+
+packages/agent-runtime/src/runtime.stale-permission.test.ts:
+74 |       const h = createHarness(adapter);
+75 |       const pending = h.runtime.execute(makeRequest());
+76 |       await adapter.retryStarted;
+77 | 
+78 |       expect(adapter.starts).toBe(2);
+79 |       expect(h.sink.agentStatuses()).toEqual([
+                                          ^
+error: expect(received).toEqual(expected)
+
+@@ -4,3 +4,3 @@
+    "waiting_permission",
+-   "working",
+  ]
+
+- Expected  - 1
++ Received  + 0
+
+      at <anonymous> (/home/programer/work/visual-office/packages/agent-runtime/src/runtime.stale-permission.test.ts:79:38)
+(fail) AgentRuntime stale permission after the attempt failed > retry attempt resets the agent from waiting_permission to working [2.50ms]
+93 |       const pending = h.runtime.execute(makeRequest());
+94 |       await adapter.retryStarted;
+95 | 
+96 |       const statusesBefore = h.sink.agentStatuses();
+97 |       const error = await h.runtime.answerPermission('run-1', 'perm-1', 'allow').catch((e) => e);
+98 |       expect(error).toBeInstanceOf(Error);
+                         ^
+error: expect(received).toBeInstanceOf(expected)
+
+Expected constructor: [class Error]
+Received value: undefined
+
+      at <anonymous> (/home/programer/work/visual-office/packages/agent-runtime/src/runtime.stale-permission.test.ts:98:21)
+(fail) AgentRuntime stale permission after the attempt failed > stale answer during the retry throws and never reaches the adapter [1.52ms]
+74 |       const h = createHarness(adapter);
+75 |       const pending = h.runtime.execute(makeRequest());
+76 |       await adapter.retryStarted;
+77 | 
+78 |       expect(adapter.starts).toBe(2);
+79 |       expect(h.sink.agentStatuses()).toEqual([
+                                          ^
+error: expect(received).toEqual(expected)
+
+@@ -4,3 +4,3 @@
+    "waiting_permission",
+-   "working",
+  ]
+
+- Expected  - 1
++ Received  + 0
+
+      at <anonymous> (/home/programer/work/visual-office/packages/agent-runtime/src/runtime.stale-permission.test.ts:79:38)
+(fail) AgentRuntime stale permission after the attempt throws > retry attempt resets the agent from waiting_permission to working [0.99ms]
+93 |       const pending = h.runtime.execute(makeRequest());
+94 |       await adapter.retryStarted;
+95 | 
+96 |       const statusesBefore = h.sink.agentStatuses();
+97 |       const error = await h.runtime.answerPermission('run-1', 'perm-1', 'allow').catch((e) => e);
+98 |       expect(error).toBeInstanceOf(Error);
+                         ^
+error: expect(received).toBeInstanceOf(expected)
+
+Expected constructor: [class Error]
+Received value: undefined
+
+      at <anonymous> (/home/programer/work/visual-office/packages/agent-runtime/src/runtime.stale-permission.test.ts:98:21)
+(fail) AgentRuntime stale permission after the attempt throws > stale answer during the retry throws and never reaches the adapter [0.95ms]
+74 |       const h = createHarness(adapter);
+75 |       const pending = h.runtime.execute(makeRequest());
+76 |       await adapter.retryStarted;
+77 | 
+78 |       expect(adapter.starts).toBe(2);
+79 |       expect(h.sink.agentStatuses()).toEqual([
+                                          ^
+error: expect(received).toEqual(expected)
+
+@@ -4,3 +4,3 @@
+    "waiting_permission",
+-   "working",
+  ]
+
+- Expected  - 1
++ Received  + 0
+
+      at <anonymous> (/home/programer/work/visual-office/packages/agent-runtime/src/runtime.stale-permission.test.ts:79:38)
+(fail) AgentRuntime stale permission after the attempt ends > retry attempt resets the agent from waiting_permission to working [0.72ms]
+93 |       const pending = h.runtime.execute(makeRequest());
+94 |       await adapter.retryStarted;
+95 | 
+96 |       const statusesBefore = h.sink.agentStatuses();
+97 |       const error = await h.runtime.answerPermission('run-1', 'perm-1', 'allow').catch((e) => e);
+98 |       expect(error).toBeInstanceOf(Error);
+                         ^
+error: expect(received).toBeInstanceOf(expected)
+
+Expected constructor: [class Error]
+Received value: undefined
+
+      at <anonymous> (/home/programer/work/visual-office/packages/agent-runtime/src/runtime.stale-permission.test.ts:98:21)
+(fail) AgentRuntime stale permission after the attempt ends > stale answer during the retry throws and never reaches the adapter [0.78ms]
+
+ 393 pass
+ 6 fail
+ 1 snapshots, 1599 expect() calls
+Ran 399 tests across 23 files. [1.64s]
+
+=== failing testcases (junit) ===
+FAIL AgentRuntime stale permission after the attempt failed > retry attempt resets the agent from waiting_permission to working
+FAIL AgentRuntime stale permission after the attempt failed > stale answer during the retry throws and never reaches the adapter
+FAIL AgentRuntime stale permission after the attempt throws > retry attempt resets the agent from waiting_permission to working
+FAIL AgentRuntime stale permission after the attempt throws > stale answer during the retry throws and never reaches the adapter
+FAIL AgentRuntime stale permission after the attempt ends > retry attempt resets the agent from waiting_permission to working
+FAIL AgentRuntime stale permission after the attempt ends > stale answer during the retry throws and never reaches the adapter
+=== note: escalation-variant test and T1 transitions assertion pass on the unfixed code (regression guards; T1 is killed by mutant M08 below) ===

@@ -1,0 +1,24 @@
+# T5b fix 2 cleanup receipt (2026-10-09T09:55:19Z)
+# no server, port or tmux session was started in this round (tests + scratch-copy mutation only)
+$ mongosh --quiet --eval "db.adminCommand({listDatabases:1}).databases.map(d=>d.name).filter(n=>n.startsWith('redhunter_test'))"
+[]
+$ tmux ls
+no server running on /tmp/tmux-1001/default
+$ cwd of remaining bun run/--watch/test processes (none under visual-office = none of mine)
+275760 /home/programer/work/whatsapp-monitor/packages/backend
+673841 /home/programer/work/whatsapp-monitor/packages/backend
+673842 /home/programer/work/whatsapp-monitor/packages/backend
+674006 /home/programer/work/whatsapp-monitor/packages/frontend
+674226 /home/programer/work/whatsapp-monitor/packages/wa-service
+674227 /home/programer/work/whatsapp-monitor/packages/wa-service
+683056 /home/programer/work/research/pinjaman/pinjaman-backend
+683060 /home/programer/work/research/pinjaman/pinjaman-backend
+1275254 /home/programer/work/roc/roc-be
+1276820 /home/programer/work/roc/roc-fe
+$ /usr/bin/find . -name .env -not -path "*/node_modules/*" (expect none)
+$ product file unchanged: sha256 apps/api/src/db/mappers.ts
+d413bd8c001c3f63096259f4297319a6529177bf1070102f33401f9eeca5740f  apps/api/src/db/mappers.ts
+$ scratch copies created this round (rm -rf outside cwd blocked by Safety Net): fix2-5b-mut, fix2-5b-run
+/tmp/opencode/fix2-5b-mut
+/tmp/opencode/fix2-5b-run
+# note: pids 1275254/1276820 (roc-be, roc-fe) were started by another session in /home/programer/work/roc; not mine, not touched

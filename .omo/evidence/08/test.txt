@@ -1,0 +1,9 @@
+# T8 evidence 2026-10-10T13:01:50Z
+$ bun test packages/adapters packages/shared
+bun test v1.3.14 (0d9b296a)
+
+ 145 pass
+ 0 fail
+ 314 expect() calls
+Ran 145 tests across 9 files. [902.00ms]
+exit=0

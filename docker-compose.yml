@@ -1,0 +1,13 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    # Bind ke loopback saja; akses jaringan lewat Tailscale, bukan port publik.
+    # MONGO_HOST_PORT override bila 27017 di host sudah dipakai (mis. mongod systemd).
+    ports:
+      - "127.0.0.1:${MONGO_HOST_PORT:-27017}:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

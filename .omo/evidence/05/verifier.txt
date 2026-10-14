@@ -1,0 +1,56 @@
+# T5a INDEPENDENT VERIFIER REPORT (2026-10-09)
+Scope: 5a only (directives/tasks/runs services + REST). 5b not judged.
+
+## Re-run checks (fresh, by verifier)
+- bun test apps/api: 157 pass / 0 fail, 564 expect(), 18 files [30.15s]  -> matches worker claim
+- bun run typecheck: 6/6 workspaces "Exited with code 0", exit 0
+- bunx biome check .: "Checked 94 files ... No fixes applied."
+- leftover DBs: mongosh filter redhunter_test* -> []  (before and after verifier runs)
+- packages/shared: no file newer than evidence/04/verifier.txt (untouched). apps/api/package.json: no new deps (matches decisions.md "No dependency added").
+- Evidence dir 05: baseline(98/0), red(0 pass 7 fail transitions), test(157/0 junit), failure, typecheck, lint, manual-qa, cleanup([]), mutation -> all present, consistent with re-run.
+- Read all 28 changed files. No TODO/stubs. app.test.ts/server.test.ts/realtime.ts changes are outbox-signature only (createOutbox injected); no assertion removed.
+
+## Mutation testing (copy /tmp/opencode/verify5a-1, control 59 pass / 0 fail)
+Reproduced: M1 tasks CAS {_id,status}->{_id}: 58/1 KILLED. M2 POST /directives viewer: 58/1 KILLED.
+New:
+ N1 runs CAS drop status        KILLED   N2 drop task.status_changed emit   KILLED
+ N6 ignore escalatedTo          KILLED   N7 drop assertTaskTransition       KILLED
+ N8 drop assertRunTransition    KILLED   N9 GET /tasks operator-only        KILLED
+ N10 PATCH /tasks viewer        KILLED   N11 GET /runs/:id no auth          KILLED
+ N13 no text trim               KILLED   N15 issuedBy from body             KILLED
+ N17 no text max                KILLED   N18 assign emits wrong type        KILLED
+ N19 createRun no assignee chk  KILLED   N20 paused no resume               KILLED
+ N21 PATCH actor=system         KILLED
+ SURVIVED: N3 endedAt only on succeeded (failed/escalated lose endedAt) 59/0
+ SURVIVED: N12 startedAt stamped on ANY transition (not just ->executing)  59/0
+ SURVIVED: N14 remove .max(MAX_TAGS) (tags count bound)                    59/0
+ SURVIVED: N16 remove TagSchema.max(64) (tag length bound)                 59/0
+ SURVIVED: N4 remove id.length>128 guard in readIdParam                    59/0
+ SURVIVED: N5 drop aggregate.kind='run' filter in listRunEvents            59/0
+
+## Live probes (probe test on copy, DB dropped)
+- tags 33 ->400, 32 ->201; tag len 65 ->400, 64 ->201; text 4000 ->201; text/plain body ->400; JSON null ->400
+- GET /tasks?status[$ne]=x / ?assigneeAgentId[$gt]= / ?status[]=planned -> 200 (keys ignored as unknown by simple query parser; no operator injection reaches Mongo). ?status=a&status=a -> 400.
+- :id 128/129 chars, emoji, %00, x%2Fy, '..' on PATCH /tasks, GET /runs, GET /runs/:id/events -> all 404 JSON, no 500.
+- PATCH/POST /agents/programming[/status] as owner -> 404 (no agent-status write route; app.ts mounts confirm).
+- **PATCH /tasks/:id {action:'resume'} on an ASSIGNED (never paused) task -> 200, task becomes in_progress + task.status_changed emitted.**
+
+## Defects (blocking)
+D1. `resume` is not restricted to paused tasks. routes/tasks.ts maps resume -> to:'in_progress' and transitionTask only checks TASK_TRANSITIONS, where assigned->in_progress is legal (runtime transition). Result: an operator can start an assigned task over REST with no run, bypassing the runtime (verified live: 200). decisions.md claims "Only in_progress can pause so resume always targets in_progress" but never constrains the source state. Same class: pause/cancel are fine (their targets are legal only from human-acceptable states). Fix: resume must require current.status === 'paused' (e.g. pass expected `from` into transitionTask / action->allowed-from map), else 409; add route test `[assigned,'resume'] -> 409, no event`.
+D2. Declared input bounds for capabilityTags (<=32 tags, <=64 chars each) are untested: mutants N14 and N16 survive. Behaviour is correct live, but the acceptance-relevant bound has no regression guard. Fix: add 400 cases for 33 tags and a 65-char tag (and 201 at 32/64) to routes/directives.test.ts.
+D3. Run timestamp semantics untested: N3 (endedAt only on succeeded) and N12 (startedAt on any transition) survive. Existing test only asserts startedAt/endedAt exist after succeeded. Fix: in services/runs.test.ts assert no startedAt while queued/composing, startedAt set at executing and unchanged afterwards, and endedAt set on failed and escalated.
+
+## Notes (non-blocking)
+N-a. readIdParam length guard (N4) is untested: the 300-char test passes either way since the lookup 404s anyway. The guard is cheap defence; optional: spy findById not called for >128.
+N-b. listRunEvents aggregate.kind filter (N5) untested; uuid ids make collisions practically impossible. Optional.
+N-c. Disclosed gaps judged ACCEPTABLE: (i) no ZodError branch / no assign route (service-level only, no HTTP exposure yet); (ii) at-most-once emit, documented and tested (500 + orphan doc); (iii) no event for intermediate run steps, catalog has no run.status_changed (plan s4 "each transition = one event" will need catalog work in todo 9/13; record it); (iv) pre-existing console.error fallthrough; (v) outbox signature-only test edits, no assertion weakened.
+N-d. Race tests genuinely race: delayFirstWrite delays the first findOneAndUpdate 200ms, both reads complete first; N1/M1 killed by them.
+N-e. Unknown query keys on GET /tasks are silently ignored (200) rather than 400; acceptable.
+
+## Fix list (ordered)
+1. D1: restrict resume to paused source (409 otherwise) + regression test.
+2. D2: tag count/length bound tests.
+3. D3: run startedAt/endedAt tests for executing/failed/escalated.
+4. Re-run suite/typecheck/biome, re-run mutants N3,N12,N14,N16 (expect KILLED), update evidence.
+
+VERDICT: rejected

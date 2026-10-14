@@ -1,0 +1,87 @@
+T3 RH-API-001 independent adversarial verification  (2026-10-09, verifier, read-only on product code)
+Scope: apps/api (Express skeleton, JWT auth, RBAC, agent/owner seed). Plan card lines 275-279.
+
+== 1. Gates (re-run by verifier)
+$ rtk bun test apps/api           -> "66 pass / 0 fail / 190 expect() calls / 7 files", TEST_EXIT=0
+$ rtk bun run typecheck           -> hermes, adapters, agent-runtime, web, shared, api: "Exited with code 0" (6/6), TC_EXIT=0
+$ bunx biome check .              -> "Checked 65 files ... No fixes applied.", LINT_EXIT=0
+
+== 2. Live server (port 4021, DB redhunter_qa_verify_2811018119 on 127.0.0.1:27017, random 48-char JWT_SECRET,
+      OWNER_EMAIL=Owner.QA@Example.com, OWNER_PASSWORD=qa-verify-pass-<rand>)
+$ bun run --cwd apps/api src/index.ts
+  log: "seed: agents=7 owner={"created":true,"passwordUpdated":true}" / "api listening on http://127.0.0.1:4021"
+
+Happy path
+- POST /api/v1/auth/login (lowercased email) -> {"success":true,"data":{"token":"eyJhbGciOiJIUzI1NiIs...","user":{...}}}
+  token payload: role=owner, iss=redhunter-api, aud=redhunter, exp=iat+43200
+- GET /me + token -> 200 {"success":true,"data":{"id":"6ac849e0...","email":"owner.qa@example.com","role":"owner"}}
+- GET /agents -> 7 items:
+  [["ceo",["direct"]],["coo",["route","process"]],["cto",["route","technical"]],["programming",["code"]],
+   ["game",["game"]],["iot",["iot"]],["ai_development",["ai"]]]   == spec exactly, hierarchy order
+- viewer-role token (forged w/ real secret) GET /agents -> 200 (viewer min role OK)
+
+Enumeration
+- wrong password  -> HTTP/1.1 401, body {"success":false,"error":"Email atau password salah"}
+- unknown email   -> HTTP/1.1 401, body {"success":false,"error":"Email atau password salah"}
+  cmp bodies -> BODY_IDENTICAL; headers diff excluding Date -> identical (same ETag W/"35-QAp4ly..."); dummy argon2 verify on unknown user (password.ts)
+
+Token rejection (GET /me), all -> 401 {"success":false,"error":"Autentikasi diperlukan"}, WWW-Authenticate: Bearer
+- no Authorization header ............ 401
+- Authorization: Basic x ............. 401
+- Bearer garbage ..................... 401
+- real token, last sig char flipped .. 401
+- alg=none header + real payload + empty sig .. 401
+- HS256 signed with different secret . 401
+- expired (real secret, iat=now-7200, exp=now-3600) .. 401
+- HS512 with real secret (alg pinning) 401
+- wrong aud with real secret ......... 401
+- CONTROL: fresh token forged w/ real secret, valid claims -> 200 (proves forge harness correct, so 401s are genuine)
+
+Body/route hardening
+- malformed JSON '{"email":' -> 400 {"success":false,"error":"Body request tidak valid"}
+- 20 KB body (>16kb limit) -> 413 {"success":false,"error":"Payload terlalu besar"}
+- email {"$gt":""} / password 123 / body [] -> 400 each (no NoSQL operator injection reaches query)
+- form-encoded body without JSON content-type -> 400
+- GET /api/v1/nope, GET / -> 404 {"success":false,"error":"Rute tidak ditemukan"}
+- POST/PATCH/PUT/DELETE /api/v1/agents (authed owner) -> 404 each; no write verbs
+- no stack traces in any body (grep 'at ' = 0); x-powered-by header absent
+
+RBAC requireRole('operator') 403 for viewer
+- No real operator route exists in T3 (accepted, T5 adds POST /directives). Covered by tests:
+  app.test.ts:202-210 stub POST /directives requireRole('operator') -> expect 403 for viewer;
+  middleware.test.ts:83 describe("requireRole('operator')"), hasRole('viewer','operator')===false. Included in the 66 passing.
+  Code review middleware.ts: role taken from verified token, rank viewer1<operator2<owner3, fails closed 401 if no req.auth.
+
+== 3. Seed idempotency / storage (mongoose script against QA DB)
+after boot seed : agents 7 users 1 owners 1; hash "$argon2id$v=19$m=65536,t=2,p=1"; collections users,agents; plaintext/secret leak false
+seed run 1 (bun run --cwd apps/api seed): "seed ok: agents=7 owner={"created":false,"passwordUpdated":false}" -> agents 7 users 1 owners 1
+mutated runtime: game status=working,currentRunId=run-qa,omoPolicy.maxTurns=99,allowedAdapters=[codex]; owner hash=sentinel
+seed run 2 -> agents 7 users 1 owners 1; game fields still working/run-qa/99/[codex]; hash still sentinel (runtime NOT clobbered)
+seed run 3 with OWNER_EMAIL uppercased -> users 1 owners 1 (email normalization, no dup)
+seed -- --force-owner-password -> passwordUpdated:true, hash back to $argon2id$...; login with mixed-case email -> 200
+repo grep for JWT_SECRET / OWNER_PASSWORD values (excl node_modules) -> no matches (exit 1); server log secret hits: 0
+
+== 4. Env fail-closed (exit codes)
+missing JWT_SECRET ........ "Invalid environment: JWT_SECRET: Invalid input..." exit=1
+placeholder JWT_SECRET .... "JWT_SECRET: placeholder value is not allowed" exit=1
+short JWT_SECRET .......... "must be at least 32 characters" exit=1
+OWNER_PASSWORD=change-me .. "OWNER_PASSWORD: must be at least 12 characters" exit=1
+seed CLI missing secret ... "seed failed: Invalid environment..." exit=1
+Error messages carry key names only, no values.
+
+== 5. Static review
+`any` in apps/api/src non-test: 0 | console.log non-test: 0 (console.info/error only)
+.env files in repo (find -name .env, excl node_modules): 0
+packages/shared files newer than .omo/evidence/02/verifier.txt: 0 (T2 untouched)
+max file LOC apps/api: app.test.ts 245, seed.test.ts 144 (all <=300)
+
+== 6. Cleanup receipt
+server pid 1057487 SIGTERM -> exited; ports 4021/4022 listeners: 0
+mongosh dropped: ["redhunter_qa_verify_2811018119"]; remaining redhunter*: [] (DB `redhunter` never touched)
+temp forge/query scripts + credential files in /tmp/opencode removed
+
+== Notes (non-blocking, not defects)
+- RBAC 403 proven via test stub only (no operator route in T3; accepted per plan context).
+- Boot seed re-asserts owner role for OWNER_EMAIL every start (by design, documented in owner.ts).
+
+VERDICT: confirmed

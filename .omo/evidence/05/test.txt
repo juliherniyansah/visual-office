@@ -1,0 +1,179 @@
+# T5a GREEN full api suite (fix round: D1 fix + D2/D3/N4/N5 tests)
+$ bun test apps/api --reporter=junit --reporter-outfile=/tmp/opencode/fixgreen.xml
+bun test v1.3.14 (0d9b296a)
+
+ 169 pass
+ 0 fail
+ 641 expect() calls
+Ran 169 tests across 18 files. [30.64s]
+
+# junit: 169 testcases, 0 failed/skipped
+  PASS apps/api/src/server.test.ts ::  > startServer listens on the requested host and exposes the http.Server for Socket.IO
+  PASS apps/api/src/app.test.ts :: POST /api/v1/auth/login > returns a JWT and the public user (no passwordHash)
+  PASS apps/api/src/app.test.ts :: POST /api/v1/auth/login > email lookup is case-insensitive and trimmed
+  PASS apps/api/src/app.test.ts :: POST /api/v1/auth/login > wrong password and unknown email both get 401 with the identical body
+  PASS apps/api/src/app.test.ts :: POST /api/v1/auth/login > 400 for empty body, missing fields and non-string credentials
+  PASS apps/api/src/app.test.ts :: POST /api/v1/auth/login > 400 when no JSON body is sent at all
+  PASS apps/api/src/app.test.ts :: POST /api/v1/auth/login > 400 JSON error for malformed JSON
+  PASS apps/api/src/app.test.ts :: POST /api/v1/auth/login > 413 JSON error for a huge payload
+  PASS apps/api/src/app.test.ts :: POST /api/v1/auth/login > 400 for an over-long password (bounded KDF work)
+  PASS apps/api/src/app.test.ts :: GET /api/v1/me > returns the PublicUser for the bearer token
+  PASS apps/api/src/app.test.ts :: GET /api/v1/me > 401 without token
+  PASS apps/api/src/app.test.ts :: GET /api/v1/me > 401 for a valid token whose user no longer exists
+  PASS apps/api/src/app.test.ts :: GET /api/v1/me > 401 for a valid token whose sub is not an ObjectId
+  PASS apps/api/src/app.test.ts :: GET /api/v1/agents > viewer gets the 7 seeded agents in hierarchy order with exact capabilityTags
+  PASS apps/api/src/app.test.ts :: GET /api/v1/agents > 401 without token and with a tampered token
+  PASS apps/api/src/app.test.ts :: RBAC with real login tokens > viewer POST -> 403 from requireRole('operator')
+  PASS apps/api/src/app.test.ts :: RBAC with real login tokens > operator and owner POST -> 201
+  PASS apps/api/src/app.test.ts :: app shell > unknown route -> 404 JSON
+  PASS apps/api/src/app.test.ts :: app shell > does not advertise Express
+  PASS apps/api/src/app.test.ts :: app shell > no route writes agent status
+  PASS apps/api/src/services/runs.test.ts :: createRun > creates a queued run for the task assignee and emits run.started
+  PASS apps/api/src/services/runs.test.ts :: createRun > task without assignee -> ConflictError; unknown task -> NotFoundError
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > happy path to succeeded stamps startedAt/endedAt and emits run.completed
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > succeeded -> queued is rejected with InvalidTransitionError and emits nothing
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > failed records the error and emits run.failed
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > escalated emits run.escalated with the target
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > startedAt: absent while queued/composing, set once at first executing, never moved
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > endedAt is stamped on succeeded, failed and escalated
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > unknown run -> NotFoundError
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > two concurrent transitions from the same status: exactly one wins
+  PASS apps/api/src/services/runs.test.ts :: listRunEvents > returns only this run’s events in createdAt order, re-validated
+  PASS apps/api/src/services/runs.test.ts :: listRunEvents > unknown run -> NotFoundError
+  PASS apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > table is pinned exactly
+  PASS apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > covers every RunStatus and never allows a self transition
+  PASS apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > happy chain queued -> composing -> executing -> verifying -> succeeded is allowed
+  PASS apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > succeeded -> queued is rejected with a typed InvalidTransitionError (HTTP 409 class)
+  PASS apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > terminal statuses have no exit
+  PASS apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > queued cannot jump straight to succeeded
+  PASS apps/api/src/services/transitions.test.ts :: task transitions > table is pinned exactly
+  PASS apps/api/src/services/transitions.test.ts :: task transitions > covers every TaskStatus and never allows a self transition
+  PASS apps/api/src/services/transitions.test.ts :: task transitions > done -> in_progress is rejected with a typed error
+  PASS apps/api/src/services/transitions.test.ts :: task transitions > pause, resume and cancel follow the table
+  PASS apps/api/src/services/tasks.test.ts :: createTask > creates a planned task with the directive capabilityTags and emits task.created
+  PASS apps/api/src/services/tasks.test.ts :: createTask > unknown directive -> NotFoundError, nothing stored
+  PASS apps/api/src/services/tasks.test.ts :: assignTask > sets the assignee, moves planned -> assigned and emits task.assigned
+  PASS apps/api/src/services/tasks.test.ts :: assignTask > rejects an agent outside AGENT_IDS
+  PASS apps/api/src/services/tasks.test.ts :: assignTask > done task cannot be re-assigned
+  PASS apps/api/src/services/tasks.test.ts :: transitionTask > emits task.status_changed for every allowed move
+  PASS apps/api/src/services/tasks.test.ts :: transitionTask > done -> in_progress is rejected and emits nothing
+  PASS apps/api/src/services/tasks.test.ts :: transitionTask > unknown task -> NotFoundError
+  PASS apps/api/src/services/tasks.test.ts :: transitionTask > allowedFrom restricts the source state even when the table allows the move
+  PASS apps/api/src/services/tasks.test.ts :: listTasks > filters by status and assignee
+  PASS apps/api/src/services/directives.test.ts :: createDirective > persists an issued directive with a uuid id and emits directive.created
+  PASS apps/api/src/services/directives.test.ts :: createDirective > persists the document before emitting; an emit failure leaves the directive without event
+  PASS apps/api/src/services/directives.test.ts :: listDirectives > returns re-validated directives in creation order without Mongo fields
+  PASS apps/api/src/config/env.test.ts :: loadEnv > applies defaults when only JWT_SECRET is set
+  PASS apps/api/src/config/env.test.ts :: loadEnv > parses CORS_ORIGINS as a trimmed comma list of exact origins
+  PASS apps/api/src/config/env.test.ts :: loadEnv > rejects wildcard, paths and non-http CORS_ORIGINS entries
+  PASS apps/api/src/config/env.test.ts :: loadEnv > fails fast when JWT_SECRET is missing
+  PASS apps/api/src/config/env.test.ts :: loadEnv > fails fast when JWT_SECRET is shorter than 32 chars without leaking the value
+  PASS apps/api/src/config/env.test.ts :: loadEnv > rejects the .env.example placeholder secret even though it is long enough
+  PASS apps/api/src/config/env.test.ts :: loadEnv > coerces PORT and rejects non-numeric PORT
+  PASS apps/api/src/config/env.test.ts :: loadEnv > rejects a non-mongodb MONGO_URL
+  PASS apps/api/src/config/env.test.ts :: loadEnv > rejects EVENTS_DISPATCH outside on|off
+  PASS apps/api/src/config/env.test.ts :: loadEnv > builds owner credentials with a normalized email
+  PASS apps/api/src/config/env.test.ts :: loadEnv > treats empty owner vars as unset
+  PASS apps/api/src/config/env.test.ts :: loadEnv > requires OWNER_PASSWORD when OWNER_EMAIL is set
+  PASS apps/api/src/config/env.test.ts :: loadEnv > rejects an OWNER_PASSWORD shorter than 12 chars (e.g. the change-me placeholder)
+  PASS apps/api/src/config/env.test.ts :: loadEnv > rejects an invalid OWNER_EMAIL
+  PASS apps/api/src/realtime/rooms.test.ts :: roomsForEvent > every event goes to the office room
+  PASS apps/api/src/realtime/rooms.test.ts :: roomsForEvent > agent events also go to agent:<id>, and to run:<id> when they carry a runId
+  PASS apps/api/src/realtime/rooms.test.ts :: roomsForEvent > run.started carries both agentId and runId
+  PASS apps/api/src/realtime/rooms.test.ts :: roomsForEvent > runId nested in result/decision payloads routes to run:<id>
+  PASS apps/api/src/realtime/rooms.test.ts :: roomsForEvent > task.assigned routes to the assignee agent room
+  PASS apps/api/src/realtime/gateway.test.ts :: handshake authentication > rejects a connection without a token with connect_error
+  PASS apps/api/src/realtime/gateway.test.ts :: handshake authentication > rejects malformed, alg=none, expired, wrong-audience and non-string tokens
+  PASS apps/api/src/realtime/gateway.test.ts :: handshake authentication > rejects connections to the default namespace even with a valid token
+  PASS apps/api/src/realtime/gateway.test.ts :: handshake authentication > rejects a foreign Origin on websocket and polling transports
+  PASS apps/api/src/realtime/gateway.test.ts :: delivery > emit() reaches a connected office client within 500 ms
+  PASS apps/api/src/realtime/gateway.test.ts :: delivery > EVENTS_DISPATCH=off stores the event but delivers nothing
+  PASS apps/api/src/realtime/gateway.test.ts :: delivery > connectionStateRecovery restores rooms and replays events missed during a short drop
+  PASS apps/api/src/realtime/gateway.test.ts :: room subscriptions > subscribe:agent joins agent:<id> and only matching agent events arrive there
+  PASS apps/api/src/realtime/gateway.test.ts :: room subscriptions > subscribe:run joins run:<id> and receives run-scoped events
+  PASS apps/api/src/realtime/gateway.test.ts :: room subscriptions > canSubscribeRun=false denies the run room
+  PASS apps/api/src/realtime/gateway.test.ts :: room subscriptions > invalid subscribe payloads are refused without dropping the connection
+  PASS apps/api/src/auth/token.test.ts :: access token > round-trips sub and role with a 12h expiry
+  PASS apps/api/src/auth/token.test.ts :: access token > header pins HS256 and payload carries exp = iat + 12h
+  PASS apps/api/src/auth/token.test.ts :: access token > rejects a tampered signature
+  PASS apps/api/src/auth/token.test.ts :: access token > rejects a token signed with another secret
+  PASS apps/api/src/auth/token.test.ts :: access token > rejects an expired token
+  PASS apps/api/src/auth/token.test.ts :: access token > rejects alg=none (unsecured) tokens
+  PASS apps/api/src/auth/token.test.ts :: access token > rejects a validly signed token whose role is not a human role
+  PASS apps/api/src/auth/token.test.ts :: access token > rejects a validly signed token without sub
+  PASS apps/api/src/auth/token.test.ts :: access token > rejects a token for another audience
+  PASS apps/api/src/auth/token.test.ts :: access token > rejects garbage strings
+  PASS apps/api/src/auth/password.test.ts :: password hashing > hashPassword produces an argon2id hash that never contains the plain text
+  PASS apps/api/src/auth/password.test.ts :: password hashing > verifyPassword accepts the right password and rejects a wrong one
+  PASS apps/api/src/auth/password.test.ts :: password hashing > verifyPassword returns false for a missing hash (unknown user path)
+  PASS apps/api/src/auth/password.test.ts :: password hashing > same password hashes differently (salted)
+  PASS apps/api/src/auth/middleware.test.ts :: hasRole > applies hierarchy owner > operator > viewer
+  PASS apps/api/src/auth/middleware.test.ts :: requireAuth > 401 without Authorization header, with WWW-Authenticate and error shape
+  PASS apps/api/src/auth/middleware.test.ts :: requireAuth > 401 for malformed headers
+  PASS apps/api/src/auth/middleware.test.ts :: requireAuth > 401 for an invalid token
+  PASS apps/api/src/auth/middleware.test.ts :: requireAuth > accepts the scheme case-insensitively
+  PASS apps/api/src/auth/middleware.test.ts :: requireAuth > requireRole without requireAuth fails closed with 401
+  PASS apps/api/src/auth/middleware.test.ts :: requireRole(&apos;operator&apos;) > 403 for a viewer
+  PASS apps/api/src/auth/middleware.test.ts :: requireRole(&apos;operator&apos;) > 200 for operator and owner, claims attached to req.auth
+  PASS apps/api/src/auth/middleware.test.ts :: requireRole(&apos;operator&apos;) > requireRole('owner') rejects operator with 403
+  PASS apps/api/src/auth/middleware.test.ts :: requireRole(&apos;operator&apos;) > requireRole('viewer') admits a viewer
+  PASS apps/api/src/events/dispatcher.test.ts :: EventDispatcher > fast path delivers an emitted event and marks it dispatched well under the poll interval
+  PASS apps/api/src/events/dispatcher.test.ts :: EventDispatcher > poll picks up rows written without the fast path (e.g. by another process)
+  PASS apps/api/src/events/dispatcher.test.ts :: EventDispatcher > delivers in createdAt order
+  PASS apps/api/src/events/dispatcher.test.ts :: EventDispatcher > restart replays undispatched events exactly once
+  PASS apps/api/src/events/dispatcher.test.ts :: EventDispatcher > concurrent ticks never deliver the same event twice
+  PASS apps/api/src/events/dispatcher.test.ts :: EventDispatcher > moves an event to events_dead after exactly 5 failed attempts, then unblocks the queue
+  PASS apps/api/src/events/dispatcher.test.ts :: EventDispatcher > a DB failure while marking dispatched retries the mark without re-delivering
+  PASS apps/api/src/events/dispatcher.test.ts :: EventDispatcher > a DB failure while reading the queue is logged and does not reject the tick
+  PASS apps/api/src/events/dispatcher.test.ts :: EventDispatcher > disabled dispatcher (EVENTS_DISPATCH=off) stores events but delivers nothing
+  PASS apps/api/src/events/dispatcher.test.ts :: EventDispatcher > stop() waits for the in-flight tick and later notify() calls do nothing
+  PASS apps/api/src/events/outbox.test.ts :: outbox emit() > stores a validated event as an undispatched row with a fresh uuid
+  PASS apps/api/src/events/outbox.test.ts :: outbox emit() > rejects an invalid event shape and inserts nothing
+  PASS apps/api/src/events/outbox.test.ts :: outbox emit() > ignores forged envelope fields so callers cannot pre-mark an event dispatched
+  PASS apps/api/src/events/outbox.test.ts :: outbox emit() > notifies the fast-path listener after the row is stored
+  PASS apps/api/src/seed/seed.test.ts :: seedAgents > creates the 7 permanent agents with exact capabilityTags
+  PASS apps/api/src/seed/seed.test.ts :: seedAgents > copies static identity from AGENT_DEFINITIONS and seeds runtime defaults
+  PASS apps/api/src/seed/seed.test.ts :: seedAgents > is idempotent: running twice still yields exactly 7 agents
+  PASS apps/api/src/seed/seed.test.ts :: seedAgents > re-seed keeps runtime state but restores static identity drift
+  PASS apps/api/src/seed/seed.test.ts :: seedOwner > creates one owner whose password verifies; hash never equals the password
+  PASS apps/api/src/seed/seed.test.ts :: seedOwner > second run does not overwrite a changed owner password
+  PASS apps/api/src/seed/seed.test.ts :: seedOwner > forcePassword explicitly resets the owner password
+  PASS apps/api/src/seed/seed.test.ts :: seedOwner > normalizes the email so case variants do not create a second owner
+  PASS apps/api/src/seed/seed.test.ts :: runSeed > is idempotent: twice -> exactly 7 agents and 1 owner
+  PASS apps/api/src/seed/seed.test.ts :: runSeed > skips the owner when no credentials are configured
+  PASS apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id > viewer reads a run (re-validated, no Mongo fields)
+  PASS apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id > unknown and odd ids -> 404 JSON, never 500
+  PASS apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id > 401 without token
+  PASS apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id > no route mutates runs or agents over REST
+  PASS apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id/events > returns this run’s events ordered by createdAt
+  PASS apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id/events > unknown run -> 404; no token -> 401
+  PASS apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id/events > ignores events of another aggregate kind that share the run id
+  PASS apps/api/src/routes/runs.test.ts :: id length guard > ids over 128 chars -> 404 without touching Mongo (GET /runs/:id, PATCH /tasks/:id)
+  PASS apps/api/src/routes/runs.test.ts :: id length guard > a 128-char id still reaches the lookup (boundary)
+  PASS apps/api/src/routes/runs.test.ts :: happy flow: directive -&gt; task -&gt; run visible over REST > operator directive, service-created task + run, viewer reads all of it
+  PASS apps/api/src/routes/tasks.test.ts :: GET /api/v1/tasks > viewer lists tasks; status and assigneeAgentId filters apply
+  PASS apps/api/src/routes/tasks.test.ts :: GET /api/v1/tasks > 400 for unknown filter values
+  PASS apps/api/src/routes/tasks.test.ts :: GET /api/v1/tasks > 401 without token
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > operator pauses, resumes and cancels; each emits task.status_changed
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > invalid transitions -> 409 and no event (done task, resume without pause, pause planned)
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > resume only from paused: assigned/planned -> 409, no event, status unchanged
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > resume on a paused task -> 200 in_progress with exactly one new event
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > pause only from in_progress: assigned, paused, escalated -> 409, no event
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > cancel from every non-terminal status -> 200 cancelled
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > forged status in the body is ignored; only the action counts
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > concurrent pause + cancel on the same task: exactly one 200 and one 409
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > viewer -> 403; missing, expired and alg=none tokens -> 401
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > 400 for unknown actions or malformed JSON
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > unknown or odd ids -> 404/400 JSON, never 500
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > operator creates an issued directive (201) and directive.created is stored
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > owner may post; priority and capabilityTags default
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > forged server-owned fields (id, status, issuedBy, createdBy, eventId) are ignored
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > viewer -> 403 from the real requireRole("operator"), nothing stored
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > no token, expired token and alg=none token -> 401
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > 400 for invalid bodies
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > capabilityTags count bound: 32 -> 201, 33 -> 400
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > capabilityTags length bound: 64 chars -> 201, 65 chars -> 400
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > 400 for malformed JSON, 413 for an oversized body
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > emit failure surfaces as 500 JSON; the directive row stays (documented gap)
+  PASS apps/api/src/routes/directives.test.ts :: GET /api/v1/directives > viewer lists directives in creation order
+  PASS apps/api/src/routes/directives.test.ts :: GET /api/v1/directives > 401 without token

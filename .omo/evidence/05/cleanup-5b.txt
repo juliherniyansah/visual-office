@@ -1,0 +1,34 @@
+# T5b cleanup receipt (2026-10-09T07:30:30Z)
+$ mongosh drop manual-QA DB redhunter_test_manualqa5b_1791530944
+{"ok":1,"dropped":"redhunter_test_manualqa5b_1791530944"}
+$ mongosh --quiet --eval "db.adminCommand({listDatabases:1}).databases.map(d=>d.name).filter(n=>n.startsWith('redhunter_test'))"
+[]
+$ tmux has-session -t mqa5b
+no server running on /tmp/tmux-1001/default
+$ cwd of remaining 'bun run/--watch/test' processes (none under visual-office = none of mine)
+275760 /home/programer/work/whatsapp-monitor/packages/backend
+673841 /home/programer/work/whatsapp-monitor/packages/backend
+673842 /home/programer/work/whatsapp-monitor/packages/backend
+674006 /home/programer/work/whatsapp-monitor/packages/frontend
+674226 /home/programer/work/whatsapp-monitor/packages/wa-service
+674227 /home/programer/work/whatsapp-monitor/packages/wa-service
+683056 /home/programer/work/research/pinjaman/pinjaman-backend
+683058 /home/programer/work/research/pinjaman/pinjaman-frontend
+683060 /home/programer/work/research/pinjaman/pinjaman-backend
+$ ls -a apps/api (no .env created)
+.
+..
+.env.example
+node_modules
+package.json
+src
+tsconfig.json
+$ /usr/bin/find . -name '.env' -not -path './node_modules/*' (expect none)
+$ scratch copies left in /tmp/opencode (rm -rf outside cwd blocked by Safety Net): mut5b (partial, aborted), mut5b-run, mut5b-run2, mut5b-run3
+/tmp/opencode/mut5b
+/tmp/opencode/mut5b-run
+/tmp/opencode/mut5b-run2
+/tmp/opencode/mut5b-run3
+/tmp/opencode/mut5b.log
+/tmp/opencode/mut5b2.log
+/tmp/opencode/mut5b3.log

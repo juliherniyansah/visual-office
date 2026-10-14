@@ -1,0 +1,9 @@
+packages/agent-runtime/src/prompt/composer.hash.test.ts:77:  const contentChanges: [string, PromptInput][] = [
+packages/agent-runtime/src/prompt/composer.hash.test.ts:88:  const versionChanges: [string, PromptInput][] = [
+apps/api/src/realtime/rooms.test.ts:18:    const statusChanged = event({
+apps/api/src/routes/tasks.test.ts:214:      const changes = await ctx.db.models.Event.countDocuments({
+packages/adapters/src/codex/event-mapper.test.ts:144:    const change = (status: string, id = 'f1') =>
+packages/agent-runtime/src/attempt.ts:59:  const change = ctx.workers.observe(event);
+apps/api/src/services/officeProjector.ts:146:    const changed = applyEvent(current, event);
+apps/api/src/services/officeProjector.ts:147:    const hasDroneChange = event.type === 'worker.spawned' || event.type === 'worker.despawned';
+packages/adapters/src/codex/event-mapper.ts:96:    const changes = Array.isArray(item.changes) ? item.changes : [];

@@ -1,0 +1,48 @@
+$ bun run --filter '*' typecheck
+@redhunter/web typecheck: Exited with code 0
+@redhunter/shared typecheck: Exited with code 0
+@redhunter/adapters typecheck: src/crash-retry.ts(28,12): error TS2353: Object literal may only specify known properties, and 'run' does not exist in type 'AgentAdapter'.
+@redhunter/adapters typecheck: src/crash-retry.ts(33,43): error TS2339: Property 'run' does not exist on type 'AgentAdapter'.
+@redhunter/adapters typecheck: src/crash-retry.ts(52,11): error TS2322: Type '"info"' is not assignable to type '"completed" | "failed" | "file_change" | "permission_request" | "started" | "text" | "tool" | "usage"'.
+@redhunter/adapters typecheck: Exited with code 1
+@redhunter/hermes typecheck: Exited with code 0
+@redhunter/agent-runtime typecheck: ../adapters/src/crash-retry.ts(28,12): error TS2353: Object literal may only specify known properties, and 'run' does not exist in type 'AgentAdapter'.
+@redhunter/agent-runtime typecheck: ../adapters/src/crash-retry.ts(33,43): error TS2339: Property 'run' does not exist on type 'AgentAdapter'.
+@redhunter/agent-runtime typecheck: ../adapters/src/crash-retry.ts(52,11): error TS2322: Type '"info"' is not assignable to type '"completed" | "failed" | "file_change" | "permission_request" | "started" | "text" | "tool" | "usage"'.
+@redhunter/agent-runtime typecheck: src/runtime.interactive.test.ts(56,7): error TS2769: No overload matches this call.
+@redhunter/agent-runtime typecheck:   The last overload gave the following error.
+@redhunter/agent-runtime typecheck:     Property 'createdAt' is missing in type '{ id: string; runId: string; question: string; options: [string, string]; }' but required in type '{ id: string; runId: string; question: string; options: string[]; createdAt: string; answeredBy?: string | undefined; answer?: string | undefined; answeredAt?: string | undefined; }'.
+@redhunter/agent-runtime typecheck: src/runtime.test.ts(166,7): error TS2769: No overload matches this call.
+@redhunter/agent-runtime typecheck:   The last overload gave the following error.
+@redhunter/agent-runtime typecheck:     Property 'createdAt' is missing in type '{ id: string; runId: string; question: string; options: [string, string, string]; }' but required in type '{ id: string; runId: string; question: string; options: string[]; createdAt: string; answeredBy?: string | undefined; answer?: string | undefined; answeredAt?: string | undefined; }'.
+@redhunter/agent-runtime typecheck: src/test-support/in-memory.ts(96,5): error TS2322: Type '{ id?: string | undefined; runId?: string | undefined; question?: string | undefined; options?: string[] | undefined; createdAt?: string | undefined; answeredBy?: string | undefined; answer?: string | undefined; answeredAt?: string | undefined; }' is not assignable to type '{ id: string; runId: string; question: string; options: string[]; createdAt: string; answeredBy?: string | undefined; answer?: string | undefined; answeredAt?: string | undefined; }'.
+@redhunter/agent-runtime typecheck:   Types of property 'id' are incompatible.
+@redhunter/agent-runtime typecheck:     Type 'string | undefined' is not assignable to type 'string'.
+@redhunter/agent-runtime typecheck:       Type 'undefined' is not assignable to type 'string'.
+@redhunter/agent-runtime typecheck: src/test-support/in-memory.ts(97,5): error TS2322: Type '{ id: string; runId: string; question: string; options: string[]; createdAt: string; answeredBy?: string | undefined; answer?: string | undefined; answeredAt?: string | undefined; } | undefined' is not assignable to type '{ id: string; runId: string; question: string; options: string[]; createdAt: string; answeredBy?: string | undefined; answer?: string | undefined; answeredAt?: string | undefined; }'.
+@redhunter/agent-runtime typecheck:   Type 'undefined' is not assignable to type '{ id: string; runId: string; question: string; options: string[]; createdAt: string; answeredBy?: string | undefined; answer?: string | undefined; answeredAt?: string | undefined; }'.
+@redhunter/agent-runtime typecheck: Exited with code 1
+@redhunter/api typecheck: src/app.ts(81,85): error TS2353: Object literal may only specify known properties, and 'requireAuth' does not exist in type 'ServiceDeps'.
+@redhunter/api typecheck: src/app.ts(100,7): error TS2353: Object literal may only specify known properties, and 'requireAuth' does not exist in type 'ServiceDeps'.
+@redhunter/api typecheck: src/index.ts(60,7): error TS2559: Type 'Map<"claude" | "codex" | "opencode", AgentAdapter>' has no properties in common with type 'Partial<Record<"claude" | "codex" | "opencode", AgentAdapter>>'.
+@redhunter/api typecheck: src/realtime/gateway.ts(136,34): error TS2339: Property 'models' does not exist on type 'GatewayOptions'.
+@redhunter/api typecheck: src/realtime/gateway.ts(137,36): error TS2339: Property 'models' does not exist on type 'GatewayOptions'.
+@redhunter/api typecheck: src/realtime/gateway.ts(140,47): error TS2304: Cannot find name 'errorMessage'.
+@redhunter/api typecheck: src/routes/decisions.test.ts(51,43): error TS2353: Object literal may only specify known properties, and 'name' does not exist in type 'AccessClaims'.
+@redhunter/api typecheck: src/routes/decisions.test.ts(55,47): error TS2353: Object literal may only specify known properties, and 'name' does not exist in type 'AccessClaims'.
+@redhunter/api typecheck: src/routes/health.ts(14,16): error TS2339: Property 'connection' does not exist on type 'ServiceDeps'.
+@redhunter/api typecheck: src/routes/health.ts(27,41): error TS2339: Property 'adapters' does not exist on type 'ServiceDeps'.
+@redhunter/api typecheck: src/routes/usage.ts(11,37): error TS2345: Argument of type 'string[]' is not assignable to parameter of type '"operator" | "owner" | "viewer"'.
+@redhunter/api typecheck: src/services/dispatcher.test.ts(33,5): error TS2353: Object literal may only specify known properties, and 'execute' does not exist in type 'AgentAdapter'.
+@redhunter/api typecheck: src/services/dispatcher.test.ts(87,7): error TS2353: Object literal may only specify known properties, and 'execute' does not exist in type 'AgentAdapter'.
+@redhunter/api typecheck: src/services/dispatcher.test.ts(115,7): error TS2353: Object literal may only specify known properties, and 'execute' does not exist in type 'AgentAdapter'.
+@redhunter/api typecheck: src/services/dispatcher.ts(40,26): error TS2339: Property 'adapters' does not exist on type 'ServiceDeps'.
+@redhunter/api typecheck: src/services/dispatcher.ts(58,19): error TS2339: Property 'prompt' does not exist on type '{ id: string; taskId: string; agentId: "ai_development" | "ceo" | "coo" | "cto" | "game" | "iot" | "programming"; adapterId: "claude" | "codex" | "opencode"; status: "composing" | "escalated" | ... 5 more ... | "verifying"; ... 5 more ...; error?: string | undefined; }'.
+@redhunter/api typecheck: src/services/dispatcher.ts(92,16): error TS2339: Property 'logger' does not exist on type 'ServiceDeps'.
+@redhunter/api typecheck: src/services/dispatcher.ts(110,18): error TS2339: Property 'logger' does not exist on type 'ServiceDeps'.
+@redhunter/api typecheck: src/socket/resync.ts(21,12): error TS2339: Property 'logger' does not exist on type 'ServiceDeps'.
+@redhunter/api typecheck: ../../packages/adapters/src/crash-retry.ts(28,12): error TS2353: Object literal may only specify known properties, and 'run' does not exist in type 'AgentAdapter'.
+@redhunter/api typecheck: ../../packages/adapters/src/crash-retry.ts(33,43): error TS2339: Property 'run' does not exist on type 'AgentAdapter'.
+@redhunter/api typecheck: ../../packages/adapters/src/crash-retry.ts(52,11): error TS2322: Type '"info"' is not assignable to type '"completed" | "failed" | "file_change" | "permission_request" | "started" | "text" | "tool" | "usage"'.
+@redhunter/api typecheck: Exited with code 1
+error: script "typecheck" exited with code 1

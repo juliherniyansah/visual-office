@@ -1,0 +1,29 @@
+# Mutation proof round 6 (fix round 5, oracle D31-D32) - 2026-10-09T16:56:05+00:00
+Runner: /tmp/opencode/fix3-hermes/mut6.py (in-place + .bak, finally restore, pattern count==1, full bun test x10 per mutant, sha256 compare).
+D31 = N074 (store.ts:85 default clock -> new Date(0)); D32 = N122 (context.ts:82 importance comparator line deleted).
+
+CONTROL original: PASS (155 pass / 0 fail)
+N074 | src/store.ts:85 | 10/10 KILLED | runs: KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED
+     (fail) default clock (no clock injected) > addExperience stamps the current time: new row sorts before a 1-minute-old row
+     (fail) default clock (no clock injected) > addMemory stamps createdAt with the current time; ttl 1h memory is still live
+     (fail) default clock (no clock injected) > createProfileVersion stores createdAt from the current time (storage-only field)
+N122 | src/context.ts:82 | 10/10 KILLED | runs: KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED
+     (fail) assembleContext > programming @2000: profile + top-3 relevant memories, ordered layers, within budget
+     (fail) rankMemories importance > equal relevance and createdAt -> higher importance first
+RESTORED-CONTROL original: PASS (155 pass / 0 fail)
+sha256 all hermes src/seed files pre==post: True (24 files)
+N122 isolated (only "higher importance first" test) x10 rc: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] -> 10 /10 KILLED
+
+Production sha256 pre (pre-round5.sha) == post:
+dbc545903811e2d89da0e34bee4f81c7fefc0eca958a8f78b647f89d636a210a  packages/hermes/src/store.ts
+169e225abd914d46d0af3364cdc23c2c7ac63ef11ba6233540c0938817796b85  packages/hermes/src/models.ts
+85059f0657348ffa742f82d25cf05dca4ade4d8a7740ab1f079321658a41d32b  packages/hermes/src/context.ts
+fe66232917d4721084622b925f3b147492e4be393eb5e6e7236e2ebaa9d744e5  packages/hermes/src/knowledge.ts
+0effb3d5d3e540fcf57eb5821cd929f9e41f4b452d2eb67e65583fd214fd6ac6  packages/hermes/src/seed.ts
+fe0e0a9464905bb05e51fc2adf6c95f227dc4cf48b89f9a9e049cb13f982295b  packages/hermes/src/tokens.ts
+97743c3c051f82923ffd96bbe7ebbd5c50b2a7547fc7da4c8207d80e19470512  packages/hermes/src/errors.ts
+1d80824db69ab17c9566a83f73af0e96bb526d31f24fc41e285ce53c23a3cede  packages/hermes/src/index.ts
+d413bd8c001c3f63096259f4297319a6529177bf1070102f33401f9eeca5740f  apps/api/src/db/mappers.ts
+sha256sum -c pre-round5.sha: only context.limits.test.ts and store.guards.test.ts differ (edited tests).
+.bak count under packages/ and apps/: 0
+Leftover redhunter_test_* DBs: []

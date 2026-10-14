@@ -1,0 +1,55 @@
+# Task 1 mongo - 2026-10-08T23:16:02+00:00
+## Host check: 27017 already bound by system mongod (systemd 'mongod' active, pid 7806, /usr/bin/mongod --config /etc/mongod.conf). Not touched.
+LISTEN 0      4096                     127.0.0.1:27017      0.0.0.0:*   
+
+$ docker compose config (default port)
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 27017
+        published: "27017"
+        protocol: tcp
+    restart: unless-stopped
+exit=0
+
+$ MONGO_HOST_PORT=27018 docker compose up -d mongo
+ Network visual-office_default Creating 
+ Network visual-office_default Creating 
+ Volume visual-office_mongo-data Creating 
+ Volume visual-office_mongo-data Creating 
+ Volume visual-office_mongo-data Created 
+ Volume visual-office_mongo-data Created 
+ Network visual-office_default Created 
+ Network visual-office_default Created 
+ Container visual-office-mongo-1 Creating 
+ Container visual-office-mongo-1 Created 
+ Container visual-office-mongo-1 Starting 
+ Container visual-office-mongo-1 Started 
+exit=0
+
+$ docker compose ps
+NAME                    IMAGE     COMMAND                  SERVICE   CREATED        STATUS        PORTS
+visual-office-mongo-1   mongo:7   "docker-entrypoint.s…"   mongo     1 second ago   Up 1 second   127.0.0.1:27018->27017/tcp
+
+$ ss -ltn | grep 27018
+LISTEN 0      4096                     127.0.0.1:27018      0.0.0.0:*   
+exit=0
+
+$ ping via mongosh in container
+{"ok":1}
+exit=0
+
+$ tcp connect host 127.0.0.1:27018
+tcp connect ok
+
+$ docker compose down
+ Container visual-office-mongo-1 Stopping 
+ Container visual-office-mongo-1 Stopped 
+ Container visual-office-mongo-1 Removing 
+ Container visual-office-mongo-1 Removed 
+ Network visual-office_default Removing 
+ Network visual-office_default Removed 
+exit=0
+
+$ ss -ltn | grep 27018 (after down)
+27018 released

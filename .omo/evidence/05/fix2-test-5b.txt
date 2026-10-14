@@ -1,0 +1,39 @@
+# T5b fix 2 full api suite, FINAL test files (2026-10-09T09:51:16Z)
+$ bun test apps/api --reporter=junit --reporter-outfile=/tmp/opencode/fix2green.xml
+bun test v1.3.14 (0d9b296a)
+
+ 241 pass
+ 0 fail
+ 981 expect() calls
+Ran 241 tests across 24 files. [34.43s]
+exit=0
+
+# junit: 241 testcases, 0 failed/skipped
+# before this fix: 217; 2 bundled corrupt-row tests (knowledge, projects) replaced by 26 per-field rows + controls: 217 - 2 + 26 = 241
+# new per-field testcases:
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: corrupt empty title throws instead of leaking
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: corrupt missing title throws instead of leaking
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: corrupt non-string title throws instead of leaking
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: corrupt missing text throws instead of leaking
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: corrupt non-string text throws instead of leaking
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: corrupt non-array tags throws instead of leaking
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: corrupt missing tags throws instead of leaking
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: corrupt empty tag element throws instead of leaking
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: corrupt non-string tag element throws instead of leaking
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: corrupt non-string id throws instead of leaking
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: corrupt empty id throws instead of leaking
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > control: the valid base row of the corrupt cases is accepted
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: corrupt empty name throws instead of leaking
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: corrupt missing name throws instead of leaking
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: corrupt non-string name throws instead of leaking
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: corrupt empty repoPath throws instead of leaking
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: corrupt missing repoPath throws instead of leaking
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: corrupt non-string repoPath throws instead of leaking
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: corrupt unknown defaultAdapter throws instead of leaking
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: corrupt missing defaultAdapter throws instead of leaking
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: corrupt non-string id throws instead of leaking
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: corrupt empty id throws instead of leaking
+  PASS apps/api/src/services/projects.test.ts :: listProjects > control: the valid base row of the corrupt cases is accepted
+  PASS apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > corrupt row (tags only) -> 500 generic body, nothing leaked
+  PASS apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > corrupt row (missing title) -> 500 generic body, nothing leaked
+  PASS apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > corrupt row (missing text) -> 500 generic body, nothing leaked

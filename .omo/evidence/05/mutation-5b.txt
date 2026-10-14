@@ -1,0 +1,62 @@
+# T5b mutation testing (2026-10-09T07:27:51Z); runner /tmp/opencode/run-mutants-5b.py (literal replacements, pattern must match exactly once, else INVALID)
+# copy /tmp/opencode/mut5b-run3 (repo untouched); control/restored-control run all 7 relevant files; mutant rows run only their relevant files
+$ python3 /tmp/opencode/run-mutants-5b.py /tmp/opencode/mut5b-run3
+control: 59 pass 0 fail
+A1 POST /projects operator->viewer: 13 pass 1 fail -> KILLED
+A2 POST /knowledge operator->viewer: 12 pass 1 fail -> KILLED
+A3 GET /projects viewer->operator: 12 pass 2 fail -> KILLED
+A4 GET /knowledge viewer->operator: 11 pass 2 fail -> KILLED
+A5 GET /office/state viewer->operator: 2 pass 4 fail -> KILLED
+A6 GET /office/state without requireAuth: 5 pass 1 fail -> KILLED
+B1 project name max 120->121: 13 pass 1 fail -> KILLED
+B2 repoPath max 1024->1025: 13 pass 1 fail -> KILLED
+B3 knowledge title max 200->201: 12 pass 1 fail -> KILLED
+B4 knowledge text max 12000->12001: 12 pass 1 fail -> KILLED
+B5 knowledge tags count 32->33: 12 pass 1 fail -> KILLED
+B6 knowledge tag length 64->65: 12 pass 1 fail -> KILLED
+B7 project name min(1) removed: 13 pass 1 fail -> KILLED
+B8 knowledge whitespace-only text allowed: 12 pass 1 fail -> KILLED
+V1 project name not trimmed: 12 pass 2 fail -> KILLED
+V2 knowledge title not trimmed: 11 pass 2 fail -> KILLED
+V3 knowledge text trimmed (must stay verbatim): 12 pass 1 fail -> KILLED
+V4 defaultAdapter default opencode->codex: 13 pass 1 fail -> KILLED
+V5 knowledge tags default removed: 12 pass 1 fail -> KILLED
+P1 path: allow "..": 13 pass 1 fail -> KILLED
+P2 path: allow ".": 13 pass 1 fail -> KILLED
+P3 path: allow empty segment: 13 pass 1 fail -> KILLED
+P4 path: allow NUL: 13 pass 1 fail -> KILLED
+P5 path: allow relative: 13 pass 1 fail -> KILLED
+P6 path: trailing-slash slice removed: 13 pass 1 fail -> KILLED
+F1 project forged fields spread last (route raw body + service spread): 13 pass 1 fail -> KILLED
+F2 knowledge forged fields spread last: 12 pass 1 fail -> KILLED
+O1 projects sort createdAt desc: 15 pass 2 fail -> KILLED
+O2 projects sort without _id tiebreak: 2 pass 1 fail -> KILLED
+O3 knowledge sort createdAt desc: 13 pass 2 fail -> KILLED
+O4 knowledge sort _id desc tiebreak: 1 pass 1 fail -> KILLED
+S1 office initial status idle->working: 12 pass 1 fail -> KILLED
+S2 office initial pose sitting->standing: 6 pass 1 fail -> KILLED
+S3 office initial updatedAt not deterministic: 11 pass 2 fail -> KILLED
+S4 office initial version 0->1: 9 pass 4 fail -> KILLED
+S5 office freeze shallow only: 6 pass 1 fail -> KILLED
+S6 office: any doc instead of the singleton id: 6 pass 1 fail -> KILLED
+S7 office: stored singleton ignored: 8 pass 5 fail -> KILLED
+S8 office: stored doc not re-validated: 10 pass 3 fail -> KILLED
+S9 project rows not re-validated: 12 pass 5 fail -> KILLED
+S10 knowledge rows not re-validated (createdAt/_id leak): 10 pass 3 fail -> KILLED
+N1 GET /tasks repeated status coerced to first value: 13 pass 1 fail -> KILLED
+E1 office model strict default -> strict:false (EQUIVALENT: lean reads skip schema): 13 pass 0 fail -> SURVIVED
+S11 mapper passes a string updatedAt through: 6 pass 1 fail -> KILLED
+S12 office: drones forced empty on read: 5 pass 1 fail -> KILLED
+restored-control: 59 pass 0 fail
+summary: 44 killed, 1 survived, 45 mutants
+
+# Equivalent mutant (explained, not hidden):
+#  E1 strict default vs strict:false on the office_state Mongoose schema. 5b only reads the singleton with
+#     findById().lean(); lean returns the raw BSON document and skips schema casting/stripping, and there is no
+#     write path for office_state in 5b. The option therefore cannot change any observable behaviour. It becomes
+#     relevant only when todo 15 adds projector writes (and field typing, see ponytail note in db/models.ts).
+# Earlier rounds (same runner): round 1 found a second equivalent (mapper tolerated a string updatedAt). Code was
+#  simplified instead of explaining it away: mapper now always calls updatedAt.toISOString() and a new test pins
+#  that a string or missing updatedAt is rejected (mutant S11 KILLED). strict:false was dropped (equivalent E1).
+# N1 is the carried note N-1: routes/tasks.test.ts now uses ?status=planned&status=planned (valid values), and the
+#  array->first-element mutant dies.

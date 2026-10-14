@@ -1,0 +1,30 @@
+# T4 manual QA: real boot of apps/api (bun run src/index.ts) + real socket.io-client 4.8.4 scripts
+# Each boot: fresh DB redhunter_test_manualqa_*, random JWT_SECRET, ephemeral PORT, SIGTERM shutdown.
+
+## Run 1: EVENTS_DISPATCH=on (script apps/api/.manual-qa.ts, deleted after run)
+### server stdout
+seed: agents=7 owner={"created":true,"passwordUpdated":true}
+api listening on http://127.0.0.1:42011 (events on)
+### client script
+login status 200 user {"id":"6ac859e24b868718065244d8","email":"qa-owner@example.test","role":"owner"} token eyJhbGciOiJIUzI1...
+[failure] no token -> connect_error: unauthorized
+[failure] garbage token -> connect_error: unauthorized
+[failure] valid token, foreign origin -> connect_error: websocket error
+[happy] login JWT -> connected
+[happy] subscribe:agent cto ack {"ok":true}
+[happy] emitted from separate process (poll path) 6433a5f7-75af-4912-b55e-35b173d5e492 received after 112 ms
+[happy] payload equal true {"eventId":"6433a5f7-75af-4912-b55e-35b173d5e492","actor":{"kind":"system","id":"manual-qa"},"createdAt":"2026-10-09T03:05:07.499Z","attempts":0,"type":"agent.status_changed","aggregate":{"kind":"agent","id":"cto"},"payload":{"agentId":"cto","status":"working"}}
+[happy] agent:event room eventId 6433a5f7-75af-4912-b55e-35b173d5e492
+[happy] row dispatchedAt 2026-10-09T03:05:07.610Z
+### shutdown: SIGTERM -> process exited within ~200 ms (dispatcher.stop -> gateway.close -> http close -> mongo close)
+
+## Run 2: EVENTS_DISPATCH=off (script apps/api/.manual-qa-off.ts, deleted after run)
+### server stdout
+seed: agents=7 owner={"created":true,"passwordUpdated":true}
+api listening on http://127.0.0.1:54765 (events off)
+### client script
+[off] connected true events received after 1000 ms: 0 | stored row dispatchedAt: null
+
+## Note: first Run-1 attempt hung in the QA script itself (it created the foreign-origin socket
+## before attaching its connect_error listener, so the fast rejection was missed). Fixed the script; the
+## server behaviour was confirmed separately (websocket 2-15 ms, polling 4-33 ms connect_error).

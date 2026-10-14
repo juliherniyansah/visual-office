@@ -1,0 +1,19 @@
+# T4 cleanup receipt (2026-10-09T03:05:51Z)
+## Temp DBs (only redhunter_test_* prefix, via mongoose admin listDatabases):
+dropped ["redhunter_test_manualqa_1791515049","redhunter_test_manualqa_1791515105","redhunter_test_manualqa_off_1791515119"] remaining redhunter_test_* []
+(test-suite DBs are dropped by createTestDatabase().drop() in afterAll; none left over)
+
+## Processes started by this task still alive (bun run src/index.ts / bun test with cwd under visual-office):
+(first scan matched pid 1082392 = the scanning bash shell itself, whose cmdline contained the pgrep pattern; ps -p 1082392 afterwards: no such process)
+re-scan with cmdline listing: only 275760, 673842 = whatsapp-monitor/packages/backend 'bun run src/index.ts'
+count=0 for visual-office (pre-existing bun processes from /home/programer/work/whatsapp-monitor are unrelated and untouched)
+
+## Stray files in apps/api (dotfile QA scripts removed):
+none
+## tmp scratch kept only under /tmp/opencode (sio smoke, junit xml, logs)
+
+# ---- D1 fix cleanup (2026-10-09T03:49:03Z) ----
+- /tmp/opencode/d1 mutation copy removed (ls: No such file or directory)
+- leftover redhunter_test_* DBs (mongosh listDatabases): []
+- bun processes with cwd under visual-office or /tmp/opencode: [ ] (whatsapp-monitor bun processes unrelated, untouched)
+- real dispatcher.ts never mutated (cmp of copy vs real source confirmed after restore)

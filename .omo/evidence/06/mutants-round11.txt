@@ -1,0 +1,37 @@
+# Mutation proof round 11 (fix round 10, oracle R10 E1: stray id vs _id in mappers) - 2026-10-10T11:28:47+00:00
+Runner: /tmp/opencode/fix3-hermes/mut11.py (in-place + .bak, finally restore, pattern count==1; per mutant: targeted new test on prod (GREEN) and on mutant (RED), plus full suite on mutant; sha256 compare).
+
+Sibling scan (store.ts/knowledge.ts mappers using { ...fields, ... }):
+- toProfile store.ts:55: covered since round 9 (stray id test, M018).
+- toMemory/toSkill/toExperience store.ts:64/69/74, hydrate knowledge.ts:120: covered now (E1a-E1d).
+- toMemory createdAt (store.ts:64): createdAt is destructured OUT of fields before the spread, so no stray key can override it; reorder mutant E1e is EQUIVALENT (survives, see below).
+- agentId/version/other trusted keys: not overridden by any mapper (they come from fields themselves and are re-validated by zod; getProfile/getMemories/getExperience filter by agentId in the query and D6 guard checks pointer.agentId).
+- Write paths (create/addMemory/addExperience/upsertSkill) build rows from zod-parsed input with explicit _id; zod strips unknown keys, so no stray id is persisted.
+
+CONTROL original full suite: PASS (185 pass / 0 fail)
+E1a | src/store.ts:64 | KILLED full suite (184 pass / 1 fail) | new test: GREEN on prod=True, RED on mutant=True
+     (fail) stray id field never overrides _id (memory, skill, experience) > getMemories returns the row _id, not a stray id
+E1b | src/store.ts:69 | KILLED full suite (184 pass / 1 fail) | new test: GREEN on prod=True, RED on mutant=True
+     (fail) stray id field never overrides _id (memory, skill, experience) > findSkills returns the row _id, not a stray id
+E1c | src/store.ts:74 | KILLED full suite (184 pass / 1 fail) | new test: GREEN on prod=True, RED on mutant=True
+     (fail) stray id field never overrides _id (memory, skill, experience) > getExperience returns the row _id, not a stray id
+E1d | src/knowledge.ts:120 | KILLED full suite (184 pass / 1 fail) | new test: GREEN on prod=True, RED on mutant=True
+     (fail) hydrateKnowledgeStore > a stray id field in a knowledge_docs row never overrides the row _id
+E1e-sibling | src/store.ts:64 | SURVIVED full suite (185 pass / 0 fail) | (equivalence check: createdAt is destructured out of fields, so order cannot matter)
+RESTORED-CONTROL original full suite: PASS (185 pass / 0 fail)
+sha256 all hermes src/seed files pre==post: True (25 files)
+
+Production + bun.lock sha256 prefixes post (== pre-round10.sha; only knowledge.test.ts and store.guards.test.ts differ):
+dbc545903811e2d8  packages/hermes/src/store.ts
+169e225abd914d46  packages/hermes/src/models.ts
+85059f0657348ffa  packages/hermes/src/context.ts
+fe66232917d47210  packages/hermes/src/knowledge.ts
+0effb3d5d3e540fc  packages/hermes/src/seed.ts
+fe0e0a9464905bb0  packages/hermes/src/tokens.ts
+97743c3c051f8292  packages/hermes/src/errors.ts
+1d80824db69ab17c  packages/hermes/src/index.ts
+d413bd8c001c3f63  apps/api/src/db/mappers.ts
+51f17c744f885d82  bun.lock
+.bak count: 0
+Leftover redhunter_test_* DBs: []
+TOTAL: 4/4 KILLED

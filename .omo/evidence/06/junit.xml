@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="185" assertions="470" failures="0" skipped="0" time="7.480234235">
+  <testsuite name="packages/hermes/src/store.versioning.test.ts" file="packages/hermes/src/store.versioning.test.ts" tests="16" assertions="36" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="getProfile pointer integrity" file="packages/hermes/src/store.versioning.test.ts" line="50" tests="2" assertions="2" failures="0" skipped="0" time="0.083" hostname="ai">
+      <testcase name="pointer hermes-programming carrying agentId ceo is rejected, never returns ceo data" classname="getProfile pointer integrity" time="0.049409" file="packages/hermes/src/store.versioning.test.ts" line="52" assertions="1" />
+      <testcase name="pointer to a version with no row rejects with HermesNotFoundError" classname="getProfile pointer integrity" time="0.034471" file="packages/hermes/src/store.versioning.test.ts" line="66" assertions="1" />
+    </testsuite>
+    <testsuite name="append-only versioning" file="packages/hermes/src/store.versioning.test.ts" line="77" tests="3" assertions="8" failures="0" skipped="0" time="0.19" hostname="ai">
+      <testcase name="three versions: latest is v3 and the pointer follows it" classname="append-only versioning" time="0.114371" file="packages/hermes/src/store.versioning.test.ts" line="78" assertions="3" />
+      <testcase name="unique {agentId, version}: a second row for v1 under another _id fails E11000" classname="append-only versioning" time="0.027321" file="packages/hermes/src/store.versioning.test.ts" line="93" assertions="2" />
+      <testcase name="concurrent createProfileVersion for one agent: exactly one wins, old row never overwritten" classname="append-only versioning" time="0.049563" file="packages/hermes/src/store.versioning.test.ts" line="102" assertions="3" />
+    </testsuite>
+    <testsuite name="ensureProfileVersion concurrency" file="packages/hermes/src/store.versioning.test.ts" line="115" tests="2" assertions="6" failures="0" skipped="0" time="0.065" hostname="ai">
+      <testcase name="two concurrent ensures of the same seed both resolve with one row" classname="ensureProfileVersion concurrency" time="0.03543" file="packages/hermes/src/store.versioning.test.ts" line="116" assertions="5" />
+      <testcase name="concurrent ensure losing the insert race returns the STORED row, not its own input" classname="ensureProfileVersion concurrency" time="0.030809" file="packages/hermes/src/store.versioning.test.ts" line="129" assertions="1" />
+    </testsuite>
+    <testsuite name="findSkills sort keys" file="packages/hermes/src/store.versioning.test.ts" line="142" tests="1" assertions="1" failures="0" skipped="0" time="0.044" hostname="ai">
+      <testcase name="sorted by name, not id" classname="findSkills sort keys" time="0.044069" file="packages/hermes/src/store.versioning.test.ts" line="143" assertions="1" />
+    </testsuite>
+    <testsuite name="ensureProfileVersion error discrimination" file="packages/hermes/src/store.versioning.test.ts" line="154" tests="3" assertions="8" failures="0" skipped="0" time="0.079" hostname="ai">
+      <testcase name="duplicate on {agentId, version} under a foreign _id rethrows E11000, no pointer" classname="ensureProfileVersion error discrimination" time="0.045084" file="packages/hermes/src/store.versioning.test.ts" line="162" assertions="3" />
+      <testcase name="non-E11000 error is rethrown as-is even when the row exists afterwards" classname="ensureProfileVersion error discrimination" time="0.015329" file="packages/hermes/src/store.versioning.test.ts" line="173" assertions="2" />
+      <testcase name="plain error without code is rethrown as-is; no row and no pointer written" classname="ensureProfileVersion error discrimination" time="0.019401" file="packages/hermes/src/store.versioning.test.ts" line="187" assertions="3" />
+    </testsuite>
+    <testsuite name="versioning is scoped per agent" file="packages/hermes/src/store.versioning.test.ts" line="202" tests="3" assertions="7" failures="0" skipped="0" time="0.168" hostname="ai">
+      <testcase name="version numbers count per agent: programming starts at v1 after ceo v1, v2" classname="versioning is scoped per agent" time="0.06494" file="packages/hermes/src/store.versioning.test.ts" line="203" assertions="2" />
+      <testcase name="failed insert of a new version leaves the pointer on the previous version" classname="versioning is scoped per agent" time="0.047389" file="packages/hermes/src/store.versioning.test.ts" line="211" assertions="3" />
+      <testcase name="activateProfileVersion checks the version of THIS agent, not any agent" classname="versioning is scoped per agent" time="0.057776" file="packages/hermes/src/store.versioning.test.ts" line="231" assertions="2" />
+    </testsuite>
+    <testsuite name="profile storage details" file="packages/hermes/src/store.versioning.test.ts" line="242" tests="2" assertions="4" failures="0" skipped="0" time="0.083" hostname="ai">
+      <testcase name="ensureProfileVersion stamps the stored row with the injected clock" classname="profile storage details" time="0.044711" file="packages/hermes/src/store.versioning.test.ts" line="243" assertions="1" />
+      <testcase name="empty voiceGuidelines is accepted and read back as empty" classname="profile storage details" time="0.039077" file="packages/hermes/src/store.versioning.test.ts" line="249" assertions="3" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/hermes/src/seed.test.ts" file="packages/hermes/src/seed.test.ts" tests="9" assertions="110" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="SEED_PROFILES" file="packages/hermes/src/seed.test.ts" line="105" tests="5" assertions="69" failures="0" skipped="0" time="0.027" hostname="ai">
+      <testcase name="exactly the 7 permanent agents, in AGENT_IDS order, version 1, role = agent title" classname="SEED_PROFILES" time="0.010604" file="packages/hermes/src/seed.test.ts" line="106" assertions="36" />
+      <testcase name="is deep-frozen" classname="SEED_PROFILES" time="0.003245" file="packages/hermes/src/seed.test.ts" line="117" assertions="2" />
+      <testcase name="every seed profile object and its traits are frozen; writes throw (ESM strict mode)" classname="SEED_PROFILES" time="0.009117" file="packages/hermes/src/seed.test.ts" line="122" assertions="29" />
+      <testcase name="each seed profile has its exact name and first personality trait" classname="SEED_PROFILES" time="0.003304" file="packages/hermes/src/seed.test.ts" line="133" assertions="1" />
+      <testcase name="SEED_PROFILES equals the full literal seed objects" classname="SEED_PROFILES" time="0.002991" file="packages/hermes/src/seed.test.ts" line="143" assertions="1" />
+    </testsuite>
+    <testsuite name="seedProfiles" file="packages/hermes/src/seed.test.ts" line="148" tests="4" assertions="41" failures="0" skipped="0" time="0.823" hostname="ai">
+      <testcase name="seeds 7 profiles + 7 pointers; second run is a no-op" classname="seedProfiles" time="0.208328" file="packages/hermes/src/seed.test.ts" line="149" assertions="19" />
+      <testcase name="persisted profiles carry the exact seeded names and first traits" classname="seedProfiles" time="0.234701" file="packages/hermes/src/seed.test.ts" line="163" assertions="14" />
+      <testcase name="getProfile after seeding returns the full literal seed object per agent" classname="seedProfiles" time="0.17585" file="packages/hermes/src/seed.test.ts" line="173" assertions="7" />
+      <testcase name="re-seeding does not roll back a newer active version" classname="seedProfiles" time="0.206287" file="packages/hermes/src/seed.test.ts" line="183" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/hermes/src/context.test.ts" file="packages/hermes/src/context.test.ts" tests="11" assertions="46" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="assembleContext" file="packages/hermes/src/context.test.ts" line="53" tests="10" assertions="41" failures="0" skipped="0" time="0.564" hostname="ai">
+      <testcase name="programming @2000: profile + top-3 relevant memories, ordered layers, within budget" classname="assembleContext" time="0.1002" file="packages/hermes/src/context.test.ts" line="54" assertions="7" />
+      <testcase name="per-layer tokens equal the sum of block estimates; total is the sum of layers" classname="assembleContext" time="0.048177" file="packages/hermes/src/context.test.ts" line="88" assertions="9" />
+      <testcase name="memory ties: equal relevance and importance -&gt; newer first, then id" classname="assembleContext" time="0.067306" file="packages/hermes/src/context.test.ts" line="101" assertions="1" />
+      <testcase name="empty memories, skills, experience and knowledge -&gt; only the profile block" classname="assembleContext" time="0.03666" file="packages/hermes/src/context.test.ts" line="109" assertions="2" />
+      <testcase name="skills by role + capability tags, experience same taskType first, rag by task text" classname="assembleContext" time="0.08656" file="packages/hermes/src/context.test.ts" line="115" assertions="6" />
+      <testcase name="budget smaller than profile throws HermesBudgetError (profile never truncated)" classname="assembleContext" time="0.06388" file="packages/hermes/src/context.test.ts" line="157" assertions="3" />
+      <testcase name="invalid budget (negative / fractional) throws HermesBudgetError" classname="assembleContext" time="0.028888" file="packages/hermes/src/context.test.ts" line="168" assertions="2" />
+      <testcase name="tight budget drops whole non-profile blocks in priority order skills &gt; memories &gt; experience &gt; rag" classname="assembleContext" time="0.071645" file="packages/hermes/src/context.test.ts" line="178" assertions="8" />
+      <testcase name="token estimator is pluggable" classname="assembleContext" time="0.031615" file="packages/hermes/src/context.test.ts" line="209" assertions="2" />
+      <testcase name="ttl-expired memories are not assembled" classname="assembleContext" time="0.034291" file="packages/hermes/src/context.test.ts" line="218" assertions="1" />
+    </testsuite>
+    <testsuite name="estimateTokens" file="packages/hermes/src/context.test.ts" line="232" tests="1" assertions="5" failures="0" skipped="0" time="0.035" hostname="ai">
+      <testcase name="ceil(code points / 4); multi-byte chars count once" classname="estimateTokens" time="0.035313" file="packages/hermes/src/context.test.ts" line="233" assertions="5" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/hermes/src/index.test.ts" file="packages/hermes/src/index.test.ts" tests="13" assertions="18" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="package entry (src/index.ts)" file="packages/hermes/src/index.test.ts" line="18" tests="11" assertions="11" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="PACKAGE_NAME is @redhunter/hermes" classname="package entry (src/index.ts)" time="0.000061" file="packages/hermes/src/index.test.ts" line="19" assertions="1" />
+      <testcase name="re-exports context module" classname="package entry (src/index.ts)" time="0.000056" file="packages/hermes/src/index.test.ts" line="34" assertions="1" />
+      <testcase name="re-exports context module" classname="package entry (src/index.ts)" time="0.000009" file="packages/hermes/src/index.test.ts" line="34" assertions="1" />
+      <testcase name="re-exports errors module" classname="package entry (src/index.ts)" time="0.000004" file="packages/hermes/src/index.test.ts" line="34" assertions="1" />
+      <testcase name="re-exports knowledge module" classname="package entry (src/index.ts)" time="0.000004" file="packages/hermes/src/index.test.ts" line="34" assertions="1" />
+      <testcase name="re-exports knowledge module" classname="package entry (src/index.ts)" time="0.000004" file="packages/hermes/src/index.test.ts" line="34" assertions="1" />
+      <testcase name="re-exports models module" classname="package entry (src/index.ts)" time="0.000004" file="packages/hermes/src/index.test.ts" line="34" assertions="1" />
+      <testcase name="re-exports seed module" classname="package entry (src/index.ts)" time="0.000004" file="packages/hermes/src/index.test.ts" line="34" assertions="1" />
+      <testcase name="re-exports store module" classname="package entry (src/index.ts)" time="0.000004" file="packages/hermes/src/index.test.ts" line="34" assertions="1" />
+      <testcase name="re-exports tokens module" classname="package entry (src/index.ts)" time="0.000004" file="packages/hermes/src/index.test.ts" line="34" assertions="1" />
+      <testcase name="CONTEXT_LAYER_IDS order is profile, skills, memories, experience, rag" classname="package entry (src/index.ts)" time="0.000063" file="packages/hermes/src/index.test.ts" line="38" assertions="1" />
+    </testsuite>
+    <testsuite name="error classes" file="packages/hermes/src/index.test.ts" line="43" tests="1" assertions="4" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="names and AccessError message are exact" classname="error classes" time="0.00028" file="packages/hermes/src/index.test.ts" line="44" assertions="4" />
+    </testsuite>
+    <testsuite name="estimateTokens whitespace" file="packages/hermes/src/index.test.ts" line="53" tests="1" assertions="3" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="whitespace counts like any other character" classname="estimateTokens whitespace" time="0.000109" file="packages/hermes/src/index.test.ts" line="54" assertions="3" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/hermes/src/store.scoping.test.ts" file="packages/hermes/src/store.scoping.test.ts" tests="8" assertions="22" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="assembleContext is scoped to the requesting agent (not only programming)" file="packages/hermes/src/store.scoping.test.ts" line="83" tests="2" assertions="12" failures="0" skipped="0" time="0.224" hostname="ai">
+      <testcase name="iot gets only its own profile, memories, lessons and role skills" classname="assembleContext is scoped to the requesting agent (not only programming)" time="0.112194" file="packages/hermes/src/store.scoping.test.ts" line="88" assertions="6" />
+      <testcase name="ceo gets only its own profile, memories, lessons and role skills" classname="assembleContext is scoped to the requesting agent (not only programming)" time="0.112017" file="packages/hermes/src/store.scoping.test.ts" line="88" assertions="6" />
+    </testsuite>
+    <testsuite name="store reads are scoped for non-programming agents" file="packages/hermes/src/store.scoping.test.ts" line="103" tests="4" assertions="4" failures="0" skipped="0" time="0.429" hostname="ai">
+      <testcase name="getMemories(iot) excludes programming rows" classname="store reads are scoped for non-programming agents" time="0.127546" file="packages/hermes/src/store.scoping.test.ts" line="105" assertions="1" />
+      <testcase name="getMemories(ceo) excludes programming rows" classname="store reads are scoped for non-programming agents" time="0.099395" file="packages/hermes/src/store.scoping.test.ts" line="105" assertions="1" />
+      <testcase name="getExperience(iot) excludes programming rows" classname="store reads are scoped for non-programming agents" time="0.101043" file="packages/hermes/src/store.scoping.test.ts" line="115" assertions="1" />
+      <testcase name="getExperience(ceo) excludes programming rows" classname="store reads are scoped for non-programming agents" time="0.102511" file="packages/hermes/src/store.scoping.test.ts" line="115" assertions="1" />
+    </testsuite>
+    <testsuite name="optional memory fields round-trip" file="packages/hermes/src/store.scoping.test.ts" line="123" tests="2" assertions="6" failures="0" skipped="0" time="0.214" hostname="ai">
+      <testcase name="runId and embedding are stored and read back unchanged" classname="optional memory fields round-trip" time="0.114759" file="packages/hermes/src/store.scoping.test.ts" line="124" assertions="5" />
+      <testcase name="absent runId and embedding stay absent on read" classname="optional memory fields round-trip" time="0.10041" file="packages/hermes/src/store.scoping.test.ts" line="143" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/hermes/src/store.guards.test.ts" file="packages/hermes/src/store.guards.test.ts" tests="22" assertions="35" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="experience isolation between agents" file="packages/hermes/src/store.guards.test.ts" line="41" tests="2" assertions="2" failures="0" skipped="0" time="0.073" hostname="ai">
+      <testcase name="getExperience returns only the requested agent rows" classname="experience isolation between agents" time="0.029906" file="packages/hermes/src/store.guards.test.ts" line="54" assertions="1" />
+      <testcase name="assembleContext never carries another agent lessons" classname="experience isolation between agents" time="0.044105" file="packages/hermes/src/store.guards.test.ts" line="60" assertions="1" />
+    </testsuite>
+    <testsuite name="write-path zod guards (zod-only invalid values)" file="packages/hermes/src/store.guards.test.ts" line="77" tests="4" assertions="9" failures="0" skipped="0" time="0.03" hostname="ai">
+      <testcase name="addMemory rejects ttl 0 with ZodError, nothing written" classname="write-path zod guards (zod-only invalid values)" time="0.01157" file="packages/hermes/src/store.guards.test.ts" line="83" assertions="2" />
+      <testcase name="addMemory rejects empty runId with ZodError, nothing written" classname="write-path zod guards (zod-only invalid values)" time="0.005779" file="packages/hermes/src/store.guards.test.ts" line="83" assertions="2" />
+      <testcase name="addExperience rejects an empty lesson with ZodError, nothing written" classname="write-path zod guards (zod-only invalid values)" time="0.009835" file="packages/hermes/src/store.guards.test.ts" line="88" assertions="2" />
+      <testcase name="ensureProfileVersion rejects an empty trait with ZodError, nothing written" classname="write-path zod guards (zod-only invalid values)" time="0.005522" file="packages/hermes/src/store.guards.test.ts" line="100" assertions="3" />
+    </testsuite>
+    <testsuite name="ensureProfileVersion pointer and error handling" file="packages/hermes/src/store.guards.test.ts" line="108" tests="2" assertions="4" failures="0" skipped="0" time="0.035" hostname="ai">
+      <testcase name="first ensure of version 2 points activeVersion at 2" classname="ensureProfileVersion pointer and error handling" time="0.019783" file="packages/hermes/src/store.guards.test.ts" line="109" assertions="2" />
+      <testcase name="codeless error is rethrown as-is even when the row exists afterwards" classname="ensureProfileVersion pointer and error handling" time="0.016966" file="packages/hermes/src/store.guards.test.ts" line="126" assertions="2" />
+    </testsuite>
+    <testsuite name="findSkills tag semantics: share at least one tag" file="packages/hermes/src/store.guards.test.ts" line="148" tests="2" assertions="2" failures="0" skipped="0" time="0.043" hostname="ai">
+      <testcase name="multi-tag skill matches a multi-tag query sharing one tag" classname="findSkills tag semantics: share at least one tag" time="0.0262" file="packages/hermes/src/store.guards.test.ts" line="151" assertions="1" />
+      <testcase name="single-tag skill matches a query with an extra unknown tag" classname="findSkills tag semantics: share at least one tag" time="0.017121" file="packages/hermes/src/store.guards.test.ts" line="157" assertions="1" />
+    </testsuite>
+    <testsuite name="models storage shape" file="packages/hermes/src/store.guards.test.ts" line="165" tests="2" assertions="4" failures="0" skipped="0" time="0.197" hostname="ai">
+      <testcase name="memory added without embedding stores no embedding key (not [])" classname="models storage shape" time="0.020534" file="packages/hermes/src/store.guards.test.ts" line="166" assertions="2" />
+      <testcase name="unique {agentId, version} index exists as soon as the models factory resolves" classname="models storage shape" time="0.177327" file="packages/hermes/src/store.guards.test.ts" line="187" assertions="2" />
+    </testsuite>
+    <testsuite name="memory order and skill return value" file="packages/hermes/src/store.guards.test.ts" line="204" tests="2" assertions="3" failures="0" skipped="0" time="0.033" hostname="ai">
+      <testcase name="getMemories is newest-first by createdAt even when _id order is opposite" classname="memory order and skill return value" time="0.011112" file="packages/hermes/src/store.guards.test.ts" line="206" assertions="1" />
+      <testcase name="upsertSkill returns exactly the stored skill" classname="memory order and skill return value" time="0.022373" file="packages/hermes/src/store.guards.test.ts" line="217" assertions="2" />
+    </testsuite>
+    <testsuite name="default clock (no clock injected)" file="packages/hermes/src/store.guards.test.ts" line="230" tests="3" assertions="6" failures="0" skipped="0" time="0.048" hostname="ai">
+      <testcase name="addMemory stamps createdAt with the current time; ttl 1h memory is still live" classname="default clock (no clock injected)" time="0.012819" file="packages/hermes/src/store.guards.test.ts" line="233" assertions="3" />
+      <testcase name="createProfileVersion stores createdAt from the current time (storage-only field)" classname="default clock (no clock injected)" time="0.017764" file="packages/hermes/src/store.guards.test.ts" line="251" assertions="2" />
+      <testcase name="addExperience stamps the current time: new row sorts before a 1-minute-old row" classname="default clock (no clock injected)" time="0.0198" file="packages/hermes/src/store.guards.test.ts" line="262" assertions="1" />
+    </testsuite>
+    <testsuite name="profile read guards on untrusted rows" file="packages/hermes/src/store.guards.test.ts" line="284" tests="2" assertions="2" failures="0" skipped="0" time="0.026" hostname="ai">
+      <testcase name="fractional pointer activeVersion 1.5 throws ZodError, not NotFound" classname="profile read guards on untrusted rows" time="0.014484" file="packages/hermes/src/store.guards.test.ts" line="288" assertions="1" />
+      <testcase name="a stray id field in the stored row never overrides the row _id" classname="profile read guards on untrusted rows" time="0.012756" file="packages/hermes/src/store.guards.test.ts" line="299" assertions="1" />
+    </testsuite>
+    <testsuite name="stray id field never overrides _id (memory, skill, experience)" file="packages/hermes/src/store.guards.test.ts" line="315" tests="3" assertions="3" failures="0" skipped="0" time="0.037" hostname="ai">
+      <testcase name="getMemories returns the row _id, not a stray id" classname="stray id field never overrides _id (memory, skill, experience)" time="0.01666" file="packages/hermes/src/store.guards.test.ts" line="316" assertions="1" />
+      <testcase name="findSkills returns the row _id, not a stray id" classname="stray id field never overrides _id (memory, skill, experience)" time="0.013679" file="packages/hermes/src/store.guards.test.ts" line="330" assertions="1" />
+      <testcase name="getExperience returns the row _id, not a stray id" classname="stray id field never overrides _id (memory, skill, experience)" time="0.008893" file="packages/hermes/src/store.guards.test.ts" line="343" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/hermes/src/knowledge.test.ts" file="packages/hermes/src/knowledge.test.ts" tests="35" assertions="81" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="tokenize" file="packages/hermes/src/knowledge.test.ts" line="41" tests="1" assertions="2" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="lowercases, splits on non letters/digits, keeps unicode letters" classname="tokenize" time="0.000121" file="packages/hermes/src/knowledge.test.ts" line="42" assertions="2" />
+    </testsuite>
+    <testsuite name="InMemoryKnowledgeStore.search" file="packages/hermes/src/knowledge.test.ts" line="48" tests="14" assertions="35" failures="0" skipped="0" time="0.001" hostname="ai">
+      <testcase name="returns only matching docs with a positive score" classname="InMemoryKnowledgeStore.search" time="0.000742" file="packages/hermes/src/knowledge.test.ts" line="49" assertions="2" />
+      <testcase name="rare term outweighs a more frequent common term (idf)" classname="InMemoryKnowledgeStore.search" time="0.000589" file="packages/hermes/src/knowledge.test.ts" line="56" assertions="1" />
+      <testcase name="higher term frequency ranks higher at equal length" classname="InMemoryKnowledgeStore.search" time="0.000287" file="packages/hermes/src/knowledge.test.ts" line="65" assertions="1" />
+      <testcase name="shorter doc wins at equal term frequency (length normalization)" classname="InMemoryKnowledgeStore.search" time="0.000292" file="packages/hermes/src/knowledge.test.ts" line="74" assertions="1" />
+      <testcase name="title and tags are searchable" classname="InMemoryKnowledgeStore.search" time="0.000318" file="packages/hermes/src/knowledge.test.ts" line="83" assertions="2" />
+      <testcase name="equal scores tie-break by id ascending regardless of insert order" classname="InMemoryKnowledgeStore.search" time="0.000601" file="packages/hermes/src/knowledge.test.ts" line="89" assertions="2" />
+      <testcase name="k caps the result count" classname="InMemoryKnowledgeStore.search" time="0.000375" file="packages/hermes/src/knowledge.test.ts" line="103" assertions="2" />
+      <testcase name="k=0, negative k, empty query and no matches return []" classname="InMemoryKnowledgeStore.search" time="0.000389" file="packages/hermes/src/knowledge.test.ts" line="109" assertions="4" />
+      <testcase name="k=0 and k=-1 return [] even when &gt;=2 docs match" classname="InMemoryKnowledgeStore.search" time="0.000338" file="packages/hermes/src/knowledge.test.ts" line="118" assertions="3" />
+      <testcase name="exact Okapi BM25 scores (k1 1.2, b 0.75, idf ln(1 + (N-n+0.5)/(n+0.5)))" classname="InMemoryKnowledgeStore.search" time="0.000603" file="packages/hermes/src/knowledge.test.ts" line="125" assertions="3" />
+      <testcase name="multi-term query sums per-term BM25 parts (exact scores and rank)" classname="InMemoryKnowledgeStore.search" time="0.001138" file="packages/hermes/src/knowledge.test.ts" line="144" assertions="5" />
+      <testcase name="filter by tags keeps only docs sharing a tag; empty tag filter = no filter" classname="InMemoryKnowledgeStore.search" time="0.000637" file="packages/hermes/src/knowledge.test.ts" line="170" assertions="2" />
+      <testcase name="upsert replaces a doc by id (old terms no longer match), size counts unique ids" classname="InMemoryKnowledgeStore.search" time="0.00047" file="packages/hermes/src/knowledge.test.ts" line="179" assertions="3" />
+      <testcase name="upsert validates input and stores a copy (caller mutation does not leak)" classname="InMemoryKnowledgeStore.search" time="0.000785" file="packages/hermes/src/knowledge.test.ts" line="187" assertions="4" />
+    </testsuite>
+    <testsuite name="hydrateKnowledgeStore" file="packages/hermes/src/knowledge.test.ts" line="202" tests="17" assertions="38" failures="0" skipped="0" time="0.437" hostname="ai">
+      <testcase name="loads every knowledge_docs row, strips createdAt, searchable afterwards" classname="hydrateKnowledgeStore" time="0.014716" file="packages/hermes/src/knowledge.test.ts" line="218" assertions="3" />
+      <testcase name="empty collection hydrates 0 docs" classname="hydrateKnowledgeStore" time="0.003316" file="packages/hermes/src/knowledge.test.ts" line="228" assertions="2" />
+      <testcase name="corrupt empty title row rejects hydration, store stays empty" classname="hydrateKnowledgeStore" time="0.005094" file="packages/hermes/src/knowledge.test.ts" line="247" assertions="2" />
+      <testcase name="corrupt missing title row rejects hydration, store stays empty" classname="hydrateKnowledgeStore" time="0.009127" file="packages/hermes/src/knowledge.test.ts" line="247" assertions="2" />
+      <testcase name="corrupt missing text row rejects hydration, store stays empty" classname="hydrateKnowledgeStore" time="0.005354" file="packages/hermes/src/knowledge.test.ts" line="247" assertions="2" />
+      <testcase name="corrupt missing tags row rejects hydration, store stays empty" classname="hydrateKnowledgeStore" time="0.010434" file="packages/hermes/src/knowledge.test.ts" line="247" assertions="2" />
+      <testcase name="corrupt non-string text row rejects hydration, store stays empty" classname="hydrateKnowledgeStore" time="0.004888" file="packages/hermes/src/knowledge.test.ts" line="247" assertions="2" />
+      <testcase name="corrupt non-array tags row rejects hydration, store stays empty" classname="hydrateKnowledgeStore" time="0.010061" file="packages/hermes/src/knowledge.test.ts" line="247" assertions="2" />
+      <testcase name="corrupt empty tag element row rejects hydration, store stays empty" classname="hydrateKnowledgeStore" time="0.007044" file="packages/hermes/src/knowledge.test.ts" line="247" assertions="2" />
+      <testcase name="corrupt non-string id row rejects hydration, store stays empty" classname="hydrateKnowledgeStore" time="0.012609" file="packages/hermes/src/knowledge.test.ts" line="247" assertions="2" />
+      <testcase name="rows with empty tags are hydrated and searchable too" classname="hydrateKnowledgeStore" time="0.010504" file="packages/hermes/src/knowledge.test.ts" line="255" assertions="4" />
+      <testcase name="a stray id field in a knowledge_docs row never overrides the row _id" classname="hydrateKnowledgeStore" time="0.010963" file="packages/hermes/src/knowledge.test.ts" line="272" assertions="2" />
+      <testcase name="control: valid base row hydrates" classname="hydrateKnowledgeStore" time="0.012378" file="packages/hermes/src/knowledge.test.ts" line="281" assertions="2" />
+      <testcase name="awaits each async upsert before resolving, in _id order" classname="hydrateKnowledgeStore" time="0.080167" file="packages/hermes/src/knowledge.test.ts" line="306" assertions="2" />
+      <testcase name="propagates upsert rejection" classname="hydrateKnowledgeStore" time="0.037778" file="packages/hermes/src/knowledge.test.ts" line="315" assertions="1" />
+      <testcase name="upserts run one at a time in _id order even when later docs are faster" classname="hydrateKnowledgeStore" time="0.076166" file="packages/hermes/src/knowledge.test.ts" line="361" assertions="3" />
+      <testcase name="stops at the first failed upsert: no later doc is upserted" classname="hydrateKnowledgeStore" time="0.133659" file="packages/hermes/src/knowledge.test.ts" line="369" assertions="3" />
+    </testsuite>
+    <testsuite name="InMemoryKnowledgeStore query terms and tag filter" file="packages/hermes/src/knowledge.test.ts" line="381" tests="2" assertions="5" failures="0" skipped="0" time="0.001" hostname="ai">
+      <testcase name="tag filter keeps docs sharing at least ONE tag with a multi-tag filter" classname="InMemoryKnowledgeStore query terms and tag filter" time="0.001057" file="packages/hermes/src/knowledge.test.ts" line="382" assertions="2" />
+      <testcase name="repeated query terms count once: same hits and scores, order unchanged" classname="InMemoryKnowledgeStore query terms and tag filter" time="0.000975" file="packages/hermes/src/knowledge.test.ts" line="393" assertions="3" />
+    </testsuite>
+    <testsuite name="InMemoryKnowledgeStore tie order" file="packages/hermes/src/knowledge.test.ts" line="406" tests="1" assertions="1" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="equal scores tie-break by code-unit id order, not locale order" classname="InMemoryKnowledgeStore tie order" time="0.000583" file="packages/hermes/src/knowledge.test.ts" line="408" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/hermes/src/context.limits.test.ts" file="packages/hermes/src/context.limits.test.ts" tests="13" assertions="29" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="assembleContext per-layer caps" file="packages/hermes/src/context.limits.test.ts" line="48" tests="1" assertions="4" failures="0" skipped="0" time="0.082" hostname="ai">
+      <testcase name="4 candidates each: experience capped at 3, rag capped at 3, skills uncapped (4)" classname="assembleContext per-layer caps" time="0.082145" file="packages/hermes/src/context.limits.test.ts" line="49" assertions="4" />
+    </testsuite>
+    <testsuite name="assembleContext greedy fill" file="packages/hermes/src/context.limits.test.ts" line="84" tests="1" assertions="6" failures="0" skipped="0" time="0.056" hostname="ai">
+      <testcase name="a smaller later block still fits after a larger earlier block was dropped" classname="assembleContext greedy fill" time="0.05699" file="packages/hermes/src/context.limits.test.ts" line="85" assertions="6" />
+    </testsuite>
+    <testsuite name="rankMemories tie-breaks" file="packages/hermes/src/context.limits.test.ts" line="109" tests="2" assertions="2" failures="0" skipped="0" time="0.045" hostname="ai">
+      <testcase name="equal relevance, importance and createdAt -&gt; id ascending" classname="rankMemories tie-breaks" time="0.025121" file="packages/hermes/src/context.limits.test.ts" line="114" assertions="1" />
+      <testcase name="equal relevance and importance -&gt; newer createdAt first" classname="rankMemories tie-breaks" time="0.020707" file="packages/hermes/src/context.limits.test.ts" line="123" assertions="1" />
+    </testsuite>
+    <testsuite name="assembleContext fill priority and budget boundary" file="packages/hermes/src/context.limits.test.ts" line="130" tests="2" assertions="7" failures="0" skipped="0" time="0.072" hostname="ai">
+      <testcase name="experience fills before rag when only one of them fits" classname="assembleContext fill priority and budget boundary" time="0.046874" file="packages/hermes/src/context.limits.test.ts" line="136" assertions="3" />
+      <testcase name="budget 0 is valid when the profile costs 0 tokens; -1 is not" classname="assembleContext fill priority and budget boundary" time="0.02659" file="packages/hermes/src/context.limits.test.ts" line="156" assertions="4" />
+    </testsuite>
+    <testsuite name="rankMemories relevance" file="packages/hermes/src/context.limits.test.ts" line="168" tests="2" assertions="2" failures="0" skipped="0" time="0.043" hostname="ai">
+      <testcase name="counts DISTINCT task terms, not repeated occurrences" classname="rankMemories relevance" time="0.016279" file="packages/hermes/src/context.limits.test.ts" line="175" assertions="1" />
+      <testcase name="task text goes through the tokenizer (case and punctuation)" classname="rankMemories relevance" time="0.027543" file="packages/hermes/src/context.limits.test.ts" line="184" assertions="1" />
+    </testsuite>
+    <testsuite name="assembleContext experience order" file="packages/hermes/src/context.limits.test.ts" line="194" tests="1" assertions="1" failures="0" skipped="0" time="0.048" hostname="ai">
+      <testcase name="experience of other task types keeps newest-first order" classname="assembleContext experience order" time="0.04832" file="packages/hermes/src/context.limits.test.ts" line="195" assertions="1" />
+    </testsuite>
+    <testsuite name="rankMemories importance" file="packages/hermes/src/context.limits.test.ts" line="217" tests="1" assertions="1" failures="0" skipped="0" time="0.019" hostname="ai">
+      <testcase name="equal relevance and createdAt -&gt; higher importance first" classname="rankMemories importance" time="0.019192" file="packages/hermes/src/context.limits.test.ts" line="220" assertions="1" />
+    </testsuite>
+    <testsuite name="rankMemories first task term" file="packages/hermes/src/context.limits.test.ts" line="229" tests="2" assertions="2" failures="0" skipped="0" time="0.035" hostname="ai">
+      <testcase name="first task term counts toward relevance" classname="rankMemories first task term" time="0.019616" file="packages/hermes/src/context.limits.test.ts" line="236" assertions="1" />
+      <testcase name="single-character task term counts toward relevance" classname="rankMemories first task term" time="0.016496" file="packages/hermes/src/context.limits.test.ts" line="241" assertions="1" />
+    </testsuite>
+    <testsuite name="assembleContext greedy fill within one layer" file="packages/hermes/src/context.limits.test.ts" line="247" tests="1" assertions="4" failures="0" skipped="0" time="0.031" hostname="ai">
+      <testcase name="a smaller later block in the SAME layer still fits after a bigger one was dropped" classname="assembleContext greedy fill within one layer" time="0.03111" file="packages/hermes/src/context.limits.test.ts" line="249" assertions="4" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/hermes/src/store.test.ts" file="packages/hermes/src/store.test.ts" tests="58" assertions="93" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="profiles" file="packages/hermes/src/store.test.ts" line="47" tests="5" assertions="17" failures="0" skipped="0" time="0.163" hostname="ai">
+      <testcase name="appends v1 then v2, moves activeVersion, never mutates the old row" classname="profiles" time="0.039552" file="packages/hermes/src/store.test.ts" line="48" assertions="6" />
+      <testcase name="activateProfileVersion points back to v1; unknown version rejected, pointer kept" classname="profiles" time="0.062105" file="packages/hermes/src/store.test.ts" line="72" assertions="4" />
+      <testcase name="getProfile without any profile rejects with HermesNotFoundError" classname="profiles" time="0.005378" file="packages/hermes/src/store.test.ts" line="89" assertions="1" />
+      <testcase name="invalid profile input is rejected and nothing is written" classname="profiles" time="0.013523" file="packages/hermes/src/store.test.ts" line="93" assertions="3" />
+      <testcase name="ensureProfileVersion is idempotent and does not move an existing pointer" classname="profiles" time="0.044679" file="packages/hermes/src/store.test.ts" line="99" assertions="3" />
+    </testsuite>
+    <testsuite name="agent-scoped reads" file="packages/hermes/src/store.test.ts" line="113" tests="4" assertions="18" failures="0" skipped="0" time="0.148" hostname="ai">
+      <testcase name="cross-agent profile read rejected before any query" classname="agent-scoped reads" time="0.032946" file="packages/hermes/src/store.test.ts" line="133" assertions="5" />
+      <testcase name="cross-agent memories read rejected before any query" classname="agent-scoped reads" time="0.034565" file="packages/hermes/src/store.test.ts" line="133" assertions="5" />
+      <testcase name="cross-agent experience read rejected before any query" classname="agent-scoped reads" time="0.033447" file="packages/hermes/src/store.test.ts" line="133" assertions="5" />
+      <testcase name="own reads succeed when asAgent equals agentId" classname="agent-scoped reads" time="0.049128" file="packages/hermes/src/store.test.ts" line="151" assertions="3" />
+    </testsuite>
+    <testsuite name="memories" file="packages/hermes/src/store.test.ts" line="161" tests="18" assertions="21" failures="0" skipped="0" time="0.246" hostname="ai">
+      <testcase name="addMemory stamps uuid id and createdAt from the clock (Date in Mongo)" classname="memories" time="0.010513" file="packages/hermes/src/store.test.ts" line="162" assertions="2" />
+      <testcase name="invalid memory input is rejected and nothing is written" classname="memories" time="0.012427" file="packages/hermes/src/store.test.ts" line="185" assertions="2" />
+      <testcase name="newest first, equal createdAt ordered by id; other agents excluded" classname="memories" time="0.014698" file="packages/hermes/src/store.test.ts" line="191" assertions="1" />
+      <testcase name="ttl-expired memories are excluded exactly at expiry, kept 1 ms before" classname="memories" time="0.018577" file="packages/hermes/src/store.test.ts" line="204" assertions="2" />
+      <testcase name="empty memories returns []" classname="memories" time="0.011579" file="packages/hermes/src/store.test.ts" line="222" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt empty runId throws" classname="memories" time="0.007427" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt bad kind throws" classname="memories" time="0.016063" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt empty text throws" classname="memories" time="0.017384" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt missing text throws" classname="memories" time="0.013837" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt missing kind throws" classname="memories" time="0.012821" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt non-number embedding element throws" classname="memories" time="0.007306" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt negative importance throws" classname="memories" time="0.01526" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt missing importance throws" classname="memories" time="0.013526" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt string createdAt throws" classname="memories" time="0.0151" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt zero ttl throws" classname="memories" time="0.018642" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt fractional ttl throws" classname="memories" time="0.026655" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="re-validates stored rows: corrupt non-string id throws" classname="memories" time="0.007893" file="packages/hermes/src/store.test.ts" line="251" assertions="1" />
+      <testcase name="control: valid base memory row parses" classname="memories" time="0.015241" file="packages/hermes/src/store.test.ts" line="256" assertions="1" />
+    </testsuite>
+    <testsuite name="profiles re-validation" file="packages/hermes/src/store.test.ts" line="264" tests="9" assertions="9" failures="0" skipped="0" time="0.133" hostname="ai">
+      <testcase name="corrupt empty name throws on getProfile" classname="profiles re-validation" time="0.015041" file="packages/hermes/src/store.test.ts" line="277" assertions="1" />
+      <testcase name="corrupt missing role throws on getProfile" classname="profiles re-validation" time="0.016761" file="packages/hermes/src/store.test.ts" line="277" assertions="1" />
+      <testcase name="corrupt non-array traits throws on getProfile" classname="profiles re-validation" time="0.023" file="packages/hermes/src/store.test.ts" line="277" assertions="1" />
+      <testcase name="corrupt empty trait element throws on getProfile" classname="profiles re-validation" time="0.010112" file="packages/hermes/src/store.test.ts" line="277" assertions="1" />
+      <testcase name="corrupt non-string voice throws on getProfile" classname="profiles re-validation" time="0.012459" file="packages/hermes/src/store.test.ts" line="277" assertions="1" />
+      <testcase name="corrupt empty constitutionRef throws on getProfile" classname="profiles re-validation" time="0.016367" file="packages/hermes/src/store.test.ts" line="277" assertions="1" />
+      <testcase name="corrupt non-string id throws on getProfile" classname="profiles re-validation" time="0.013778" file="packages/hermes/src/store.test.ts" line="277" assertions="1" />
+      <testcase name="control: valid base profile row parses (createdAt stripped)" classname="profiles re-validation" time="0.016962" file="packages/hermes/src/store.test.ts" line="283" assertions="1" />
+      <testcase name="corrupt pointer activeVersion 0 throws ZodError, not NotFound" classname="profiles re-validation" time="0.013153" file="packages/hermes/src/store.test.ts" line="294" assertions="1" />
+    </testsuite>
+    <testsuite name="skills" file="packages/hermes/src/store.test.ts" line="302" tests="11" assertions="15" failures="0" skipped="0" time="0.148" hostname="ai">
+      <testcase name="upsertSkill replaces by id; findSkills matches role AND any tag, sorted by name" classname="skills" time="0.050117" file="packages/hermes/src/store.test.ts" line="311" assertions="4" />
+      <testcase name="equal names ordered by id" classname="skills" time="0.019308" file="packages/hermes/src/store.test.ts" line="324" assertions="1" />
+      <testcase name="invalid skill input rejected, nothing written" classname="skills" time="0.005654" file="packages/hermes/src/store.test.ts" line="330" assertions="2" />
+      <testcase name="corrupt empty name throws on findSkills" classname="skills" time="0.012706" file="packages/hermes/src/store.test.ts" line="346" assertions="1" />
+      <testcase name="corrupt missing name throws on findSkills" classname="skills" time="0.012863" file="packages/hermes/src/store.test.ts" line="346" assertions="1" />
+      <testcase name="corrupt missing markdown throws on findSkills" classname="skills" time="0.007727" file="packages/hermes/src/store.test.ts" line="346" assertions="1" />
+      <testcase name="corrupt non-string markdown throws on findSkills" classname="skills" time="0.009017" file="packages/hermes/src/store.test.ts" line="346" assertions="1" />
+      <testcase name="corrupt empty role element throws on findSkills" classname="skills" time="0.006726" file="packages/hermes/src/store.test.ts" line="346" assertions="1" />
+      <testcase name="corrupt empty tag element throws on findSkills" classname="skills" time="0.010623" file="packages/hermes/src/store.test.ts" line="346" assertions="1" />
+      <testcase name="corrupt non-string id throws on findSkills" classname="skills" time="0.006707" file="packages/hermes/src/store.test.ts" line="346" assertions="1" />
+      <testcase name="control: valid base skill row parses" classname="skills" time="0.012595" file="packages/hermes/src/store.test.ts" line="351" assertions="1" />
+    </testsuite>
+    <testsuite name="experience" file="packages/hermes/src/store.test.ts" line="357" tests="11" assertions="13" failures="0" skipped="0" time="0.112" hostname="ai">
+      <testcase name="addExperience returns uuid row; getExperience newest first, ties by id" classname="experience" time="0.019896" file="packages/hermes/src/store.test.ts" line="358" assertions="2" />
+      <testcase name="invalid experience input rejected, nothing written" classname="experience" time="0.01174" file="packages/hermes/src/store.test.ts" line="386" assertions="2" />
+      <testcase name="corrupt empty taskType throws on getExperience" classname="experience" time="0.014812" file="packages/hermes/src/store.test.ts" line="417" assertions="1" />
+      <testcase name="corrupt bad outcome throws on getExperience" classname="experience" time="0.007055" file="packages/hermes/src/store.test.ts" line="417" assertions="1" />
+      <testcase name="corrupt non-array lessons throws on getExperience" classname="experience" time="0.009516" file="packages/hermes/src/store.test.ts" line="417" assertions="1" />
+      <testcase name="corrupt empty lesson element throws on getExperience" classname="experience" time="0.005591" file="packages/hermes/src/store.test.ts" line="417" assertions="1" />
+      <testcase name="corrupt missing runId throws on getExperience" classname="experience" time="0.009225" file="packages/hermes/src/store.test.ts" line="417" assertions="1" />
+      <testcase name="corrupt missing taskType throws on getExperience" classname="experience" time="0.007957" file="packages/hermes/src/store.test.ts" line="417" assertions="1" />
+      <testcase name="corrupt missing lessons throws on getExperience" classname="experience" time="0.014257" file="packages/hermes/src/store.test.ts" line="417" assertions="1" />
+      <testcase name="corrupt non-string id throws on getExperience" classname="experience" time="0.009827" file="packages/hermes/src/store.test.ts" line="417" assertions="1" />
+      <testcase name="control: valid base experience row parses (createdAt stripped)" classname="experience" time="0.008148" file="packages/hermes/src/store.test.ts" line="422" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>

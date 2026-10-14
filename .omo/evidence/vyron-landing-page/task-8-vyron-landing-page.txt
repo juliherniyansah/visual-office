@@ -1,0 +1,46 @@
+# Task 8: Workforce & HowItWorks Components
+Date: 2026-10-13
+
+## Created
+- apps/web/src/components/landing/Workforce.tsx
+- apps/web/src/components/landing/HowItWorks.tsx
+
+## Implementation
+Both components:
+- Import AGENTS/STEPS/COPY from @/lib/site
+- Use useReveal hook from @/hooks/useReveal
+- Apply CSS variables for colors (no hardcoded values)
+- Use Tailwind for layout/spacing
+
+Workforce.tsx:
+- 4 agent cards in grid (sm:grid-cols-2 lg:grid-cols-4)
+- Each card: numbered badge (red circle), role title, body text
+- Hover effect: scale-105
+
+HowItWorks.tsx:
+- 3 step cards in grid (md:grid-cols-3)
+- Each card: large step number (red), title, body text
+- Zero-padded numbers (01, 02, 03)
+
+## Bug Fixed
+Initial implementation used `visible` from useReveal hook.
+Hook actually returns `isVisible`. Fixed in both components.
+
+## Verification
+- bun --cwd=apps/web run typecheck: PASS (exit 0)
+- bun --cwd=apps/web run build: PASS (exit 0)
+- Build output: 3/3 static pages generated
+
+## Pattern Established
+Landing section pattern:
+```tsx
+<section
+  ref={ref}
+  className={`px-6 py-24 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+  style={{ backgroundColor: 'var(--color-...)' }}
+>
+  <div className="mx-auto max-w-6xl">
+    {/* content */}
+  </div>
+</section>
+```

@@ -1,0 +1,183 @@
+# T5b fix 2 (oracle round 2 D1) RED/mutation proof (2026-10-09T09:49:18Z)
+# runner /tmp/opencode/run-mutants-fix2-5b.py; scratch copy /tmp/opencode/fix2-5b-mut (fresh); each mutant replaces mappers.ts:68 (knowledge) or :64 (project), literal match exactly once, restored after each
+# product code untouched: repo apps/api/src/db/mappers.ts sha256 d413bd8c001c3f63096259f4297319a6529177bf1070102f33401f9eeca5740f (same as before this fix: d413bd8c001c3f63096259f4297319a6529177bf1070102f33401f9eeca5740f); line 68 =   return KnowledgeDocSchema.parse({ ...record, id: record._id });
+
+## Part A: mutants vs the round-2 tests (bundled corruption, BEFORE this fix)
+$ python3 /tmp/opencode/run-mutants-fix2-5b.py /tmp/opencode/fix2-5b-mut
+copy mappers.ts byte-identical to repo: True
+control: 35 pass 0 fail
+K1  knowledge: fields picked, no parse: 16 pass 2 fail -> KILLED
+R1  knowledge: omit tags, raw tags passed through: 18 pass 0 fail -> SURVIVED
+R5  knowledge: partial() parse: 18 pass 0 fail -> SURVIVED
+R7  knowledge: omit title, raw title passed through: 18 pass 0 fail -> SURVIVED
+R8  knowledge: omit text, raw text passed through: 18 pass 0 fail -> SURVIVED
+R9  knowledge: omit id, raw id passed through: 18 pass 0 fail -> SURVIVED
+R10 knowledge: tag elements not min(1): 18 pass 0 fail -> SURVIVED
+R11 knowledge: tag element type unchecked: 18 pass 0 fail -> SURVIVED
+R12 knowledge: title min(1) dropped: 18 pass 0 fail -> SURVIVED
+R13 knowledge: text unchecked: 18 pass 0 fail -> SURVIVED
+R14 knowledge: safeParse, raw row on failure: 16 pass 2 fail -> KILLED
+K1b project: fields picked, no parse: 16 pass 1 fail -> KILLED
+PR1 project: omit defaultAdapter, raw passed through: 17 pass 0 fail -> SURVIVED
+PR5 project: partial() parse: 17 pass 0 fail -> SURVIVED
+PR7 project: omit name, raw passed through: 17 pass 0 fail -> SURVIVED
+PR8 project: omit repoPath, raw passed through: 17 pass 0 fail -> SURVIVED
+PR9 project: omit id, raw id passed through: 17 pass 0 fail -> SURVIVED
+PR10 project: defaultAdapter any string: 17 pass 0 fail -> SURVIVED
+PR11 project: name min(1) dropped: 17 pass 0 fail -> SURVIVED
+PR12 project: repoPath min(1) dropped: 17 pass 0 fail -> SURVIVED
+restored-control: 35 pass 0 fail
+summary: 3 killed, 17 survived, 20 mutants
+-> oracle R1 and R5 reproduced as SURVIVED; 15 more half-validating variants (R7..R13, PR*) also survived the bundled fixtures
+
+## Part B: same mutants vs the per-field tests (repo test files synced into the copy)
+$ python3 /tmp/opencode/run-mutants-fix2-5b.py /tmp/opencode/fix2-5b-mut sync
+copy mappers.ts byte-identical to repo: True
+control: 59 pass 0 fail
+K1  knowledge: fields picked, no parse: 17 pass 15 fail -> KILLED
+R1  knowledge: omit tags, raw tags passed through: 27 pass 5 fail -> KILLED
+R5  knowledge: partial() parse: 27 pass 5 fail -> KILLED
+R7  knowledge: omit title, raw title passed through: 28 pass 4 fail -> KILLED
+R8  knowledge: omit text, raw text passed through: 29 pass 3 fail -> KILLED
+R9  knowledge: omit id, raw id passed through: 30 pass 2 fail -> KILLED
+R10 knowledge: tag elements not min(1): 31 pass 1 fail -> KILLED
+R11 knowledge: tag element type unchecked: 30 pass 2 fail -> KILLED
+R12 knowledge: title min(1) dropped: 31 pass 1 fail -> KILLED
+R13 knowledge: text unchecked: 31 pass 1 fail -> KILLED
+R14 knowledge: safeParse, raw row on failure: 17 pass 15 fail -> KILLED
+K1b project: fields picked, no parse: 17 pass 10 fail -> KILLED
+PR1 project: omit defaultAdapter, raw passed through: 25 pass 2 fail -> KILLED
+PR5 project: partial() parse: 24 pass 3 fail -> KILLED
+PR7 project: omit name, raw passed through: 24 pass 3 fail -> KILLED
+PR8 project: omit repoPath, raw passed through: 24 pass 3 fail -> KILLED
+PR9 project: omit id, raw id passed through: 25 pass 2 fail -> KILLED
+PR10 project: defaultAdapter any string: 26 pass 1 fail -> KILLED
+PR11 project: name min(1) dropped: 26 pass 1 fail -> KILLED
+PR12 project: repoPath min(1) dropped: 26 pass 1 fail -> KILLED
+restored-control: 59 pass 0 fail
+summary: 20 killed, 0 survived, 20 mutants
+
+## Part C: oracle literals R1/R5/K1 with failing testcase names (why each dies)
+$ python3 /tmp/opencode/fix2-oracle-literal.py
+== R1 (oracle literal)
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt non-array tags throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt missing tags throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt empty tag element throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt non-string tag element throws instead of leaking
+  (fail) GET /api/v1/knowledge > corrupt row (tags only) -> 500 generic body, nothing leaked
+  27 pass
+  5 fail
+== R5 (oracle literal)
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt missing title throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt missing text throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt missing tags throws instead of leaking
+  (fail) GET /api/v1/knowledge > corrupt row (missing title) -> 500 generic body, nothing leaked
+  (fail) GET /api/v1/knowledge > corrupt row (missing text) -> 500 generic body, nothing leaked
+  27 pass
+  5 fail
+== K1 (oracle literal)
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt empty title throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt missing title throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt non-string title throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt missing text throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt non-string text throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt non-array tags throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt missing tags throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt empty tag element throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt non-string tag element throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt non-string id throws instead of leaking
+  (fail) listKnowledgeDocs > re-validates stored rows: corrupt empty id throws instead of leaking
+  (fail) GET /api/v1/knowledge > corrupt stored row -> 500 generic body, row contents not leaked
+  (fail) GET /api/v1/knowledge > corrupt row (tags only) -> 500 generic body, nothing leaked
+  (fail) GET /api/v1/knowledge > corrupt row (missing title) -> 500 generic body, nothing leaked
+  (fail) GET /api/v1/knowledge > corrupt row (missing text) -> 500 generic body, nothing leaked
+  17 pass
+  15 fail
+restored byte-identical: True
+# distinct failure reasons across all failing testcases (counts):
+      7     Expected: 500
+     18     Expected promise that rejects
+      7     Received: 200
+     18     Received promise that resolved: Promise { <resolved> }
+-> right reasons only: service rows promise resolved instead of rejecting; route rows 200 instead of 500
+
+## Part D: FINAL re-run after test-only typing fixes (copy synced; all 4 test files + mappers.ts byte-identical to repo, checked with cmp)
+$ python3 /tmp/opencode/run-mutants-fix2-5b.py /tmp/opencode/fix2-5b-mut sync
+copy mappers.ts byte-identical to repo: True
+control: 59 pass 0 fail
+K1  knowledge: fields picked, no parse: 17 pass 15 fail -> KILLED
+R1  knowledge: omit tags, raw tags passed through: 27 pass 5 fail -> KILLED
+R5  knowledge: partial() parse: 27 pass 5 fail -> KILLED
+R7  knowledge: omit title, raw title passed through: 28 pass 4 fail -> KILLED
+R8  knowledge: omit text, raw text passed through: 29 pass 3 fail -> KILLED
+R9  knowledge: omit id, raw id passed through: 30 pass 2 fail -> KILLED
+R10 knowledge: tag elements not min(1): 31 pass 1 fail -> KILLED
+R11 knowledge: tag element type unchecked: 30 pass 2 fail -> KILLED
+R12 knowledge: title min(1) dropped: 31 pass 1 fail -> KILLED
+R13 knowledge: text unchecked: 31 pass 1 fail -> KILLED
+R14 knowledge: safeParse, raw row on failure: 17 pass 15 fail -> KILLED
+K1b project: fields picked, no parse: 17 pass 10 fail -> KILLED
+PR1 project: omit defaultAdapter, raw passed through: 25 pass 2 fail -> KILLED
+PR5 project: partial() parse: 24 pass 3 fail -> KILLED
+PR7 project: omit name, raw passed through: 24 pass 3 fail -> KILLED
+PR8 project: omit repoPath, raw passed through: 24 pass 3 fail -> KILLED
+PR9 project: omit id, raw id passed through: 25 pass 2 fail -> KILLED
+PR10 project: defaultAdapter any string: 26 pass 1 fail -> KILLED
+PR11 project: name min(1) dropped: 26 pass 1 fail -> KILLED
+PR12 project: repoPath min(1) dropped: 26 pass 1 fail -> KILLED
+restored-control: 59 pass 0 fail
+summary: 20 killed, 0 survived, 20 mutants
+
+## Part E: regression check with the previous 47-mutant 5b runner on a fresh copy (/tmp/opencode/fix2-5b-run)
+$ python3 /tmp/opencode/run-mutants-5b.py /tmp/opencode/fix2-5b-run
+control: 86 pass 0 fail
+A1 POST /projects operator->viewer: 13 pass 1 fail -> KILLED
+A2 POST /knowledge operator->viewer: 17 pass 1 fail -> KILLED
+A3 GET /projects viewer->operator: 12 pass 2 fail -> KILLED
+A4 GET /knowledge viewer->operator: 12 pass 6 fail -> KILLED
+A5 GET /office/state viewer->operator: 2 pass 4 fail -> KILLED
+A6 GET /office/state without requireAuth: 5 pass 1 fail -> KILLED
+B1 project name max 120->121: 13 pass 1 fail -> KILLED
+B2 repoPath max 1024->1025: 13 pass 1 fail -> KILLED
+B3 knowledge title max 200->201: 17 pass 1 fail -> KILLED
+B4 knowledge text max 12000->12001: 17 pass 1 fail -> KILLED
+B5 knowledge tags count 32->33: 17 pass 1 fail -> KILLED
+B6 knowledge tag length 64->65: 17 pass 1 fail -> KILLED
+B7 project name min(1) removed: 13 pass 1 fail -> KILLED
+B8 knowledge whitespace-only text allowed: 17 pass 1 fail -> KILLED
+V1 project name not trimmed: 12 pass 2 fail -> KILLED
+V2 knowledge title not trimmed: 16 pass 2 fail -> KILLED
+V3 knowledge text trimmed (must stay verbatim): 17 pass 1 fail -> KILLED
+V4 defaultAdapter default opencode->codex: 13 pass 1 fail -> KILLED
+V5 knowledge tags default removed: 16 pass 2 fail -> KILLED
+P1 path: allow "..": 13 pass 1 fail -> KILLED
+P2 path: allow ".": 13 pass 1 fail -> KILLED
+P3 path: allow empty segment: 13 pass 1 fail -> KILLED
+P4 path: allow NUL: 13 pass 1 fail -> KILLED
+P5 path: allow relative: 13 pass 1 fail -> KILLED
+P6 path: trailing-slash slice removed: 13 pass 1 fail -> KILLED
+F1 project forged fields spread last (route raw body + service spread): 13 pass 1 fail -> KILLED
+F2 knowledge forged fields spread last: 17 pass 1 fail -> KILLED
+O1 projects sort createdAt desc: 25 pass 2 fail -> KILLED
+O2 projects sort without _id tiebreak: 12 pass 1 fail -> KILLED
+O3 knowledge sort createdAt desc: 30 pass 2 fail -> KILLED
+O4 knowledge sort _id desc tiebreak: 13 pass 1 fail -> KILLED
+S1 office initial status idle->working: 12 pass 1 fail -> KILLED
+S2 office initial pose sitting->standing: 6 pass 1 fail -> KILLED
+S3 office initial updatedAt not deterministic: 11 pass 2 fail -> KILLED
+S4 office initial version 0->1: 9 pass 4 fail -> KILLED
+S5 office freeze shallow only: 6 pass 1 fail -> KILLED
+S6 office: any doc instead of the singleton id: 6 pass 1 fail -> KILLED
+S7 office: stored singleton ignored: 8 pass 5 fail -> KILLED
+S8 office: stored doc not re-validated: 10 pass 3 fail -> KILLED
+S9 project rows not re-validated: 12 pass 15 fail -> KILLED
+S10 knowledge rows not re-validated (createdAt/_id leak): 11 pass 7 fail -> KILLED
+K1 knowledge rows picked field-by-field, no re-validation (oracle D1): 17 pass 15 fail -> KILLED
+K1b project rows picked field-by-field, no re-validation: 17 pass 10 fail -> KILLED
+N1 GET /tasks repeated status coerced to first value: 13 pass 1 fail -> KILLED
+E1 office model strict default -> strict:false (EQUIVALENT: lean reads skip schema): 13 pass 0 fail -> SURVIVED
+S11 mapper passes a string updatedAt through: 6 pass 1 fail -> KILLED
+S12 office: drones forced empty on read: 5 pass 1 fail -> KILLED
+restored-control: 86 pass 0 fail
+summary: 46 killed, 1 survived, 47 mutants
+# only survivor E1 = documented equivalent (lean reads ignore the Mongoose strict option)

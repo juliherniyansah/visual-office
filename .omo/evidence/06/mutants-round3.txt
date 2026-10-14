@@ -1,0 +1,13 @@
+pre-run sha256 dbc545903811e2d89da0e34bee4f81c7fefc0eca958a8f78b647f89d636a210a
+control pass
+N8 | isDuplicateKeyError always true | store.ts:34 | run1 FAIL run2 FAIL | KILLED
+    (fail) ensureProfileVersion error discrimination > non-E11000 error is rethrown as-is even when the row exists afterwards [22.73ms]
+N12 | non-duplicate error -> return input as success | store.ts:206 | run1 FAIL run2 FAIL | KILLED
+    (fail) ensureProfileVersion error discrimination > non-E11000 error is rethrown as-is even when the row exists afterwards [17.45ms]
+    (fail) ensureProfileVersion error discrimination > plain error without code is rethrown as-is; no row and no pointer written [17.57ms]
+N10 | duplicate, no row by _id -> return input as success | store.ts:208 | run1 FAIL run2 FAIL | KILLED
+    (fail) ensureProfileVersion error discrimination > duplicate on {agentId, version} under a foreign _id rethrows E11000, no pointer [42.65ms]
+N11 | duplicate, no row -> generic Error | store.ts:208 | run1 FAIL run2 FAIL | KILLED
+    (fail) ensureProfileVersion error discrimination > duplicate on {agentId, version} under a foreign _id rethrows E11000, no pointer [32.14ms]
+restored-control pass
+post-run sha256 dbc545903811e2d89da0e34bee4f81c7fefc0eca958a8f78b647f89d636a210a IDENTICAL

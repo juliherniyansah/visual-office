@@ -1,0 +1,51 @@
+# Mutation proof round 4 (fix round 3, oracle D11-D21) - 2026-10-09T15:13:13+00:00
+Runner: /tmp/opencode/fix3-hermes/mut4.py (in-place edit + .bak, finally restore, pattern count==1, full 'bun test' in packages/hermes per mutant).
+Format: id | file:line | patch | result vs mutant (failing tests listed) ; original = CONTROL/RESTORED-CONTROL
+
+CONTROL original: PASS (132 pass / 0 fail)
+S23 | src/store.ts:191 | Experience.find({ agentId }) -> Experience.find({}) | mutant: FAIL -> KILLED (130 pass / 2 fail)
+     (fail) experience isolation between agents > getExperience returns only the requested agent rows
+     (fail) experience isolation between agents > assembleContext never carries another agent lessons
+S40 | src/store.ts:148 | const memory = HermesMemorySchema.parse({ -> const memory = { | mutant: FAIL -> KILLED (130 pass / 2 fail)
+     (fail) write-path zod guards (zod-only invalid values) > addMemory rejects ttl 0 with ZodError, nothing written
+     (fail) write-path zod guards (zod-only invalid values) > addMemory rejects empty runId with ZodError, nothing written
+S57 | src/store.ts:183 | const experience = HermesExperienceSchema.parse({ ...input,  -> const experience = { ...input, id: randomUUID() } as HermesE | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) write-path zod guards (zod-only invalid values) > addExperience rejects an empty lesson with ZodError, nothing written
+S65 | src/store.ts:108 | const fields = ProfileVersionSchema.parse(input); -> const fields = input; | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) write-path zod guards (zod-only invalid values) > ensureProfileVersion rejects an empty trait with ZodError, nothing written
+S02 | src/store.ts:36 | : false; -> : true; | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) ensureProfileVersion pointer and error handling > codeless error is rethrown as-is even when the row exists afterwards
+S12 | src/store.ts:113 | activeVersion: fields.version } } -> activeVersion: 1 } } | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) ensureProfileVersion pointer and error handling > first ensure of version 2 points activeVersion at 2
+S51 | src/store.ts:176 | tags: { $in: [...tags] } -> tags: { $all: [...tags] } | mutant: FAIL -> KILLED (130 pass / 2 fail)
+     (fail) findSkills tag semantics: share at least one tag > multi-tag skill matches a multi-tag query sharing one tag
+     (fail) findSkills tag semantics: share at least one tag > single-tag skill matches a query with an extra unknown tag
+K09 | src/knowledge.ts:48 | doc.tags.some((tag) => tags.includes(tag)) -> doc.tags.every((tag) => tags.includes(tag)) | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) InMemoryKnowledgeStore query terms and tag filter > tag filter keeps docs sharing at least ONE tag with a multi-tag filter
+K30 | src/knowledge.ts:64 | const queryTerms = [...new Set(tokenize(query))]; -> const queryTerms = tokenize(query); | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) InMemoryKnowledgeStore query terms and tag filter > repeated query terms count once: same hits and scores, order unchanged
+C12 | src/context.ts:150 | for (const layerId of FILL_ORDER) { -> for (const layerId of ['skills', 'memories', 'rag', 'experie | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) assembleContext fill priority and budget boundary > experience fills before rag when only one of them fits
+C15 | src/context.ts:136 | || budget < 0) { -> || budget <= 0) { | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) assembleContext fill priority and budget boundary > budget 0 is valid when the profile costs 0 tokens; -1 is not
+C29 | src/context.ts:72 | return new Set(tokenize(text).filter((term) => taskTerms.has -> return tokenize(text).filter((term) => taskTerms.has(term)). | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) rankMemories relevance > counts DISTINCT task terms, not repeated occurrences
+C30 | src/context.ts:77 | const taskTerms = new Set(tokenize(taskText)); -> const taskTerms = new Set(taskText.split(' ')); | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) rankMemories relevance > task text goes through the tokenizer (case and punctuation)
+E02 | src/seed.ts:15 | return Object.freeze(profile); -> return profile; | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) SEED_PROFILES > every seed profile object and its traits are frozen; writes throw (ESM strict mode)
+O02 | src/models.ts:79 | embedding: { type: [Number], default: undefined }, -> embedding: { type: [Number] }, | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) models storage shape > memory added without embedding stores no embedding key (not [])
+O07 | src/models.ts:126 | await Promise.all(Object.values(models).map((model: Model<un -> <removed> | mutant: FAIL -> KILLED (131 pass / 1 fail)
+     (fail) models storage shape > unique {agentId, version} index exists as soon as the models factory resolves
+RESTORED-CONTROL original: PASS (132 pass / 0 fail)
+sha256 all hermes src/seed files pre==post: True (23 files)
+   dbc545903811e2d89da0e34bee4f81c7fefc0eca958a8f78b647f89d636a210a src/store.ts
+   fe66232917d4721084622b925f3b147492e4be393eb5e6e7236e2ebaa9d744e5 src/knowledge.ts
+   85059f0657348ffa742f82d25cf05dca4ade4d8a7740ab1f079321658a41d32b src/context.ts
+   0effb3d5d3e540fcf57eb5821cd929f9e41f4b452d2eb67e65583fd214fd6ac6 src/seed.ts
+   169e225abd914d46d0af3364cdc23c2c7ac63ef11ba6233540c0938817796b85 src/models.ts
+
+O07 repeat (store.guards.test.ts -t unique): mutant rc [1,1,1,1,1] KILLED 5/5; original rc [0,0,0,0,0] PASS 5/5; models.ts cmp identical.
+Post-run: /usr/bin/find packages -name '*.bak' -not -path '*/node_modules/*' | wc -l = 0.
+Production sha256 before (pre-round3.sha) == after: store.ts dbc54590...210a, models.ts 169e2256...6b85, context.ts 85059f06...d32b, knowledge.ts fe66232f...44e5, seed.ts 0effb3d5...6ac6, tokens.ts fe0e0a94...0e5, errors.ts 97743c3c...512, index.ts 1d80824d...ede (sha256sum -c: only the 3 edited test files differ).

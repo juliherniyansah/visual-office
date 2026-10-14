@@ -1,0 +1,16 @@
+{
+  "name": "@redhunter/adapters",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "@opencode-ai/sdk": "1.18.13",
+    "@redhunter/shared": "workspace:*"
+  }
+}

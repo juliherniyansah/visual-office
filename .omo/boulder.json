@@ -1,0 +1,244 @@
+{
+  "schema_version": 2,
+  "active_work_id": "vyron-landing-page-b7f2a91",
+  "works": {
+    "redhunter-master-plan-ea9d6f52": {
+      "work_id": "redhunter-master-plan-ea9d6f52",
+      "active_plan": "/home/programer/work/visual-office/.omo/plans/redhunter-master-plan.md",
+      "plan_name": "redhunter-master-plan",
+      "session_ids": [
+        "opencode:ses_ecad754b0ffe4V1Kj37yM2yXQp"
+      ],
+      "status": "paused",
+      "worktree_path": null,
+      "session_origins": {}
+    },
+    "vyron-landing-page-b7f2a91": {
+      "work_id": "vyron-landing-page-b7f2a91",
+      "active_plan": "/home/programer/work/visual-office/.omo/plans/vyron-landing-page.md",
+      "plan_name": "vyron-landing-page",
+      "session_ids": [
+        "opencode:ses_ecad8cc00ffe33XD6QEBTwwY5H",
+        "opencode:ses_ec90c0615ffeNAnVVstwm4PNF8",
+        "opencode:ses_ec90be957ffeVuhUtFnSReMXkt",
+        "opencode:ses_ec90bcdabffebpIxaHDrpY4jL0",
+        "opencode:ses_ec8c29e91ffeKczu79MZkZELXq",
+        "opencode:ses_ec8c285d2ffeYelmm8uyj0kJdm",
+        "opencode:ses_ec8c26b16ffetoAw3BcOuyQOMb",
+        "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA"
+      ],
+      "status": "active",
+      "worktree_path": null,
+      "started_at": "2026-10-13T12:05:24.192Z",
+      "session_origins": {
+        "opencode:ses_ec90c0615ffeNAnVVstwm4PNF8": "appended",
+        "opencode:ses_ec90be957ffeVuhUtFnSReMXkt": "appended",
+        "opencode:ses_ec90bcdabffebpIxaHDrpY4jL0": "appended",
+        "opencode:ses_ec8c29e91ffeKczu79MZkZELXq": "appended",
+        "opencode:ses_ec8c285d2ffeYelmm8uyj0kJdm": "appended",
+        "opencode:ses_ec8c26b16ffetoAw3BcOuyQOMb": "appended",
+        "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA": "appended"
+      },
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "Nav",
+          "session_id": "opencode:ses_ec853fc5dffe7sIRYt1i1nmmN7",
+          "agent": "Sisyphus-Junior",
+          "category": "implementation",
+          "started_at": "2026-10-13T17:03:52.260Z",
+          "status": "completed",
+          "updated_at": "2026-10-13T23:52:33.327Z",
+          "ended_at": "2026-10-13T23:52:33.327Z",
+          "elapsed_ms": 24521067
+        },
+        "todo:2": {
+          "task_key": "todo:2",
+          "task_label": "2",
+          "task_title": "Site constants `apps/web/src/lib/site.ts`",
+          "session_id": "opencode:ses_ec90bcdabffebpIxaHDrpY4jL0",
+          "agent": "Sisyphus-Junior",
+          "category": "testing",
+          "started_at": "2026-10-13T20:57:52.976Z",
+          "status": "running",
+          "updated_at": "2026-10-13T20:57:55.812Z"
+        },
+        "todo:5": {
+          "task_key": "todo:5",
+          "task_label": "5",
+          "task_title": "`Nav.tsx` + `Footer.tsx`",
+          "session_id": "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA",
+          "agent": "Sisyphus-Junior",
+          "category": "visual-engineering",
+          "updated_at": "2026-10-13T23:49:18.745Z",
+          "ended_at": "2026-10-13T23:49:18.745Z",
+          "status": "completed"
+        },
+        "todo:11": {
+          "task_key": "todo:11",
+          "task_label": "11",
+          "task_title": "Assemble `page.tsx`, enable full e2e, capture screenshots",
+          "session_id": "opencode:ses_ec84fa96affeylqAzApfjJai4u",
+          "agent": "Sisyphus-Junior",
+          "category": "testing",
+          "updated_at": "2026-10-14T00:06:25.234Z",
+          "started_at": "2026-10-14T00:05:18.693Z",
+          "status": "completed",
+          "ended_at": "2026-10-14T00:06:25.234Z",
+          "elapsed_ms": 66541
+        },
+        "todo:12": {
+          "task_key": "todo:12",
+          "task_label": "12",
+          "task_title": "Write delivery summary",
+          "session_id": "opencode:ses_ec812e9e2ffeQFpU2yOEf4fC4x",
+          "agent": "Sisyphus-Junior",
+          "category": "implementation",
+          "started_at": "2026-10-14T00:09:25.907Z",
+          "status": "running",
+          "updated_at": "2026-10-14T01:03:17.835Z"
+        },
+        "final-wave:f4": {
+          "task_key": "final-wave:f4",
+          "task_label": "F4",
+          "task_title": "Scope fidelity — verify nothing beyond Must have was built and nothing in Must have is missing.",
+          "session_id": "opencode:ses_ec8055b00ffeVAttYi08fl700r",
+          "agent": "Sisyphus-Junior",
+          "category": "review",
+          "started_at": "2026-10-14T00:54:34.135Z",
+          "status": "completed",
+          "updated_at": "2026-10-14T01:16:47.022Z",
+          "ended_at": "2026-10-14T01:16:47.022Z",
+          "elapsed_ms": 1332887
+        },
+        "final-wave:f2": {
+          "task_key": "final-wave:f2",
+          "task_label": "F2",
+          "task_title": "Code quality review — verify all 7 checks pass after fixes.",
+          "session_id": "opencode:ses_ec8147eedffe1WCkfLU9DxvtPb",
+          "agent": "Sisyphus-Junior",
+          "category": "review",
+          "started_at": "2026-10-14T00:54:59.200Z",
+          "status": "completed",
+          "updated_at": "2026-10-14T01:09:31.369Z",
+          "ended_at": "2026-10-14T01:09:31.369Z",
+          "elapsed_ms": 872169
+        }
+      },
+      "updated_at": "2026-10-14T01:16:47.022Z"
+    }
+  },
+  "session_ids": [
+    "opencode:ses_ecad8cc00ffe33XD6QEBTwwY5H",
+    "opencode:ses_ec90c0615ffeNAnVVstwm4PNF8",
+    "opencode:ses_ec90be957ffeVuhUtFnSReMXkt",
+    "opencode:ses_ec90bcdabffebpIxaHDrpY4jL0",
+    "opencode:ses_ec8c29e91ffeKczu79MZkZELXq",
+    "opencode:ses_ec8c285d2ffeYelmm8uyj0kJdm",
+    "opencode:ses_ec8c26b16ffetoAw3BcOuyQOMb",
+    "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA"
+  ],
+  "session_origins": {
+    "opencode:ses_ec90c0615ffeNAnVVstwm4PNF8": "appended",
+    "opencode:ses_ec90be957ffeVuhUtFnSReMXkt": "appended",
+    "opencode:ses_ec90bcdabffebpIxaHDrpY4jL0": "appended",
+    "opencode:ses_ec8c29e91ffeKczu79MZkZELXq": "appended",
+    "opencode:ses_ec8c285d2ffeYelmm8uyj0kJdm": "appended",
+    "opencode:ses_ec8c26b16ffetoAw3BcOuyQOMb": "appended",
+    "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA": "appended"
+  },
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "Nav",
+      "session_id": "opencode:ses_ec853fc5dffe7sIRYt1i1nmmN7",
+      "agent": "Sisyphus-Junior",
+      "category": "implementation",
+      "started_at": "2026-10-13T17:03:52.260Z",
+      "status": "completed",
+      "updated_at": "2026-10-13T23:52:33.327Z",
+      "ended_at": "2026-10-13T23:52:33.327Z",
+      "elapsed_ms": 24521067
+    },
+    "todo:2": {
+      "task_key": "todo:2",
+      "task_label": "2",
+      "task_title": "Site constants `apps/web/src/lib/site.ts`",
+      "session_id": "opencode:ses_ec90bcdabffebpIxaHDrpY4jL0",
+      "agent": "Sisyphus-Junior",
+      "category": "testing",
+      "started_at": "2026-10-13T20:57:52.976Z",
+      "status": "running",
+      "updated_at": "2026-10-13T20:57:55.812Z"
+    },
+    "todo:5": {
+      "task_key": "todo:5",
+      "task_label": "5",
+      "task_title": "`Nav.tsx` + `Footer.tsx`",
+      "session_id": "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA",
+      "agent": "Sisyphus-Junior",
+      "category": "visual-engineering",
+      "updated_at": "2026-10-13T23:49:18.745Z",
+      "ended_at": "2026-10-13T23:49:18.745Z",
+      "status": "completed"
+    },
+    "todo:11": {
+      "task_key": "todo:11",
+      "task_label": "11",
+      "task_title": "Assemble `page.tsx`, enable full e2e, capture screenshots",
+      "session_id": "opencode:ses_ec84fa96affeylqAzApfjJai4u",
+      "agent": "Sisyphus-Junior",
+      "category": "testing",
+      "updated_at": "2026-10-14T00:06:25.234Z",
+      "started_at": "2026-10-14T00:05:18.693Z",
+      "status": "completed",
+      "ended_at": "2026-10-14T00:06:25.234Z",
+      "elapsed_ms": 66541
+    },
+    "todo:12": {
+      "task_key": "todo:12",
+      "task_label": "12",
+      "task_title": "Write delivery summary",
+      "session_id": "opencode:ses_ec812e9e2ffeQFpU2yOEf4fC4x",
+      "agent": "Sisyphus-Junior",
+      "category": "implementation",
+      "started_at": "2026-10-14T00:09:25.907Z",
+      "status": "running",
+      "updated_at": "2026-10-14T01:03:17.835Z"
+    },
+    "final-wave:f4": {
+      "task_key": "final-wave:f4",
+      "task_label": "F4",
+      "task_title": "Scope fidelity — verify nothing beyond Must have was built and nothing in Must have is missing.",
+      "session_id": "opencode:ses_ec8055b00ffeVAttYi08fl700r",
+      "agent": "Sisyphus-Junior",
+      "category": "review",
+      "started_at": "2026-10-14T00:54:34.135Z",
+      "status": "completed",
+      "updated_at": "2026-10-14T01:16:47.022Z",
+      "ended_at": "2026-10-14T01:16:47.022Z",
+      "elapsed_ms": 1332887
+    },
+    "final-wave:f2": {
+      "task_key": "final-wave:f2",
+      "task_label": "F2",
+      "task_title": "Code quality review — verify all 7 checks pass after fixes.",
+      "session_id": "opencode:ses_ec8147eedffe1WCkfLU9DxvtPb",
+      "agent": "Sisyphus-Junior",
+      "category": "review",
+      "started_at": "2026-10-14T00:54:59.200Z",
+      "status": "completed",
+      "updated_at": "2026-10-14T01:09:31.369Z",
+      "ended_at": "2026-10-14T01:09:31.369Z",
+      "elapsed_ms": 872169
+    }
+  },
+  "active_plan": "/home/programer/work/visual-office/.omo/plans/vyron-landing-page.md",
+  "plan_name": "vyron-landing-page",
+  "status": "active",
+  "started_at": "2026-10-13T12:05:24.192Z",
+  "updated_at": "2026-10-14T01:16:47.022Z",
+  "worktree_path": null
+}

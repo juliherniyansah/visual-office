@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --color-obsidian: #0a0a0a;
+  --color-graphite: #1a1a1a;
+  --color-silver: #a0a0a0;
+  --color-white: #ffffff;
+  --color-red: #dc2626;
+}
+
+@theme {
+  --color-obsidian: #0a0a0a;
+  --color-graphite: #1a1a1a;
+  --color-silver: #a0a0a0;
+  --color-white: #ffffff;
+  --color-red: #dc2626;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

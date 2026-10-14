@@ -1,0 +1,72 @@
+# Manual QA todo 3 (2026-10-09T01:37:34+00:00)
+# env: PORT=4010 HOST=127.0.0.1 MONGO_URL=mongodb://127.0.0.1:27017/redhunter_qa_1791509854_5416 JWT_SECRET=<48 random chars, redacted> OWNER_EMAIL=owner@example.test OWNER_PASSWORD=<random, redacted>
+# cmd: bun run apps/api/src/index.ts
+# server pid: 1051010
+
+## server boot log
+seed: agents=7 owner={"created":true,"passwordUpdated":true}
+api listening on http://127.0.0.1:4010
+
+## 1. POST /auth/login (owner, correct password)
+{"success":true,"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.<redacted>","user":{"id":"6ac8455f4b86871806522262","email":"owner@example.test","role":"owner"}}}
+HTTP=200
+token length: 245
+
+## 2. GET /me (Bearer token)
+{"success":true,"data":{"id":"6ac8455f4b86871806522262","email":"owner@example.test","role":"owner"}}
+HTTP=200
+
+## 3. GET /agents (Bearer token)
+{"success":true,"data":[{"id":"ceo","title":"Chief Executive Officer","role":"executive","reportsTo":[],"floor":4,"deskSlot":"f4-ceo","hermesProfileId":"hermes-ceo","allowedAdapters":["opencode","codex","claude"],"capabilityTags":["direct"],"status":"idle","omoPolicy":{"maxRetries":2,"maxTurns":30,"budgetTokens":32000,"allowedTools":[],"escalationChain":["human"]}},{"id":"coo","title":"Chief Operating Officer","role":"manager","reportsTo":["ceo"],"floor":3,"deskSlot":"f3-coo","hermesProfileId":"hermes-coo","allowedAdapters":["opencode","codex","claude"],"capabilityTags":["route","process"],"status":"idle","omoPolicy":{"maxRetries":2,"maxTurns":30,"budgetTokens":32000,"allowedTools":[],"escalationChain":["ceo","human"]}},{"id":"cto","title":"Chief Technology Officer","role":"manager","reportsTo":["ceo"],"floor":3,"deskSlot":"f3-cto","hermesProfileId":"hermes-cto","allowedAdapters":["opencode","codex","claude"],"capabilityTags":["route","technical"],"status":"idle","omoPolicy":{"maxRetries":2,"maxTurns":30,"budgetTokens":32000,"allowedTools":[],"escalationChain":["ceo","human"]}},{"id":"programming","title":"Programming","role":"domain","reportsTo":["coo","cto"],"floor":2,"deskSlot":"f2-programming","hermesProfileId":"hermes-programming","allowedAdapters":["opencode","codex","claude"],"capabilityTags":["code"],"status":"idle","omoPolicy":{"maxRetries":2,"maxTurns":30,"budgetTokens":32000,"allowedTools":[],"escalationChain":["coo","cto","human"]}},{"id":"game","title":"Game","role":"domain","reportsTo":["coo","cto"],"floor":2,"deskSlot":"f2-game","hermesProfileId":"hermes-game","allowedAdapters":["opencode","codex","claude"],"capabilityTags":["game"],"status":"idle","omoPolicy":{"maxRetries":2,"maxTurns":30,"budgetTokens":32000,"allowedTools":[],"escalationChain":["coo","cto","human"]}},{"id":"iot","title":"IoT","role":"domain","reportsTo":["coo","cto"],"floor":2,"deskSlot":"f2-iot","hermesProfileId":"hermes-iot","allowedAdapters":["opencode","codex","claude"],"capabilityTags":["iot"],"status":"idle","omoPolicy":{"maxRetries":2,"maxTurns":30,"budgetTokens":32000,"allowedTools":[],"escalationChain":["coo","cto","human"]}},{"id":"ai_development","title":"AI Development","role":"domain","reportsTo":["coo","cto"],"floor":2,"deskSlot":"f2-ai-development","hermesProfileId":"hermes-ai_development","allowedAdapters":["opencode","codex","claude"],"capabilityTags":["ai"],"status":"idle","omoPolicy":{"maxRetries":2,"maxTurns":30,"budgetTokens":32000,"allowedTools":[],"escalationChain":["coo","cto","human"]}}]}
+HTTP=200
+agents summary (id -> capabilityTags):
+  ceo: ["direct"]
+  coo: ["route","process"]
+  cto: ["route","technical"]
+  programming: ["code"]
+  game: ["game"]
+  iot: ["iot"]
+  ai_development: ["ai"]
+  count=7
+
+## 4. failure paths
+-- wrong password:
+{"success":false,"error":"Email atau password salah"}  HTTP=401
+-- unknown email:
+{"success":false,"error":"Email atau password salah"}  HTTP=401
+-- /me without token:
+{"success":false,"error":"Autentikasi diperlukan"}  HTTP=401
+-- /agents with tampered token:
+{"success":false,"error":"Autentikasi diperlukan"}  HTTP=401
+-- /agents with Basic auth:
+{"success":false,"error":"Autentikasi diperlukan"}  HTTP=401
+-- login with non-string body:
+{"success":false,"error":"Body request tidak valid"}  HTTP=400
+
+## 5. DB state (isolated QA DB)
+agents=7 users=1 owners=1 plaintextPasswordStored=no (argon2id)
+
+## cleanup receipt
+pid 1051010: terminated by SIGTERM (graceful shutdown)
+port 4010 listeners after kill: 0
+dropDatabase(redhunter_qa_1791509854_5416): {"ok":1,"dropped":"redhunter_qa_1791509854_5416"}
+redhunter* databases remaining: none
+server log after shutdown:
+seed: agents=7 owner={"created":true,"passwordUpdated":true}
+api listening on http://127.0.0.1:4010
+
+## 6. fail-fast boot (no DB contact expected)
+-- cmd: env -u JWT_SECRET PORT=4011 MONGO_URL=mongodb://127.0.0.1:27017/redhunter_qa_never bun run apps/api/src/index.ts
+api failed to start: Invalid environment: JWT_SECRET: Invalid input: expected string, received undefined
+EXIT=1
+-- cmd: JWT_SECRET=change-me-to-a-long-random-string (placeholder) bun run apps/api/src/index.ts
+api failed to start: Invalid environment: JWT_SECRET: placeholder value is not allowed
+EXIT=1
+-- redhunter* databases after fail-fast runs: none
+
+## 7. seed CLI (isolated DB redhunter_qa_seedcli_29054, dropped afterwards)
+$ bun run --cwd apps/api seed
+seed ok: agents=7 owner={"created":true,"passwordUpdated":true}   EXIT=0
+$ bun run --cwd apps/api seed -- --force-owner-password
+seed ok: agents=7 owner={"created":false,"passwordUpdated":true}   EXIT=0
+db state: agents=7 users=1 ; dropDatabase -> { ok: 1, dropped: redhunter_qa_seedcli_29054 } ; redhunter* databases remaining: none

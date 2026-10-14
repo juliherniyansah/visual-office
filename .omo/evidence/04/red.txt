@@ -1,0 +1,50 @@
+# T4 RED: new tests run against stubs (interfaces only, no behavior)
+# cmd: bun test --reporter=junit src/events src/realtime src/config (apps/api)
+FAIL loadEnv > applies defaults when only JWT_SECRET is set -- 
+FAIL loadEnv > parses CORS_ORIGINS as a trimmed comma list of exact origins -- 
+FAIL loadEnv > rejects wildcard, paths and non-http CORS_ORIGINS entries -- 
+pass loadEnv > fails fast when JWT_SECRET is missing
+pass loadEnv > fails fast when JWT_SECRET is shorter than 32 chars without leaking the value
+pass loadEnv > rejects the .env.example placeholder secret even though it is long enough
+pass loadEnv > coerces PORT and rejects non-numeric PORT
+pass loadEnv > rejects a non-mongodb MONGO_URL
+pass loadEnv > rejects EVENTS_DISPATCH outside on|off
+pass loadEnv > builds owner credentials with a normalized email
+pass loadEnv > treats empty owner vars as unset
+pass loadEnv > requires OWNER_PASSWORD when OWNER_EMAIL is set
+pass loadEnv > rejects an OWNER_PASSWORD shorter than 12 chars (e.g. the change-me placeholder)
+pass loadEnv > rejects an invalid OWNER_EMAIL
+FAIL roomsForEvent > every event goes to the office room -- 
+FAIL roomsForEvent > agent events also go to agent:<id>, and to run:<id> when they carry a runId -- 
+FAIL roomsForEvent > run.started carries both agentId and runId -- 
+FAIL roomsForEvent > runId nested in result/decision payloads routes to run:<id> -- 
+FAIL roomsForEvent > task.assigned routes to the assignee agent room -- 
+FAIL handshake authentication > rejects a connection without a token with connect_error -- 
+FAIL handshake authentication > rejects malformed, alg=none, expired, wrong-audience and non-string tokens -- 
+FAIL handshake authentication > rejects connections to the default namespace even with a valid token -- 
+FAIL handshake authentication > rejects a foreign Origin on websocket and polling transports -- 
+FAIL delivery > emit() reaches a connected office client within 500 ms -- 
+FAIL delivery > EVENTS_DISPATCH=off stores the event but delivers nothing -- 
+FAIL delivery > connectionStateRecovery is enabled on the server -- 
+FAIL room subscriptions > subscribe:agent joins agent:<id> and only matching agent events arrive there -- 
+FAIL room subscriptions > subscribe:run joins run:<id> and receives run-scoped events -- 
+FAIL room subscriptions > canSubscribeRun=false denies the run room -- 
+FAIL room subscriptions > invalid subscribe payloads are refused without dropping the connection -- 
+FAIL EventDispatcher > fast path delivers an emitted event and marks it dispatched well under the poll interval -- 
+FAIL EventDispatcher > poll picks up rows written without the fast path (e.g. by another process) -- 
+FAIL EventDispatcher > delivers in createdAt order -- 
+FAIL EventDispatcher > restart replays undispatched events exactly once -- 
+FAIL EventDispatcher > concurrent ticks never deliver the same event twice -- 
+FAIL EventDispatcher > moves an event to events_dead after 5 failed attempts, then unblocks the queue -- 
+FAIL EventDispatcher > a DB failure while marking dispatched retries the mark without re-delivering -- 
+FAIL EventDispatcher > a DB failure while reading the queue is logged and does not reject the tick -- 
+FAIL EventDispatcher > disabled dispatcher (EVENTS_DISPATCH=off) stores events but delivers nothing -- 
+FAIL EventDispatcher > stop() waits for the in-flight tick and later notify() calls do nothing -- 
+FAIL outbox emit() > stores a validated event as an undispatched row with a fresh uuid -- 
+FAIL outbox emit() > rejects an invalid event shape and inserts nothing -- 
+FAIL outbox emit() > ignores forged envelope fields so callers cannot pre-mark an event dispatched -- 
+FAIL outbox emit() > notifies the fast-path listener after the row is stored -- 
+ 11 pass
+ 33 fail
+ 37 expect() calls
+Ran 44 tests across 5 files. [46.97s]

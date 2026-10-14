@@ -1,0 +1,19 @@
+# T5a mutation checks (2026-10-09T04:52:37Z) on copy /tmp/opencode/mut5a (repo untouched)
+## M1: drop status from CAS filter in tasks.ts + runs.ts ({_id, status} -> {_id})
+apps/api/src/services/tasks.ts:1
+apps/api/src/services/runs.ts:1
+result (expect fails = KILLED):  18 pass  2 fail 
+## M2: requireRole('operator') -> requireRole('viewer') on POST /directives
+2
+result (expect fails = KILLED):  9 pass  1 fail 
+## M3: disable ConflictError -> 409 mapping in http/errors.ts
+1
+result (expect fails = KILLED):  8 pass  2 fail 
+## M4: allow succeeded -> queued in RUN_TRANSITIONS
+1
+result (expect fails = KILLED):  16 pass  4 fail 
+## (not mutated) persist-then-emit order: asserted directly by services/directives.test.ts
+##   'persists the document before emitting...' and routes/directives.test.ts 'emit failure surfaces as 500'
+## note M2: grep count 2 = mutated POST line + pre-existing GET viewer line
+## control: restored copy
+result (expect 0 fail):  59 pass  0 fail 

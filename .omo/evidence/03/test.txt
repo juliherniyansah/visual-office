@@ -1,0 +1,76 @@
+# cmd: bun test apps/api --reporter=junit --reporter-outfile=/tmp/opencode/t3-junit.xml   (2026-10-09T01:36:55+00:00)
+bun test v1.3.14 (0d9b296a)
+
+ 66 pass
+ 0 fail
+ 190 expect() calls
+Ran 66 tests across 7 files. [8.85s]
+EXIT=0
+
+# Per-test results (from junit):
+pass  > startServer listens on the requested host and exposes the http.Server for Socket.IO
+pass POST /api/v1/auth/login > returns a JWT and the public user (no passwordHash)
+pass POST /api/v1/auth/login > email lookup is case-insensitive and trimmed
+pass POST /api/v1/auth/login > wrong password and unknown email both get 401 with the identical body
+pass POST /api/v1/auth/login > 400 for empty body, missing fields and non-string credentials
+pass POST /api/v1/auth/login > 400 when no JSON body is sent at all
+pass POST /api/v1/auth/login > 400 JSON error for malformed JSON
+pass POST /api/v1/auth/login > 413 JSON error for a huge payload
+pass POST /api/v1/auth/login > 400 for an over-long password (bounded KDF work)
+pass GET /api/v1/me > returns the PublicUser for the bearer token
+pass GET /api/v1/me > 401 without token
+pass GET /api/v1/me > 401 for a valid token whose user no longer exists
+pass GET /api/v1/me > 401 for a valid token whose sub is not an ObjectId
+pass GET /api/v1/agents > viewer gets the 7 seeded agents in hierarchy order with exact capabilityTags
+pass GET /api/v1/agents > 401 without token and with a tampered token
+pass RBAC with real login tokens > viewer POST -&gt; 403 from requireRole(&apos;operator&apos;)
+pass RBAC with real login tokens > operator and owner POST -&gt; 201
+pass app shell > unknown route -&gt; 404 JSON
+pass app shell > does not advertise Express
+pass app shell > no route writes agent status
+pass loadEnv > applies defaults when only JWT_SECRET is set
+pass loadEnv > fails fast when JWT_SECRET is missing
+pass loadEnv > fails fast when JWT_SECRET is shorter than 32 chars without leaking the value
+pass loadEnv > rejects the .env.example placeholder secret even though it is long enough
+pass loadEnv > coerces PORT and rejects non-numeric PORT
+pass loadEnv > rejects a non-mongodb MONGO_URL
+pass loadEnv > rejects EVENTS_DISPATCH outside on|off
+pass loadEnv > builds owner credentials with a normalized email
+pass loadEnv > treats empty owner vars as unset
+pass loadEnv > requires OWNER_PASSWORD when OWNER_EMAIL is set
+pass loadEnv > rejects an OWNER_PASSWORD shorter than 12 chars (e.g. the change-me placeholder)
+pass loadEnv > rejects an invalid OWNER_EMAIL
+pass access token > round-trips sub and role with a 12h expiry
+pass access token > header pins HS256 and payload carries exp = iat + 12h
+pass access token > rejects a tampered signature
+pass access token > rejects a token signed with another secret
+pass access token > rejects an expired token
+pass access token > rejects alg=none (unsecured) tokens
+pass access token > rejects a validly signed token whose role is not a human role
+pass access token > rejects a validly signed token without sub
+pass access token > rejects a token for another audience
+pass access token > rejects garbage strings
+pass password hashing > hashPassword produces an argon2id hash that never contains the plain text
+pass password hashing > verifyPassword accepts the right password and rejects a wrong one
+pass password hashing > verifyPassword returns false for a missing hash (unknown user path)
+pass password hashing > same password hashes differently (salted)
+pass hasRole > applies hierarchy owner &gt; operator &gt; viewer
+pass requireAuth > 401 without Authorization header, with WWW-Authenticate and error shape
+pass requireAuth > 401 for malformed headers
+pass requireAuth > 401 for an invalid token
+pass requireAuth > accepts the scheme case-insensitively
+pass requireAuth > requireRole without requireAuth fails closed with 401
+pass requireRole(&amp;apos;operator&amp;apos;) > 403 for a viewer
+pass requireRole(&amp;apos;operator&amp;apos;) > 200 for operator and owner, claims attached to req.auth
+pass requireRole(&amp;apos;operator&amp;apos;) > requireRole(&apos;owner&apos;) rejects operator with 403
+pass requireRole(&amp;apos;operator&amp;apos;) > requireRole(&apos;viewer&apos;) admits a viewer
+pass seedAgents > creates the 7 permanent agents with exact capabilityTags
+pass seedAgents > copies static identity from AGENT_DEFINITIONS and seeds runtime defaults
+pass seedAgents > is idempotent: running twice still yields exactly 7 agents
+pass seedAgents > re-seed keeps runtime state but restores static identity drift
+pass seedOwner > creates one owner whose password verifies; hash never equals the password
+pass seedOwner > second run does not overwrite a changed owner password
+pass seedOwner > forcePassword explicitly resets the owner password
+pass seedOwner > normalizes the email so case variants do not create a second owner
+pass runSeed > is idempotent: twice -&gt; exactly 7 agents and 1 owner
+pass runSeed > skips the owner when no credentials are configured

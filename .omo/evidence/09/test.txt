@@ -1,0 +1,14 @@
+bun test v1.3.14 (0d9b296a)
+
+ 402 pass
+ 0 fail
+ 1 snapshots, 1629 expect() calls
+Ran 402 tests across 23 files. [1.62s]
+
+=== new round-3 testcases (junit) ===
+pass AgentRuntime integration (real HermesStore + FakeAdapter) > success: run succeeded, result.recorded, Hermes experience row written
+pass AgentRuntime integration (real HermesStore + FakeAdapter) > failing adapter: maxRetries retries then escalated to manager with decision
+pass AgentRuntime integration (real HermesStore + FakeAdapter) > authorization: domain agent cannot create directives; runtime rejects managers running adapters
+pass AgentRuntime permission flow > a second answer for the same permission throws and is not forwarded again
+pass AgentRuntime permission flow > agent is working before the answer is forwarded, idle after the run ends
+pass AgentRuntime stale permission during backoff > answer between attempts (attempt 1 dead, retry not started) throws and is not forwarded

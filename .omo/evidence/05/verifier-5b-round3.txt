@@ -1,0 +1,69 @@
+VERDICT: confirmed
+# T5b VERIFIER ROUND 3 (2026-10-09)
+Round 2 rejected on residual D1: partial-validation mutants R1 and R5 survived because the bundled fixture broke title and tags together.
+
+## Changed-file audit
+$ sha256sum apps/api/src/db/mappers.ts
+d413bd8c001c3f63096259f4297319a6529177bf1070102f33401f9eeca5740f  (matches; product code unchanged; still `KnowledgeDocSchema.parse({ ...record, id: record._id })`)
+$ /usr/bin/find apps packages package.json -newer verifier-5b-round2.txt -type f -not -path '*/node_modules/*'
+apps/api/src/services/knowledge.test.ts
+apps/api/src/services/projects.test.ts
+apps/api/src/routes/knowledge.test.ts
+-> tests only, exactly the 3 claimed files.
+$ /usr/bin/find apps packages -newer fix2-cleanup-5b.txt ... (after my work) -> (empty). No .env in root or apps/api.
+grep any/@ts-ignore/console.log in the 3 files -> none.
+
+## Test review
+- services/knowledge.test.ts:8-20, 11 rows each with ONE bad field over VALID_ROW {title:'ok',text:'x',tags:['ops']}: empty/missing/non-string title, missing/non-string text, non-array/missing tags, empty/non-string tag element, non-string/empty _id. test.each at :73 runs deleteMany({}) then a raw driver insertOne (bypasses mongoose casting), then expects listKnowledgeDocs to reject. Control at :83 inserts the valid base row and expects exact equality [{id:'valid',...VALID_ROW}], proving each failure comes from the one bad field.
+- services/projects.test.ts:8-19, 10 rows each with ONE bad field (name empty/missing/non-string, repoPath empty/missing/non-string, defaultAdapter unknown/missing, _id non-string/empty), same deleteMany + raw insert pattern, control with exact equality, plus an equal-createdAt _id tiebreak sort test.
+- routes/knowledge.test.ts:233-256, test.each of 3 single-field corrupt rows (tags only, missing title, missing text): asserts 500, exact body {"success":false,"error":"Terjadi kesalahan internal"}, absence of row _id, 'tags', 'title', 'text', 'Zod' and the row values, with console.error stubbed. The beforeEach clears knowledge. 16kb byte pin: 8000 x 'é' -> 201, 8300 -> 413 + countDocuments 1.
+- Worker RED evidence (fix2-red-5b.txt Part A) shows R1/R5/R7/R8/R9/R10-R13 and PR1-PR12 SURVIVED against the round-2 tests before the fix. Credible, and consistent with my round-2 findings.
+
+## Gates (fresh)
+$ rtk bun test apps/api   -> 241 pass / 0 fail / 981 expect() / 24 files [34.44s]
+$ rtk bun run typecheck   -> 6/6 "Exited with code 0"
+$ rtk bunx biome check .  -> Checked 106 files in 45ms. No fixes applied.
+
+## Mutants (own runner /tmp/opencode/verify5b-r3-mut.py, fresh copy /tmp/opencode/verify5b-r3-1, 6 test files: services/{knowledge,projects,officeState}, routes/{knowledge,projects,office})
+control 72/0 ; restored-control 72/0
+ K1  knowledge field pick, no parse            57/15 KILLED
+ R1  omit tags, raw tags                       67/5  KILLED
+ R5  partial()                                 67/5  KILLED
+ R7  omit title, raw                           68/4  KILLED
+ R8  omit text, raw                            69/3  KILLED
+ R9  omit id, raw _id                          70/2  KILLED
+ T1  omit tags, tags.map(String)               67/5  KILLED
+ T2  omit tags, filter bad elements            67/5  KILLED
+ T3  omit tags, raw ?? []                      67/5  KILLED
+ T4  tags z.array(z.unknown())                 70/2  KILLED
+ T5  title String() coerced                    68/4  KILLED
+ T6  id String() coerced                       70/2  KILLED
+ K1b project field pick, no parse              62/10 KILLED
+ P1  omit name, raw                            69/3  KILLED
+ P2  omit repoPath, raw                        69/3  KILLED
+ P3  omit defaultAdapter, raw                  70/2  KILLED
+ P4  omit id, raw _id                          70/2  KILLED
+ P5  project partial()                         69/3  KILLED
+ P6  repoPath String() coerced                 69/3  KILLED
+ P7  project safeParse, raw on failure         62/10 KILLED
+ K9  limit 16kb -> 1mb                         71/1  KILLED
+ K9b limit 16kb -> 15kb                        71/1  KILLED
+ K9c limit 16kb -> 17kb                        71/1  KILLED
+ L1  knowledge sort without _id tiebreak       71/1  KILLED
+ L2  projects sort _id desc                    71/1  KILLED
+ E1  office_state schema strict:false          72/0  SURVIVED -> EQUIVALENT
+E1 judgment: equivalent, accepted. Mongoose `strict` governs only casting on writes and document construction. The only access path is getOfficeState -> findById(OFFICE_STATE_ID).lean(), and lean() returns raw BSON without schema application. A grep of non-test source finds no OfficeState create/insert/update/replace/save anywhere (routes/office.ts is read-only; 28 write attempts returned 404 in round 1). Unknown fields are stripped by OfficeStateSchema.parse in toOfficeState regardless (live round 1: 'secret' field not returned). It becomes observable only when todo 15 adds projector writes, so re-check then.
+
+## Live sanity (PORT 4933, DB redhunter_test_verify5b_r3_1791542390, EVENTS_DISPATCH=off, env inline)
+viewer POST /projects 403, POST /knowledge 403, GET /office/state 200
+knowledge row with tags [7] (only bad field) -> GET /knowledge 500 {"success":false,"error":"Terjadi kesalahan internal"}
+project row with defaultAdapter 'cursor' (only bad field) -> GET /projects 500, same generic body
+
+## Defects
+None blocking. None new non-blocking. Round-1 N-2 (repoPath '/') and N-3 (E1, re-check in todo 15) remain as accepted notes. N-1 is resolved (16kb byte pin).
+
+## Cleanup receipt
+- Server bun pid 1312046 (cwd visual-office/apps/api) TERM; tmux v5br3 killed; port 4933 free. whatsapp-monitor and pinjaman processes untouched.
+- DB redhunter_test_verify5b_r3_1791542390 dropped (ok 1); leftover check -> []
+- Repo: mappers.ts sha256 unchanged after the run; find -newer fix2-cleanup-5b.txt in apps/packages -> empty; no .env.
+- Scratch left: /tmp/opencode/verify5b-r3-1, /tmp/opencode/verify5b-r3-mut.py, /tmp/opencode/verify5b-r3-db.

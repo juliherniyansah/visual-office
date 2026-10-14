@@ -1,0 +1,56 @@
+## shared RED (stub schemas = z.never())
+(fail) PermissionDecisionSchema > accepts only allow and deny [0.23ms]
+(fail) AdapterRunInputSchema > accepts the minimal input [1.39ms]
+(fail) AdapterRunInputSchema > keeps optional policy, output schema and resume session id [0.32ms]
+ 22 pass
+ 3 fail
+
+## fake RED (empty stub)
+(fail) FakeAdapter replay > replays the script in order and then ends [1.17ms]
+(fail) FakeAdapter replay > defaults id to opencode and accepts another id [0.13ms]
+(fail) FakeAdapter replay > waits on the injected sleep for delayed steps only [0.35ms]
+(fail) FakeAdapter replay > rejects a second concurrent start for the same run and allows a restart after [0.35ms]
+(fail) FakeAdapter replay > releases the run when the consumer stops early [0.36ms]
+(fail) FakeAdapter permission gating > pauses after permission_request until allow, then continues [0.44ms]
+(fail) FakeAdapter permission gating > accepts an answer given before the consumer asks for the next event [0.34ms]
+(fail) FakeAdapter permission gating > deny emits failed and skips the rest of the script [0.30ms]
+(fail) FakeAdapter permission gating > rejects answers for an unknown run or a permission that is not pending [0.29ms]
+(fail) FakeAdapter cancel > ends the iterator while waiting for a permission [0.30ms]
+(fail) FakeAdapter cancel > stops replay between events; repeated or unknown cancel is a no-op [0.28ms]
+(fail) FakeAdapter cancel > ends the iterator during a delayed step [0.57ms]
+(fail) FakeAdapter cancel > abort signal cancels the run; a pre-aborted signal yields nothing [0.41ms]
+ 0 pass
+ 13 fail
+
+## spawn RED (throwing stub)
+(fail) spawnChild output and exit > splits stdout and stderr into lines (CRLF, missing trailing newline) [2.41ms]
+(fail) spawnChild output and exit > reads large output and multi-byte chars split across chunks [0.29ms]
+(fail) spawnChild output and exit > resolves exited with a nonzero exit code instead of rejecting [0.25ms]
+(fail) spawnChild output and exit > rejects definitely-not-a-binary-t8 with SpawnError not_found [0.48ms]
+(fail) spawnChild output and exit > rejects /nonexistent/bin/t8 with SpawnError not_found [0.13ms]
+(fail) spawnChild output and exit > rejects empty cwd with SpawnError invalid_cwd before spawning [0.54ms]
+(fail) spawnChild output and exit > rejects root cwd with SpawnError invalid_cwd before spawning [0.16ms]
+(fail) spawnChild output and exit > rejects root via traversal cwd with SpawnError invalid_cwd before spawning [0.11ms]
+(fail) spawnChild output and exit > rejects double slash root cwd with SpawnError invalid_cwd before spawning [0.12ms]
+(fail) spawnChild output and exit > rejects relative cwd with SpawnError invalid_cwd before spawning [0.11ms]
+(fail) spawnChild output and exit > rejects missing directory cwd with SpawnError invalid_cwd before spawning [0.09ms]
+(fail) spawnChild output and exit > runs in the given cwd [0.20ms]
+(fail) spawnChild cancel > SIGKILLs a child that ignores SIGTERM only after the grace timer fires [0.43ms]
+(fail) spawnChild cancel > a child that honors SIGTERM exits without SIGKILL and the timer is cleared [0.29ms]
+(fail) spawnChild cancel > cancel twice sends one SIGTERM and returns the same exit [0.28ms]
+(fail) spawnChild cancel > cancel after exit is a no-op [0.21ms]
+(fail) spawnChild cancel > leader exit kills leftover group members (no strays) [0.27ms]
+(fail) spawnChild cancel > abort signal cancels a running child [0.29ms]
+(fail) spawnChild cancel > an aborted signal rejects before spawning [0.38ms]
+(fail) spawnChild env allow-list > default allow-list is PATH, HOME, LANG, TERM, TMPDIR [0.63ms]
+(fail) spawnChild env allow-list > child gets only allow-listed parent vars [0.74ms]
+(fail) spawnChild env allow-list > skips allow-listed vars the parent does not have [0.28ms]
+(fail) spawnChild env allow-list > explicit env adds vars and overrides inherited values [0.32ms]
+(fail) spawnChild forbidden env (leak test) > strips forbidden vars set in the parent and in explicit env, any case [0.33ms]
+(fail) spawnChild forbidden env (leak test) > rejects explicit env name with = before spawning [0.53ms]
+(fail) spawnChild forbidden env (leak test) > rejects explicit env empty name before spawning [0.18ms]
+(fail) spawnChild forbidden env (leak test) > rejects explicit env name with NUL before spawning [0.15ms]
+(fail) spawnChild forbidden env (leak test) > rejects explicit env name starting with a digit before spawning [0.14ms]
+(fail) spawnChild forbidden env (leak test) > rejects an explicit env value with NUL before spawning [0.42ms]
+ 0 pass
+ 29 fail

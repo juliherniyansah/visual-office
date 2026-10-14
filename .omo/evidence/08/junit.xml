@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="145" assertions="314" failures="0" skipped="0" time="0.911687122">
+  <testsuite name="packages/adapters/src/index.test.ts" file="packages/adapters/src/index.test.ts" tests="1" assertions="7" failures="0" skipped="0" time="0.004" hostname="ai">
+    <testcase name="barrel re-exports the fake adapter and spawn util" classname="" time="0.004141" file="packages/adapters/src/index.test.ts" line="14" assertions="7" />
+  </testsuite>
+  <testsuite name="packages/adapters/src/spawn.test.ts" file="packages/adapters/src/spawn.test.ts" tests="21" assertions="57" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="spawnChild output and exit" file="packages/adapters/src/spawn.test.ts" line="85" tests="14" assertions="36" failures="0" skipped="0" time="0.096" hostname="ai">
+      <testcase name="splits stdout and stderr into lines (CRLF, missing trailing newline)" classname="spawnChild output and exit" time="0.011161" file="packages/adapters/src/spawn.test.ts" line="86" assertions="2" />
+      <testcase name="reads large output and multi-byte chars split across chunks" classname="spawnChild output and exit" time="0.081507" file="packages/adapters/src/spawn.test.ts" line="93" assertions="3" />
+      <testcase name="resolves exited with a nonzero exit code instead of rejecting" classname="spawnChild output and exit" time="0.001904" file="packages/adapters/src/spawn.test.ts" line="101" assertions="1" />
+      <testcase name="rejects definitely-not-a-binary-t8 with SpawnError not_found" classname="spawnChild output and exit" time="0.000563" file="packages/adapters/src/spawn.test.ts" line="107" assertions="3" />
+      <testcase name="rejects /nonexistent/bin/t8 with SpawnError not_found" classname="spawnChild output and exit" time="0.000516" file="packages/adapters/src/spawn.test.ts" line="107" assertions="3" />
+      <testcase name="rejects a non-executable file with SpawnError spawn_failed" classname="spawnChild output and exit" time="0.000747" file="packages/adapters/src/spawn.test.ts" line="116" assertions="2" />
+      <testcase name="rejects empty cwd with SpawnError invalid_cwd before spawning" classname="spawnChild output and exit" time="0.000387" file="packages/adapters/src/spawn.test.ts" line="132" assertions="3" />
+      <testcase name="rejects a file cwd with SpawnError invalid_cwd before spawning" classname="spawnChild output and exit" time="0.000078" file="packages/adapters/src/spawn.test.ts" line="132" assertions="3" />
+      <testcase name="rejects root cwd with SpawnError invalid_cwd before spawning" classname="spawnChild output and exit" time="0.000082" file="packages/adapters/src/spawn.test.ts" line="132" assertions="3" />
+      <testcase name="rejects root via traversal cwd with SpawnError invalid_cwd before spawning" classname="spawnChild output and exit" time="0.000041" file="packages/adapters/src/spawn.test.ts" line="132" assertions="3" />
+      <testcase name="rejects double slash root cwd with SpawnError invalid_cwd before spawning" classname="spawnChild output and exit" time="0.000037" file="packages/adapters/src/spawn.test.ts" line="132" assertions="3" />
+      <testcase name="rejects relative cwd with SpawnError invalid_cwd before spawning" classname="spawnChild output and exit" time="0.000026" file="packages/adapters/src/spawn.test.ts" line="132" assertions="3" />
+      <testcase name="rejects missing directory cwd with SpawnError invalid_cwd before spawning" classname="spawnChild output and exit" time="0.000087" file="packages/adapters/src/spawn.test.ts" line="132" assertions="3" />
+      <testcase name="runs in the given cwd" classname="spawnChild output and exit" time="0.003959" file="packages/adapters/src/spawn.test.ts" line="140" assertions="1" />
+    </testsuite>
+    <testsuite name="spawnChild cancel" file="packages/adapters/src/spawn.test.ts" line="146" tests="7" assertions="21" failures="0" skipped="0" time="0.331" hostname="ai">
+      <testcase name="SIGKILLs a child that ignores SIGTERM only after the grace timer fires" classname="spawnChild cancel" time="0.162739" file="packages/adapters/src/spawn.test.ts" line="147" assertions="5" />
+      <testcase name="a child that honors SIGTERM exits without SIGKILL and the timer is cleared" classname="spawnChild cancel" time="0.055802" file="packages/adapters/src/spawn.test.ts" line="160" assertions="3" />
+      <testcase name="cancel twice sends one SIGTERM and returns the same exit" classname="spawnChild cancel" time="0.003545" file="packages/adapters/src/spawn.test.ts" line="171" assertions="3" />
+      <testcase name="cancel after exit is a no-op" classname="spawnChild cancel" time="0.001939" file="packages/adapters/src/spawn.test.ts" line="181" assertions="2" />
+      <testcase name="leader exit kills leftover group members (no strays)" classname="spawnChild cancel" time="0.054124" file="packages/adapters/src/spawn.test.ts" line="189" assertions="3" />
+      <testcase name="abort signal cancels a running child" classname="spawnChild cancel" time="0.055136" file="packages/adapters/src/spawn.test.ts" line="198" assertions="2" />
+      <testcase name="an aborted signal rejects before spawning" classname="spawnChild cancel" time="0.001071" file="packages/adapters/src/spawn.test.ts" line="207" assertions="3" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/adapters/src/spawn.env.test.ts" file="packages/adapters/src/spawn.env.test.ts" tests="10" assertions="28" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="spawnChild env allow-list" file="packages/adapters/src/spawn.env.test.ts" line="53" tests="4" assertions="10" failures="0" skipped="0" time="0.021" hostname="ai">
+      <testcase name="default allow-list is PATH, HOME, LANG, TERM, TMPDIR" classname="spawnChild env allow-list" time="0.000645" file="packages/adapters/src/spawn.env.test.ts" line="54" assertions="2" />
+      <testcase name="child gets only allow-listed parent vars" classname="spawnChild env allow-list" time="0.007016" file="packages/adapters/src/spawn.env.test.ts" line="59" assertions="2" />
+      <testcase name="skips allow-listed vars the parent does not have" classname="spawnChild env allow-list" time="0.008163" file="packages/adapters/src/spawn.env.test.ts" line="69" assertions="2" />
+      <testcase name="explicit env adds vars and overrides inherited values" classname="spawnChild env allow-list" time="0.006592" file="packages/adapters/src/spawn.env.test.ts" line="75" assertions="4" />
+    </testsuite>
+    <testsuite name="spawnChild forbidden env (leak test)" file="packages/adapters/src/spawn.env.test.ts" line="83" tests="6" assertions="18" failures="0" skipped="0" time="0.008" hostname="ai">
+      <testcase name="strips forbidden vars set in the parent and in explicit env, any case" classname="spawnChild forbidden env (leak test)" time="0.00888" file="packages/adapters/src/spawn.env.test.ts" line="84" assertions="4" />
+      <testcase name="rejects explicit env name with = before spawning" classname="spawnChild forbidden env (leak test)" time="0.000824" file="packages/adapters/src/spawn.env.test.ts" line="107" assertions="3" />
+      <testcase name="rejects explicit env empty name before spawning" classname="spawnChild forbidden env (leak test)" time="0.000133" file="packages/adapters/src/spawn.env.test.ts" line="107" assertions="3" />
+      <testcase name="rejects explicit env name with NUL before spawning" classname="spawnChild forbidden env (leak test)" time="0.000164" file="packages/adapters/src/spawn.env.test.ts" line="107" assertions="3" />
+      <testcase name="rejects explicit env name starting with a digit before spawning" classname="spawnChild forbidden env (leak test)" time="0.000111" file="packages/adapters/src/spawn.env.test.ts" line="107" assertions="3" />
+      <testcase name="rejects an explicit env value with NUL before spawning" classname="spawnChild forbidden env (leak test)" time="0.000347" file="packages/adapters/src/spawn.env.test.ts" line="115" assertions="2" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/adapters/src/fake.test.ts" file="packages/adapters/src/fake.test.ts" tests="14" assertions="30" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="FakeAdapter replay" file="packages/adapters/src/fake.test.ts" line="60" tests="6" assertions="11" failures="0" skipped="0" time="0.033" hostname="ai">
+      <testcase name="replays the script in order and then ends" classname="FakeAdapter replay" time="0.00195" file="packages/adapters/src/fake.test.ts" line="61" assertions="1" />
+      <testcase name="defaults id to opencode and accepts another id" classname="FakeAdapter replay" time="0.000103" file="packages/adapters/src/fake.test.ts" line="66" assertions="2" />
+      <testcase name="waits on the injected sleep for delayed steps only" classname="FakeAdapter replay" time="0.000369" file="packages/adapters/src/fake.test.ts" line="71" assertions="2" />
+      <testcase name="default sleep really waits for delayed steps" classname="FakeAdapter replay" time="0.032563" file="packages/adapters/src/fake.test.ts" line="82" assertions="2" />
+      <testcase name="rejects a second concurrent start for the same run and allows a restart after" classname="FakeAdapter replay" time="0.000688" file="packages/adapters/src/fake.test.ts" line="89" assertions="3" />
+      <testcase name="releases the run when the consumer stops early" classname="FakeAdapter replay" time="0.000495" file="packages/adapters/src/fake.test.ts" line="97" assertions="1" />
+    </testsuite>
+    <testsuite name="FakeAdapter permission gating" file="packages/adapters/src/fake.test.ts" line="106" tests="4" assertions="10" failures="0" skipped="0" time="0.022" hostname="ai">
+      <testcase name="pauses after permission_request until allow, then continues" classname="FakeAdapter permission gating" time="0.022316" file="packages/adapters/src/fake.test.ts" line="107" assertions="4" />
+      <testcase name="accepts an answer given before the consumer asks for the next event" classname="FakeAdapter permission gating" time="0.000678" file="packages/adapters/src/fake.test.ts" line="119" assertions="1" />
+      <testcase name="deny emits failed and skips the rest of the script" classname="FakeAdapter permission gating" time="0.000473" file="packages/adapters/src/fake.test.ts" line="128" assertions="2" />
+      <testcase name="rejects answers for an unknown run or a permission that is not pending" classname="FakeAdapter permission gating" time="0.000617" file="packages/adapters/src/fake.test.ts" line="139" assertions="3" />
+    </testsuite>
+    <testsuite name="FakeAdapter cancel" file="packages/adapters/src/fake.test.ts" line="157" tests="4" assertions="9" failures="0" skipped="0" time="0.023" hostname="ai">
+      <testcase name="ends the iterator while waiting for a permission" classname="FakeAdapter cancel" time="0.000338" file="packages/adapters/src/fake.test.ts" line="158" assertions="2" />
+      <testcase name="stops replay between events; repeated or unknown cancel is a no-op" classname="FakeAdapter cancel" time="0.000316" file="packages/adapters/src/fake.test.ts" line="168" assertions="2" />
+      <testcase name="ends the iterator during a delayed step" classname="FakeAdapter cancel" time="0.022434" file="packages/adapters/src/fake.test.ts" line="178" assertions="2" />
+      <testcase name="abort signal cancels the run; a pre-aborted signal yields nothing" classname="FakeAdapter cancel" time="0.001124" file="packages/adapters/src/fake.test.ts" line="189" assertions="3" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/shared/src/schemas.test.ts" file="packages/shared/src/schemas.test.ts" tests="25" assertions="37" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="collection schemas" file="packages/shared/src/schemas.test.ts" line="181" tests="25" assertions="37" failures="0" skipped="0" time="0.033" hostname="ai">
+      <testcase name="one schema per collection from plan sections 10 and 11" classname="collection schemas" time="0.000273" file="packages/shared/src/schemas.test.ts" line="182" assertions="1" />
+      <testcase name="users sample round-trips" classname="collection schemas" time="0.006657" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="agents sample round-trips" classname="collection schemas" time="0.005205" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="hermes_profiles sample round-trips" classname="collection schemas" time="0.002008" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="hermes_memories sample round-trips" classname="collection schemas" time="0.002188" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="hermes_skills sample round-trips" classname="collection schemas" time="0.001116" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="hermes_experience sample round-trips" classname="collection schemas" time="0.001278" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="knowledge_docs sample round-trips" classname="collection schemas" time="0.000854" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="projects sample round-trips" classname="collection schemas" time="0.000941" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="directives sample round-trips" classname="collection schemas" time="0.001576" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="tasks sample round-trips" classname="collection schemas" time="0.001355" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="runs sample round-trips" classname="collection schemas" time="0.003657" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="run_events sample round-trips" classname="collection schemas" time="0.003781" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="results sample round-trips" classname="collection schemas" time="0.001268" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="decisions sample round-trips" classname="collection schemas" time="0.001115" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="events sample round-trips" classname="collection schemas" time="0.003013" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="events_dead sample round-trips" classname="collection schemas" time="0.00006" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="office_state sample round-trips" classname="collection schemas" time="0.003728" file="packages/shared/src/schemas.test.ts" line="205" assertions="1" />
+      <testcase name="directives and tasks require capabilityTags" classname="collection schemas" time="0.000605" file="packages/shared/src/schemas.test.ts" line="210" assertions="3" />
+      <testcase name="invalid statuses are rejected" classname="collection schemas" time="0.000469" file="packages/shared/src/schemas.test.ts" line="216" assertions="5" />
+      <testcase name="planned task may omit assigneeAgentId" classname="collection schemas" time="0.000198" file="packages/shared/src/schemas.test.ts" line="224" assertions="1" />
+      <testcase name="run_events reject unknown adapter event types" classname="collection schemas" time="0.000565" file="packages/shared/src/schemas.test.ts" line="229" assertions="1" />
+      <testcase name="PublicUserSchema strips passwordHash" classname="collection schemas" time="0.000761" file="packages/shared/src/schemas.test.ts" line="234" assertions="1" />
+      <testcase name="AGENT_DEFINITIONS fit AgentSchema once runtime fields are added" classname="collection schemas" time="0.000538" file="packages/shared/src/schemas.test.ts" line="238" assertions="7" />
+      <testcase name="index barrel keeps PACKAGE_NAME" classname="collection schemas" time="0.000051" file="packages/shared/src/schemas.test.ts" line="251" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/shared/src/office-layout.test.ts" file="packages/shared/src/office-layout.test.ts" tests="11" assertions="48" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="OFFICE_LAYOUT (Option A)" file="packages/shared/src/office-layout.test.ts" line="30" tests="6" assertions="16" failures="0" skipped="0" time="0.003" hostname="ai">
+      <testcase name="parses with OfficeLayoutSchema" classname="OFFICE_LAYOUT (Option A)" time="0.003083" file="packages/shared/src/office-layout.test.ts" line="31" assertions="1" />
+      <testcase name="has floors 1..4 in order" classname="OFFICE_LAYOUT (Option A)" time="0.000113" file="packages/shared/src/office-layout.test.ts" line="35" assertions="1" />
+      <testcase name="holds exactly 7 unique agents covering the roster" classname="OFFICE_LAYOUT (Option A)" time="0.00012" file="packages/shared/src/office-layout.test.ts" line="39" assertions="3" />
+      <testcase name="desk ids are unique" classname="OFFICE_LAYOUT (Option A)" time="0.000103" file="packages/shared/src/office-layout.test.ts" line="46" assertions="1" />
+      <testcase name="assigns agents to floors per Option A, F1 has no agents" classname="OFFICE_LAYOUT (Option A)" time="0.00021" file="packages/shared/src/office-layout.test.ts" line="50" assertions="8" />
+      <testcase name="is frozen" classname="OFFICE_LAYOUT (Option A)" time="0.000067" file="packages/shared/src/office-layout.test.ts" line="58" assertions="2" />
+    </testsuite>
+    <testsuite name="AGENT_DEFINITIONS" file="packages/shared/src/office-layout.test.ts" line="64" tests="5" assertions="32" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="defines the 7 permanent agents in roster order" classname="AGENT_DEFINITIONS" time="0.000093" file="packages/shared/src/office-layout.test.ts" line="65" assertions="1" />
+      <testcase name="capabilityTags match the seed contract" classname="AGENT_DEFINITIONS" time="0.000103" file="packages/shared/src/office-layout.test.ts" line="69" assertions="7" />
+      <testcase name="floor and deskSlot come from OFFICE_LAYOUT" classname="AGENT_DEFINITIONS" time="0.000139" file="packages/shared/src/office-layout.test.ts" line="75" assertions="21" />
+      <testcase name="agent roles follow RBAC section 13" classname="AGENT_DEFINITIONS" time="0.00011" file="packages/shared/src/office-layout.test.ts" line="84" assertions="1" />
+      <testcase name="is frozen" classname="AGENT_DEFINITIONS" time="0.000046" file="packages/shared/src/office-layout.test.ts" line="97" assertions="2" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/shared/src/events.test.ts" file="packages/shared/src/events.test.ts" tests="25" assertions="31" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="DomainEvent catalog" file="packages/shared/src/events.test.ts" line="120" tests="25" assertions="31" failures="0" skipped="0" time="0.012" hostname="ai">
+      <testcase name="catalog matches plan section 11 plus worker events" classname="DomainEvent catalog" time="0.000113" file="packages/shared/src/events.test.ts" line="121" assertions="1" />
+      <testcase name="directive.created round-trips" classname="DomainEvent catalog" time="0.00121" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="task.created round-trips" classname="DomainEvent catalog" time="0.00135" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="task.assigned round-trips" classname="DomainEvent catalog" time="0.001524" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="task.status_changed round-trips" classname="DomainEvent catalog" time="0.001377" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="run.started round-trips" classname="DomainEvent catalog" time="0.001741" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="run.progress round-trips" classname="DomainEvent catalog" time="0.002276" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="run.permission_requested round-trips" classname="DomainEvent catalog" time="0.001672" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="run.completed round-trips" classname="DomainEvent catalog" time="0.000995" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="run.failed round-trips" classname="DomainEvent catalog" time="0.00099" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="run.escalated round-trips" classname="DomainEvent catalog" time="0.000977" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="agent.status_changed round-trips" classname="DomainEvent catalog" time="0.000067" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="result.recorded round-trips" classname="DomainEvent catalog" time="0.000939" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="decision.requested round-trips" classname="DomainEvent catalog" time="0.00095" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="decision.answered round-trips" classname="DomainEvent catalog" time="0.001726" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="office.state_updated round-trips" classname="DomainEvent catalog" time="0.001102" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="worker.spawned round-trips" classname="DomainEvent catalog" time="0.001924" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="worker.despawned round-trips" classname="DomainEvent catalog" time="0.001116" file="packages/shared/src/events.test.ts" line="144" assertions="1" />
+      <testcase name="dispatchedAt is optional and must be ISO when present" classname="DomainEvent catalog" time="0.000519" file="packages/shared/src/events.test.ts" line="150" assertions="2" />
+      <testcase name="unknown type is rejected" classname="DomainEvent catalog" time="0.00017" file="packages/shared/src/events.test.ts" line="158" assertions="1" />
+      <testcase name="payload must match its type" classname="DomainEvent catalog" time="0.000291" file="packages/shared/src/events.test.ts" line="164" assertions="1" />
+      <testcase name="aggregate kind must match its type" classname="DomainEvent catalog" time="0.000193" file="packages/shared/src/events.test.ts" line="169" assertions="1" />
+      <testcase name="eventId must be a uuid" classname="DomainEvent catalog" time="0.000227" file="packages/shared/src/events.test.ts" line="174" assertions="1" />
+      <testcase name="worker payload requires runId, workerId, label" classname="DomainEvent catalog" time="0.000744" file="packages/shared/src/events.test.ts" line="178" assertions="6" />
+      <testcase name="parsed worker event narrows on type" classname="DomainEvent catalog" time="0.000168" file="packages/shared/src/events.test.ts" line="188" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/shared/src/adapters.test.ts" file="packages/shared/src/adapters.test.ts" tests="25" assertions="28" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="AdapterEventSchema" file="packages/shared/src/adapters.test.ts" line="29" tests="16" assertions="16" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="has exactly the plan section 8 variants in order" classname="AdapterEventSchema" time="0.000191" file="packages/shared/src/adapters.test.ts" line="30" assertions="1" />
+      <testcase name="round-trips started with all fields" classname="AdapterEventSchema" time="0.000689" file="packages/shared/src/adapters.test.ts" line="36" assertions="1" />
+      <testcase name="round-trips text with all fields" classname="AdapterEventSchema" time="0.000039" file="packages/shared/src/adapters.test.ts" line="36" assertions="1" />
+      <testcase name="round-trips tool with all fields" classname="AdapterEventSchema" time="0.000038" file="packages/shared/src/adapters.test.ts" line="36" assertions="1" />
+      <testcase name="round-trips file_change with all fields" classname="AdapterEventSchema" time="0.000565" file="packages/shared/src/adapters.test.ts" line="36" assertions="1" />
+      <testcase name="round-trips permission_request with all fields" classname="AdapterEventSchema" time="0.000683" file="packages/shared/src/adapters.test.ts" line="36" assertions="1" />
+      <testcase name="round-trips usage with all fields" classname="AdapterEventSchema" time="0.000662" file="packages/shared/src/adapters.test.ts" line="36" assertions="1" />
+      <testcase name="round-trips completed with all fields" classname="AdapterEventSchema" time="0.000634" file="packages/shared/src/adapters.test.ts" line="36" assertions="1" />
+      <testcase name="round-trips failed with all fields" classname="AdapterEventSchema" time="0.00063" file="packages/shared/src/adapters.test.ts" line="36" assertions="1" />
+      <testcase name="rejects started without vendorSessionId" classname="AdapterEventSchema" time="0.000105" file="packages/shared/src/adapters.test.ts" line="56" assertions="1" />
+      <testcase name="rejects tool with unknown status" classname="AdapterEventSchema" time="0.000034" file="packages/shared/src/adapters.test.ts" line="56" assertions="1" />
+      <testcase name="rejects tool with fractional exitCode" classname="AdapterEventSchema" time="0.000165" file="packages/shared/src/adapters.test.ts" line="56" assertions="1" />
+      <testcase name="rejects permission_request without permissionId" classname="AdapterEventSchema" time="0.000042" file="packages/shared/src/adapters.test.ts" line="56" assertions="1" />
+      <testcase name="rejects usage with negative tokens" classname="AdapterEventSchema" time="0.000045" file="packages/shared/src/adapters.test.ts" line="56" assertions="1" />
+      <testcase name="rejects failed without error" classname="AdapterEventSchema" time="0.000019" file="packages/shared/src/adapters.test.ts" line="56" assertions="1" />
+      <testcase name="rejects unknown type" classname="AdapterEventSchema" time="0.000063" file="packages/shared/src/adapters.test.ts" line="56" assertions="1" />
+    </testsuite>
+    <testsuite name="PermissionDecisionSchema" file="packages/shared/src/adapters.test.ts" line="61" tests="1" assertions="4" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="accepts only allow and deny" classname="PermissionDecisionSchema" time="0.000147" file="packages/shared/src/adapters.test.ts" line="62" assertions="4" />
+    </testsuite>
+    <testsuite name="AdapterRunInputSchema" file="packages/shared/src/adapters.test.ts" line="70" tests="8" assertions="8" failures="0" skipped="0" time="0.001" hostname="ai">
+      <testcase name="accepts the minimal input" classname="AdapterRunInputSchema" time="0.001068" file="packages/shared/src/adapters.test.ts" line="71" assertions="1" />
+      <testcase name="keeps optional policy, output schema and resume session id" classname="AdapterRunInputSchema" time="0.000803" file="packages/shared/src/adapters.test.ts" line="75" assertions="1" />
+      <testcase name="rejects empty runId" classname="AdapterRunInputSchema" time="0.000147" file="packages/shared/src/adapters.test.ts" line="98" assertions="1" />
+      <testcase name="rejects unknown agent" classname="AdapterRunInputSchema" time="0.000042" file="packages/shared/src/adapters.test.ts" line="98" assertions="1" />
+      <testcase name="rejects empty cwd" classname="AdapterRunInputSchema" time="0.00004" file="packages/shared/src/adapters.test.ts" line="98" assertions="1" />
+      <testcase name="rejects empty prompt" classname="AdapterRunInputSchema" time="0.000018" file="packages/shared/src/adapters.test.ts" line="98" assertions="1" />
+      <testcase name="rejects empty resume id" classname="AdapterRunInputSchema" time="0.000019" file="packages/shared/src/adapters.test.ts" line="98" assertions="1" />
+      <testcase name="rejects non-object output schema" classname="AdapterRunInputSchema" time="0.000034" file="packages/shared/src/adapters.test.ts" line="98" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/shared/src/enums.test.ts" file="packages/shared/src/enums.test.ts" tests="13" assertions="48" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="status enums" file="packages/shared/src/enums.test.ts" line="39" tests="13" assertions="48" failures="0" skipped="0" time="0.001" hostname="ai">
+      <testcase name="AgentStatus accepts every valid value" classname="status enums" time="0.000123" file="packages/shared/src/enums.test.ts" line="41" assertions="6" />
+      <testcase name="AgentStatus rejects &apos;dancing&apos;" classname="status enums" time="0.000066" file="packages/shared/src/enums.test.ts" line="47" assertions="1" />
+      <testcase name="RunStatus accepts every valid value" classname="status enums" time="0.00002" file="packages/shared/src/enums.test.ts" line="41" assertions="8" />
+      <testcase name="RunStatus rejects &apos;dancing&apos;" classname="status enums" time="0.000014" file="packages/shared/src/enums.test.ts" line="47" assertions="1" />
+      <testcase name="TaskStatus accepts every valid value" classname="status enums" time="0.000011" file="packages/shared/src/enums.test.ts" line="41" assertions="7" />
+      <testcase name="TaskStatus rejects &apos;dancing&apos;" classname="status enums" time="0.000007" file="packages/shared/src/enums.test.ts" line="47" assertions="1" />
+      <testcase name="HumanRole accepts every valid value" classname="status enums" time="0.000007" file="packages/shared/src/enums.test.ts" line="41" assertions="3" />
+      <testcase name="HumanRole rejects &apos;dancing&apos;" classname="status enums" time="0.000006" file="packages/shared/src/enums.test.ts" line="47" assertions="1" />
+      <testcase name="AgentId accepts every valid value" classname="status enums" time="0.000031" file="packages/shared/src/enums.test.ts" line="41" assertions="7" />
+      <testcase name="AgentId rejects &apos;dancing&apos;" classname="status enums" time="0.00001" file="packages/shared/src/enums.test.ts" line="47" assertions="1" />
+      <testcase name="AgentStatusSchema.parse(&apos;dancing&apos;) throws" classname="status enums" time="0.001114" file="packages/shared/src/enums.test.ts" line="52" assertions="1" />
+      <testcase name="value lists match the plan exactly" classname="status enums" time="0.000087" file="packages/shared/src/enums.test.ts" line="56" assertions="5" />
+      <testcase name="FloorIdSchema accepts 1..4 only" classname="status enums" time="0.000132" file="packages/shared/src/enums.test.ts" line="88" assertions="6" />
+    </testsuite>
+  </testsuite>
+</testsuites>

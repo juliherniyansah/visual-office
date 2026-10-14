@@ -1,0 +1,28 @@
+## T7 bounded mutation sweep 2026-10-10T15:31:22Z
+Runner: /tmp/opencode/t7/mutate.ts (outside repo). Each mutant = one string replace, full 'bun test packages/agent-runtime', original rewritten in finally.
+
+M01 KILLED (fail=11) src/prompt/budget.ts: truncation order: memory before rag
+M02 KILLED (fail=6) src/prompt/budget.ts: truncation order: skills before project
+M03 KILLED (fail=7) src/prompt/budget.ts: estimator ceil -> floor
+M04 KILLED (fail=5) src/prompt/budget.ts: chars per token 4 -> 3
+M05 KILLED (fail=2) src/prompt/budget.ts: token count >= 0 -> > 0
+M06 KILLED (fail=6) src/prompt/budget.ts: drop integer check
+M07 KILLED (fail=10) src/prompt/budget.ts: fit compare > -> >=
+M08 KILLED (fail=11) src/prompt/budget.ts: drop head item instead of tail
+M09 KILLED (fail=20) src/prompt/budget.ts: drop at most one item per layer
+M10 KILLED (fail=4) src/prompt/composer.ts: reserve compare > -> >=
+M11 KILLED (fail=2) src/prompt/composer.ts: drop reserve check
+M12 KILLED (fail=13) src/prompt/composer.ts: flexible room ignores reserve
+M13 KILLED (fail=12) src/prompt/composer.ts: hash ignores layers[]
+M14 KILLED (fail=2) src/prompt/composer.ts: hash keys unsorted
+M15 KILLED (fail=12) src/prompt/composer.ts: wrong version source
+M16 KILLED (fail=1) src/prompt/composer.ts: measure empty layers
+M17 KILLED (fail=4) src/prompt/composer.ts: drop budget validation
+M18 KILLED (fail=18) src/prompt/composer.ts: reverse layer order in text
+M19 KILLED (fail=4) src/prompt/layers.ts: no continuation indent
+M20 KILLED (fail=11) src/prompt/layers.ts: empty flexible layer renders header
+M21 KILLED (fail=2) src/prompt/layers.ts: drop out-of-prompt enforcement note
+M22 KILLED (fail=1) src/prompt/constitution.ts: whitespace-only constitution accepted
+TOTAL 22 KILLED 22 SURVIVED 0
+
+Restore: sha256sum -c over every packages/agent-runtime file (incl. __snapshots__) -> OK; no *.bak/*.orig in repo.

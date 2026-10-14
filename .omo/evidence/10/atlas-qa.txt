@@ -1,0 +1,16 @@
+OK  valid steps=2 risk=medium starts=1 runIds=["qa-valid"]
+OK  fenced steps=2 risk=medium starts=1 runIds=["qa-fenced"]
+OK  prose steps=2 risk=medium starts=1 runIds=["qa-prose"]
+OK  malformed-then-valid steps=2 risk=medium starts=2 runIds=["qa-malformed-then-valid","qa-malformed-then-valid-repair"]
+ERR malformed-twice invalid_output starts=2 runIds=["qa-malformed-twice","qa-malformed-twice-repair"] msg=Plan output invalid after one repair: Invalid JSON: JSON Parse error: Property name must b
+ERR duplicateIds invalid_output starts=2 runIds=["qa-duplicateIds","qa-duplicateIds-repair"] msg=Plan output invalid after one repair: Invalid WorkPlan: ✖ step ids must be unique
+  → at s
+ERR empty invalid_output starts=2 runIds=["qa-empty","qa-empty-repair"] msg=Plan output invalid after one repair: No JSON object found in output
+ERR adapter-failed adapter_failed starts=1 runIds=["qa-adapter-failed"] msg=tests red
+ERR no-completion no_completion starts=1 runIds=["qa-no-completion"] msg=Adapter ended without a terminal event
+ERR permission-deny adapter_failed starts=1 runIds=["qa-permission-deny"] msg=Permission p1 denied
+answers=[{"runId":"qa-permission-deny","permissionId":"p1","decision":"deny"}]
+VERIFY met {"pass":true,"evidence":["met: \"tests pass\""]}
+VERIFY unmet {"pass":false,"evidence":["unmet: \"tests pass\" (missing: tests, pass)"]}
+VERIFY empty-acceptance {"pass":true,"evidence":["No acceptance criteria"]}
+VERIFY failed-step {"pass":false,"evidence":["Step s1 failed: boom"]}

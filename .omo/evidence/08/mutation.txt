@@ -1,0 +1,36 @@
+KILLED    a1 allow-list -> all parent env rc=1 fails=3 :: spawnChild env allow-list > child gets only allow-listed parent vars [10.84ms]
+KILLED    a2 drop explicit env rc=1 fails=2 :: spawnChild env allow-list > explicit env adds vars and overrides inherited values [
+KILLED    a3 inherited overrides explicit rc=1 fails=1 :: spawnChild env allow-list > explicit env adds vars and overrides inherited values [
+KILLED    a4 skip env name validation rc=1 fails=5 :: spawnChild forbidden env (leak test) > rejects explicit env name with = before spaw
+KILLED    b1 no forbidden strip rc=1 fails=1 :: spawnChild forbidden env (leak test) > strips forbidden vars set in the parent and 
+KILLED    b2 case-sensitive strip rc=1 fails=1 :: spawnChild forbidden env (leak test) > strips forbidden vars set in the parent and 
+KILLED    c1 no SIGKILL escalation rc=1 fails=2 :: spawnChild cancel > SIGKILLs a child that ignores SIGTERM only after the grace time
+KILLED    c2 SIGKILL instead of SIGTERM rc=1 fails=5 :: spawnChild cancel > SIGKILLs a child that ignores SIGTERM only after the grace time
+KILLED    c3 grace 50ms rc=1 fails=2 :: spawnChild cancel > SIGKILLs a child that ignores SIGTERM only after the grace time
+KILLED    c4 timer not cleared on exit rc=1 fails=2 :: spawnChild cancel > a child that honors SIGTERM exits without SIGKILL and the timer
+KILLED    c5 not detached rc=1 fails=6 :: spawnChild cancel > SIGKILLs a child that ignores SIGTERM only after the grace time
+KILLED    c6 no leader-exit group reap rc=1 fails=2 :: spawnChild cancel > leader exit kills leftover group members (no strays) [1016.95ms
+KILLED    c7 cancel not idempotent rc=1 fails=3 :: spawnChild cancel > cancel twice sends one SIGTERM and returns the same exit [4.01m
+KILLED    c8 kill pid not group rc=1 fails=5 :: spawnChild cancel > SIGKILLs a child that ignores SIGTERM only after the grace time
+KILLED    c9 abort listener not added rc=1 fails=2 :: spawnChild cancel > abort signal cancels a running child [1003.81ms]
+KILLED    c10 pre-aborted not rejected rc=1 fails=2 :: spawnChild cancel > an aborted signal rejects before spawning [2.05ms]
+KILLED    f1 root cwd allowed rc=1 fails=4 :: spawnChild output and exit > rejects root cwd with SpawnError invalid_cwd before sp
+KILLED    f2 relative cwd allowed rc=1 fails=3 :: spawnChild output and exit > rejects empty cwd with SpawnError invalid_cwd before s
+KILLED    f3 file cwd allowed rc=1 fails=2 :: spawnChild output and exit > rejects a file cwd with SpawnError invalid_cwd before 
+KILLED    f4 ENOENT -> spawn_failed rc=1 fails=3 :: spawnChild output and exit > rejects definitely-not-a-binary-t8 with SpawnError not
+KILLED    f5 CR kept rc=1 fails=2 :: spawnChild output and exit > splits stdout and stderr into lines (CRLF, missing tra
+KILLED    f6 tail dropped rc=1 fails=2 :: spawnChild output and exit > splits stdout and stderr into lines (CRLF, missing tra
+KILLED    f7 decoder not streaming rc=1 fails=1 :: spawnChild output and exit > reads large output and multi-byte chars split across c
+KILLED    d1 reverse order rc=1 fails=8 :: FakeAdapter replay > replays the script in order and then ends [3.83ms]
+KILLED    d2 drop normal events rc=1 fails=12 :: FakeAdapter replay > replays the script in order and then ends [1.43ms]
+KILLED    d3 default id codex rc=1 fails=1 :: FakeAdapter replay > defaults id to opencode and accepts another id [0.29ms]
+KILLED    d4 delay ignored rc=1 fails=3 :: FakeAdapter replay > waits on the injected sleep for delayed steps only [0.50ms]
+KILLED    e1 gate auto-allow rc=1 fails=4 :: FakeAdapter permission gating > pauses after permission_request until allow, then c
+KILLED    e2 deny continues rc=1 fails=1 :: FakeAdapter permission gating > deny emits failed and skips the rest of the script 
+KILLED    e3 any permissionId accepted rc=1 fails=1 :: FakeAdapter permission gating > rejects answers for an unknown run or a permission 
+KILLED    e4 deny no failed event rc=1 fails=1 :: FakeAdapter permission gating > deny emits failed and skips the rest of the script 
+KILLED    e5 cancel ignored rc=1 fails=3 :: FakeAdapter cancel > ends the iterator while waiting for a permission [5000.02ms]
+KILLED    e6 concurrent start allowed rc=1 fails=1 :: FakeAdapter replay > rejects a second concurrent start for the same run and allows 
+KILLED    e7 run not released rc=1 fails=2 :: FakeAdapter replay > rejects a second concurrent start for the same run and allows 
+KILLED    e8 abort ignored rc=1 fails=1 :: FakeAdapter cancel > abort signal cancels the run; a pre-aborted signal yields noth
+KILLED    e9 cancelled check after delay removed rc=1 fails=2 :: FakeAdapter cancel > stops replay between events; repeated or unknown cancel is a n

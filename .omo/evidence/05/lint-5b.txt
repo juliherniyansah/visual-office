@@ -1,0 +1,4 @@
+# T5b lint (2026-10-09T07:28:54Z)
+$ bunx biome check .
+Checked 106 files in 39ms. No fixes applied.
+exit=0

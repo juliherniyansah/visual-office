@@ -1,0 +1,99 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`snapshot hash fixture composition (text, layers, hash) matches the stored snapshot 1`] = `
+{
+  "hash": "676d2bbe9de344a1b34634e9bbbe6833498f75b43def4ccc5c9d1ba1eb3a28e7",
+  "layers": [
+    {
+      "id": "constitution",
+      "tokens": 13,
+      "version": 1,
+    },
+    {
+      "id": "identity",
+      "tokens": 24,
+      "version": 12,
+    },
+    {
+      "id": "rolePolicy",
+      "tokens": 59,
+      "version": 23,
+    },
+    {
+      "id": "omoPolicy",
+      "tokens": 59,
+      "version": 34,
+    },
+    {
+      "id": "skills",
+      "tokens": 9,
+      "version": 45,
+    },
+    {
+      "id": "memory",
+      "tokens": 11,
+      "version": 56,
+    },
+    {
+      "id": "rag",
+      "tokens": 11,
+      "version": 67,
+    },
+    {
+      "id": "project",
+      "tokens": 12,
+      "version": 78,
+    },
+    {
+      "id": "task",
+      "tokens": 21,
+      "version": 89,
+    },
+  ],
+  "text": 
+"## 1. Constitution
+Be honest. Earlier layers win.
+## 2. Identity
+Name: Ada
+Role: Programming lead
+Traits: precise, calm
+Voice: Short sentences.
+## 3. Role and security policy
+Company: RedHunter
+Role: domain
+Allowed:
+- write code
+Forbidden:
+- create directives
+Tool permissions are enforced by the runtime outside this prompt; this policy describes your role and grants nothing.
+## 4. OMO policy
+Plan before acting. Verify every acceptance criterion before reporting done. Escalate when blocked or out of retries.
+Max retries: 2
+Max turns: 8
+Escalation chain: cto -> human
+Output contract: Return a JSON summary.
+## 5. Skills
+- skill A
+- skill B
+## 6. Memory and experience
+- mem A
+- mem B
+## 7. Retrieved knowledge
+- doc A
+- doc B
+## 8. Project context
+- repo map
+- conventions
+## 9. Task
+Directive:
+- Fix the bug
+Acceptance:
+- tests pass
+Constraints:
+- (none)
+"
+,
+  "tokens": 219,
+  "version": 1,
+}
+`;

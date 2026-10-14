@@ -1,0 +1,61 @@
+# Task 6: Hero Component - Evidence
+Date: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+## Files Created
+- apps/web/src/components/landing/Hero.tsx
+
+## Component Spec
+- Uses SITE from @/lib/site
+- Uses useReveal hook from @/hooks/useReveal
+- h1 tagline: "Where Humans and AI Work Together."
+- Body text: SITE.description
+- CTA button: links to SITE.contactHref (mailto:hello@vyron.ai?subject=VYRON%20Early%20Access)
+- CSS variables: text-foreground, text-muted-foreground, bg-primary, text-primary-foreground
+- Animation: useReveal for entrance (opacity transition)
+
+## Typecheck Status
+Hero.tsx: CLEAN (no errors)
+
+Pre-existing errors blocking full typecheck:
+- AiCore.tsx(25,31): Property 'title' does not exist on type (COPY.aiCoreIntro is string, not object)
+- AiCore.tsx(31,31): Property 'body' does not exist on type
+- OfficeShowcase.tsx(27,16): Property 'officeIntro' does not exist on type 'typeof COPY'
+
+These errors are in files outside Task 6 scope. Task instructions: "Note pre-existing issues without fixing them unless asked."
+
+## Build Status
+Blocked by pre-existing type errors in AiCore.tsx and OfficeShowcase.tsx.
+
+## Hero.tsx Implementation
+import { SITE } from "@/lib/site";
+import { useReveal } from "@/hooks/useReveal";
+
+export function Hero() {
+  const { ref, isVisible } = useReveal<HTMLElement>();
+
+  return (
+    <section
+      ref={ref}
+      className={`min-h-screen flex items-center justify-center px-6 py-24 transition-opacity duration-1000 ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      <div className="max-w-4xl text-center space-y-8">
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+          {SITE.tagline}
+        </h1>
+
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
+          {SITE.description}
+        </p>
+
+        <a
+          href={SITE.contactHref}
+          className="inline-block px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold text-lg hover:opacity-90 transition-opacity"
+        >
+          Get Early Access
+        </a>
+      </div>
+    </section>
+  );
+}

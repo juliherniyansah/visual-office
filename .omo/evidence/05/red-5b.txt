@@ -1,0 +1,92 @@
+# T5b RED stage 1 (2026-10-09T07:15:21Z) - new tests, no implementation modules yet
+$ bun test apps/api/src/services/projects.test.ts apps/api/src/services/knowledge.test.ts apps/api/src/services/officeState.test.ts apps/api/src/routes/projects.test.ts apps/api/src/routes/knowledge.test.ts apps/api/src/routes/office.test.ts
+error: Cannot find module './officeState' from '/home/programer/work/visual-office/apps/api/src/services/officeState.test.ts'
+error: Cannot find module './knowledge' from '/home/programer/work/visual-office/apps/api/src/services/knowledge.test.ts'
+error: Cannot find module './projects' from '/home/programer/work/visual-office/apps/api/src/services/projects.test.ts'
+error: Cannot find module '../services/officeState' from '/home/programer/work/visual-office/apps/api/src/routes/office.test.ts'
+ 0 pass
+ 31 fail
+Ran 31 tests across 6 files. [1259.00ms]
+
+# T5b RED stage 2: models + mappers + stub services ('not implemented'), routes NOT mounted; tasks.test.ts included for the N-1 edit
+$ bun test <6 new files> apps/api/src/routes/tasks.test.ts --reporter=junit --reporter-outfile=/tmp/opencode/red5b.xml
+ 19 pass
+ 39 fail
+Ran 58 tests across 7 files. [6.10s]
+# failure reasons (count):
+   30 error: expect(received).toBe(expected)
+   29 Received: 404
+   12 Expected: 201
+    7 Expected: 200
+    6 error: not implemented
+    5 Expected: 401
+    2 Expected: 403
+    2 Expected: 400
+    1 error: expect(received).toEqual(expected)
+    1 Expected: true
+    1 Received: false
+    1 Expected: 500
+# FAIL testcases:
+  FAIL apps/api/src/services/officeState.test.ts :: INITIAL_OFFICE_STATE > is the exact deterministic projection of OFFICE_LAYOUT with idle, sitting agents
+  FAIL apps/api/src/services/officeState.test.ts :: INITIAL_OFFICE_STATE > places all 7 agents exactly once, matching OFFICE_LAYOUT floor ids
+  FAIL apps/api/src/services/officeState.test.ts :: INITIAL_OFFICE_STATE > is frozen so callers cannot mutate the shared default
+  FAIL apps/api/src/services/officeState.test.ts :: getOfficeState > empty collection -> INITIAL_OFFICE_STATE, nothing written
+  FAIL apps/api/src/services/officeState.test.ts :: getOfficeState > reads only the singleton id, ignores other documents in the collection
+  FAIL apps/api/src/services/knowledge.test.ts :: createKnowledgeDoc > persists into knowledge_docs with uuid id and storage-only createdAt, emits nothing
+  FAIL apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > orders by createdAt, then _id for equal timestamps
+  FAIL apps/api/src/services/projects.test.ts :: createProject > persists a uuid-keyed project with a storage-only createdAt and emits nothing
+  FAIL apps/api/src/services/projects.test.ts :: listProjects > orders by createdAt, then _id for equal timestamps
+  FAIL apps/api/src/routes/office.test.ts :: GET /api/v1/office/state > empty DB -> deterministic initial state for every role, nothing persisted
+  FAIL apps/api/src/routes/office.test.ts :: GET /api/v1/office/state > returns the stored singleton re-validated, without _id or unknown fields
+  FAIL apps/api/src/routes/office.test.ts :: GET /api/v1/office/state > corrupt stored singleton -> 500 generic JSON, no internals leaked
+  FAIL apps/api/src/routes/office.test.ts :: GET /api/v1/office/state > query keys, including operator injection, are ignored
+  FAIL apps/api/src/routes/office.test.ts :: GET /api/v1/office/state > no token, expired token and alg=none token -> 401
+  FAIL apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > operator ingests a doc (201): title trimmed, text kept verbatim, no event
+  FAIL apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > owner may post; tags default to []
+  FAIL apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > forged server-owned fields are ignored (id, _id, createdBy, createdAt, eventId, status)
+  FAIL apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > viewer -> 403, nothing stored
+  FAIL apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > no token, expired token and alg=none token -> 401, nothing stored
+  FAIL apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > 400 for invalid bodies and operator injection
+  FAIL apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > title bound: 200 chars -> 201, 201 chars -> 400
+  FAIL apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > text bound: 12000 chars -> 201, 12001 chars -> 400
+  FAIL apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > tags bounds: 32 tags -> 201, 33 -> 400; 64-char tag -> 201, 65 -> 400
+  FAIL apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > viewer, operator and owner list docs in creation order without storage fields
+  FAIL apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > query keys, including operator injection, are ignored (no filter, no 500)
+  FAIL apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > 401 without token; other methods and :id paths -> 404
+  FAIL apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > operator creates a project (201): name trimmed, adapter defaults to opencode, no event
+  FAIL apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > owner may post and choose the adapter
+  FAIL apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > forged server-owned fields are ignored (id, _id, createdBy, createdAt, eventId, status)
+  FAIL apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > viewer -> 403 from requireRole("operator"), nothing stored
+  FAIL apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > no token, expired token and alg=none token -> 401, nothing stored
+  FAIL apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > 400 for invalid bodies, operator injection and unsafe repo paths
+  FAIL apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > name bound: 120 chars -> 201, 121 chars -> 400
+  FAIL apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > repoPath bound: 1024 chars -> 201, 1025 chars -> 400
+  FAIL apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > trailing slash and root-level paths are accepted as already normalized
+  FAIL apps/api/src/routes/projects.test.ts :: GET /api/v1/projects > viewer, operator and owner list projects in creation order
+  FAIL apps/api/src/routes/projects.test.ts :: GET /api/v1/projects > query keys, including operator injection, are ignored (no filter, no 500)
+  FAIL apps/api/src/routes/projects.test.ts :: GET /api/v1/projects > 401 without token
+  FAIL apps/api/src/routes/projects.test.ts :: no other project routes > GET /projects/:id and PUT/PATCH/DELETE -> 404 JSON
+# PASS before implementation (explained):
+  PASS apps/api/src/services/officeState.test.ts :: getOfficeState > corrupt singleton throws (route maps it to a generic 500)
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: a corrupt row throws instead of leaking
+  PASS apps/api/src/routes/office.test.ts :: no write route for office state or agent status > POST/PUT/PATCH/DELETE on office state and agent paths -> 404, nothing stored
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > 400 for malformed JSON, 413 for an oversized body
+  PASS apps/api/src/routes/tasks.test.ts :: GET /api/v1/tasks > viewer lists tasks; status and assigneeAgentId filters apply
+  PASS apps/api/src/routes/tasks.test.ts :: GET /api/v1/tasks > 400 for unknown filter values
+  PASS apps/api/src/routes/tasks.test.ts :: GET /api/v1/tasks > 401 without token
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > operator pauses, resumes and cancels; each emits task.status_changed
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > invalid transitions -> 409 and no event (done task, resume without pause, pause planned)
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > resume only from paused: assigned/planned -> 409, no event, status unchanged
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > resume on a paused task -> 200 in_progress with exactly one new event
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > pause only from in_progress: assigned, paused, escalated -> 409, no event
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > cancel from every non-terminal status -> 200 cancelled
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > forged status in the body is ignored; only the action counts
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > concurrent pause + cancel on the same task: exactly one 200 and one 409
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > viewer -> 403; missing, expired and alg=none tokens -> 401
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > 400 for unknown actions or malformed JSON
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > unknown or odd ids -> 404/400 JSON, never 500
+  PASS apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > 400 for malformed JSON, 413 for an oversized body
+# Why these pass pre-implementation:
+#  - 'corrupt ... throws' (2): the stub throws 'not implemented'; after GREEN they pass for the real reason (zod reject). Mutants M-OS-validate / M-P-validate in mutation-5b.txt prove the real reason.
+#  - 'no write route' + '413/400' (3): global notFoundHandler and body-parser run regardless of mounting; still required as regression guards.
+#  - tasks.test.ts (14): existing 5a behaviour; the N-1 value change (?status=planned&status=planned) is proven against its mutant (array -> first element) in mutation-5b.txt.

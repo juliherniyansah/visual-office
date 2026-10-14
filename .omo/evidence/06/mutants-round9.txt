@@ -1,0 +1,46 @@
+# Mutation proof round 9 (fix round 8, oracle D43 = E06-E12) - 2026-10-10T09:08:17+00:00
+Runner: /tmp/opencode/fix3-hermes/mut9.py (in-place + .bak, finally restore, pattern '"name": "<old>"' count==1, full bun test per mutant, sha256 compare).
+
+RED (before new assertions):
+E06 BEFORE new assertions: rc 0 ['173 pass', '0 fail'] -> SURVIVED
+
+After new assertions:
+CONTROL original: PASS (175 pass / 0 fail)
+E06 | seed/iot.json:3 | name Ivy -> Ivo | KILLED (173 pass / 2 fail)
+     (fail) SEED_PROFILES > each seed profile has its exact name and first personality trait
+     (fail) seedProfiles > persisted profiles carry the exact seeded names and first traits
+E07 | seed/ceo.json:3 | name Cara -> Kara | KILLED (173 pass / 2 fail)
+     (fail) SEED_PROFILES > each seed profile has its exact name and first personality trait
+     (fail) seedProfiles > persisted profiles carry the exact seeded names and first traits
+E08 | seed/game.json:3 | name Gale -> Gail | KILLED (173 pass / 2 fail)
+     (fail) SEED_PROFILES > each seed profile has its exact name and first personality trait
+     (fail) seedProfiles > persisted profiles carry the exact seeded names and first traits
+E09 | seed/ai_development.json:3 | name Ada -> Adah | KILLED (173 pass / 2 fail)
+     (fail) SEED_PROFILES > each seed profile has its exact name and first personality trait
+     (fail) seedProfiles > persisted profiles carry the exact seeded names and first traits
+E10 | seed/coo.json:3 | name Otto -> Otis | KILLED (173 pass / 2 fail)
+     (fail) SEED_PROFILES > each seed profile has its exact name and first personality trait
+     (fail) seedProfiles > persisted profiles carry the exact seeded names and first traits
+E11 | seed/cto.json:3 | name Tess -> Tes | KILLED (173 pass / 2 fail)
+     (fail) SEED_PROFILES > each seed profile has its exact name and first personality trait
+     (fail) seedProfiles > persisted profiles carry the exact seeded names and first traits
+E12 | seed/programming.json:3 | name Pip -> Pep | KILLED (173 pass / 2 fail)
+     (fail) SEED_PROFILES > each seed profile has its exact name and first personality trait
+     (fail) seedProfiles > persisted profiles carry the exact seeded names and first traits
+RESTORED-CONTROL original: PASS (175 pass / 0 fail)
+sha256 all hermes src/seed files pre==post: True (25 files)
+
+Seed JSON sha256 == /tmp/opencode/orc06h/seed.sha: 7/7 OK
+Production sha256 prefixes post:
+dbc545903811e2d8  packages/hermes/src/store.ts
+169e225abd914d46  packages/hermes/src/models.ts
+85059f0657348ffa  packages/hermes/src/context.ts
+fe66232917d47210  packages/hermes/src/knowledge.ts
+0effb3d5d3e540fc  packages/hermes/src/seed.ts
+fe0e0a9464905bb0  packages/hermes/src/tokens.ts
+97743c3c051f8292  packages/hermes/src/errors.ts
+1d80824db69ab17c  packages/hermes/src/index.ts
+d413bd8c001c3f63  apps/api/src/db/mappers.ts
+sha256sum -c pre-round8.sha: only packages/hermes/src/seed.test.ts differs.
+.bak count: 0
+Leftover redhunter_test_* DBs: []

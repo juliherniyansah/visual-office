@@ -1,0 +1,28 @@
+# Mutation proof round 7 (fix round 6, oracle D33-D34) - 2026-10-09T17:30:02+00:00
+Runner: /tmp/opencode/fix3-hermes/mut7.py (in-place + .bak, finally restore, pattern count==1; new tests x10 per mutant + 1 full-suite run; sha256 compare).
+D33 = K16 knowledge.ts:121 drop await on store.upsert; D34 = C24 context.ts:77 tokenize(taskText.slice(1)).
+
+CONTROL original full suite: PASS (159 pass / 0 fail)
+K16 (D33) new tests on ORIGINAL: PASS (2 pass / 0 fail)
+K16 (D33) | src/knowledge.ts:121 | new tests only x10: 10/10 KILLED [KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED] | full suite: KILLED (157 pass / 2 fail)
+     (fail) hydrateKnowledgeStore > awaits each async upsert before resolving, in _id order
+     (fail) hydrateKnowledgeStore > propagates upsert rejection
+C24 (D34) new tests on ORIGINAL: PASS (2 pass / 0 fail)
+C24 (D34) | src/context.ts:77 | new tests only x10: 10/10 KILLED [KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED KILLED] | full suite: KILLED (157 pass / 2 fail)
+     (fail) rankMemories first task term > first task term counts toward relevance
+     (fail) rankMemories first task term > single-character task term counts toward relevance
+RESTORED-CONTROL original full suite: PASS (159 pass / 0 fail)
+sha256 all hermes src/seed files pre==post: True (24 files)
+
+Production sha256 post (== pre-round6.sha; sha256sum -c differs only on the 2 edited test files):
+dbc545903811e2d89da0e34bee4f81c7fefc0eca958a8f78b647f89d636a210a  packages/hermes/src/store.ts
+169e225abd914d46d0af3364cdc23c2c7ac63ef11ba6233540c0938817796b85  packages/hermes/src/models.ts
+85059f0657348ffa742f82d25cf05dca4ade4d8a7740ab1f079321658a41d32b  packages/hermes/src/context.ts
+fe66232917d4721084622b925f3b147492e4be393eb5e6e7236e2ebaa9d744e5  packages/hermes/src/knowledge.ts
+0effb3d5d3e540fcf57eb5821cd929f9e41f4b452d2eb67e65583fd214fd6ac6  packages/hermes/src/seed.ts
+fe0e0a9464905bb05e51fc2adf6c95f227dc4cf48b89f9a9e049cb13f982295b  packages/hermes/src/tokens.ts
+97743c3c051f82923ffd96bbe7ebbd5c50b2a7547fc7da4c8207d80e19470512  packages/hermes/src/errors.ts
+1d80824db69ab17c9566a83f73af0e96bb526d31f24fc41e285ce53c23a3cede  packages/hermes/src/index.ts
+d413bd8c001c3f63096259f4297319a6529177bf1070102f33401f9eeca5740f  apps/api/src/db/mappers.ts
+.bak count under packages/ and apps/: 0
+Leftover redhunter_test_* DBs: []

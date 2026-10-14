@@ -1,0 +1,25 @@
+ID | mutation | file:line | before-fix result (pre-round-2 tests) | after result (new tests)
+D1-C11 | TOP_EXPERIENCE 3->4 | src/context.ts:49 | SURVIVED (old tests pass) | KILLED
+D1-C12 | TOP_EXPERIENCE 3->1 | src/context.ts:49 | SURVIVED (old tests pass) | KILLED
+D1-C13 | TOP_RAG 3->4 | src/context.ts:50 | SURVIVED (old tests pass) | KILLED
+D1-C14 | TOP_RAG 3->1 | src/context.ts:50 | SURVIVED (old tests pass) | KILLED
+D1-C23 | search k TOP_RAG->100 | src/context.ts:106 | SURVIVED (old tests pass) | KILLED
+D1-C15 | skills capped to 1 | src/context.ts:110 | SURVIVED (old tests pass) | KILLED
+D2-C6 | stop filling after first drop | src/context.ts:157 | SURVIVED (old tests pass) | KILLED
+D3-K6 | idf +0.5 -> +5 (numerator) | src/knowledge.ts:83 | SURVIVED (old tests pass) | KILLED
+D3-K7 | k1 1.2 -> 2 | src/knowledge.ts:6 | SURVIVED (old tests pass) | KILLED
+D3-K10 | b 0.75 -> 0.5 | src/knowledge.ts:7 | SURVIVED (old tests pass) | KILLED
+D4-K2 | k<=0 guard removed | src/knowledge.ts:65 | SURVIVED (old tests pass) | KILLED
+D5-O8 | findSkills sort name dropped | src/store.ts:177 | SURVIVED (old tests pass) | KILLED
+D5-O14 | rankMemories recency removed | src/context.ts:83 | killed by old tests | KILLED
+D5-O15 | rankMemories id tiebreak reversed | src/context.ts:84 | SURVIVED (old tests pass) | KILLED
+D6 | pointer owner guard removed + query by pointer.agentId | src/store.ts:133 | SURVIVED (old tests pass) | KILLED
+D7-V1 | latest by ascending version | src/store.ts:92 | SURVIVED (old tests pass) | KILLED
+D7-V3 | create via replaceOne upsert | src/store.ts:101 | SURVIVED (old tests pass) | KILLED
+D7-V8 | unique {agentId,version} index removed | src/models.ts:60 | SURVIVED (old tests pass) | KILLED
+D8-V10 | missing-row NotFound -> Error | src/store.ts:141 | SURVIVED (old tests pass) | KILLED
+D9 | E11000 catch removed (rethrow) | src/store.ts:206 | SURVIVED (old tests pass) | KILLED
+control old pass new pass
+restored-control pass
+Source sha256 after all proofs == post-fix state (sha256sum -c /tmp/opencode/post-fix.sha: 0 mismatches).
+D6/D9 RED->GREEN: see notes.md.

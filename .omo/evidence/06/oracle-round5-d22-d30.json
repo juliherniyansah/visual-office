@@ -1,0 +1,205 @@
+[
+ {
+  "id": "A05",
+  "loc": "src/store.ts:91",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toBe(expected)",
+   "(fail) versioning is scoped per agent > version numbers count per agent: programming starts at v1 after ceo v1, v2 [66.95ms]"
+  ]
+ },
+ {
+  "id": "A07",
+  "loc": "src/store.ts:101",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toBe(expected)",
+   "(fail) versioning is scoped per agent > failed insert of a new version leaves the pointer on the previous version [42.88ms]"
+  ]
+ },
+ {
+  "id": "A08",
+  "loc": "src/store.ts:120",
+  "status": "KILLED",
+  "first": [
+   "error: ",
+   "(fail) versioning is scoped per agent > activateProfileVersion checks the version of THIS agent, not any agent [90.61ms]"
+  ]
+ },
+ {
+  "id": "A21",
+  "loc": "src/store.ts:161",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toEqual(expected)",
+   "(fail) memory order and skill return value > getMemories is newest-first by createdAt even when _id order is opposite [18.86ms]"
+  ]
+ },
+ {
+  "id": "A25",
+  "loc": "src/store.ts:170",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toEqual(expected)",
+   "(fail) memory order and skill return value > upsertSkill returns exactly the stored skill [8.23ms]"
+  ]
+ },
+ {
+  "id": "C71",
+  "loc": "src/context.ts:19",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toEqual(expected)",
+   "(fail) package entry (src/index.ts) > CONTEXT_LAYER_IDS order is profile, skills, memories, experience, rag [0.27ms]"
+  ]
+ },
+ {
+  "id": "C78",
+  "loc": "src/context.ts:91",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toEqual(expected)",
+   "(fail) assembleContext experience order > experience of other task types keeps newest-first order [58.72ms]"
+  ]
+ },
+ {
+  "id": "I01",
+  "loc": "src/index.ts:3",
+  "status": "KILLED",
+  "first": [
+   "SyntaxError: Export named 'rankMemories' not found in module '/tmp/opencode/orc06e/w3/src/index.ts'."
+  ]
+ },
+ {
+  "id": "I02",
+  "loc": "src/index.ts:4",
+  "status": "KILLED",
+  "first": [
+   "SyntaxError: Export named 'HermesAccessError' not found in module '/tmp/opencode/orc06e/w2/src/index.ts'."
+  ]
+ },
+ {
+  "id": "I03",
+  "loc": "src/index.ts:5",
+  "status": "KILLED",
+  "first": [
+   "SyntaxError: Export named 'InMemoryKnowledgeStore' not found in module '/tmp/opencode/orc06e/w0/src/index.ts'."
+  ]
+ },
+ {
+  "id": "I04",
+  "loc": "src/index.ts:6",
+  "status": "KILLED",
+  "first": [
+   "SyntaxError: Export named 'createHermesModels' not found in module '/tmp/opencode/orc06e/w1/src/index.ts'."
+  ]
+ },
+ {
+  "id": "I05",
+  "loc": "src/index.ts:7",
+  "status": "KILLED",
+  "first": [
+   "SyntaxError: Export named 'seedProfiles' not found in module '/tmp/opencode/orc06e/w3/src/index.ts'."
+  ]
+ },
+ {
+  "id": "I06",
+  "loc": "src/index.ts:8",
+  "status": "KILLED",
+  "first": [
+   "SyntaxError: Export named 'HermesStore' not found in module '/tmp/opencode/orc06e/w2/src/index.ts'."
+  ]
+ },
+ {
+  "id": "I07",
+  "loc": "src/index.ts:9",
+  "status": "KILLED",
+  "first": [
+   "SyntaxError: Export named 'estimateTokens' not found in module '/tmp/opencode/orc06e/w0/src/index.ts'."
+  ]
+ },
+ {
+  "id": "I08",
+  "loc": "src/index.ts:1",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toBe(expected)",
+   "(fail) package entry (src/index.ts) > PACKAGE_NAME is @redhunter/hermes [0.22ms]"
+  ]
+ },
+ {
+  "id": "N002b",
+  "loc": "src/store.ts:36",
+  "status": "KILLED",
+  "first": [
+   "error: ",
+   "(fail) ensureProfileVersion pointer and error handling > codeless error is rethrown as-is even when the row exists afterwards [20.44ms]"
+  ]
+ },
+ {
+  "id": "N074",
+  "loc": "src/store.ts:85",
+  "status": "SURVIVED",
+  "first": []
+ },
+ {
+  "id": "N145b",
+  "loc": "src/context.ts:144",
+  "status": "KILLED",
+  "first": [
+   "error: ",
+   "(fail) assembleContext > budget smaller than profile throws HermesBudgetError (profile never truncated) [33.20ms]"
+  ]
+ },
+ {
+  "id": "N231b",
+  "loc": "src/knowledge.ts:101",
+  "status": "SURVIVED",
+  "first": []
+ },
+ {
+  "id": "R01",
+  "loc": "src/errors.ts:5",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toBe(expected)",
+   "(fail) error classes > names and AccessError message are exact [0.27ms]"
+  ]
+ },
+ {
+  "id": "R02",
+  "loc": "src/errors.ts:16",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toBe(expected)",
+   "(fail) error classes > names and AccessError message are exact [0.59ms]"
+  ]
+ },
+ {
+  "id": "R03",
+  "loc": "src/errors.ts:20",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toBe(expected)",
+   "(fail) error classes > names and AccessError message are exact [0.48ms]"
+  ]
+ },
+ {
+  "id": "R04",
+  "loc": "src/errors.ts:11",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toBe(expected)",
+   "(fail) error classes > names and AccessError message are exact [0.32ms]"
+  ]
+ },
+ {
+  "id": "T05",
+  "loc": "src/tokens.ts:7",
+  "status": "KILLED",
+  "first": [
+   "error: expect(received).toBe(expected)",
+   "(fail) estimateTokens whitespace > whitespace counts like any other character [0.18ms]"
+  ]
+ }
+]

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="119" assertions="1056" failures="0" skipped="0" time="0.220970749">
+  <testsuite name="packages/agent-runtime/src/index.test.ts" file="packages/agent-runtime/src/index.test.ts" tests="1" assertions="8" failures="0" skipped="0" time="0.001" hostname="ai">
+    <testcase name="barrel re-exports the prompt composer API" classname="" time="0.001825" file="packages/agent-runtime/src/index.test.ts" line="13" assertions="8" />
+  </testsuite>
+  <testsuite name="packages/agent-runtime/src/prompt/composer.hash.test.ts" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" tests="25" assertions="25" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="snapshot hash" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="22" tests="25" assertions="25" failures="0" skipped="0" time="0.006" hostname="ai">
+      <testcase name="is sha256 over the canonical {layers, text, version} of the output" classname="snapshot hash" time="0.003022" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="23" assertions="1" />
+      <testcase name="same input gives the same hash across calls" classname="snapshot hash" time="0.000804" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="33" assertions="1" />
+      <testcase name="does not depend on object key insertion order" classname="snapshot hash" time="0.001051" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="37" assertions="1" />
+      <testcase name="fixture composition (text, layers, hash) matches the stored snapshot" classname="snapshot hash" time="0.000578" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="73" assertions="1" />
+      <testcase name="changes when constitution text content changes" classname="snapshot hash" time="0.000773" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="100" assertions="1" />
+      <testcase name="changes when identity name content changes" classname="snapshot hash" time="0.00058" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="100" assertions="1" />
+      <testcase name="changes when role forbidden content changes" classname="snapshot hash" time="0.00051" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="100" assertions="1" />
+      <testcase name="changes when omo contract content changes" classname="snapshot hash" time="0.00046" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="100" assertions="1" />
+      <testcase name="changes when skills item content changes" classname="snapshot hash" time="0.000475" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="100" assertions="1" />
+      <testcase name="changes when memory item content changes" classname="snapshot hash" time="0.000609" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="100" assertions="1" />
+      <testcase name="changes when rag item content changes" classname="snapshot hash" time="0.000398" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="100" assertions="1" />
+      <testcase name="changes when project item content changes" classname="snapshot hash" time="0.000359" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="100" assertions="1" />
+      <testcase name="changes when task directive content changes" classname="snapshot hash" time="0.00037" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="100" assertions="1" />
+      <testcase name="changes when constitution version changes" classname="snapshot hash" time="0.000841" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="104" assertions="1" />
+      <testcase name="changes when identity version changes" classname="snapshot hash" time="0.000399" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="104" assertions="1" />
+      <testcase name="changes when rolePolicy version changes" classname="snapshot hash" time="0.000257" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="104" assertions="1" />
+      <testcase name="changes when omoPolicy version changes" classname="snapshot hash" time="0.00035" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="104" assertions="1" />
+      <testcase name="changes when skills version changes" classname="snapshot hash" time="0.000281" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="104" assertions="1" />
+      <testcase name="changes when memory version changes" classname="snapshot hash" time="0.000331" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="104" assertions="1" />
+      <testcase name="changes when rag version changes" classname="snapshot hash" time="0.000238" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="104" assertions="1" />
+      <testcase name="changes when project version changes" classname="snapshot hash" time="0.000212" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="104" assertions="1" />
+      <testcase name="changes when task version changes" classname="snapshot hash" time="0.000186" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="104" assertions="1" />
+      <testcase name="all variant hashes are distinct from each other" classname="snapshot hash" time="0.002107" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="108" assertions="1" />
+      <testcase name="a budget change that does not change the composition keeps the hash" classname="snapshot hash" time="0.000301" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="113" assertions="1" />
+      <testcase name="a budget change that truncates a layer changes the hash" classname="snapshot hash" time="0.000341" file="packages/agent-runtime/src/prompt/composer.hash.test.ts" line="117" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/agent-runtime/src/prompt/budget.test.ts" file="packages/agent-runtime/src/prompt/budget.test.ts" tests="36" assertions="51" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="estimateTokens (default chars/4, ceil)" file="packages/agent-runtime/src/prompt/budget.test.ts" line="13" tests="9" assertions="9" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="&quot;&quot; -&gt; 0" classname="estimateTokens (default chars/4, ceil)" time="0.000044" file="packages/agent-runtime/src/prompt/budget.test.ts" line="21" assertions="1" />
+      <testcase name="&quot;a&quot; -&gt; 1" classname="estimateTokens (default chars/4, ceil)" time="0.000007" file="packages/agent-runtime/src/prompt/budget.test.ts" line="21" assertions="1" />
+      <testcase name="&quot;abcd&quot; -&gt; 1" classname="estimateTokens (default chars/4, ceil)" time="0.000003" file="packages/agent-runtime/src/prompt/budget.test.ts" line="21" assertions="1" />
+      <testcase name="&quot;abcde&quot; -&gt; 2" classname="estimateTokens (default chars/4, ceil)" time="0.000003" file="packages/agent-runtime/src/prompt/budget.test.ts" line="21" assertions="1" />
+      <testcase name="&quot;abcdefgh&quot; -&gt; 2" classname="estimateTokens (default chars/4, ceil)" time="0.000003" file="packages/agent-runtime/src/prompt/budget.test.ts" line="21" assertions="1" />
+      <testcase name="&quot;abcdefghi&quot; -&gt; 3" classname="estimateTokens (default chars/4, ceil)" time="0.000003" file="packages/agent-runtime/src/prompt/budget.test.ts" line="21" assertions="1" />
+      <testcase name="counts UTF-16 units, not code points" classname="estimateTokens (default chars/4, ceil)" time="0.00003" file="packages/agent-runtime/src/prompt/budget.test.ts" line="25" assertions="1" />
+      <testcase name="does not trim whitespace" classname="estimateTokens (default chars/4, ceil)" time="0.000025" file="packages/agent-runtime/src/prompt/budget.test.ts" line="30" assertions="1" />
+      <testcase name="chars per token constant is 4" classname="estimateTokens (default chars/4, ceil)" time="0.000028" file="packages/agent-runtime/src/prompt/budget.test.ts" line="34" assertions="1" />
+    </testsuite>
+    <testsuite name="PromptBudgetError" file="packages/agent-runtime/src/prompt/budget.test.ts" line="39" tests="1" assertions="4" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="is a typed Error with its own name" classname="PromptBudgetError" time="0.0001" file="packages/agent-runtime/src/prompt/budget.test.ts" line="40" assertions="4" />
+    </testsuite>
+    <testsuite name="assertBudget" file="packages/agent-runtime/src/prompt/budget.test.ts" line="49" tests="7" assertions="11" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="accepts 0" classname="assertBudget" time="0.000065" file="packages/agent-runtime/src/prompt/budget.test.ts" line="50" assertions="1" />
+      <testcase name="accepts 1" classname="assertBudget" time="0.000008" file="packages/agent-runtime/src/prompt/budget.test.ts" line="50" assertions="1" />
+      <testcase name="accepts 16000" classname="assertBudget" time="0.000004" file="packages/agent-runtime/src/prompt/budget.test.ts" line="50" assertions="1" />
+      <testcase name="rejects -1" classname="assertBudget" time="0.000171" file="packages/agent-runtime/src/prompt/budget.test.ts" line="54" assertions="2" />
+      <testcase name="rejects 1.5" classname="assertBudget" time="0.00011" file="packages/agent-runtime/src/prompt/budget.test.ts" line="54" assertions="2" />
+      <testcase name="rejects NaN" classname="assertBudget" time="0.000014" file="packages/agent-runtime/src/prompt/budget.test.ts" line="54" assertions="2" />
+      <testcase name="rejects Infinity" classname="assertBudget" time="0.000018" file="packages/agent-runtime/src/prompt/budget.test.ts" line="54" assertions="2" />
+    </testsuite>
+    <testsuite name="measureTokens" file="packages/agent-runtime/src/prompt/budget.test.ts" line="62" tests="5" assertions="10" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="returns the estimator value for the text" classname="measureTokens" time="0.000115" file="packages/agent-runtime/src/prompt/budget.test.ts" line="63" assertions="2" />
+      <testcase name="rejects estimator output -1" classname="measureTokens" time="0.000146" file="packages/agent-runtime/src/prompt/budget.test.ts" line="69" assertions="2" />
+      <testcase name="rejects estimator output 0.5" classname="measureTokens" time="0.000025" file="packages/agent-runtime/src/prompt/budget.test.ts" line="69" assertions="2" />
+      <testcase name="rejects estimator output NaN" classname="measureTokens" time="0.000019" file="packages/agent-runtime/src/prompt/budget.test.ts" line="69" assertions="2" />
+      <testcase name="rejects estimator output Infinity" classname="measureTokens" time="0.00001" file="packages/agent-runtime/src/prompt/budget.test.ts" line="69" assertions="2" />
+    </testsuite>
+    <testsuite name="TRUNCATION_ORDER" file="packages/agent-runtime/src/prompt/budget.test.ts" line="79" tests="1" assertions="1" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="drops RAG first, then memory, then project, skills last" classname="TRUNCATION_ORDER" time="0.000047" file="packages/agent-runtime/src/prompt/budget.test.ts" line="80" assertions="1" />
+    </testsuite>
+    <testsuite name="fitFlexible" file="packages/agent-runtime/src/prompt/budget.test.ts" line="85" tests="13" assertions="16" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="available 80 keeps the expected items" classname="fitFlexible" time="0.000077" file="packages/agent-runtime/src/prompt/budget.test.ts" line="107" assertions="1" />
+      <testcase name="available 79 keeps the expected items" classname="fitFlexible" time="0.00004" file="packages/agent-runtime/src/prompt/budget.test.ts" line="107" assertions="1" />
+      <testcase name="available 70 keeps the expected items" classname="fitFlexible" time="0.000019" file="packages/agent-runtime/src/prompt/budget.test.ts" line="107" assertions="1" />
+      <testcase name="available 69 keeps the expected items" classname="fitFlexible" time="0.000023" file="packages/agent-runtime/src/prompt/budget.test.ts" line="107" assertions="1" />
+      <testcase name="available 50 keeps the expected items" classname="fitFlexible" time="0.000024" file="packages/agent-runtime/src/prompt/budget.test.ts" line="107" assertions="1" />
+      <testcase name="available 40 keeps the expected items" classname="fitFlexible" time="0.00002" file="packages/agent-runtime/src/prompt/budget.test.ts" line="107" assertions="1" />
+      <testcase name="available 30 keeps the expected items" classname="fitFlexible" time="0.000013" file="packages/agent-runtime/src/prompt/budget.test.ts" line="107" assertions="1" />
+      <testcase name="available 20 keeps the expected items" classname="fitFlexible" time="0.000023" file="packages/agent-runtime/src/prompt/budget.test.ts" line="107" assertions="1" />
+      <testcase name="available 10 keeps the expected items" classname="fitFlexible" time="0.000024" file="packages/agent-runtime/src/prompt/budget.test.ts" line="107" assertions="1" />
+      <testcase name="available 9 keeps the expected items" classname="fitFlexible" time="0.000028" file="packages/agent-runtime/src/prompt/budget.test.ts" line="107" assertions="1" />
+      <testcase name="available 0 keeps the expected items" classname="fitFlexible" time="0.000015" file="packages/agent-runtime/src/prompt/budget.test.ts" line="107" assertions="1" />
+      <testcase name="a large available keeps everything and does not mutate the input" classname="fitFlexible" time="0.000066" file="packages/agent-runtime/src/prompt/budget.test.ts" line="111" assertions="2" />
+      <testcase name="uses the cost of the whole layer, not per item (fixed overhead drops with the layer)" classname="fitFlexible" time="0.000148" file="packages/agent-runtime/src/prompt/budget.test.ts" line="116" assertions="3" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/agent-runtime/src/prompt/layers.test.ts" file="packages/agent-runtime/src/prompt/layers.test.ts" tests="17" assertions="29" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="layer ids" file="packages/agent-runtime/src/prompt/layers.test.ts" line="14" tests="2" assertions="4" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="nine layers in precedence order" classname="layer ids" time="0.000055" file="packages/agent-runtime/src/prompt/layers.test.ts" line="15" assertions="1" />
+      <testcase name="layers 1-4 and 9 are fixed, 5-8 flexible" classname="layer ids" time="0.000162" file="packages/agent-runtime/src/prompt/layers.test.ts" line="29" assertions="3" />
+    </testsuite>
+    <testsuite name="renderItemsLayer" file="packages/agent-runtime/src/prompt/layers.test.ts" line="42" tests="6" assertions="9" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="empty items render nothing (layer omitted)" classname="renderItemsLayer" time="0.000075" file="packages/agent-runtime/src/prompt/layers.test.ts" line="43" assertions="4" />
+      <testcase name="skills renders a numbered header and one bullet per item" classname="renderItemsLayer" time="0.000057" file="packages/agent-runtime/src/prompt/layers.test.ts" line="54" assertions="1" />
+      <testcase name="memory renders a numbered header and one bullet per item" classname="renderItemsLayer" time="0.000008" file="packages/agent-runtime/src/prompt/layers.test.ts" line="54" assertions="1" />
+      <testcase name="rag renders a numbered header and one bullet per item" classname="renderItemsLayer" time="0.000005" file="packages/agent-runtime/src/prompt/layers.test.ts" line="54" assertions="1" />
+      <testcase name="project renders a numbered header and one bullet per item" classname="renderItemsLayer" time="0.000004" file="packages/agent-runtime/src/prompt/layers.test.ts" line="54" assertions="1" />
+      <testcase name="indents continuation lines so item text cannot start a layer header" classname="renderItemsLayer" time="0.000042" file="packages/agent-runtime/src/prompt/layers.test.ts" line="58" assertions="1" />
+    </testsuite>
+    <testsuite name="renderFixedLayer" file="packages/agent-runtime/src/prompt/layers.test.ts" line="65" tests="9" assertions="16" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="constitution is copied verbatim under header 1" classname="renderFixedLayer" time="0.000033" file="packages/agent-runtime/src/prompt/layers.test.ts" line="68" assertions="1" />
+      <testcase name="identity lists name, role, traits and voice" classname="renderFixedLayer" time="0.000037" file="packages/agent-runtime/src/prompt/layers.test.ts" line="74" assertions="1" />
+      <testcase name="role policy states that tool permissions are enforced outside the prompt" classname="renderFixedLayer" time="0.000064" file="packages/agent-runtime/src/prompt/layers.test.ts" line="80" assertions="2" />
+      <testcase name="omo policy lists expectations, limits, escalation chain and output contract" classname="renderFixedLayer" time="0.000057" file="packages/agent-runtime/src/prompt/layers.test.ts" line="87" assertions="2" />
+      <testcase name="task renders directive, acceptance and constraints; empty lists say (none)" classname="renderFixedLayer" time="0.000039" file="packages/agent-runtime/src/prompt/layers.test.ts" line="94" assertions="1" />
+      <testcase name="empty traits, lists and escalation chain render deterministically" classname="renderFixedLayer" time="0.000145" file="packages/agent-runtime/src/prompt/layers.test.ts" line="100" assertions="3" />
+      <testcase name="a multi-line directive is indented under its bullet" classname="renderFixedLayer" time="0.000068" file="packages/agent-runtime/src/prompt/layers.test.ts" line="116" assertions="1" />
+      <testcase name="multi-line free-text fields are indented in identity, role and omo layers" classname="renderFixedLayer" time="0.000119" file="packages/agent-runtime/src/prompt/layers.test.ts" line="121" assertions="4" />
+      <testcase name="does not render the token budget (reserve does not depend on the budget)" classname="renderFixedLayer" time="0.00005" file="packages/agent-runtime/src/prompt/layers.test.ts" line="134" assertions="1" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/agent-runtime/src/prompt/constitution.test.ts" file="packages/agent-runtime/src/prompt/constitution.test.ts" tests="8" assertions="15" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="constitution.md" file="packages/agent-runtime/src/prompt/constitution.test.ts" line="10" tests="2" assertions="4" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="lives at packages/agent-runtime/constitution.md (absolute path)" classname="constitution.md" time="0.000054" file="packages/agent-runtime/src/prompt/constitution.test.ts" line="11" assertions="2" />
+      <testcase name="version 1 file says prompt rules are not security boundaries" classname="constitution.md" time="0.0001" file="packages/agent-runtime/src/prompt/constitution.test.ts" line="16" assertions="2" />
+    </testsuite>
+    <testsuite name="loadConstitution" file="packages/agent-runtime/src/prompt/constitution.test.ts" line="22" tests="4" assertions="6" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="default loader reads the file verbatim and tags the version" classname="loadConstitution" time="0.000183" file="packages/agent-runtime/src/prompt/constitution.test.ts" line="23" assertions="2" />
+      <testcase name="injected reader receives the constitution path" classname="loadConstitution" time="0.000115" file="packages/agent-runtime/src/prompt/constitution.test.ts" line="29" assertions="2" />
+      <testcase name="rejects an empty constitution &quot;&quot;" classname="loadConstitution" time="0.00011" file="packages/agent-runtime/src/prompt/constitution.test.ts" line="39" assertions="1" />
+      <testcase name="rejects an empty constitution &quot;  \n\t&quot;" classname="loadConstitution" time="0.000016" file="packages/agent-runtime/src/prompt/constitution.test.ts" line="39" assertions="1" />
+    </testsuite>
+    <testsuite name="constitution in the composed prompt" file="packages/agent-runtime/src/prompt/constitution.test.ts" line="44" tests="2" assertions="5" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="layer 1 carries the loaded text and version" classname="constitution in the composed prompt" time="0.000416" file="packages/agent-runtime/src/prompt/constitution.test.ts" line="45" assertions="3" />
+      <testcase name="the real constitution adds no &quot;## &quot; layer-level headers" classname="constitution in the composed prompt" time="0.000371" file="packages/agent-runtime/src/prompt/constitution.test.ts" line="52" assertions="2" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/agent-runtime/src/prompt/composer.test.ts" file="packages/agent-runtime/src/prompt/composer.test.ts" tests="12" assertions="29" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="composePrompt structure" file="packages/agent-runtime/src/prompt/composer.test.ts" line="29" tests="7" assertions="18" failures="0" skipped="0" time="0.008" hostname="ai">
+      <testcase name="text is the nine layers concatenated in precedence order" classname="composePrompt structure" time="0.000641" file="packages/agent-runtime/src/prompt/composer.test.ts" line="33" assertions="2" />
+      <testcase name="layers[] records id, version and tokens for all nine layers in order" classname="composePrompt structure" time="0.000526" file="packages/agent-runtime/src/prompt/composer.test.ts" line="51" assertions="4" />
+      <testcase name="tokens equals the sum of layer tokens and the estimate of the text" classname="composePrompt structure" time="0.000482" file="packages/agent-runtime/src/prompt/composer.test.ts" line="69" assertions="2" />
+      <testcase name="default estimator is ceil(chars/4) per layer; text estimate never exceeds tokens" classname="composePrompt structure" time="0.0005" file="packages/agent-runtime/src/prompt/composer.test.ts" line="76" assertions="4" />
+      <testcase name="reports composer version 1 and a sha256 hex hash" classname="composePrompt structure" time="0.000546" file="packages/agent-runtime/src/prompt/composer.test.ts" line="85" assertions="3" />
+      <testcase name="output is JSON-serializable and satisfies PromptSnapshotSchema" classname="composePrompt structure" time="0.007468" file="packages/agent-runtime/src/prompt/composer.test.ts" line="92" assertions="2" />
+      <testcase name="does not mutate a deeply frozen input and is deterministic" classname="composePrompt structure" time="0.001057" file="packages/agent-runtime/src/prompt/composer.test.ts" line="102" assertions="1" />
+    </testsuite>
+    <testsuite name="pluggable estimator" file="packages/agent-runtime/src/prompt/composer.test.ts" line="108" tests="2" assertions="5" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="is called with each rendered layer text and its values are used" classname="pluggable estimator" time="0.000527" file="packages/agent-runtime/src/prompt/composer.test.ts" line="109" assertions="4" />
+      <testcase name="an invalid estimator result is rejected" classname="pluggable estimator" time="0.000343" file="packages/agent-runtime/src/prompt/composer.test.ts" line="124" assertions="1" />
+    </testsuite>
+    <testsuite name="empty optional layers" file="packages/agent-runtime/src/prompt/composer.test.ts" line="131" tests="1" assertions="3" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="are omitted from the text but still recorded with version and 0 tokens" classname="empty optional layers" time="0.000572" file="packages/agent-runtime/src/prompt/composer.test.ts" line="139" assertions="3" />
+    </testsuite>
+    <testsuite name="layer precedence is structural" file="packages/agent-runtime/src/prompt/composer.test.ts" line="153" tests="2" assertions="3" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="later layers cannot add, remove or reorder layer headers" classname="layer precedence is structural" time="0.000405" file="packages/agent-runtime/src/prompt/composer.test.ts" line="163" assertions="1" />
+      <testcase name="layers 1-4 come first, byte-for-byte, and the task layer comes last" classname="layer precedence is structural" time="0.000478" file="packages/agent-runtime/src/prompt/composer.test.ts" line="168" assertions="2" />
+    </testsuite>
+  </testsuite>
+  <testsuite name="packages/agent-runtime/src/prompt/composer.budget.test.ts" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" tests="20" assertions="899" failures="0" skipped="0" time="0" hostname="ai">
+    <testsuite name="truncation order 7 -&gt; 6 -&gt; 8 -&gt; 5" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="49" tests="9" assertions="17" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="everything fits" classname="truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5" time="0.000603" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="70" assertions="2" />
+      <testcase name="one token short: rag loses its last item" classname="truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5" time="0.000359" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="70" assertions="2" />
+      <testcase name="rag is emptied before memory shrinks" classname="truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5" time="0.000255" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="70" assertions="2" />
+      <testcase name="memory shrinks after rag is empty" classname="truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5" time="0.000227" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="70" assertions="2" />
+      <testcase name="project shrinks after memory is empty" classname="truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5" time="0.000157" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="70" assertions="2" />
+      <testcase name="skills shrink last" classname="truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5" time="0.000532" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="70" assertions="2" />
+      <testcase name="budget == reserve keeps only layers 1-4 and 9" classname="truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5" time="0.000223" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="70" assertions="2" />
+      <testcase name="budget == reserve + 1 still drops every flexible layer (no layer fits in 1 token)" classname="truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5" time="0.000228" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="76" assertions="2" />
+      <testcase name="budget == reserve uses the whole budget exactly" classname="truncation order 7 -&amp;gt; 6 -&amp;gt; 8 -&amp;gt; 5" time="0.000197" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="82" assertions="1" />
+    </testsuite>
+    <testsuite name="reserve for layers 1-4 and 9" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="87" tests="6" assertions="11" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="budget below the reserve throws PromptBudgetError" classname="reserve for layers 1-4 and 9" time="0.00019" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="88" assertions="2" />
+      <testcase name="budget 0 throws PromptBudgetError" classname="reserve for layers 1-4 and 9" time="0.000149" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="94" assertions="1" />
+      <testcase name="non-integer or negative budget -1 throws PromptBudgetError" classname="reserve for layers 1-4 and 9" time="0.000128" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="99" assertions="2" />
+      <testcase name="non-integer or negative budget 1.5 throws PromptBudgetError" classname="reserve for layers 1-4 and 9" time="0.000023" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="99" assertions="2" />
+      <testcase name="non-integer or negative budget NaN throws PromptBudgetError" classname="reserve for layers 1-4 and 9" time="0.000027" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="99" assertions="2" />
+      <testcase name="non-integer or negative budget Infinity throws PromptBudgetError" classname="reserve for layers 1-4 and 9" time="0.00002" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="99" assertions="2" />
+    </testsuite>
+    <testsuite name="oversized RAG input" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="108" tests="2" assertions="16" failures="0" skipped="0" time="0" hostname="ai">
+      <testcase name="output stays within budget and only layer 7 shrinks" classname="oversized RAG input" time="0.000126" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="121" assertions="11" />
+      <testcase name="keeps the longest prefix of RAG items that fits; layers 1-4 and 9 intact" classname="oversized RAG input" time="0.000373" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="133" assertions="5" />
+    </testsuite>
+    <testsuite name="budget sweep (boundary safety)" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="149" tests="3" assertions="855" failures="0" skipped="0" time="0.027" hostname="ai">
+      <testcase name="char estimator: every budget from reserve to full fits, fixed layers intact, monotonic" classname="budget sweep (boundary safety)" time="0.022084" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="153" assertions="673" />
+      <testcase name="default estimator: every budget from reserve to full fits, fixed layers intact, monotonic" classname="budget sweep (boundary safety)" time="0.005482" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="153" assertions="181" />
+      <testcase name="truncation is deterministic" classname="budget sweep (boundary safety)" time="0.000463" file="packages/agent-runtime/src/prompt/composer.budget.test.ts" line="168" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>

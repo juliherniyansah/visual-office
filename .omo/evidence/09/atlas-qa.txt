@@ -1,0 +1,28 @@
+success events: run.started agent.status_changed agent.status_changed run.progress result.recorded run.completed agent.status_changed
+escalated payload: {"runId":"run-1","escalatedTo":"coo"}
+PASS ceo createDirective 
+PASS coo assignTask 
+PASS cto assignTask 
+PASS programming runAdapter 
+PASS game runAdapter 
+PASS iot runAdapter 
+PASS ai_development runAdapter 
+PASS ceo runAdapter denied 
+PASS programming createDirective denied 
+PASS unknown agent denied 
+PASS unknown action denied 
+PASS success status succeeded
+PASS success result.recorded 
+PASS success experience row 
+PASS success transitions composing,executing,verifying,succeeded
+PASS no run.status_changed 
+PASS fail escalated escalated
+PASS fail attempts=3 3
+PASS fail backoffs 1,2 1,2
+PASS fail run.escalated 
+PASS fail decision.requested 
+PASS fail decision row 
+PASS fail no experience 
+PASS ceo execute throws AuthorizationError 
+PASS unauthorized nothing persisted 
+QA_OK

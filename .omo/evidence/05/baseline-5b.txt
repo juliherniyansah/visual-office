@@ -1,0 +1,7 @@
+# Baseline before T5b (2026-10-09T07:09:13Z)
+$ bun test apps/api
+
+ 169 pass
+ 0 fail
+ 641 expect() calls
+Ran 169 tests across 18 files. [32.21s]

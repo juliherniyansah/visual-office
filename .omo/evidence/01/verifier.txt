@@ -1,0 +1,17 @@
+# T1 independent verifier - 2026-10-08
+VERDICT: confirmed
+1. `ls -a` root: .omo .codegraph(symlink) apps node_modules packages .gitignore biome.json bun.lock docker-compose.yml package.json tsconfig.base.json. NO .git. No stray files, no real .env.
+2. 6 workspaces read: each has package.json (@redhunter/<name>, type module, typecheck "tsc --noEmit -p ."), tsconfig.json extends ../../tsconfig.base.json (strict), src/index.ts one-line PACKAGE_NAME export. web adds DOM lib.
+3. `bun install` EXIT=0.
+4. `bun run typecheck` EXIT=0; lists api, shared, agent-runtime, hermes, adapters, web all "Exited with code 0".
+5. `bun run lint` (biome check .) "Checked 21 files ... No fixes applied." EXIT=0.
+6. `bun test --pass-with-no-tests` prints "0 test files matching" EXIT=0 (accepted).
+7. failure.txt credible: TS2322 at src/index.ts(2,7), shared exit 1, overall exit=1; after revert all 6 exit 0, exit=0. Current packages/shared/src/index.ts = 1 line, 49 bytes, exact expected content.
+8. `docker compose config -q` EXIT=0. With MONGO_HOST_PORT=27018: host_ip 127.0.0.1, published "27018", target 27017. Not run `up`.
+9. apps/api/.env.example: PORT, MONGO_URL, JWT_SECRET, OWNER_EMAIL, OWNER_PASSWORD, EVENTS_DISPATCH (placeholders only). apps/web/.env.example: NEXT_PUBLIC_API_URL. No secrets.
+10. .gitignore: node_modules/, .env, .env.*, !.env.example, .next/, dist/ - ok.
+11. grep ": any|as any|TODO|FIXME" in *.ts: no matches.
+Notes (non-blocking):
+- node_modules/@redhunter absent: no cross-workspace deps declared yet, no cross imports exist. T2+ must add "@redhunter/x": "workspace:*" in dependents for resolution.
+- biome.json vcs.useIgnoreFile=true while no .git; lint still passes (21 files), but verify .gitignore honored once git init done.
+- apps/web stub has no Next config (deferred to T14, fine).

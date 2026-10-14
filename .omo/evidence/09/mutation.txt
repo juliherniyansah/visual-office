@@ -1,0 +1,59 @@
+# T9 bounded mutation sweep (one sweep, runner /tmp/opencode/t9/mut.py, suite: bun test packages/agent-runtime)
+KILLED    m01 authorize role map: manager also createDirective rc=1 fails=2 :: authorize > coo may createDirective only when it is the role action
+KILLED    m02 authorize role map: domain gets assignTask rc=1 fails=4 :: authorize > programming may assignTask only when it is the role action
+KILLED    m03 deny-by-default: unknown agent allowed rc=1 fails=3 :: authorize > denies by default: unknown agent
+KILLED    m04 deny-by-default: any action allowed rc=1 fails=22 :: AgentRuntime guards > ceo may not run an adapter: AuthorizationError, nothing persisted
+KILLED    m05 runtime skips authorize rc=1 fails=4 :: AgentRuntime guards > ceo may not run an adapter: AuthorizationError, nothing persisted
+KILLED    m06 retry off-by-one (<) rc=1 fails=8 :: AgentRuntime retry and escalation > failing adapter retries exactly maxRetries times then escalates to the man
+KILLED    m07 retry off-by-one (+1) rc=1 fails=8 :: AgentRuntime retry and escalation > failing adapter retries exactly maxRetries times then escalates to the man
+KILLED    m08 no retry stop on success rc=1 fails=11 :: AgentRuntime success > walks queued -> composing -> executing -> verifying -> succeeded
+KILLED    m09 escalation target = last rc=1 fails=6 :: AgentRuntime retry and escalation > failing adapter retries exactly maxRetries times then escalates to the man
+KILLED    m10 escalation does not skip self rc=1 fails=1 :: AgentRuntime retry and escalation > escalation target: skips the agent itself
+KILLED    m11 escalation empty chain -> coo rc=1 fails=1 :: AgentRuntime retry and escalation > escalation target: empty chain -> human
+KILLED    m12 escalation no decision event rc=1 fails=2 :: AgentRuntime retry and escalation > failing adapter retries exactly maxRetries times then escalates to the man
+KILLED    m13 policy override RBAC skipped rc=1 fails=6 :: AgentRuntime guards > policy override by a non-manager is rejected before anything happens
+KILLED    m14 policy RBAC accepts executive rc=1 fails=1 :: resolvePolicy > override by ceo (executive) is rejected with PolicyOverrideError
+KILLED    m15 policy RBAC ignores actor kind rc=1 fails=2 :: resolvePolicy > override by human owner is rejected with PolicyOverrideError
+KILLED    m16 policy override ignored rc=1 fails=4 :: AgentRuntime guards > manager override is applied (maxRetries 0, budget)
+KILLED    m17 policy base wins over override rc=1 fails=4 :: AgentRuntime guards > manager override is applied (maxRetries 0, budget)
+KILLED    m18 permission moves run out of executing rc=1 fails=2 :: AgentRuntime permission flow > permission_request: decision row + events, run stays executing, agent waiting_p
+KILLED    m19 permission agent status working rc=1 fails=2 :: AgentRuntime permission flow > permission_request: decision row + events, run stays executing, agent waiting_p
+KILLED    m20 permission no decision row rc=1 fails=1 :: AgentRuntime permission flow > permission_request: decision row + events, run stays executing, agent waiting_p
+KILLED    m21 answerPermission no status reset rc=1 fails=1 :: AgentRuntime permission flow > permission_request: decision row + events, run stays executing, agent waiting_p
+KILLED    m22 answerPermission no pending check rc=1 fails=1 :: AgentRuntime permission flow > answerPermission for a permission that is not pending throws and keeps status
+KILLED    m23 worker spawn on any tool rc=1 fails=2 :: WorkerTracker > completion with no open worker and non-task tools are ignored
+KILLED    m24 worker spawn/despawn swapped rc=1 fails=5 :: WorkerTracker > task started spawns, task completed despawns the same worker
+KILLED    m25 worker events swapped in RunEvents rc=1 fails=1 :: AgentRuntime workers > task tool started/completed -> worker.spawned/worker.despawned
+KILLED    m26 attempt no drain despawn rc=1 fails=1 :: AgentRuntime workers > workers still open when the attempt ends are despawned
+KILLED    m27 illegal transition guard removed rc=1 fails=1 :: RunStateMachine > illegal transition throws before touching the repository or the log
+KILLED    m28 transition table: succeeded -> executing allowed rc=1 fails=5 ::  > barrel re-exports the runtime API
+KILLED    m29 transition not logged rc=1 fails=3 :: RunStateMachine > reports a legal transition to the repository (CAS) and logs it
+KILLED    m30 no experience write on success rc=1 fails=5 :: AgentRuntime success > records result, writes Hermes experience and stores run metadata
+KILLED    m31 no result.recorded rc=1 fails=3 :: AgentRuntime success > emits the lifecycle events in order
+KILLED    m32 no promptSnapshot stored rc=1 fails=2 :: AgentRuntime success > stores the composed prompt snapshot and sends its text to the adapter
+KILLED    m33 layer6 drops experience rc=1 fails=2 :: AgentRuntime success > stores the composed prompt snapshot and sends its text to the adapter
+KILLED    m34 verify fail ignored rc=1 fails=1 :: AgentRuntime retry and escalation > verify failure escalates from verifying without retry (retry on verify is 
+KILLED    m35 thrown adapter not retried rc=1 fails=1 :: AgentRuntime retry and escalation > a throwing adapter is retried the same way
+KILLED    m36 pause not cancelling adapter rc=1 fails=1 :: AgentRuntime pause > pause while waiting for permission: paused, adapter cancelled, no retry, agent blocked
+TOTAL killed=36 survived=0
+
+# Restore receipt
+sha256sum -c pre-mut.sha:
+OK files: 16
+*.bak left: 0
+
+# Round 2 (fix r2) extra mutants, runner /tmp/opencode/t9/mut-r2.py
+KILLED    r2-01 no pendingPermission clear on attempt end rc=1 fails=3 :: AgentRuntime stale permission after the attempt failed > stale answer during the retry throws and never reaches the adap
+KILLED    r2-02 no status reset at retry start rc=1 fails=3 :: AgentRuntime stale permission after the attempt failed > retry attempt resets the agent from waiting_permission to worki
+KILLED    r2-03 M08 permission round-trips through paused rc=1 fails=1 :: AgentRuntime permission flow > permission_request: decision row + events, run stays executing, agent waiting_permission
+TOTAL killed=3 survived=0
+Restore: packages/agent-runtime/src/runtime.ts: OK
+*.bak left: 0
+Frozen T6/T7/T8 sha: 16/16 OK
+
+# Round 3 (fix r3): oracle R2 survivors, runner /tmp/opencode/t9/mut-r3.py
+r3-01 M14 killed :: mutant rc=1 fails=1; original rc=0
+r3-02 M5 killed :: mutant rc=1 fails=1; original rc=0
+r3-03 M6 killed :: mutant rc=1 fails=1; original rc=0
+restore sha OK 61e9e1237b6e85ef
+*.bak left: 0

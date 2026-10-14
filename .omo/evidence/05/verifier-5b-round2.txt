@@ -1,0 +1,68 @@
+# T5b VERIFIER ROUND 2 (2026-10-09)
+Round 1: rejected on D1 only. No test proved toKnowledgeDoc re-validates stored rows (mutant K1 survived).
+
+## Changed-file audit
+$ /usr/bin/find apps packages package.json -newer .omo/evidence/05/verifier-5b.txt -type f -not -path '*/node_modules/*'
+apps/api/src/services/knowledge.test.ts
+apps/api/src/routes/knowledge.test.ts
+-> tests only. mappers.ts:68 still `return KnowledgeDocSchema.parse({ ...record, id: record._id });`. packages/shared, test-support and package.json untouched; no new deps.
+Notepads: decisions.md:67, issues.md:67, learnings.md:70 have `Task: 5b (fix)` entries.
+Changed test files scanned for any/@ts-ignore/console.log -> none.
+
+## Gates (fresh)
+$ rtk bun test apps/api      -> 217 pass / 0 fail / 936 expect() / 24 files [36.20s]
+$ rtk bun run typecheck      -> 6/6 "Exited with code 0"
+$ rtk bunx biome check .     -> Checked 106 files in 42ms. No fixes applied.
+$ mongosh leftover check     -> []
+
+## New tests reviewed
+- services/knowledge.test.ts:56-65 inserts {_id:'bad', title:'', text:'x', tags:'nope'} with the raw driver (bypasses mongoose casting) and expects listKnowledgeDocs to reject. Non-vacuous, but the row is corrupt in title AND tags at once (see D1).
+- routes/knowledge.test.ts:210-230: same style of corrupt row; asserts 500, the exact generic body, five leak strings absent, and console.error called. Good.
+- routes/knowledge.test.ts:233-242: 8000 x 'é' (~16.0KB) -> 201, 8300 x 'é' (~16.6KB) -> 413 + generic body + countDocuments 1. Good, pins N-1.
+
+## Mutants (fresh copy /tmp/opencode/verify5b-r2-1, tests: services/knowledge.test.ts + routes/knowledge.test.ts)
+control 18/0 ; restored-control 18/0
+ K1  hand-picked fields, no schema parse                 16/2 KILLED   (round-1 D1 target)
+ K9  limit 16kb -> 1mb                                   17/1 KILLED
+ K9b limit 16kb -> 15kb                                  17/1 KILLED
+ K9c limit 16kb -> 17kb                                  17/1 KILLED
+ K9d limit 16kb -> 8kb                                   16/2 KILLED
+ R1  schema parse WITHOUT tags (omit tags, raw tags passed through)  18/0 SURVIVED
+ R2  safeParse, raw record on failure                    16/2 KILLED
+ R3  500 body leaks err.message                          17/1 KILLED
+ R4  corrupt rows silently filtered out                  16/2 KILLED
+ R5  KnowledgeDocSchema.partial().parse (missing fields allowed)  18/0 SURVIVED
+ R6  500 mapped to 400                                   17/1 KILLED
+R1 proof NOT equivalent: throwaway test in the copy with row {title:'ok', text:'x', tags:'nope'}.
+   Real code: listKnowledgeDocs THREW ZodError. With R1: returned [{"id":"bad","title":"ok","text":"x","tags":"nope"}], so a non-array tags reaches clients.
+   Live (real code, port 4932): the same tags-only corrupt row -> 500 generic. The behavior is correct but unpinned.
+R5 proof NOT equivalent: partial() still throws for title:'' and tags:'nope' (both test rows), so it survives. It would accept a row with no title or text field at all (shape not guaranteed).
+
+## Live re-probe (PORT 4932, DB redhunter_test_verify5b_r2_1791538272, EVENTS_DISPATCH=off, env inline, no .env)
+viewer   POST /projects 403  POST /knowledge 403  GET /office/state 200
+operator POST /projects 201  POST /knowledge 201  GET /office/state 200
+owner    POST /projects 201  POST /knowledge 201  GET /office/state 200
+wrongsig 401 401 401 ; no token GET /office/state 401
+corrupt knowledge row (title '', tags 'nope') -> 500 {"success":false,"error":"Terjadi kesalahan internal"}
+tags-only corrupt row (title 'ok', tags 'nope') -> 500 same generic body
+
+## Defects (blocking)
+D1 (residual). The knowledge re-validation test only proves SOME validation runs. Both corrupt-row fixtures make the title invalid, so any mapper that still validates title (R1: omit tags; R5: partial()) passes all tests while leaking non-array tags or accepting rows with missing fields. This is the same untested-guard class as the round-1 D1: tags is exactly the field the fixture tries to corrupt, yet it is not what triggers the failure.
+   Repro: in a copy, change apps/api/src/db/mappers.ts:68 to
+     return { ...KnowledgeDocSchema.omit({ tags: true }).parse({ ...record, id: record._id }), tags: record.tags } as KnowledgeDoc;
+   then `bun test apps/api/src/services/knowledge.test.ts apps/api/src/routes/knowledge.test.ts` -> 18 pass 0 fail.
+   Smallest fix (tests only): in services/knowledge.test.ts, make the corrupt-row test iterate one corruption per row (clear the collection between cases), each expecting rejects.toThrow:
+     {_id:'bad-tags', title:'ok', text:'x', tags:'nope'}   -> kills R1
+     {_id:'no-title', text:'x', tags:[]}                   -> kills R5
+   Re-run R1/R5 -> KILLED, then K1 again.
+
+## Notes (non-blocking)
+- services/projects.test.ts:55 has the same bundled-corruption shape (name '', defaultAdapter 'cursor' and relative repoPath at once). Consider per-field rows there too; not raised as a defect because round 1 killed K2 and the requested fix scope is knowledge.
+- Round-1 N-1 (16kb limit) is now pinned and resolved. N-2, N-3 and N-4 are unchanged and accepted.
+
+## Cleanup receipt
+- Server bun pid 1272112 (cwd visual-office/apps/api) TERM; tmux v5br2 killed; port 4932 free. whatsapp-monitor and pinjaman processes untouched.
+- DB redhunter_test_verify5b_r2_1791538272 dropped (ok 1); leftover check -> []
+- No .env (root, apps/api). Throwaway test files and mappers.ts mutations in the copy were removed or restored (mappers.ts restore verified by grep count 1). Scratch left: /tmp/opencode/verify5b-r2-1, verify5b-r2-mut.py, verify5b-r2-mappers.orig.
+
+VERDICT: rejected

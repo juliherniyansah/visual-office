@@ -1,0 +1,140 @@
+bun test v1.3.14 (0d9b296a)
+
+packages/shared/src/schemas.test.ts:
+13 |             throw new core.$ZodAsyncError();
+14 |         }
+15 |         if (result.issues.length) {
+16 |             const e = new (_params?.Err ?? _Err)(result.issues.map((iss) => util.finalizeIssue(iss, ctx, core.config())));
+17 |             util.captureStackTrace(e, _params?.callee ?? fn);
+18 |             throw e;
+                       ^
+ZodError: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "createdAt"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+]
+      at fn (/home/programer/work/visual-office/node_modules/.bun/zod@4.6.5/node_modules/zod/v4/core/parse.js:18:19)
+      at <anonymous> (/home/programer/work/visual-office/packages/shared/src/schemas.test.ts:206:48)
+(fail) collection schemas > decisions sample round-trips [0.62ms]
+
+packages/shared/src/events.test.ts:
+13 |             throw new core.$ZodAsyncError();
+14 |         }
+15 |         if (result.issues.length) {
+16 |             const e = new (_params?.Err ?? _Err)(result.issues.map((iss) => util.finalizeIssue(iss, ctx, core.config())));
+17 |             util.captureStackTrace(e, _params?.callee ?? fn);
+18 |             throw e;
+                       ^
+ZodError: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "payload",
+      "decision",
+      "createdAt"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+]
+      at fn (/home/programer/work/visual-office/node_modules/.bun/zod@4.6.5/node_modules/zod/v4/core/parse.js:18:19)
+      at <anonymous> (/home/programer/work/visual-office/packages/shared/src/events.test.ts:146:41)
+(fail) DomainEvent catalog > decision.requested round-trips [0.40ms]
+
+packages/agent-runtime/src/runtime.test.ts:
+160 |     expect(outcome.run.status).toBe('escalated');
+161 |     expect<unknown>(h.runs.transitions).toEqual(
+162 |       path('queued', 'composing', 'executing', 'escalated'),
+163 |     );
+164 |     expect(h.sink.payloadsOf('run.escalated')).toEqual([{ runId: 'run-1', escalatedTo: 'coo' }]);
+165 |     expect(h.decisions.rows).toEqual([
+                                   ^
+error: expect(received).toEqual(expected)
+
+@@ -2,3 +2,3 @@
+    {
++     "createdAt": "2026-10-10T12:00:00.000Z",
+      "id": "id-1",
+
+- Expected  - 0
++ Received  + 1
+
+      at <anonymous> (/home/programer/work/visual-office/packages/agent-runtime/src/runtime.test.ts:165:30)
+(fail) AgentRuntime retry and escalation > failing adapter retries exactly maxRetries times then escalates to the manager [2.04ms]
+
+packages/agent-runtime/src/runtime.interactive.test.ts:
+50 |     const h = createHarness(adapter);
+51 |     const pending = h.runtime.execute(makeRequest());
+52 |     await h.sink.waitFor('decision.requested');
+53 | 
+54 |     expect(h.runs.get('run-1')?.status).toBe('executing');
+55 |     expect(h.decisions.rows).toEqual([
+                                  ^
+error: expect(received).toEqual(expected)
+
+@@ -2,3 +2,3 @@
+    {
++     "createdAt": "2026-10-10T12:00:00.000Z",
+      "id": "id-1",
+
+- Expected  - 0
++ Received  + 1
+
+      at <anonymous> (/home/programer/work/visual-office/packages/agent-runtime/src/runtime.interactive.test.ts:55:30)
+(fail) AgentRuntime permission flow > permission_request: decision row + events, run stays executing, agent waiting_permission [9.18ms]
+
+apps/api/src/adapters/manager.test.ts:
+Adapter opencode started (pid 12345)
+Adapter opencode started (pid 10001)
+Adapter opencode crashed (exit=1, signal=null), restarting...
+Adapter opencode started (pid 10002)
+Adapter opencode crashed (exit=1, signal=null), restarting...
+Adapter opencode started (pid 10003)
+Adapter opencode crashed (exit=1, signal=null), restarting...
+Adapter opencode started (pid 10004)
+Adapter opencode crashed (exit=1, signal=null), restarting...
+Adapter opencode started (pid 10005)
+Adapter opencode crashed (exit=1, signal=null), restarting...
+Adapter opencode started (pid 10006)
+Adapter opencode started (pid 6603)
+Adapter claude started (pid 3825)
+Adapter codex started (pid 1214)
+Adapter opencode started (pid 10001)
+Failed to start adapter opencode: Spawn failed
+Failed to start adapter opencode: Spawn failed
+Adapter opencode started (pid 10003)
+
+apps/api/src/realtime/rooms.test.ts:
+13 |             throw new core.$ZodAsyncError();
+14 |         }
+15 |         if (result.issues.length) {
+16 |             const e = new (_params?.Err ?? _Err)(result.issues.map((iss) => util.finalizeIssue(iss, ctx, core.config())));
+17 |             util.captureStackTrace(e, _params?.callee ?? fn);
+18 |             throw e;
+                       ^
+ZodError: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "payload",
+      "decision",
+      "createdAt"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+]
+      at fn (/home/programer/work/visual-office/node_modules/.bun/zod@4.6.5/node_modules/zod/v4/core/parse.js:18:19)
+      at <anonymous> (/home/programer/work/visual-office/apps/api/src/realtime/rooms.test.ts:52:23)
+(fail) roomsForEvent > runId nested in result/decision payloads routes to run:<id> [0.97ms]
+
+ 1083 pass
+ 1 skip
+ 5 fail
+ 1 snapshots, 3649 expect() calls
+Ran 1089 tests across 87 files. [61.30s]

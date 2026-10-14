@@ -1,0 +1,11 @@
+# T5b fix 2 typecheck, FINAL (2026-10-09T09:52:05Z)
+# first attempt failed on test-only typing (raw-row casts; bun test does not type-check), fixed in the 3 test files, re-run below
+$ bun run typecheck
+$ bun run --filter '*' typecheck
+@redhunter/hermes typecheck: Exited with code 0
+@redhunter/adapters typecheck: Exited with code 0
+@redhunter/agent-runtime typecheck: Exited with code 0
+@redhunter/web typecheck: Exited with code 0
+@redhunter/shared typecheck: Exited with code 0
+@redhunter/api typecheck: Exited with code 0
+exit=0

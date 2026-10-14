@@ -1,0 +1,6 @@
+health: {"v":"9.9.9-fixture","expected":"9.9.9-fixture"}
+dead_start: {"threw":null,"events":[{"type":"failed","error":"opencode session.create failed: Unable to connect. Is the computer able to access the url?"}]}
+dead_health: "THROWS Error: opencode healthcheck failed: Unable to connect. Is the computer able to access the url?"
+perm_allow: {"types":["started","permission_request","text","completed"],"last":{"type":"completed","finalText":"ok"},"replyBody":{"response":"once"},"replyPath":"/session/ses_fixture/permissions/perm_1","dupMsg":"Error: Run run-1 is already active","unknownMsg":"Error: No pending permission nope for run run-1"}
+perm_deny: {"types":["started","permission_request","failed"],"last":{"type":"failed","error":"Permission perm_1 denied"},"replyBody":{"response":"reject"},"replyPath":"/session/ses_fixture/permissions/perm_1","dupMsg":"Error: Run run-1 is already active","unknownMsg":"Error: No pending permission nope for run run-1"}
+cancel: {"types":["started","permission_request"],"aborted":true}

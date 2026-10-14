@@ -1,0 +1,17 @@
+apps/assets/scripts/generate-assets.ts:228:  const bufferViews: any[] = [];
+apps/assets/scripts/generate-assets.ts:229:  const accessors: any[] = [];
+apps/assets/scripts/generate-assets.ts:230:  const meshes: any[] = [];
+apps/assets/scripts/generate-assets.ts:231:  const nodes: any[] = [];
+apps/assets/scripts/generate-assets.ts:232:  const materials: any[] = [];
+apps/assets/scripts/generate-assets.ts:356:  const bufferViews: any[] = [];
+apps/assets/scripts/generate-assets.ts:357:  const accessors: any[] = [];
+apps/assets/scripts/generate-assets.ts:358:  const meshes: any[] = [];
+apps/assets/scripts/generate-assets.ts:359:  const materials: any[] = [];
+apps/assets/scripts/generate-assets.ts:360:  const nodeEntries: any[] = [];
+apps/assets/scripts/generate-assets.ts:442:  const animBufferViews: any[] = [];
+apps/assets/scripts/generate-assets.ts:443:  const animAccessors: any[] = [];
+apps/assets/scripts/generate-assets.ts:453:    const acc: any = { bufferView: bvIdx, componentType: 5126, count: data.length / (type === 'VEC3' ? 3 : type === 'VEC4' ? 4 : 1), type };
+apps/assets/scripts/generate-assets.ts:460:  function buildAnimations(nodes: any[]): any[] {
+apps/assets/scripts/generate-assets.ts:461:    const clips: any[] = [];
+apps/api/src/routes/decisions.test.ts:30:    } as any,
+apps/api/src/realtime/gateway.ts:46:  // Hook for todo 15 (run must exist / RBAC). Default: any authenticated viewer+ may subscribe.

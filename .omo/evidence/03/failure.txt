@@ -1,0 +1,84 @@
+# RED run (before implementation) 2026-10-09T01:22:59+00:00
+# cmd: bun test apps/api
+bun test v1.3.14 (0d9b296a)
+
+apps/api/src/server.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './app' from '/home/programer/work/visual-office/apps/api/src/server.test.ts'
+-------------------------------
+
+
+apps/api/src/app.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './app' from '/home/programer/work/visual-office/apps/api/src/app.test.ts'
+-------------------------------
+
+
+apps/api/src/config/env.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './env' from '/home/programer/work/visual-office/apps/api/src/config/env.test.ts'
+-------------------------------
+
+
+apps/api/src/auth/token.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './token' from '/home/programer/work/visual-office/apps/api/src/auth/token.test.ts'
+-------------------------------
+
+
+apps/api/src/auth/password.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './password' from '/home/programer/work/visual-office/apps/api/src/auth/password.test.ts'
+-------------------------------
+
+
+apps/api/src/auth/middleware.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './middleware' from '/home/programer/work/visual-office/apps/api/src/auth/middleware.test.ts'
+-------------------------------
+
+
+apps/api/src/seed/seed.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module '../auth/password' from '/home/programer/work/visual-office/apps/api/src/seed/seed.test.ts'
+-------------------------------
+
+
+ 0 pass
+ 7 fail
+ 7 errors
+Ran 7 tests across 7 files. [416.00ms]
+EXIT=1
+
+# ---------------------------------------------------------------
+# Failure-path assertions after GREEN (2026-10-09T01:36:37+00:00)
+# cmd: bun test apps/api -t "401|403|reject|wrong|tampered|expired|alg=none|malformed|huge|non-string|idempotent"
+bun test v1.3.14 (0d9b296a)
+
+ 34 pass
+ 32 filtered out
+ 0 fail
+ 82 expect() calls
+Ran 34 tests across 7 files. [4.15s]
+EXIT=0
+
+# Mutation check (temporary, reverted): disabled hasRole() check in requireRole and split unknown-user/wrong-password responses in /auth/login
+(fail) POST /api/v1/auth/login > wrong password and unknown email both get 401 with the identical body
+(fail) RBAC with real login tokens > viewer POST -> 403 from requireRole(operator)
+(fail) requireRole(operator) > 403 for a viewer
+(fail) requireRole(operator) > requireRole(owner) rejects operator with 403
+ 62 pass / 4 fail -> code restored -> 66 pass / 0 fail

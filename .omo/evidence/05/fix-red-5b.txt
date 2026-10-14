@@ -1,0 +1,100 @@
+# T5b fix (D1) RED proof (2026-10-09T09:09:24Z)
+# K1 = toKnowledgeDoc returns { id, title, text, tags } as KnowledgeDoc instead of KnowledgeDocSchema.parse(...)
+
+## Part A: K1 SURVIVES against the PRE-FIX tests (copy /tmp/opencode/mut5b-run3 = 5b code+tests before this fix; its mapper is byte-identical to the repo)
+$ bun test apps/api/src/services/knowledge.test.ts apps/api/src/routes/knowledge.test.ts   (with K1 applied, then restored)
+mapper identical to repo
+ 15 pass 0 fail 
+restored
+-> 15 pass 0 fail: K1 SURVIVED (oracle D1 reproduced)
+
+## Part B: new tests vs K1 on a fresh copy of the CURRENT repo (/tmp/opencode/fix5b-mut), script /tmp/opencode/k1-proof-5b.sh
+## control (real code) on copy
+ 18 pass 0 fail 
+## apply K1: pattern count before = 1
+after: original line count = 0, mutant line count = 1
+## K1 run (junit)
+ 16 pass 2 fail 
+## failure reasons under K1
+Expected promise that rejects
+Received promise that resolved: Promise { <resolved> }
+(fail) listKnowledgeDocs > re-validates stored rows: a corrupt row throws instead of leaking [15.60ms]
+Expected: 500
+Received: 200
+(fail) GET /api/v1/knowledge > corrupt stored row -> 500 generic body, row contents not leaked [23.34ms]
+## all testcases under K1
+  PASS apps/api/src/services/knowledge.test.ts :: createKnowledgeDoc > persists into knowledge_docs with uuid id and storage-only createdAt, emits nothing
+  PASS apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > orders by createdAt, then _id for equal timestamps
+  FAIL apps/api/src/services/knowledge.test.ts :: listKnowledgeDocs > re-validates stored rows: a corrupt row throws instead of leaking
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > operator ingests a doc (201): title trimmed, text kept verbatim, no event
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > owner may post; tags default to []
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > forged server-owned fields are ignored (id, _id, createdBy, createdAt, eventId, status)
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > viewer -> 403, nothing stored
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > no token, expired token and alg=none token -> 401, nothing stored
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > 400 for invalid bodies and operator injection
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > title bound: 200 chars -> 201, 201 chars -> 400
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > text bound: 12000 chars -> 201, 12001 chars -> 400
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > tags bounds: 32 tags -> 201, 33 -> 400; 64-char tag -> 201, 65 -> 400
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > 400 for malformed JSON, 413 for an oversized body
+  PASS apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > viewer, operator and owner list docs in creation order without storage fields
+  PASS apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > query keys, including operator injection, are ignored (no filter, no 500)
+  PASS apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > 401 without token; other methods and :id paths -> 404
+  FAIL apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > corrupt stored row -> 500 generic body, row contents not leaked
+  PASS apps/api/src/routes/knowledge.test.ts :: 16kb JSON body limit (bytes, not chars) > ~16.0 KB body -> 201, ~16.6 KB body -> 413
+## restore and re-run
+ 18 pass 0 fail 
+-> K1 KILLED by 2 tests; failure reasons are the right ones (service: promise resolved instead of rejecting; route: 200 instead of 500). Real code and restored copy: 18 pass 0 fail.
+
+## Part C: full 5b mutation runner re-run with K1 + K1b added (copy /tmp/opencode/fix5b-run)
+$ python3 /tmp/opencode/run-mutants-5b.py /tmp/opencode/fix5b-run
+control: 62 pass 0 fail
+A1 POST /projects operator->viewer: 13 pass 1 fail -> KILLED
+A2 POST /knowledge operator->viewer: 14 pass 1 fail -> KILLED
+A3 GET /projects viewer->operator: 12 pass 2 fail -> KILLED
+A4 GET /knowledge viewer->operator: 12 pass 3 fail -> KILLED
+A5 GET /office/state viewer->operator: 2 pass 4 fail -> KILLED
+A6 GET /office/state without requireAuth: 5 pass 1 fail -> KILLED
+B1 project name max 120->121: 13 pass 1 fail -> KILLED
+B2 repoPath max 1024->1025: 13 pass 1 fail -> KILLED
+B3 knowledge title max 200->201: 14 pass 1 fail -> KILLED
+B4 knowledge text max 12000->12001: 14 pass 1 fail -> KILLED
+B5 knowledge tags count 32->33: 14 pass 1 fail -> KILLED
+B6 knowledge tag length 64->65: 14 pass 1 fail -> KILLED
+B7 project name min(1) removed: 13 pass 1 fail -> KILLED
+B8 knowledge whitespace-only text allowed: 14 pass 1 fail -> KILLED
+V1 project name not trimmed: 12 pass 2 fail -> KILLED
+V2 knowledge title not trimmed: 13 pass 2 fail -> KILLED
+V3 knowledge text trimmed (must stay verbatim): 14 pass 1 fail -> KILLED
+V4 defaultAdapter default opencode->codex: 13 pass 1 fail -> KILLED
+V5 knowledge tags default removed: 13 pass 2 fail -> KILLED
+P1 path: allow "..": 13 pass 1 fail -> KILLED
+P2 path: allow ".": 13 pass 1 fail -> KILLED
+P3 path: allow empty segment: 13 pass 1 fail -> KILLED
+P4 path: allow NUL: 13 pass 1 fail -> KILLED
+P5 path: allow relative: 13 pass 1 fail -> KILLED
+P6 path: trailing-slash slice removed: 13 pass 1 fail -> KILLED
+F1 project forged fields spread last (route raw body + service spread): 13 pass 1 fail -> KILLED
+F2 knowledge forged fields spread last: 14 pass 1 fail -> KILLED
+O1 projects sort createdAt desc: 15 pass 2 fail -> KILLED
+O2 projects sort without _id tiebreak: 2 pass 1 fail -> KILLED
+O3 knowledge sort createdAt desc: 16 pass 2 fail -> KILLED
+O4 knowledge sort _id desc tiebreak: 2 pass 1 fail -> KILLED
+S1 office initial status idle->working: 12 pass 1 fail -> KILLED
+S2 office initial pose sitting->standing: 6 pass 1 fail -> KILLED
+S3 office initial updatedAt not deterministic: 11 pass 2 fail -> KILLED
+S4 office initial version 0->1: 9 pass 4 fail -> KILLED
+S5 office freeze shallow only: 6 pass 1 fail -> KILLED
+S6 office: any doc instead of the singleton id: 6 pass 1 fail -> KILLED
+S7 office: stored singleton ignored: 8 pass 5 fail -> KILLED
+S8 office: stored doc not re-validated: 10 pass 3 fail -> KILLED
+S9 project rows not re-validated: 12 pass 5 fail -> KILLED
+S10 knowledge rows not re-validated (createdAt/_id leak): 11 pass 4 fail -> KILLED
+K1 knowledge rows picked field-by-field, no re-validation (oracle D1): 16 pass 2 fail -> KILLED
+K1b project rows picked field-by-field, no re-validation: 16 pass 1 fail -> KILLED
+N1 GET /tasks repeated status coerced to first value: 13 pass 1 fail -> KILLED
+E1 office model strict default -> strict:false (EQUIVALENT: lean reads skip schema): 13 pass 0 fail -> SURVIVED
+S11 mapper passes a string updatedAt through: 6 pass 1 fail -> KILLED
+S12 office: drones forced empty on read: 5 pass 1 fail -> KILLED
+restored-control: 62 pass 0 fail
+summary: 46 killed, 1 survived, 47 mutants
+# only survivor: E1 (documented equivalent in mutation-5b.txt; lean reads ignore the Mongoose strict option)

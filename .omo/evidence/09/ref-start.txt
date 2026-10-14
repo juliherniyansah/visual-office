@@ -1,0 +1,5 @@
+2026-10-10T16:29:06Z
+c8486a3bfac4a7f1  packages/agent-runtime/src/prompt/budget.ts
+bf926606e379e504  packages/agent-runtime/src/prompt/composer.ts
+9ddd2d283480b835  packages/agent-runtime/src/prompt/layers.ts
+21deac35bda4832f  packages/agent-runtime/src/prompt/constitution.ts

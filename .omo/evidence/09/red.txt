@@ -1,0 +1,101 @@
+bun test v1.3.14 (0d9b296a)
+
+packages/agent-runtime/src/index.runtime.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+SyntaxError: Export named 'AuthorizationError' not found in module '/home/programer/work/visual-office/packages/agent-runtime/src/index.ts'.
+-------------------------------
+
+
+packages/agent-runtime/src/state-machine.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './state-machine' from '/home/programer/work/visual-office/packages/agent-runtime/src/state-machine.test.ts'
+-------------------------------
+
+
+packages/agent-runtime/src/runtime.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './authorize' from '/home/programer/work/visual-office/packages/agent-runtime/src/runtime.test.ts'
+-------------------------------
+
+
+packages/agent-runtime/src/workers.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './workers' from '/home/programer/work/visual-office/packages/agent-runtime/src/workers.test.ts'
+-------------------------------
+
+
+packages/agent-runtime/src/runtime.integration.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './authorize' from '/home/programer/work/visual-office/packages/agent-runtime/src/runtime.integration.test.ts'
+-------------------------------
+
+
+packages/agent-runtime/src/policy.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './policy' from '/home/programer/work/visual-office/packages/agent-runtime/src/policy.test.ts'
+-------------------------------
+
+
+packages/agent-runtime/src/runtime.interactive.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './runtime' from '/home/programer/work/visual-office/packages/agent-runtime/src/runtime.interactive.test.ts'
+-------------------------------
+
+
+packages/agent-runtime/src/authorize.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './authorize' from '/home/programer/work/visual-office/packages/agent-runtime/src/authorize.test.ts'
+-------------------------------
+
+
+packages/agent-runtime/src/prompt/from-hermes.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './from-hermes' from '/home/programer/work/visual-office/packages/agent-runtime/src/prompt/from-hermes.test.ts'
+-------------------------------
+
+
+ 221 pass
+ 9 fail
+ 9 errors
+ 1 snapshots, 1251 expect() calls
+Ran 230 tests across 22 files. [726.00ms]
+
+=== bun run typecheck (RED for type-only EventSink contract) ===
+@redhunter/shared typecheck: src/event-sink.test.ts(4,8): error TS2724: '"./index"' has no exported member named 'DomainEventInput'. Did you mean 'DomainEvent'?
+@redhunter/shared typecheck: src/event-sink.test.ts(5,8): error TS2724: '"./index"' has no exported member named 'DomainEventInputOf'. Did you mean 'DomainEventOf'?
+@redhunter/shared typecheck: src/event-sink.test.ts(7,8): error TS2305: Module '"./index"' has no exported member 'EventSink'.
+@redhunter/shared typecheck: src/event-sink.test.ts(44,20): error TS7006: Parameter 'input' implicitly has an 'any' type.
+@redhunter/agent-runtime typecheck: src/authorize.test.ts(9,8): error TS2307: Cannot find module './authorize' or its corresponding type declarations.
+@redhunter/agent-runtime typecheck: src/authorize.test.ts(32,63): error TS7006: Parameter 'action' implicitly has an 'any' type.
+@redhunter/agent-runtime typecheck: src/index.runtime.test.ts(3,3): error TS2305: Module '"./index"' has no exported member 'AGENT_ACTIONS'.
+@redhunter/agent-runtime typecheck: src/index.runtime.test.ts(4,3): error TS2305: Module '"./index"' has no exported member 'AgentRuntime'.
+@redhunter/agent-runtime typecheck: src/index.runtime.test.ts(5,3): error TS2305: Module '"./index"' has no exported member 'AuthorizationError'.
+@redhunter/agent-runtime typecheck: src/index.runtime.test.ts(6,3): error TS2305: Module '"./index"' has no exported member 'authorize'.
+@redhunter/agent-runtime typecheck: src/index.runtime.test.ts(7,3): error TS2305: Module '"./index"' has no exported member 'HermesPromptSource'.
+@redhunter/agent-runtime typecheck: src/index.runtime.test.ts(8,3): error TS2305: Module '"./index"' has no exported member 'InvalidRunTransitionError'.
+@redhunter/agent-runtime typecheck: src/index.runtime.test.ts(9,3): error TS2305: Module '"./index"' has no exported member 'PolicyOverrideError'.
+@redhunter/agent-runtime typecheck: src/index.runtime.test.ts(10,3): error TS2305: Module '"./index"' has no exported member 'promptInputFromHermes'.
+@redhunter/agent-runtime typecheck: src/index.runtime.test.ts(11,3): error TS2305: Module '"./index"' has no exported member 'RUN_TRANSITIONS'.
+@redhunter/shared typecheck: src/event-sink.test.ts(4,8): error TS2724: '"./index"' has no exported member named 'DomainEventInput'. Did you mean 'DomainEvent'?
+@redhunter/shared typecheck: src/event-sink.test.ts(5,8): error TS2724: '"./index"' has no exported member named 'DomainEventInputOf'. Did you mean 'DomainEventOf'?
+@redhunter/shared typecheck: src/event-sink.test.ts(7,8): error TS2305: Module '"./index"' has no exported member 'EventSink'.
+@redhunter/shared typecheck: src/event-sink.test.ts(44,20): error TS7006: Parameter 'input' implicitly has an 'any' type.
+@redhunter/shared typecheck: Exited with code 1

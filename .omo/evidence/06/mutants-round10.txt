@@ -1,0 +1,125 @@
+# Mutation proof round 10 (fix round 9, oracle R9 25 real gaps) - 2026-10-10T10:41:12+00:00
+Runner: /tmp/opencode/fix3-hermes/mut10.py (in-place + .bak, finally restore, pattern count==1, full bun test per mutant, sha256 compare). Mutant ids per oracle-verify-round9.md; seed trait/voice mutants generated from the current seed JSON (trait -> trait+'x', voice -> 'X'+voice).
+
+## BEFORE new assertions (failing-first proof)
+CONTROL original: PASS (175 pass / 0 fail)
+M215 | src/knowledge.ts:103 | score += (idf.get(term) -> score = (idf.get(term) | SURVIVED (175 pass / 0 fail)
+M223 | src/knowledge.ts:117 | .find({}) -> .find({ tags: { $ne: [] } }) | SURVIVED (175 pass / 0 fail)
+M002 | src/store.ts:28 | activeVersion: z.number().int().positive(), -> activeVersion: z.number().positive(), | SURVIVED (175 pass / 0 fail)
+M018 | src/store.ts:55 | return HermesProfileSchema.parse({ ...fields, id:  -> return HermesProfileSchema.parse({ id: _id, ...fie | SURVIVED (175 pass / 0 fail)
+M326 | seed/ceo.json:5 | "decisive" -> "decisivex" | SURVIVED (175 pass / 0 fail)
+M327 | seed/ceo.json:5 | "concise" -> "concisex" | SURVIVED (175 pass / 0 fail)
+M328 | seed/coo.json:5 | "pragmatic" -> "pragmaticx" | SURVIVED (175 pass / 0 fail)
+M329 | seed/coo.json:5 | "reliable" -> "reliablex" | SURVIVED (175 pass / 0 fail)
+M330 | seed/cto.json:5 | "rigorous" -> "rigorousx" | SURVIVED (175 pass / 0 fail)
+M331 | seed/cto.json:5 | "pragmatic" -> "pragmaticx" | SURVIVED (175 pass / 0 fail)
+M332 | seed/programming.json:5 | "test-first" -> "test-firstx" | SURVIVED (175 pass / 0 fail)
+M333 | seed/programming.json:5 | "terse" -> "tersex" | SURVIVED (175 pass / 0 fail)
+M334 | seed/game.json:5 | "visual" -> "visualx" | SURVIVED (175 pass / 0 fail)
+M335 | seed/game.json:5 | "iterative" -> "iterativex" | SURVIVED (175 pass / 0 fail)
+M336 | seed/iot.json:5 | "hardware-aware" -> "hardware-awarex" | SURVIVED (175 pass / 0 fail)
+M337 | seed/iot.json:5 | "safety-minded" -> "safety-mindedx" | SURVIVED (175 pass / 0 fail)
+M338 | seed/ai_development.json:5 | "empirical" -> "empiricalx" | SURVIVED (175 pass / 0 fail)
+M339 | seed/ai_development.json:5 | "measured" -> "measuredx" | SURVIVED (175 pass / 0 fail)
+M289 | seed/ceo.json:6 | "voiceGuidelines": "Speak in outcomes and prioriti -> "voiceGuidelines": "XSpeak in outcomes and priorit | SURVIVED (175 pass / 0 fail)
+M295 | seed/coo.json:6 | "voiceGuidelines": "Route work clearly: who, what, -> "voiceGuidelines": "XRoute work clearly: who, what | SURVIVED (175 pass / 0 fail)
+M301 | seed/cto.json:6 | "voiceGuidelines": "Explain technical trade-offs b -> "voiceGuidelines": "XExplain technical trade-offs  | SURVIVED (175 pass / 0 fail)
+M307 | seed/programming.json:6 | "voiceGuidelines": "Lead with code and evidence. S -> "voiceGuidelines": "XLead with code and evidence.  | SURVIVED (175 pass / 0 fail)
+M313 | seed/game.json:6 | "voiceGuidelines": "Describe gameplay and visuals  -> "voiceGuidelines": "XDescribe gameplay and visuals | SURVIVED (175 pass / 0 fail)
+M319 | seed/iot.json:6 | "voiceGuidelines": "Name devices, protocols and fa -> "voiceGuidelines": "XName devices, protocols and f | SURVIVED (175 pass / 0 fail)
+M325 | seed/ai_development.json:6 | "voiceGuidelines": "Back claims with evals. Flag u -> "voiceGuidelines": "XBack claims with evals. Flag  | SURVIVED (175 pass / 0 fail)
+RESTORED-CONTROL original: PASS (175 pass / 0 fail)
+TOTAL: 0/25 KILLED
+sha256 all hermes src/seed files pre==post: True (25 files)
+
+## AFTER new assertions
+CONTROL original: PASS (181 pass / 0 fail)
+M215 | src/knowledge.ts:103 | score += (idf.get(term) -> score = (idf.get(term) | KILLED (180 pass / 1 fail)
+     (fail) InMemoryKnowledgeStore.search > multi-term query sums per-term BM25 parts (exact scores and rank)
+M223 | src/knowledge.ts:117 | .find({}) -> .find({ tags: { $ne: [] } }) | KILLED (180 pass / 1 fail)
+     (fail) hydrateKnowledgeStore > rows with empty tags are hydrated and searchable too
+M002 | src/store.ts:28 | activeVersion: z.number().int().positive(), -> activeVersion: z.number().positive(), | KILLED (180 pass / 1 fail)
+     (fail) profile read guards on untrusted rows > fractional pointer activeVersion 1.5 throws ZodError, not NotFound
+M018 | src/store.ts:55 | return HermesProfileSchema.parse({ ...fields, id:  -> return HermesProfileSchema.parse({ id: _id, ...fie | KILLED (180 pass / 1 fail)
+     (fail) profile read guards on untrusted rows > a stray id field in the stored row never overrides the row _id
+M326 | seed/ceo.json:5 | "decisive" -> "decisivex" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M327 | seed/ceo.json:5 | "concise" -> "concisex" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M328 | seed/coo.json:5 | "pragmatic" -> "pragmaticx" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M329 | seed/coo.json:5 | "reliable" -> "reliablex" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M330 | seed/cto.json:5 | "rigorous" -> "rigorousx" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M331 | seed/cto.json:5 | "pragmatic" -> "pragmaticx" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M332 | seed/programming.json:5 | "test-first" -> "test-firstx" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M333 | seed/programming.json:5 | "terse" -> "tersex" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M334 | seed/game.json:5 | "visual" -> "visualx" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M335 | seed/game.json:5 | "iterative" -> "iterativex" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M336 | seed/iot.json:5 | "hardware-aware" -> "hardware-awarex" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M337 | seed/iot.json:5 | "safety-minded" -> "safety-mindedx" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M338 | seed/ai_development.json:5 | "empirical" -> "empiricalx" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M339 | seed/ai_development.json:5 | "measured" -> "measuredx" | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M289 | seed/ceo.json:6 | "voiceGuidelines": "Speak in outcomes and prioriti -> "voiceGuidelines": "XSpeak in outcomes and priorit | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M295 | seed/coo.json:6 | "voiceGuidelines": "Route work clearly: who, what, -> "voiceGuidelines": "XRoute work clearly: who, what | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M301 | seed/cto.json:6 | "voiceGuidelines": "Explain technical trade-offs b -> "voiceGuidelines": "XExplain technical trade-offs  | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M307 | seed/programming.json:6 | "voiceGuidelines": "Lead with code and evidence. S -> "voiceGuidelines": "XLead with code and evidence.  | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M313 | seed/game.json:6 | "voiceGuidelines": "Describe gameplay and visuals  -> "voiceGuidelines": "XDescribe gameplay and visuals | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M319 | seed/iot.json:6 | "voiceGuidelines": "Name devices, protocols and fa -> "voiceGuidelines": "XName devices, protocols and f | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+M325 | seed/ai_development.json:6 | "voiceGuidelines": "Back claims with evals. Flag u -> "voiceGuidelines": "XBack claims with evals. Flag  | KILLED (179 pass / 2 fail)
+     (fail) SEED_PROFILES > SEED_PROFILES equals the full literal seed objects
+     (fail) seedProfiles > getProfile after seeding returns the full literal seed object per agent
+RESTORED-CONTROL original: PASS (181 pass / 0 fail)
+TOTAL: 25/25 KILLED
+sha256 all hermes src/seed files pre==post: True (25 files)
+
+Production + bun.lock sha256 prefixes post (== pre-round9.sha; sha256sum -c differs only on the 3 edited test files):
+dbc545903811e2d8  packages/hermes/src/store.ts
+169e225abd914d46  packages/hermes/src/models.ts
+85059f0657348ffa  packages/hermes/src/context.ts
+fe66232917d47210  packages/hermes/src/knowledge.ts
+0effb3d5d3e540fc  packages/hermes/src/seed.ts
+fe0e0a9464905bb0  packages/hermes/src/tokens.ts
+97743c3c051f8292  packages/hermes/src/errors.ts
+1d80824db69ab17c  packages/hermes/src/index.ts
+d413bd8c001c3f63  apps/api/src/db/mappers.ts
+51f17c744f885d82  bun.lock
+Seed JSON == /tmp/opencode/orc06h/seed.sha: 7/7 OK
+.bak count: 0
+Leftover redhunter_test_* DBs: []

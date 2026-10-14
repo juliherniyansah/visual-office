@@ -1,0 +1,84 @@
+# T5b INDEPENDENT VERIFIER REPORT (2026-10-09)
+Scope: 5b projects / knowledge / office-state routes (plan card lines 285-289). 5a was confirmed in round 2.
+
+## Commands (fresh runs, by the verifier)
+$ rtk bun test apps/api            -> 214 pass / 0 fail / 923 expect() / 24 files [34.99s]
+$ rtk bun run typecheck            -> 6/6 "Exited with code 0"
+$ rtk bunx biome check .           -> Checked 106 files in 38ms. No fixes applied.
+$ find packages apps/api/src/test-support package.json apps/api/package.json -newer verifier-round2.txt -> (none): shared, test-support, package.json untouched; no new deps
+$ diff tasks.test.ts vs round-2 copy -> only the N-1 edit ('?status=a&status=b' -> '?status=planned&status=planned')
+$ grep any/@ts-ignore/console.log in 12 5b files -> none. Identifiers English. Largest 5b file 217 LOC (<500).
+
+## Live probes (real boot: bun run --cwd apps/api start, PORT 4931, DB redhunter_test_verify5b_1791536104, EVENTS_DISPATCH=off; tokens minted with jose)
+probe | expected | observed
+POST /projects, /knowledge: viewer | 403 | 403
+POST /projects, /knowledge: operator, owner | 201 | 201
+GET /projects, /knowledge, /office/state: viewer, operator, owner | 200 | 200
+all 5 routes: no token / expired / alg=none / wrong-signature | 401 | 401 (35/35 cells correct)
+forged id,_id,createdBy,createdAt(1999),eventId,status | stripped | 201; Mongo doc has uuid _id, server createdAt, no createdBy/status/eventId; forged ids count 0
+name trimmed / title trimmed / text verbatim | yes | "Forge", "KForge", "  keep  spaces \n"
+name 120/121, repoPath 1024/1025, title 200/201, text 12000/12001, tags 32/33, tag 64/65 | 201/400 each | 201/400 each
+blank name, blank title, whitespace-only text | 400 | 400
+repoPath relative, '..', '/..', '/x/..', '/x/../', '/.', '/./', '//', '/x//y', NUL, '', 5, ['/srv'], {$ne:''} | 400 | 400 (all)
+repoPath '/' and '/srv/x/' | 201 | 201 (see note N-2)
+defaultAdapter default | opencode | opencode; opencode/codex/claude 201; Claude/gemini/1/[..]/{$ne} 400
+body operator objects (name {$ne}, title {$gt}, tags {$where}) | 400 | 400
+GET ?name[$ne]=x, ?_id[$gt]=, ?$where=1, ?title[$gt]=, ?text[$regex]=.* | unfiltered list | counts identical to unfiltered (11 / 7)
+malformed JSON / 17kb body / text/plain / form / [] / null | 400/413/400/400/400/400 | same
+GET /office/state on empty collection | v0, epoch, F1 empty, F2 4, F3 coo+cto, F4 ceo, all idle/sitting, drones [] | exact; byte-identical across calls (md5 54bad110...); office_state count stays 0
+decoy doc _id 'decoy' version 99 | ignored | version 0 returned
+stored singleton + extra field 'secret' | returned re-validated, extra stripped | version 5, no 'secret'
+corrupt singleton | generic 500 | 500 {"success":false,"error":"Terjadi kesalahan internal"}, no field values leaked
+POST/PUT/PATCH/DELETE x /office/state,/office,/agents,/agents/ceo,/agents/ceo/status,/projects/x,/knowledge/x (owner) | 404 | 28/28 404; singleton unchanged, agent ceo still idle
+knowledge order with equal createdAt (_id b,a) + older | old, tie a, tie b | ["old","tie a","tie b"]
+corrupt knowledge row over HTTP | 500 | 500 generic (code is correct)
+events collection after all POSTs | 0 (documented catalog gap) | 0
+
+## Mutation testing
+Worker runner /tmp/opencode/run-mutants-5b.py (inspected: copies repo, rejects patterns not matching exactly once, restores), copy /tmp/opencode/verify5b-1:
+ control 59/0; 44 killed, 1 survived (E1 strict:false on office model); restored-control 59/0.
+ E1 classification: EQUIVALENT. Reads are findById().lean() which skips the mongoose schema; 5b has no write path to office_state, so strict mode is unobservable. Re-check in todo 15.
+Verifier mutants (/tmp/opencode/verify5b-mut.py, copy /tmp/opencode/verify5b-2, 8 test files, control 74/0, restored 74/0):
+ K1  toKnowledgeDoc: hand-picked fields, no KnowledgeDocSchema.parse  74/0 SURVIVED -> DEFECT D1
+ K2  toProject: same, no ProjectSchema.parse                          73/1 KILLED
+ K3  repoPath refine removed                                          73/1 KILLED
+ K4  freezeDeep no-op                                                 73/1 KILLED
+ K5  defaultAdapter any string                                        73/1 KILLED
+ K6  GET /projects without auth                                       73/1 KILLED
+ K7  GET /knowledge without auth                                      73/1 KILLED
+ K8  knowledge empty-string tag allowed                               73/1 KILLED
+ K9  JSON body limit 16kb -> 1mb                                      74/0 SURVIVED -> note N-1 (pre-existing T3 limit)
+ K10 office router unmounted                                          69/5 KILLED
+ K11 project name lowercased in service                               72/2 KILLED
+ K12 office read via findOne() instead of the singleton id            73/1 KILLED
+ K13 knowledge tags dropped on write                                  72/2 KILLED
+ K14 repoPath taken from raw body with trailing slash stripped        73/1 KILLED
+K1 proof it is NOT equivalent: throwaway test in the copy inserts {title:'', tags:'nope'} into knowledge_docs and expects listKnowledgeDocs to reject. Real code: 1 pass. With K1: 0 pass 1 fail. The behavior is real and documented but no repo test guards it. (Worker's S10 only kills a raw-record passthrough, through the _id/createdAt leak assertion.)
+
+## Catalog-gap judgment (POST /projects and POST /knowledge emit nothing)
+ACCEPTABLE, not blocking. Plan line 134 fixes the 17-type catalog with no project.* or knowledge.* type, and plan line 287 "emits the catalog event" can only refer to existing catalog types. packages/shared is untouched. The gap is documented in decisions.md:59 and issues.md, and no 5b consumer exists (Hermes hydrates knowledge_docs at boot, per plan s6). Verified live: events count 0. Revisit when a client needs live project/knowledge updates.
+
+## Defects (blocking)
+D1. Knowledge read re-validation has no test (mutant K1 survives).
+    Where: apps/api/src/db/mappers.ts toKnowledgeDoc; apps/api/src/services/knowledge.test.ts has no corrupt-row test, while services/projects.test.ts:55 has one for projects.
+    Why blocking: decisions.md:60 states the mappers re-validate every read, which is the boundary that stops corrupt rows reaching clients. This is the same untested-guard class as round-1 D2/D3, and the sibling mapper is pinned.
+    Repro: in a copy, replace the line `return KnowledgeDocSchema.parse({ ...record, id: record._id });` with
+    `return { id: record._id, title: record.title, text: record.text, tags: record.tags } as KnowledgeDoc;`
+    then run `bun test apps/api/src/services/knowledge.test.ts apps/api/src/routes/knowledge.test.ts` -> 0 fail (survives).
+    Fix: add to services/knowledge.test.ts 're-validates stored rows: a corrupt row throws instead of leaking' (mirror projects.test.ts:55): insert {_id:'bad', title:'', text:'x', tags:'nope', createdAt:new Date()} via ctx.db.connection.collection('knowledge_docs') and assert listKnowledgeDocs rejects. Optionally add a route test asserting a 500 generic body. Re-run K1 -> must be KILLED.
+
+## Notes (non-blocking)
+N-1. K9: no test pins the 16kb JSON limit; every 413 test sends 1 MB. The limit was introduced in T3, not 5b. 5b's text cap of 12000 relies on it, and live 17kb gives 413. Also: 12000 chars of 3-4 byte UTF-8 (e.g. CJK, emoji) exceeds 16kb and gets 413 instead of the 400 bound. Optional: pin a ~17kb body as 413 in one test, and document the byte-vs-char mismatch.
+N-2. repoPath '/' is accepted (filesystem root as adapter cwd). The plan does not forbid it, so not a defect. Todo 8 (adapters) should decide whether to restrict the workspace root.
+N-3. E1 is equivalent today; it becomes observable when todo 15 adds office_state writes.
+N-4. Accepted 5a gaps not re-litigated.
+
+## Cleanup receipt
+- Server pid 1251742 (cwd visual-office/apps/api) TERM; tmux v5bapi killed; port 4931 free; no visual-office api process left. whatsapp-monitor and pinjaman bun processes untouched.
+- DB redhunter_test_verify5b_1791536104 dropped (ok 1). Leftover check -> []
+- No .env files exist (root, apps/api). Throwaway test and mappers mutation in the copy were restored or removed. Scratch left in /tmp/opencode/verify5b-{1,2} plus helper scripts.
+
+## Fix list
+1. D1: add knowledge corrupt-row re-validation test; re-run K1 -> KILLED; re-run full suite, typecheck, biome.
+
+VERDICT: rejected

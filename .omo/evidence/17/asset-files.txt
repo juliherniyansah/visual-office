@@ -1,0 +1,3 @@
+total 56K
+-rw-rw-r-- 1 programer programer 13K Oct 14 00:17 building.glb
+-rw-rw-r-- 1 programer programer 39K Oct 14 00:17 character.glb

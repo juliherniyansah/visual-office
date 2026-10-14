@@ -1,0 +1,29 @@
+control PASS
+A1 access no-op KILLED
+A2 memory partial SURVIVED
+A3 profile omit name KILLED
+A4 skill partial SURVIVED
+A5 exp partial SURVIVED
+A6 ttl ignored KILLED
+A7 ttl <= KILLED
+A8 pointer moved on ensure KILLED
+A9 activate no pointer move KILLED
+A10 pointer unvalidated SURVIVED
+A11 profile append mutates KILLED
+K1 hydrate partial SURVIVED
+K2 tie reversed KILLED
+K3 no idf SURVIVED
+K4 no clone out KILLED
+K5 no length norm KILLED
+K6 k ignored KILLED
+K7 filter ignored KILLED
+K8 upsert unvalidated KILLED
+C1 no budget guard KILLED
+C2 no relevance KILLED
+C3 top4 KILLED
+C4 budget int guard SURVIVED
+C5 no drop KILLED
+C6 exp order SURVIVED
+T1 utf16 len KILLED
+S1 seed not frozen KILLED
+restored-control PASS

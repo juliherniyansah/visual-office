@@ -1,0 +1,13 @@
+M1 KILLED plan.ts: fence extraction removed | fails=1 | first: (fail) parseWorkPlan > fenced block wins over braces in the surrounding prose
+M2 KILLED plan.ts: repair run reuses original prompt (no parse error) | fails=4 | first: (fail) prometheus.plan > malformed then valid: exactly one repair run carrying the parse error
+M3 KILLED plan.ts: second repair (third run) allowed | fails=3 | first: (fail) prometheus.plan > malformed twice fails with invalid_output and never starts a third run
+M4 KILLED schemas.ts: unique step id refine always true | fails=2 | first: (fail) parseWorkPlan > duplicateIds output is rejected with a reason
+M5 KILLED schemas.ts: risk enum widened | fails=3 | first: (fail) package barrel re-exports the omo plan/verify API
+M6 KILLED verify.ts: evidence only for unmet items | fails=5 | first: (fail) verify > all items met -> pass with one evidence line per item, in order
+M7 KILLED verify.ts: empty acceptance fails | fails=1 | first: (fail) verify > empty acceptance list -> pass with a single evidence line
+M8 KILLED verify.ts: failed status ignored | fails=1 | first: (fail) verify > failed step -> fail even when the output matches every item
+M9 KILLED verify.ts: any item met passes | fails=2 | first: (fail) verify > one unmet item -> fail; evidence names the missing keywords
+M10 KILLED verify.ts: runtime wiring always pass verdict | fails=2 | first: (fail) verifyCompletion (AgentRuntimeDeps.verify) > maps completion + request acceptance to a verdict
+M11 KILLED plan.ts: permission allowed during planning | fails=1 | first: (fail) prometheus.plan adapter failures (no retry) > permission requests are denied (planning is read-only)
+M12 KILLED plan.ts: adapter failed treated as output (enters repair path) | fails=3 | first: (fail) prometheus.plan adapter failures (no retry) > failed event -> adapter_failed after one run
+TOTAL 12/12 killed

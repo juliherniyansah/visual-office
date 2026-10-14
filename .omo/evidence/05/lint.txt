@@ -1,0 +1,4 @@
+# T5a lint (fix round, 2026-10-09T06:11:13Z)
+$ bunx biome check .
+Checked 94 files in 46ms. No fixes applied.
+exit=0

@@ -1,0 +1,44 @@
+# T5a fix round RED (2026-10-09T06:06:37Z)
+## Part A: new tests vs CURRENT (unfixed) code
+$ bun test apps/api/src/routes/tasks.test.ts apps/api/src/services/tasks.test.ts apps/api/src/routes/directives.test.ts apps/api/src/services/runs.test.ts apps/api/src/routes/runs.test.ts --reporter=junit
+error: 
+Expected promise that rejects
+Received promise that resolved: Promise { <resolved> }
+(fail) transitionTask > allowedFrom restricts the source state even when the table allows the move [70.03ms]
+error: expect(received).toBe(expected)
+Expected: 409
+Received: 200
+(fail) PATCH /api/v1/tasks/:id > resume only from paused: assigned/planned -> 409, no event, status unchanged [121.08ms]
+ 56 pass
+ 2 fail
+Ran 58 tests across 5 files. [8.61s]
+
+# failing (D1, expected: behaviour bug present):
+  FAIL apps/api/src/services/tasks.test.ts :: transitionTask > allowedFrom restricts the source state even when the table allows the move
+  FAIL apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > resume only from paused: assigned/planned -> 409, no event, status unchanged
+
+# new tests passing vs current code (behaviour already correct; their RED is shown against the surviving mutants in Part B):
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > startedAt: absent while queued/composing, set once at first executing, never moved
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > endedAt is stamped on succeeded, failed and escalated
+  PASS apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id/events > ignores events of another aggregate kind that share the run id
+  PASS apps/api/src/routes/runs.test.ts :: id length guard > ids over 128 chars -> 404 without touching Mongo (GET /runs/:id, PATCH /tasks/:id)
+  PASS apps/api/src/routes/runs.test.ts :: id length guard > a 128-char id still reaches the lookup (boundary)
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > resume on a paused task -> 200 in_progress with exactly one new event
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > pause only from in_progress: assigned, paused, escalated -> 409, no event
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > cancel from every non-terminal status -> 200 cancelled
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > capabilityTags count bound: 32 -> 201, 33 -> 400
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > capabilityTags length bound: 64 chars -> 201, 65 chars -> 400
+
+## Part B: new D2/D3/N4/N5 tests vs the verifier's surviving mutants, applied to a copy of the pre-fix code
+$ /tmp/opencode/run-mutants-5a.sh /tmp/opencode/fix5a-red no
+control: 56 pass 2 fail 
+N3  endedAt only on succeeded: 11 pass 1 fail  -> KILLED
+N12 startedAt stamped on any transition: 11 pass 1 fail  -> KILLED
+N12b startedAt re-stamped on every executing: 11 pass 1 fail  -> KILLED
+N14 remove .max(MAX_TAGS): 11 pass 1 fail  -> KILLED
+N16 remove TagSchema.max(MAX_TAG_LENGTH): 11 pass 1 fail  -> KILLED
+N4  remove id.length > MAX_ID_LENGTH guard: 9 pass 1 fail  -> KILLED
+N4b off-by-one guard (>= MAX_ID_LENGTH): 9 pass 1 fail  -> KILLED
+N5  drop aggregate.kind filter: 21 pass 1 fail  -> KILLED
+restored-control: 56 pass 2 fail 
+# note: control '56 pass 2 fail' in Part B = the 2 D1 tests failing on the pre-fix code (same as Part A); every mutant row adds its own failure on top (11/1 etc. counts are per relevant file only).

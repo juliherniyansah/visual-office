@@ -1,0 +1,9 @@
+T12 Atlas QA (probe /tmp/opencode/t12/qa.ts, EXIT=0)
+- typecheck EXIT=0; adapters+agent-runtime+shared 632 pass/1 skip/0 fail; biome clean
+- flake loop x5: codex 27/0, claude 17/0, headless 13/0
+- missing binary: healthcheck false; one failed event (binary not found)
+- fake exit 2: healthcheck true; one failed event "<vendor> exited with code 2: boom"
+- codex argv: exec --json --ephemeral -C <cwd> -s workspace-write --ignore-user-config -o <tmp>/last-message.txt hi
+- claude argv: -p --output-format stream-json --permission-mode default --permission-prompts all --max-turns 30 --session-id <uuid> --settings <f> --append-system-prompt-file <f> --disallowedTools Bash(rm -rf*) <query>
+- env strip: ANTHROPIC_AUTH_TOKEN + WEBSOCKET_AUTH_FILE_DESCRIPTOR absent in child env (both)
+- .codex/config.toml = approval_policy on-request, sandbox_mode workspace-write

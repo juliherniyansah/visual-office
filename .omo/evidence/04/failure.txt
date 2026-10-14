@@ -1,0 +1,26 @@
+# T4 failure-path proof (connect_error) - from gateway.test.ts junit + manual QA real boot
+pass apps/api/src/realtime/gateway.test.ts :: handshake authentication > rejects a connection without a token with connect_error [1051 ms]
+pass apps/api/src/realtime/gateway.test.ts :: handshake authentication > rejects malformed, alg=none, expired, wrong-audience and non-string tokens [1075 ms]
+pass apps/api/src/realtime/gateway.test.ts :: handshake authentication > rejects connections to the default namespace even with a valid token [1037 ms]
+pass apps/api/src/realtime/gateway.test.ts :: handshake authentication > rejects a foreign Origin on websocket and polling transports [75 ms]
+pass apps/api/src/realtime/gateway.test.ts :: delivery > EVENTS_DISPATCH=off stores the event but delivers nothing [1446 ms]
+pass apps/api/src/realtime/gateway.test.ts :: room subscriptions > canSubscribeRun=false denies the run room [1035 ms]
+pass apps/api/src/realtime/gateway.test.ts :: room subscriptions > invalid subscribe payloads are refused without dropping the connection [1062 ms]
+pass apps/api/src/events/dispatcher.test.ts :: EventDispatcher > moves an event to events_dead after 5 failed attempts, then unblocks the queue [103 ms]
+pass apps/api/src/events/dispatcher.test.ts :: EventDispatcher > a DB failure while marking dispatched retries the mark without re-delivering [34 ms]
+pass apps/api/src/events/dispatcher.test.ts :: EventDispatcher > a DB failure while reading the queue is logged and does not reject the tick [3 ms]
+pass apps/api/src/events/dispatcher.test.ts :: EventDispatcher > disabled dispatcher (EVENTS_DISPATCH=off) stores events but delivers nothing [324 ms]
+pass apps/api/src/events/outbox.test.ts :: outbox emit() > rejects an invalid event shape and inserts nothing [6 ms]
+pass apps/api/src/events/outbox.test.ts :: outbox emit() > ignores forged envelope fields so callers cannot pre-mark an event dispatched [14 ms]
+
+## Real boot (manual QA) client outcomes:
+[failure] no token -> connect_error: unauthorized
+[failure] garbage token -> connect_error: unauthorized
+[failure] valid token, foreign origin -> connect_error: websocket error
+
+## Assertion details (gateway.test.ts):
+- no token -> connect_error 'unauthorized'
+- 'not-a-jwt', '', alg=none UnsecuredJWT, expired, aud=someone-else, wrong secret, 12345, {token:'nested'} -> each connect_error 'unauthorized'
+- default namespace '/' with valid token -> connect_error 'unauthorized'
+- foreign Origin: websocket + polling -> connect_error; raw GET /socket.io/?EIO=4&transport=polling with foreign Origin -> HTTP 403
+- allowed Origin over polling -> connected (control)

@@ -1,0 +1,8 @@
+# Baseline before T5a (2026-10-09T04:13:15Z)
+$ bun test apps/api
+bun test v1.3.14 (0d9b296a)
+
+ 98 pass
+ 0 fail
+ 303 expect() calls
+Ran 98 tests across 11 files. [23.72s]

@@ -1,0 +1,68 @@
+F2 Code Quality Review - Static Guardrails
+==========================================
+Date: 2026-10-14
+Reviewer: Sisyphus-Junior (Kimi K3)
+
+VERDICT: REJECT
+
+CHECKS EXECUTED:
+================
+
+(a) Forbidden dependencies in package.json: FAIL
+    Found:
+    - three: ^0.186.1
+    - @react-three/drei: ^10.7.9
+    - @react-three/fiber: ^9.8.1
+    Command: grep -E '"(three|@react-three/[a-z-]+|zustand|framer-motion|gsap|socket\.io-client|lucide-react|@radix-ui/[a-z-]+)"' apps/web/package.json
+
+(b) backdrop-filter/backdrop-blur in src: FAIL
+    Found: apps/web/src/components/landing/Nav.tsx:10
+    Content: backdrop-blur-sm
+    Command: grep -rn 'backdrop-filter\|backdrop-blur' apps/web/src
+
+(c) <form> elements in src: PASS
+    Command: grep -rn '<form' apps/web/src
+    Result: No matches
+
+(d) `any` types in .ts/.tsx: PASS
+    Command: grep -rnw 'any' apps/web/src --include='*.ts' --include='*.tsx' | grep -v '^\s*//'
+    Result: No matches
+
+(e) File line counts under components/landing: PASS
+    Results:
+    - AiCore.tsx: 66 lines
+    - Audience.tsx: 36 lines
+    - Capabilities.tsx: 114 lines (max, ≤200 OK)
+    - FinalCta.tsx: 40 lines
+    - Footer.tsx: 41 lines
+    - Hero.tsx: 56 lines
+    - HowItWorks.tsx: 63 lines
+    - HqIllustration.tsx: 30 lines (≤400 OK)
+    - Nav.tsx: 49 lines
+    - OfficeShowcase.tsx: 71 lines
+    - ProductIntro.tsx: 57 lines
+    - Workforce.tsx: 66 lines
+    Command: wc -l apps/web/src/components/landing/*.tsx
+
+(f) Reserved master-plan paths absent: FAIL
+    Found: apps/web/public/models (EXISTS)
+    Contents: building.glb (12.4K), character.glb (38.2K)
+    Command: test ! -e apps/web/src/app/login && test ! -e 'apps/web/src/app/(dashboard)' && test ! -e apps/web/src/lib/api.ts && test ! -e apps/web/src/lib/socket.ts && test ! -e apps/web/src/stores && test ! -e apps/web/src/components/office && test ! -e apps/web/public/models && test ! -e apps/web/public/draco
+
+(g) Identifiers English-only, camelCase/PascalCase: PASS
+    Manual review of site.ts + all landing components
+    Result: All identifiers English, proper casing. No Indonesian identifiers found.
+
+FAILURE SUMMARY:
+================
+3 of 7 checks FAILED:
+1. (a) Three.js dependencies present (three, @react-three/drei, @react-three/fiber)
+2. (b) backdrop-blur-sm CSS property found in Nav.tsx
+3. (f) Reserved path apps/web/public/models exists with 3D model files
+
+NEXT STEPS:
+===========
+- Remove three, @react-three/drei, @react-three/fiber from package.json
+- Remove backdrop-blur-sm from Nav.tsx:10
+- Remove or relocate apps/web/public/models directory
+- Re-run F2 after fixes

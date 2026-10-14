@@ -1,0 +1,55 @@
+# T5a failure-path assertions (fix round; subset of test.txt, same junit run)
+  PASS apps/api/src/app.test.ts :: POST /api/v1/auth/login > wrong password and unknown email both get 401 with the identical body
+  PASS apps/api/src/app.test.ts :: POST /api/v1/auth/login > 413 JSON error for a huge payload
+  PASS apps/api/src/app.test.ts :: POST /api/v1/auth/login > 400 for an over-long password (bounded KDF work)
+  PASS apps/api/src/app.test.ts :: GET /api/v1/me > 401 without token
+  PASS apps/api/src/app.test.ts :: GET /api/v1/me > 401 for a valid token whose user no longer exists
+  PASS apps/api/src/app.test.ts :: GET /api/v1/me > 401 for a valid token whose sub is not an ObjectId
+  PASS apps/api/src/app.test.ts :: GET /api/v1/agents > 401 without token and with a tampered token
+  PASS apps/api/src/app.test.ts :: RBAC with real login tokens > viewer POST -> 403 from requireRole('operator')
+  PASS apps/api/src/app.test.ts :: app shell > unknown route -> 404 JSON
+  PASS apps/api/src/services/runs.test.ts :: createRun > task without assignee -> ConflictError; unknown task -> NotFoundError
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > succeeded -> queued is rejected with InvalidTransitionError and emits nothing
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > unknown run -> NotFoundError
+  PASS apps/api/src/services/runs.test.ts :: transitionRun > two concurrent transitions from the same status: exactly one wins
+  PASS apps/api/src/services/runs.test.ts :: listRunEvents > unknown run -> NotFoundError
+  PASS apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > succeeded -> queued is rejected with a typed InvalidTransitionError (HTTP 409 class)
+  PASS apps/api/src/services/transitions.test.ts :: task transitions > done -> in_progress is rejected with a typed error
+  PASS apps/api/src/services/tasks.test.ts :: createTask > unknown directive -> NotFoundError, nothing stored
+  PASS apps/api/src/services/tasks.test.ts :: transitionTask > done -> in_progress is rejected and emits nothing
+  PASS apps/api/src/services/tasks.test.ts :: transitionTask > unknown task -> NotFoundError
+  PASS apps/api/src/services/tasks.test.ts :: transitionTask > allowedFrom restricts the source state even when the table allows the move
+  PASS apps/api/src/config/env.test.ts :: loadEnv > rejects an invalid OWNER_EMAIL
+  PASS apps/api/src/realtime/gateway.test.ts :: delivery > emit() reaches a connected office client within 500 ms
+  PASS apps/api/src/realtime/gateway.test.ts :: room subscriptions > invalid subscribe payloads are refused without dropping the connection
+  PASS apps/api/src/auth/middleware.test.ts :: requireAuth > 401 without Authorization header, with WWW-Authenticate and error shape
+  PASS apps/api/src/auth/middleware.test.ts :: requireAuth > 401 for malformed headers
+  PASS apps/api/src/auth/middleware.test.ts :: requireAuth > 401 for an invalid token
+  PASS apps/api/src/auth/middleware.test.ts :: requireAuth > requireRole without requireAuth fails closed with 401
+  PASS apps/api/src/auth/middleware.test.ts :: requireRole(&apos;operator&apos;) > 403 for a viewer
+  PASS apps/api/src/auth/middleware.test.ts :: requireRole(&apos;operator&apos;) > requireRole('owner') rejects operator with 403
+  PASS apps/api/src/events/dispatcher.test.ts :: EventDispatcher > concurrent ticks never deliver the same event twice
+  PASS apps/api/src/events/outbox.test.ts :: outbox emit() > rejects an invalid event shape and inserts nothing
+  PASS apps/api/src/events/outbox.test.ts :: outbox emit() > ignores forged envelope fields so callers cannot pre-mark an event dispatched
+  PASS apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id > unknown and odd ids -> 404 JSON, never 500
+  PASS apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id > 401 without token
+  PASS apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id/events > unknown run -> 404; no token -> 401
+  PASS apps/api/src/routes/runs.test.ts :: id length guard > ids over 128 chars -> 404 without touching Mongo (GET /runs/:id, PATCH /tasks/:id)
+  PASS apps/api/src/routes/runs.test.ts :: id length guard > a 128-char id still reaches the lookup (boundary)
+  PASS apps/api/src/routes/tasks.test.ts :: GET /api/v1/tasks > 401 without token
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > invalid transitions -> 409 and no event (done task, resume without pause, pause planned)
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > resume only from paused: assigned/planned -> 409, no event, status unchanged
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > pause only from in_progress: assigned, paused, escalated -> 409, no event
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > forged status in the body is ignored; only the action counts
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > concurrent pause + cancel on the same task: exactly one 200 and one 409
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > viewer -> 403; missing, expired and alg=none tokens -> 401
+  PASS apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > unknown or odd ids -> 404/400 JSON, never 500
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > forged server-owned fields (id, status, issuedBy, createdBy, eventId) are ignored
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > viewer -> 403 from the real requireRole("operator"), nothing stored
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > no token, expired token and alg=none token -> 401
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > 400 for invalid bodies
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > capabilityTags count bound: 32 -> 201, 33 -> 400
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > capabilityTags length bound: 64 chars -> 201, 65 chars -> 400
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > 400 for malformed JSON, 413 for an oversized body
+  PASS apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > emit failure surfaces as 500 JSON; the directive row stays (documented gap)
+  PASS apps/api/src/routes/directives.test.ts :: GET /api/v1/directives > 401 without token

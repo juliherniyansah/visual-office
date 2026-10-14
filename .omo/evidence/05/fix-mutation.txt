@@ -1,0 +1,15 @@
+# T5a fix round mutation proof (2026-10-09T06:10:01Z) on fresh copy /tmp/opencode/fix5a-mut of the FIXED code (repo untouched)
+# each mutant: sed one change, run only the relevant test file(s), restore by cp; counts are per relevant file(s)
+$ /tmp/opencode/run-mutants-5a.sh /tmp/opencode/fix5a-mut yes
+control: 58 pass 0 fail 
+N3  endedAt only on succeeded: 11 pass 1 fail  -> KILLED
+N12 startedAt stamped on any transition: 11 pass 1 fail  -> KILLED
+N12b startedAt re-stamped on every executing: 11 pass 1 fail  -> KILLED
+N14 remove .max(MAX_TAGS): 11 pass 1 fail  -> KILLED
+N16 remove TagSchema.max(MAX_TAG_LENGTH): 11 pass 1 fail  -> KILLED
+N4  remove id.length > MAX_ID_LENGTH guard: 9 pass 1 fail  -> KILLED
+N4b off-by-one guard (>= MAX_ID_LENGTH): 9 pass 1 fail  -> KILLED
+N5  drop aggregate.kind filter: 21 pass 1 fail  -> KILLED
+D1  resume without paused precondition (route): 13 pass 1 fail  -> KILLED
+D1b allowedFrom ignored in service: 22 pass 2 fail  -> KILLED
+restored-control: 58 pass 0 fail 

@@ -1,0 +1,9 @@
+# T9 round 3: RED-equivalent evidence (tests are test-only additions; production correct, so RED = fail under mutant)
+# runner /tmp/opencode/t9/mut-r3.py: each mutant applied to runtime.ts (backup in /tmp), focused test file run, restored, original re-run
+r3-01 M14 killed :: mutant rc=1 fails=1; original rc=0
+    (fail) AgentRuntime stale permission during backoff > answer between attempts (attempt 1 dead, retry not started) throws and is not forwarded [6.14ms]
+r3-02 M5 killed :: mutant rc=1 fails=1; original rc=0
+    (fail) AgentRuntime permission flow > a second answer for the same permission throws and is not forwarded again [5.81ms]
+r3-03 M6 killed :: mutant rc=1 fails=1; original rc=0
+    (fail) AgentRuntime permission flow > agent is working before the answer is forwarded, idle after the run ends [3.57ms]
+restore sha OK 61e9e1237b6e85ef

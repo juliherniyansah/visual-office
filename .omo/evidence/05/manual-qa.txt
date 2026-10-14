@@ -1,0 +1,78 @@
+# T5a manual QA (2026-10-09T04:55:34Z): real boot 'bun run src/index.ts' (tmux session mqa5a, pid 1121494)
+# env: PORT=49725 HOST=127.0.0.1 MONGO_URL=mongodb://127.0.0.1:27017/redhunter_test_manualqa5a_1791521656 JWT_SECRET=<random> OWNER_EMAIL=qa-owner@example.test EVENTS_DISPATCH=on
+## server stdout
+seed: agents=7 owner={"created":true,"passwordUpdated":true}
+api listening on http://127.0.0.1:49725 (events on)
+
+## 1. login (owner from boot seed)
+$ curl -s -X POST http://127.0.0.1:49725/api/v1/auth/login -H 'Content-Type: application/json' -d '{"email":"qa-owner@example.test","password":"<OWNER_PASSWORD>"}'
+{"success":true,"data":{"token":"eyJhbGciOiJI...<redacted>","user":{"id":"6ac873a34b86871806529a19","email":"qa-owner@example.test","role":"owner"}}}
+
+## 2. socket.io observer on /office with that JWT (bun .manual-qa-5a.ts, runs 4 s in background)
+## 3. POST /directives (owner)
+$ curl -s -w '\nHTTP %{http_code}' -X POST http://127.0.0.1:49725/api/v1/directives -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d '{"text":"Pasang layar status di lobby","priority":"high","capabilityTags":["code"],"status":"draft","id":"forged"}'
+{"success":true,"data":{"id":"7b9939cb-427a-457f-8e2e-3dd4811cf95e","issuedBy":{"kind":"human","id":"6ac873a34b86871806529a19"},"text":"Pasang layar status di lobby","status":"issued","priority":"high","capabilityTags":["code"]}}
+HTTP 201
+
+## 4. GET /directives
+$ curl -s -w '\nHTTP %{http_code}' http://127.0.0.1:49725/api/v1/directives -H "Authorization: Bearer $TOKEN"
+{"success":true,"data":[{"id":"7b9939cb-427a-457f-8e2e-3dd4811cf95e","issuedBy":{"kind":"human","id":"6ac873a34b86871806529a19"},"text":"Pasang layar status di lobby","status":"issued","priority":"high","capabilityTags":["code"]}]}
+HTTP 200
+
+## 5. failure paths
+$ curl -s -w '\nHTTP %{http_code}' -X POST http://127.0.0.1:49725/api/v1/directives -H 'Content-Type: application/json' -d '{"text":"no token"}'
+{"success":false,"error":"Autentikasi diperlukan"}
+HTTP 401
+$ curl -s -w '\nHTTP %{http_code}' -X POST http://127.0.0.1:49725/api/v1/directives -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d '{"text":""}'
+{"success":false,"error":"Body request tidak valid"}
+HTTP 400
+$ curl -s -w '\nHTTP %{http_code}' -X PATCH http://127.0.0.1:49725/api/v1/tasks/does-not-exist -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d '{"action":"pause"}'
+{"success":false,"error":"Data tidak ditemukan"}
+HTTP 404
+$ curl -s -w '\nHTTP %{http_code}' http://127.0.0.1:49725/api/v1/runs/does-not-exist/events -H "Authorization: Bearer $TOKEN"
+{"success":false,"error":"Data tidak ditemukan"}
+HTTP 404
+
+## 6. socket observer output (directive.created delivered by dispatcher to office room)
+[socket] connected
+[socket] event directive.created 93f238e3-e819-4a4c-862f-b2bfc2ab0af9 {"kind":"directive","id":"7b9939cb-427a-457f-8e2e-3dd4811cf95e"}
+
+## 7. outbox row
+[{"eventId":"93f238e3-e819-4a4c-862f-b2bfc2ab0af9","type":"directive.created","aggregate":{"id":"7b9939cb-427a-457f-8e2e-3dd4811cf95e"},"dispatchedAt":"2026-10-09T04:55:36.158Z","attempts":0}]
+
+## 8. shutdown
+$ kill -TERM 1121494  -> exited: yes
+$ curl after shutdown: 000 (000 = refused)
+
+# ===== fix round (D1) 2026-10-09T06:12:06Z: real boot 'bun run src/index.ts' (tmux session mqa5afix, pid 1150846) =====
+# env: PORT=41423 HOST=127.0.0.1 MONGO_URL=mongodb://127.0.0.1:27017/redhunter_test_manualqa5afix_1791526294 JWT_SECRET=<random> OWNER_EMAIL=qa-owner@example.test EVENTS_DISPATCH=on
+## server stdout
+seed: agents=7 owner={"created":true,"passwordUpdated":true}
+api listening on http://127.0.0.1:41423 (events on)
+## F1. login
+$ curl -s -X POST http://127.0.0.1:41423/api/v1/auth/login ... -> token eyJhbGciOiJI...<redacted>
+## F2. create directive
+$ curl -s -w '\nHTTP %{http_code}' -X POST http://127.0.0.1:41423/api/v1/directives -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d '{"text":"Uji resume","capabilityTags":["code"]}'
+{"success":true,"data":{"id":"7873f415-f5c8-4ff4-94a2-c085d444e9cf","issuedBy":{"kind":"human","id":"6ac885984b86871806533abf"},"text":"Uji resume","status":"issued","priority":"normal","capabilityTags":["code"]}}
+## F3. seed one assigned task + one paused task via the service layer (no REST task-create route until todo 13)
+$ bun .manual-qa-5a-seed.ts mongodb://127.0.0.1:27017/redhunter_test_manualqa5afix_1791526294 7873f415-f5c8-4ff4-94a2-c085d444e9cf
+{"assigned":"af392920-daea-4e50-904c-32a16232db1b","paused":"2569af6d-968f-4bc8-8250-9d48e9d81088"}
+## F4. PATCH resume on the ASSIGNED task (D1 bug repro: was 200, must be 409)
+events for assigned task before: 2
+$ curl -s -w '\nHTTP %{http_code}' -X PATCH http://127.0.0.1:41423/api/v1/tasks/af392920-daea-4e50-904c-32a16232db1b -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d '{"action":"resume"}'
+{"success":false,"error":"Perubahan status ditolak karena konflik"}
+HTTP 409
+events for assigned task after: 2
+status in DB: assigned
+## F5. PATCH resume on the PAUSED task (must be 200 in_progress, +1 event)
+events for paused task before: 4
+$ curl -s -w '\nHTTP %{http_code}' -X PATCH http://127.0.0.1:41423/api/v1/tasks/2569af6d-968f-4bc8-8250-9d48e9d81088 -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d '{"action":"resume"}'
+{"success":true,"data":{"id":"2569af6d-968f-4bc8-8250-9d48e9d81088","directiveId":"7873f415-f5c8-4ff4-94a2-c085d444e9cf","projectId":"qa","assigneeAgentId":"programming","status":"in_progress","acceptance":["qa"],"capabilityTags":["code"]}}
+HTTP 200
+events for paused task after: 5
+## F6. PATCH pause on the ASSIGNED task (must be 409)
+{"success":false,"error":"Perubahan status ditolak karena konflik"}
+HTTP 409
+## F7. shutdown
+$ kill -TERM 1150846 -> exited: yes
+$ curl after shutdown: 000 (000 = refused)

@@ -1,0 +1,15 @@
+# T11 live smoke, binary /home/programer/.bun/bin/opencode
+2026-10-10T23:01:08.634Z healthcheck version=1.18.35
+2026-10-10T23:01:11.377Z event {"type":"started","vendorSessionId":"ses_ed7f37c16ffe6nhkyYeN0b8D8W"}
+2026-10-10T23:01:22.701Z event {"type":"tool","name":"bash","input":{"command":"echo hello"},"status":"started"}
+2026-10-10T23:01:22.989Z event {"type":"permission_request","permissionId":"per_1280cb1a5001qfUE0x18khj17j","tool":"bash","detail":"echo hello"}
+2026-10-10T23:01:23.037Z answered per_1280cb1a5001qfUE0x18khj17j allow
+2026-10-10T23:01:23.191Z event {"type":"tool","name":"bash","input":{"command":"echo hello"},"status":"completed","exitCode":0}
+2026-10-10T23:01:23.194Z event {"type":"usage","inputTokens":139014,"outputTokens":52,"costUsd":0}
+2026-10-10T23:01:30.932Z event {"type":"tool","name":"compress","input":{"topic":"Echo hello test","content":[{"startId":"m0001","endId":"m0002","summary":"User asked: \"Run the shell command `echo hello` with the bash tool, then reply with its output only.\" Ran `echo hello` via bash_ide; output was `hello`. Task done except final reply: reply with exactly `hello` and nothing else. (Superpowers using-superpowers skill already loaded, not needed again.)"}]},"status":"started"}
+2026-10-10T23:01:31.835Z event {"type":"tool","name":"compress","input":{"topic":"Echo hello test","content":[{"startId":"m0001","endId":"m0002","summary":"User asked: \"Run the shell command `echo hello` with the bash tool, then reply with its output only.\" Ran `echo hello` via bash_ide; output was `hello`. Task done except final reply: reply with exactly `hello` and nothing else. (Superpowers using-superpowers skill already loaded, not needed again.)"}]},"status":"completed"}
+2026-10-10T23:01:31.835Z event {"type":"usage","inputTokens":139463,"outputTokens":725,"costUsd":0}
+2026-10-10T23:01:34.110Z event {"type":"text","text":"hello"}
+2026-10-10T23:01:34.110Z event {"type":"usage","inputTokens":139358,"outputTokens":45,"costUsd":0}
+2026-10-10T23:01:34.113Z event {"type":"completed","finalText":"hello"}
+2026-10-10T23:01:34.113Z result completed

@@ -1,0 +1,151 @@
+# RED run T5a (2026-10-09T04:44:13Z) - new tests before implementation
+$ bun test apps/api/src/services apps/api/src/routes/directives.test.ts apps/api/src/routes/tasks.test.ts apps/api/src/routes/runs.test.ts
+apps/api/src/services/runs.test.ts:
+error: Cannot find module './errors' from '/home/programer/work/visual-office/apps/api/src/services/runs.test.ts'
+apps/api/src/services/transitions.test.ts:
+error: Cannot find module './errors' from '/home/programer/work/visual-office/apps/api/src/services/transitions.test.ts'
+apps/api/src/services/tasks.test.ts:
+error: Cannot find module './errors' from '/home/programer/work/visual-office/apps/api/src/services/tasks.test.ts'
+apps/api/src/services/directives.test.ts:
+error: Cannot find module './directives' from '/home/programer/work/visual-office/apps/api/src/services/directives.test.ts'
+apps/api/src/routes/runs.test.ts:
+error: Cannot find module '../services/runs' from '/home/programer/work/visual-office/apps/api/src/routes/runs.test.ts'
+apps/api/src/routes/tasks.test.ts:
+error: Cannot find module '../services/directives' from '/home/programer/work/visual-office/apps/api/src/test-support/work.ts'
+apps/api/src/routes/directives.test.ts:
+ 0 pass
+ 7 fail
+Ran 7 tests across 7 files. [752.00ms]
+
+# RED stage 2 (2026-10-09T04:46:08Z) - models + stub services ('not implemented'), routes not mounted; failures are behavioral
+$ bun test apps/api/src/services apps/api/src/routes/directives.test.ts apps/api/src/routes/tasks.test.ts apps/api/src/routes/runs.test.ts
+     35 error: not implemented
+     13 error: expect(received).toBe(expected)
+     13 Received: 404
+      7 error: expect(received).toBeInstanceOf(expected)
+      4 Expected: 401
+      4 Expected: 201
+      4 Expected constructor: [class NotFoundError extends Error]
+      2 error: expect(received).toThrow(expected)
+      2 error: expect(received).toEqual(expected)
+      2 error: expect(received).not.toThrow()
+      2 Received message: "not implemented"
+      2 Received constructor: Error
+      2 Expected: 400
+      2 Expected constructor: [class InvalidTransitionError extends ConflictError]
+      2 Expected constructor: InvalidTransitionError
+      2 + Received  + 5
+      1 Received value: 32 | 
+      1 Received value: 24 | export function assertRunTransition(_from: RunStatus, _to: RunStatus): void {
+      1 Received value: 24 | export async function getRun(_deps: ServiceDeps, _runId: string): Promise<Run> {
+      1 Received value: 21 |   readonly status?: TaskStatus;
+      1 Received value: 20 |   done: [],
+      1 Received value: 16 | export async function createRun(_deps: ServiceDeps, _input: CreateRunInput): Promise<Run> {
+      1 Received value: 10 | 
+      1 Ran 59 tests across 7 files. [2.82s]
+      1 Expected: 500
+      1 Expected: 403
+      1 Expected: 200
+      1 Expected constructor: [class InvalidEventError extends Error]
+      1 - Expected  - 30
+      1 - Expected  - 24
+      1 (fail) transitionTask > unknown task -> NotFoundError [3.00ms]
+      1 (fail) transitionTask > emits task.status_changed for every allowed move [2.95ms]
+      1 (fail) transitionTask > done -> in_progress is rejected and emits nothing [8.13ms]
+      1 (fail) transitionRun > unknown run -> NotFoundError [10.61ms]
+      1 (fail) transitionRun > two concurrent transitions from the same status: exactly one wins [11.12ms]
+      1 (fail) transitionRun > succeeded -> queued is rejected with InvalidTransitionError and emits nothing [13.19ms]
+      1 (fail) transitionRun > happy path to succeeded stamps startedAt/endedAt and emits run.completed [6.13ms]
+      1 (fail) transitionRun > failed records the error and emits run.failed [7.40ms]
+      1 (fail) transitionRun > escalated emits run.escalated with the target [10.61ms]
+      1 (fail) task transitions > table is pinned exactly [0.43ms]
+      1 (fail) task transitions > pause, resume and cancel follow the table [0.25ms]
+      1 (fail) task transitions > done -> in_progress is rejected with a typed error [0.32ms]
+      1 (fail) run transitions (plan section 4 and 25) > terminal statuses have no exit [0.79ms]
+      1 (fail) run transitions (plan section 4 and 25) > table is pinned exactly [0.57ms]
+      1 (fail) run transitions (plan section 4 and 25) > succeeded -> queued is rejected with a typed InvalidTransitionError (HTTP 409 class) [0.42ms]
+      1 (fail) run transitions (plan section 4 and 25) > queued cannot jump straight to succeeded [0.23ms]
+      1 (fail) run transitions (plan section 4 and 25) > happy chain queued -> composing -> executing -> verifying -> succeeded is allowed [0.31ms]
+      1 (fail) listTasks > filters by status and assignee [3.62ms]
+      1 (fail) listRunEvents > unknown run -> NotFoundError [11.24ms]
+      1 (fail) listRunEvents > returns only this run’s events in createdAt order, re-validated [6.76ms]
+      1 (fail) listDirectives > returns re-validated directives in creation order without Mongo fields [9.44ms]
+      1 (fail) happy flow: directive -> task -> run visible over REST > operator directive, service-created task + run, viewer reads all of it [37.19ms]
+      1 (fail) createTask > unknown directive -> NotFoundError, nothing stored [4.13ms]
+      1 (fail) createTask > creates a planned task with the directive capabilityTags and emits task.created [12.68ms]
+      1 (fail) createRun > task without assignee -> ConflictError; unknown task -> NotFoundError [6.06ms]
+      1 (fail) createRun > creates a queued run for the task assignee and emits run.started [20.53ms]
+      1 (fail) createDirective > persists the document before emitting; an emit failure leaves the directive without event [4.56ms]
+      1 (fail) createDirective > persists an issued directive with a uuid id and emits directive.created [10.81ms]
+      1 (fail) assignTask > sets the assignee, moves planned -> assigned and emits task.assigned [8.25ms]
+      1 (fail) assignTask > rejects an agent outside AGENT_IDS [3.26ms]
+
+$ bun test <same files> --reporter=junit  (summary)
+ 5 pass
+ 54 fail
+ 63 expect() calls
+Ran 59 tests across 7 files. [2.67s]
+
+# passing-before-implementation (expected: auth guards already enforced by global middleware / 404 on unmounted routes):
+  PASS covers every RunStatus and never allows a self transition
+  PASS covers every TaskStatus and never allows a self transition
+  PASS unknown and odd ids -&gt; 404 JSON, never 500
+  PASS unknown or odd ids -&gt; 404/400 JSON, never 500
+  PASS 400 for malformed JSON, 413 for an oversized body
+
+# failing testcases:
+# (fixed listing) all failing testcases from junit:
+  FAIL apps/api/src/services/runs.test.ts :: createRun > creates a queued run for the task assignee and emits run.started
+  FAIL apps/api/src/services/runs.test.ts :: createRun > task without assignee -> ConflictError; unknown task -> NotFoundError
+  FAIL apps/api/src/services/runs.test.ts :: transitionRun > happy path to succeeded stamps startedAt/endedAt and emits run.completed
+  FAIL apps/api/src/services/runs.test.ts :: transitionRun > succeeded -> queued is rejected with InvalidTransitionError and emits nothing
+  FAIL apps/api/src/services/runs.test.ts :: transitionRun > failed records the error and emits run.failed
+  FAIL apps/api/src/services/runs.test.ts :: transitionRun > escalated emits run.escalated with the target
+  FAIL apps/api/src/services/runs.test.ts :: transitionRun > unknown run -> NotFoundError
+  FAIL apps/api/src/services/runs.test.ts :: transitionRun > two concurrent transitions from the same status: exactly one wins
+  FAIL apps/api/src/services/runs.test.ts :: listRunEvents > returns only this run’s events in createdAt order, re-validated
+  FAIL apps/api/src/services/runs.test.ts :: listRunEvents > unknown run -> NotFoundError
+  FAIL apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > table is pinned exactly
+  FAIL apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > happy chain queued -> composing -> executing -> verifying -> succeeded is allowed
+  FAIL apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > succeeded -> queued is rejected with a typed InvalidTransitionError (HTTP 409 class)
+  FAIL apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > terminal statuses have no exit
+  FAIL apps/api/src/services/transitions.test.ts :: run transitions (plan section 4 and 25) > queued cannot jump straight to succeeded
+  FAIL apps/api/src/services/transitions.test.ts :: task transitions > table is pinned exactly
+  FAIL apps/api/src/services/transitions.test.ts :: task transitions > done -> in_progress is rejected with a typed error
+  FAIL apps/api/src/services/transitions.test.ts :: task transitions > pause, resume and cancel follow the table
+  FAIL apps/api/src/services/tasks.test.ts :: createTask > creates a planned task with the directive capabilityTags and emits task.created
+  FAIL apps/api/src/services/tasks.test.ts :: createTask > unknown directive -> NotFoundError, nothing stored
+  FAIL apps/api/src/services/tasks.test.ts :: assignTask > sets the assignee, moves planned -> assigned and emits task.assigned
+  FAIL apps/api/src/services/tasks.test.ts :: assignTask > rejects an agent outside AGENT_IDS
+  FAIL apps/api/src/services/tasks.test.ts :: assignTask > done task cannot be re-assigned
+  FAIL apps/api/src/services/tasks.test.ts :: transitionTask > emits task.status_changed for every allowed move
+  FAIL apps/api/src/services/tasks.test.ts :: transitionTask > done -> in_progress is rejected and emits nothing
+  FAIL apps/api/src/services/tasks.test.ts :: transitionTask > unknown task -> NotFoundError
+  FAIL apps/api/src/services/tasks.test.ts :: listTasks > filters by status and assignee
+  FAIL apps/api/src/services/directives.test.ts :: createDirective > persists an issued directive with a uuid id and emits directive.created
+  FAIL apps/api/src/services/directives.test.ts :: createDirective > persists the document before emitting; an emit failure leaves the directive without event
+  FAIL apps/api/src/services/directives.test.ts :: listDirectives > returns re-validated directives in creation order without Mongo fields
+  FAIL apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id > viewer reads a run (re-validated, no Mongo fields)
+  FAIL apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id > 401 without token
+  FAIL apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id > no route mutates runs or agents over REST
+  FAIL apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id/events > returns this run’s events ordered by createdAt
+  FAIL apps/api/src/routes/runs.test.ts :: GET /api/v1/runs/:id/events > unknown run -> 404; no token -> 401
+  FAIL apps/api/src/routes/runs.test.ts :: happy flow: directive -&gt; task -&gt; run visible over REST > operator directive, service-created task + run, viewer reads all of it
+  FAIL apps/api/src/routes/tasks.test.ts :: GET /api/v1/tasks > viewer lists tasks; status and assigneeAgentId filters apply
+  FAIL apps/api/src/routes/tasks.test.ts :: GET /api/v1/tasks > 400 for unknown filter values
+  FAIL apps/api/src/routes/tasks.test.ts :: GET /api/v1/tasks > 401 without token
+  FAIL apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > operator pauses, resumes and cancels; each emits task.status_changed
+  FAIL apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > invalid transitions -> 409 and no event (done task, resume without pause, pause planned)
+  FAIL apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > forged status in the body is ignored; only the action counts
+  FAIL apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > concurrent pause + cancel on the same task: exactly one 200 and one 409
+  FAIL apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > viewer -> 403; missing, expired and alg=none tokens -> 401
+  FAIL apps/api/src/routes/tasks.test.ts :: PATCH /api/v1/tasks/:id > 400 for unknown actions or malformed JSON
+  FAIL apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > operator creates an issued directive (201) and directive.created is stored
+  FAIL apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > owner may post; priority and capabilityTags default
+  FAIL apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > forged server-owned fields (id, status, issuedBy, createdBy, eventId) are ignored
+  FAIL apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > viewer -> 403 from the real requireRole("operator"), nothing stored
+  FAIL apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > no token, expired token and alg=none token -> 401
+  FAIL apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > 400 for invalid bodies
+  FAIL apps/api/src/routes/directives.test.ts :: POST /api/v1/directives > emit failure surfaces as 500 JSON; the directive row stays (documented gap)
+  FAIL apps/api/src/routes/directives.test.ts :: GET /api/v1/directives > viewer lists directives in creation order
+  FAIL apps/api/src/routes/directives.test.ts :: GET /api/v1/directives > 401 without token

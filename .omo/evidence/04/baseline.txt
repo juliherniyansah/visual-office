@@ -1,0 +1,4 @@
+# Baseline before T4 (2026-10-09T02:10:56Z)
+bun test apps/api: 66 pass, 0 fail, 190 expect(), 7 files
+bun run typecheck: 6/6 workspaces exit 0
+bunx biome check .: Checked 65 files, no fixes

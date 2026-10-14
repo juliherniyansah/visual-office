@@ -1,0 +1,10 @@
+# T5b typecheck (2026-10-09T07:28:52Z)
+$ bun run typecheck
+$ bun run --filter '*' typecheck
+@redhunter/adapters typecheck: Exited with code 0
+@redhunter/hermes typecheck: Exited with code 0
+@redhunter/agent-runtime typecheck: Exited with code 0
+@redhunter/web typecheck: Exited with code 0
+@redhunter/shared typecheck: Exited with code 0
+@redhunter/api typecheck: Exited with code 0
+exit=0

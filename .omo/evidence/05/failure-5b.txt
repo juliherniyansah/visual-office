@@ -1,0 +1,29 @@
+# T5b failure-path assertions (subset of test-5b.txt, same junit run)
+  PASS apps/api/src/services/officeState.test.ts :: getOfficeState > updatedAt must be a stored Date: string or missing value throws
+  PASS apps/api/src/services/officeState.test.ts :: getOfficeState > corrupt singleton throws (route maps it to a generic 500)
+  PASS apps/api/src/services/projects.test.ts :: listProjects > re-validates stored rows: a corrupt row throws instead of leaking
+  PASS apps/api/src/routes/office.test.ts :: GET /api/v1/office/state > corrupt stored singleton -> 500 generic JSON, no internals leaked
+  PASS apps/api/src/routes/office.test.ts :: GET /api/v1/office/state > query keys, including operator injection, are ignored
+  PASS apps/api/src/routes/office.test.ts :: GET /api/v1/office/state > no token, expired token and alg=none token -> 401
+  PASS apps/api/src/routes/office.test.ts :: no write route for office state or agent status > POST/PUT/PATCH/DELETE on office state and agent paths -> 404, nothing stored
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > forged server-owned fields are ignored (id, _id, createdBy, createdAt, eventId, status)
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > viewer -> 403, nothing stored
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > no token, expired token and alg=none token -> 401, nothing stored
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > 400 for invalid bodies and operator injection
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > title bound: 200 chars -> 201, 201 chars -> 400
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > text bound: 12000 chars -> 201, 12001 chars -> 400
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > tags bounds: 32 tags -> 201, 33 -> 400; 64-char tag -> 201, 65 -> 400
+  PASS apps/api/src/routes/knowledge.test.ts :: POST /api/v1/knowledge > 400 for malformed JSON, 413 for an oversized body
+  PASS apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > query keys, including operator injection, are ignored (no filter, no 500)
+  PASS apps/api/src/routes/knowledge.test.ts :: GET /api/v1/knowledge > 401 without token; other methods and :id paths -> 404
+  PASS apps/api/src/routes/tasks.test.ts :: GET /api/v1/tasks > 400 for unknown filter values
+  PASS apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > forged server-owned fields are ignored (id, _id, createdBy, createdAt, eventId, status)
+  PASS apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > viewer -> 403 from requireRole("operator"), nothing stored
+  PASS apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > no token, expired token and alg=none token -> 401, nothing stored
+  PASS apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > 400 for invalid bodies, operator injection and unsafe repo paths
+  PASS apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > name bound: 120 chars -> 201, 121 chars -> 400
+  PASS apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > repoPath bound: 1024 chars -> 201, 1025 chars -> 400
+  PASS apps/api/src/routes/projects.test.ts :: POST /api/v1/projects > 400 for malformed JSON, 413 for an oversized body
+  PASS apps/api/src/routes/projects.test.ts :: GET /api/v1/projects > query keys, including operator injection, are ignored (no filter, no 500)
+  PASS apps/api/src/routes/projects.test.ts :: GET /api/v1/projects > 401 without token
+  PASS apps/api/src/routes/projects.test.ts :: no other project routes > GET /projects/:id and PUT/PATCH/DELETE -> 404 JSON

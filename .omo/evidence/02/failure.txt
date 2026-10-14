@@ -1,0 +1,69 @@
+### RED run (tests written, implementation missing) 2026-10-08T23:52:31+00:00
+$ bun test packages/shared
+bun test v1.3.14 (0d9b296a)
+
+packages/shared/src/schemas.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './agents' from '/home/programer/work/visual-office/packages/shared/src/schemas.test.ts'
+-------------------------------
+
+
+packages/shared/src/office-layout.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './agents' from '/home/programer/work/visual-office/packages/shared/src/office-layout.test.ts'
+-------------------------------
+
+
+packages/shared/src/events.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './events' from '/home/programer/work/visual-office/packages/shared/src/events.test.ts'
+-------------------------------
+
+
+packages/shared/src/enums.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module './enums' from '/home/programer/work/visual-office/packages/shared/src/enums.test.ts'
+-------------------------------
+
+
+ 0 pass
+ 4 fail
+ 4 errors
+Ran 4 tests across 4 files. [26.00ms]
+EXIT=1
+
+### GREEN: dancing rejection proof 2026-10-09T00:03:27+00:00
+$ bun test packages/shared/src/enums.test.ts -t dancing
+bun test v1.3.14 (0d9b296a)
+
+ 6 pass
+ 7 filtered out
+ 0 fail
+ 6 expect() calls
+Ran 6 tests across 1 file. [68.00ms]
+EXIT=0
+$ bun -e AgentStatusSchema.parse("dancing")
+THROWN: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "idle",
+      "thinking",
+      "working",
+      "blocked",
+      "waiting_permission",
+      "offline"
+    ],
+    "path": [],
+    "message": "Invalid option: expected one of \"idle\"|\"thinking\"|\"working\"|\"blocked\"|\"waiting_permission\"|\"offline\""
+  }
+]
+EXIT=0

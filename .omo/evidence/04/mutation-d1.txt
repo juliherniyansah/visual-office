@@ -1,0 +1,50 @@
+# T4 D1 mutation proof (2026-10-09T03:46:22Z)
+# All mutations applied ONLY to a copy at /tmp/opencode/d1 (apps, packages, node_modules, root configs). Real source untouched.
+# cmd: bun test apps/api/src/events/dispatcher.test.ts (in the copy)
+
+## 1. OLD test (constant-parameterised) + mutation MAX_DISPATCH_ATTEMPTS = 6 -> SURVIVES (defect reproduced)
+ 10 pass
+ 0 fail
+Ran 10 tests across 1 file. [2.00s]
+
+## 2. NEW test (literal 5 + expect(MAX_DISPATCH_ATTEMPTS).toBe(5)) + mutation = 6
+Expected: 5
+Received: 6
+(fail) EventDispatcher > moves an event to events_dead after exactly 5 failed attempts, then unblocks the queue [11.38ms]
+ 9 pass
+ 1 fail
+Ran 10 tests across 1 file. [1.83s]
+
+## 2. NEW test (literal 5 + expect(MAX_DISPATCH_ATTEMPTS).toBe(5)) + mutation = 4
+Expected: 5
+Received: 4
+(fail) EventDispatcher > moves an event to events_dead after exactly 5 failed attempts, then unblocks the queue [5.35ms]
+ 9 pass
+ 1 fail
+Ran 10 tests across 1 file. [1.81s]
+
+## 2. NEW test (literal 5 + expect(MAX_DISPATCH_ATTEMPTS).toBe(5)) + mutation = 5
+ 10 pass
+ 0 fail
+Ran 10 tests across 1 file. [2.02s]
+
+## 3. NEW test with the constant assertion line removed (copy only) - behavior assertions alone
+### mutation = 6
+error: expect(received).toBe(expected)
+Expected: 0
+Received: 1
+(fail) EventDispatcher > moves an event to events_dead after exactly 5 failed attempts, then unblocks the queue [118.05ms]
+ 9 pass
+ 1 fail
+Ran 10 tests across 1 file. [1.94s]
+### mutation = 4
+error: expect(received).toMatchObject(expected)
+Matcher error: received value must be a non-null object
+(fail) EventDispatcher > moves an event to events_dead after exactly 5 failed attempts, then unblocks the queue [135.80ms]
+ 9 pass
+ 1 fail
+Ran 10 tests across 1 file. [1.92s]
+
+=6: after the 5th failing tick the event is still in events (countDocuments expected 0, received 1).
+=4: on the 4th failing tick the row is already gone from events (findOne -> null).
+Result: mutation 6 KILLED, mutation 4 KILLED (both by the constant check and by behavior alone); original 5 PASSES.

@@ -11,10 +11,13 @@
     "e2e": "playwright test"
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.1",
     "jwt-decode": "^4.0.0",
     "next": "^16.2.11",
     "react": "^19",
     "react-dom": "^19",
+    "three": "^0.186.1",
     "zustand": "^5.0.15"
   },
   "devDependencies": {
@@ -22,6 +25,7 @@
     "@tailwindcss/postcss": "^4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.186.0",
     "postcss": "^8",
     "tailwindcss": "^4",
     "typescript": "^7"

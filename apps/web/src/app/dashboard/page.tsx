@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/stores/useAuthStore';
 
-const OfficeCanvas = dynamic(() => import('@/components/OfficeCanvas'), {
+const OfficeCanvas = dynamic(() => import('@/components/office/OfficeCanvas'), {
   ssr: false,
   loading: () => (
     <div className="flex-1 flex items-center justify-center bg-gray-100">

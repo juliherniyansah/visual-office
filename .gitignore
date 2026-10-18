@@ -6,3 +6,17 @@ node_modules/
 dist/
 coverage/
 *.tsbuildinfo
+
+# Python bytecode
+__pycache__/
+
+# Blender backup files
+*.blend1
+
+# Large binary assets (>10 MB) kept locally, not in git (MVP-2 decision; no git-lfs)
+apps/assets/blender/hq_v04.blend
+apps/assets/raw/meshy/kit_v2/*.glb
+
+# Test run artifacts
+apps/web/playwright-report/
+apps/web/test-results/

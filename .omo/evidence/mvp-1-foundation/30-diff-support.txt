@@ -1,0 +1,89 @@
+# Commands: diff <(sed -n 'A,Bp' OFFICE) <(sed -n 'C,Dp' NEW)
+=== OFFICE L27,52 vs constants.ts L3,28
+$ diff <(sed -n '27,52p' apps/web/src/components/OfficeCanvas.tsx) <(sed -n '3,28p' apps/web/src/components/office/constants.ts)
+1,3c1,3
+< const FLOOR_HEIGHT = 4;
+< const AGENT_Y_OFFSET = 1.2;
+< const CAMERA_LERP_SPEED = 3;
+---
+> export const FLOOR_HEIGHT = 4;
+> export const AGENT_Y_OFFSET = 1.2;
+> export const CAMERA_LERP_SPEED = 3;
+5c5
+< const FLOOR_COLORS: Record<FloorId, string> = {
+---
+> export const FLOOR_COLORS: Record<FloorId, string> = {
+12c12
+< const FLOOR_EMISSIVE: Record<FloorId, string> = {
+---
+> export const FLOOR_EMISSIVE: Record<FloorId, string> = {
+19c19
+< const STATUS_COLORS: Record<AgentStatus, string> = {
+---
+> export const STATUS_COLORS: Record<AgentStatus, string> = {
+exit=1
+=== OFFICE L54,54 vs constants.ts L30,30
+$ diff <(sed -n '54,54p' apps/web/src/components/OfficeCanvas.tsx) <(sed -n '30,30p' apps/web/src/components/office/constants.ts)
+1c1
+< type AgentStatuses = Record<AgentId, AgentStatus>;
+---
+> export type AgentStatuses = Record<AgentId, AgentStatus>;
+exit=1
+=== OFFICE L67,75 vs constants.ts L32,40
+$ diff <(sed -n '67,75p' apps/web/src/components/OfficeCanvas.tsx) <(sed -n '32,40p' apps/web/src/components/office/constants.ts)
+1c1
+< const DEFAULT_STATUSES: AgentStatuses = {
+---
+> export const DEFAULT_STATUSES: AgentStatuses = {
+exit=1
+=== OFFICE L55,55 vs focusContext.ts L6,6
+$ diff <(sed -n '55,55p' apps/web/src/components/OfficeCanvas.tsx) <(sed -n '6,6p' apps/web/src/components/office/focusContext.ts)
+1c1
+< type FocusTarget = { position: THREE.Vector3; distance: number } | null;
+---
+> export type FocusTarget = { position: THREE.Vector3; distance: number } | null;
+exit=1
+=== OFFICE L57,60 vs focusContext.ts L8,11
+$ diff <(sed -n '57,60p' apps/web/src/components/OfficeCanvas.tsx) <(sed -n '8,11p' apps/web/src/components/office/focusContext.ts)
+1c1
+< interface FocusContextValue {
+---
+> export interface FocusContextValue {
+exit=1
+=== OFFICE L62,65 vs focusContext.ts L13,16
+$ diff <(sed -n '62,65p' apps/web/src/components/OfficeCanvas.tsx) <(sed -n '13,16p' apps/web/src/components/office/focusContext.ts)
+1c1
+< const FocusContext = createContext<FocusContextValue>({
+---
+> export const FocusContext = createContext<FocusContextValue>({
+exit=1
+=== OFFICE L77,83 vs deskLayout.ts L5,11
+$ diff <(sed -n '77,83p' apps/web/src/components/OfficeCanvas.tsx) <(sed -n '5,11p' apps/web/src/components/office/deskLayout.ts)
+1c1
+< function deskPositionForDeskId(deskId: string): { x: number; z: number } {
+---
+> export function deskPositionForDeskId(deskId: string): { x: number; z: number } {
+exit=1
+=== OFFICE L85,88 vs deskLayout.ts L13,16
+$ diff <(sed -n '85,88p' apps/web/src/components/OfficeCanvas.tsx) <(sed -n '13,16p' apps/web/src/components/office/deskLayout.ts)
+1c1
+< function deskToWorld(floorId: FloorId, deskId: string): THREE.Vector3 {
+---
+> export function deskToWorld(floorId: FloorId, deskId: string): THREE.Vector3 {
+exit=1
+=== OFFICE L90,92 vs deskLayout.ts L18,20
+$ diff <(sed -n '90,92p' apps/web/src/components/OfficeCanvas.tsx) <(sed -n '18,20p' apps/web/src/components/office/deskLayout.ts)
+1c1
+< function floorCenter(floorId: FloorId): THREE.Vector3 {
+---
+> export function floorCenter(floorId: FloorId): THREE.Vector3 {
+exit=1
+=== QA greps
+$ grep -n 'FLOOR_HEIGHT = 4' apps/web/src/components/office/constants.ts
+3:export const FLOOR_HEIGHT = 4;
+$ grep -c createContext apps/web/src/components/office/focusContext.ts
+2
+$ grep -n 'createContext\|FocusTarget' constants.ts deskLayout.ts (expect empty)
+grep_exit=1
+=== md5
+de47fea8e9d0870083eb7a8ddced84c1  apps/web/src/components/OfficeCanvas.tsx

@@ -1,0 +1,21 @@
+SERVER_PGID=326204
+[web] ▲ Next.js 16.4.0 (Turbopack)
+[web] - Local:         http://localhost:3100
+- Network:       http://10.10.1.36:3100
+- Environments: .env.local
+[web] ✓ Ready in 636ms
+[web:err] ⚠ `eslint` configuration in next.config.ts is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+[web:err] ⚠ Invalid next.config.ts options detected: 
+[web:err] ⚠     Unrecognized key(s) in object: 'eslint'
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+[web] ✓ Running next.config.ts took 66ms
+[web] 
+[web]  GET /dashboard 200 in 878ms (next.js: 431ms, application-code: 447ms)
+[web:err] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[web:err] [browser] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.
+ACTIVE_INITIAL ["F2 · Domain Floor"]
+ACTIVE_AFTER_F4 ["F4 · CEO Office"]
+ACTIVE_AFTER_F1 ["F1 · Lobby & Server Room"]
+[web] [?25h[web] 
+CONSOLE_ERRORS []
+EXIT=0

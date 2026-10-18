@@ -1,0 +1,35 @@
+== Scene block: monolith L230-275 vs Scene.tsx (expected deltas: export prefix, light pair L242-253 -> <Lighting />)
+1c1
+< function Scene({ agentStatuses }: { agentStatuses: AgentStatuses }) {
+---
+> export function Scene({ agentStatuses }: { agentStatuses: AgentStatuses }) {
+13,24c13
+<       <ambientLight intensity={0.4} />
+<       <directionalLight
+<         position={[10, 20, 10]}
+<         intensity={1.5}
+<         castShadow
+<         shadow-mapSize={[2048, 2048]}
+<         shadow-camera-far={50}
+<         shadow-camera-left={-15}
+<         shadow-camera-right={15}
+<         shadow-camera-top={15}
+<         shadow-camera-bottom={-15}
+<       />
+---
+>       <Lighting />
+== Root block: monolith L371-417 vs office/OfficeCanvas.tsx (expected delta: none)
+4d3
+< 
+== QA
+48:            gl.setClearColor('#0a0a0a');
+44:            toneMapping: THREE.ACESFilmicToneMapping,
+33:      <Lighting />
+35:      <Building />
+failure-check (expect empty):
+md5:
+de47fea8e9d0870083eb7a8ddced84c1  /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/OfficeCanvas.tsx
+== cycle check (expect empty)
+cycle-grep-done
+== Root block: monolith L371-417 vs office/OfficeCanvas.tsx L(tail-47)..end (expected delta: none)
+IDENTICAL

@@ -1,0 +1,35 @@
+# Wave 2a diff proof (monolith md5 must stay de47fea8e9d0870083eb7a8ddced84c1)
+$ md5sum apps/web/src/components/OfficeCanvas.tsx
+de47fea8e9d0870083eb7a8ddced84c1  /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/OfficeCanvas.tsx
+
+$ diff <(sed -n '131,134p' OfficeCanvas.tsx) <(sed -n '7,10p' office/Building.tsx)
+1,2c1,2
+< function Building() {
+<   const { scene } = useGLTF('/models/building.glb');
+---
+> export function Building() {
+>   const { scene } = useGLTF(BUILDING_MODEL_URL);
+exit=1
+
+$ diff <(sed -n '136,149p' OfficeCanvas.tsx) <(sed -n '6,19p' office/FloorPlane.tsx)
+1c1
+< function FloorPlane({ floorId }: { floorId: FloorId }) {
+---
+> export function FloorPlane({ floorId }: { floorId: FloorId }) {
+exit=1
+
+$ diff <(sed -n '151,174p' OfficeCanvas.tsx) <(sed -n '9,32p' office/DeskMarkers.tsx)
+1c1
+< function DeskMarkers() {
+---
+> export function DeskMarkers() {
+exit=1
+
+$ grep -nE "BUILDING_MODEL_URL = ['\"]/models/building.glb['\"]" Building.tsx
+5:export const BUILDING_MODEL_URL = '/models/building.glb';
+$ grep -c 'building.glb' Building.tsx
+1
+$ grep -n 'useGLTF(BUILDING_MODEL_URL)' Building.tsx
+8:  const { scene } = useGLTF(BUILDING_MODEL_URL);
+$ literal failure check (expect empty)
+(empty above = pass)

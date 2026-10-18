@@ -1,0 +1,28 @@
+@redhunter/shared typecheck: Exited with code 0
+@redhunter/web typecheck: Exited with code 0
+@redhunter/adapters typecheck: Exited with code 0
+@redhunter/hermes typecheck: Exited with code 0
+@redhunter/agent-runtime typecheck: Exited with code 0
+@redhunter/api typecheck: src/app.test.ts(39,38): error TS2353: Object literal may only specify known properties, and 'owner' does not exist in type 'SeedOptions'.
+@redhunter/api typecheck: src/config/env.test.ts(15,7): error TS2769: No overload matches this call.
+@redhunter/api typecheck:   The last overload gave the following error.
+@redhunter/api typecheck:     Object literal may only specify known properties, and 'owner' does not exist in type 'Env'.
+@redhunter/api typecheck: src/config/env.test.ts(83,16): error TS2339: Property 'owner' does not exist on type 'Env'.
+@redhunter/api typecheck: src/config/env.test.ts(88,16): error TS2339: Property 'owner' does not exist on type 'Env'.
+@redhunter/api typecheck: src/index.ts(24,29): error TS2339: Property 'owner' does not exist on type 'SeedResult'.
+@redhunter/api typecheck: src/index.ts(24,83): error TS2339: Property 'owner' does not exist on type 'SeedResult'.
+@redhunter/api typecheck: src/seed/cli.ts(17,33): error TS2339: Property 'owner' does not exist on type 'SeedResult'.
+@redhunter/api typecheck: src/seed/cli.ts(17,89): error TS2339: Property 'owner' does not exist on type 'SeedResult'.
+@redhunter/api typecheck: src/seed/seed.test.ts(131,54): error TS2353: Object literal may only specify known properties, and 'owner' does not exist in type 'SeedOptions'.
+@redhunter/api typecheck: src/seed/seed.test.ts(132,55): error TS2353: Object literal may only specify known properties, and 'owner' does not exist in type 'SeedOptions'.
+@redhunter/api typecheck: src/seed/seed.test.ts(133,40): error TS2769: No overload matches this call.
+@redhunter/api typecheck:   The last overload gave the following error.
+@redhunter/api typecheck:     Object literal may only specify known properties, and 'owner' does not exist in type 'SeedResult'.
+@redhunter/api typecheck: src/seed/seed.test.ts(134,41): error TS2769: No overload matches this call.
+@redhunter/api typecheck:   The last overload gave the following error.
+@redhunter/api typecheck:     Object literal may only specify known properties, and 'owner' does not exist in type 'SeedResult'.
+@redhunter/api typecheck: src/seed/seed.test.ts(141,71): error TS2769: No overload matches this call.
+@redhunter/api typecheck:   The last overload gave the following error.
+@redhunter/api typecheck:     Object literal may only specify known properties, and 'owner' does not exist in type 'SeedResult'.
+@redhunter/api typecheck: Exited with code 1
+EXIT=1

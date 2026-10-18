@@ -1,0 +1,14 @@
+   60 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/Agent.tsx
+   10 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/Building.tsx
+   45 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/CameraRig.tsx
+   40 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/constants.ts
+   20 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/deskLayout.ts
+   32 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/DeskMarkers.tsx
+   19 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/FloorPlane.tsx
+   52 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/FloorSelector.tsx
+   16 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/focusContext.ts
+   20 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/Lighting.tsx
+   60 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/OfficeCanvas.tsx
+   55 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/Scene.tsx
+   49 /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/WebGLErrorBoundary.tsx
+  478 total

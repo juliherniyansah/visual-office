@@ -1,0 +1,107 @@
+apps/web/src/components/OfficeCanvas.tsx:97:30 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    95 │   const { target } = useContext(FocusContext);
+    96 │   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  > 97 │   const controlsRef = useRef<any>(null);
+       │                              ^^^
+    98 │   const { camera } = useThree();
+    99 │   const targetPosition = useRef(new THREE.Vector3(0, 6, 18));
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+apps/web/src/app/dashboard/page.tsx:38:9 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Provide an explicit type prop for the button element.
+  
+    36 │           )}
+    37 │         </div>
+  > 38 │         <button
+       │         ^^^^^^^
+  > 39 │           onClick={handleLogout}
+  > 40 │           className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+  > 41 │         >
+       │         ^
+    42 │           Logout
+    43 │         </button>
+  
+  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
+  
+  i Allowed button types are: submit, button or reset
+  
+
+apps/web/src/components/OfficeCanvas.tsx:194:7 lint/a11y/noStaticElementInteractions ━━━━━━━━━━━━━━━
+
+  × Unexpected event handler on static element.
+  
+    192 │   return (
+    193 │     <group position={worldPos}>
+  > 194 │       <mesh
+        │       ^^^^^
+  > 195 │         castShadow
+         ...
+  > 199 │         }}
+  > 200 │       >
+        │       ^
+    201 │         <capsuleGeometry args={[0.25, 0.8, 4, 8]} />
+    202 │         <meshStandardMaterial
+  
+  i Static elements should not be interactive. To add interactivity such as a mouse or key event listener to a static element, give the element an appropriate role value.
+  
+
+apps/web/src/components/OfficeCanvas.tsx:170:24 lint/suspicious/noArrayIndexKey ━━━━━━━━━━━━━━━━━━━━
+
+  × Avoid using the index of an array as key property in an element.
+  
+    168 │       <meshStandardMaterial color="#78716c" roughness={0.6} metalness={0.3} />
+    169 │       {desks.map((desk, i) => (
+  > 170 │         <Instance key={i} position={desk.position} />
+        │                        ^
+    171 │       ))}
+    172 │     </Instances>
+  
+  i This is the source of the key value.
+  
+    167 │       <boxGeometry args={[0.8, 0.1, 0.5]} />
+    168 │       <meshStandardMaterial color="#78716c" roughness={0.6} metalness={0.3} />
+  > 169 │       {desks.map((desk, i) => (
+        │                         ^
+    170 │         <Instance key={i} position={desk.position} />
+    171 │       ))}
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+apps/web/src/components/OfficeCanvas.tsx:300:11 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Provide an explicit type prop for the button element.
+  
+    298 │         const isActive = fid === currentFloor;
+    299 │         return (
+  > 300 │           <button
+        │           ^^^^^^^
+  > 301 │             key={floor.id}
+         ...
+  > 315 │             }}
+  > 316 │           >
+        │           ^
+    317 │             F{floor.id} · {floor.name}
+    318 │           </button>
+  
+  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
+  
+  i Allowed button types are: submit, button or reset
+  
+
+Checked 2 files in 15ms. No fixes applied.
+Found 4 errors.
+Found 1 warning.
+lint ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Some errors were emitted while running checks.
+  
+

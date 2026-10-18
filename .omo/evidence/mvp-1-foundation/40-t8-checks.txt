@@ -1,0 +1,35 @@
+== pre-delete monolith
+== monolith pre-delete
+417
+de47fea8e9d0870083eb7a8ddced84c1  -
+== page.tsx diff
+1	1	apps/web/src/app/dashboard/page.tsx
+diff --git a/apps/web/src/app/dashboard/page.tsx b/apps/web/src/app/dashboard/page.tsx
+index 78e882a..277fbe0 100644
+--- a/apps/web/src/app/dashboard/page.tsx
++++ b/apps/web/src/app/dashboard/page.tsx
+@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
+ import { useRouter } from 'next/navigation';
+ import { useAuthStore } from '@/stores/useAuthStore';
+ 
+-const OfficeCanvas = dynamic(() => import('@/components/OfficeCanvas'), {
++const OfficeCanvas = dynamic(() => import('@/components/office/OfficeCanvas'), {
+   ssr: false,
+   loading: () => (
+     <div className="flex-1 flex items-center justify-center bg-gray-100">
+== test ! -f
+OK_DELETED
+== grep components/OfficeCanvas'
+0 hits
+== grep @/components/OfficeCanvas
+empty
+== building.glb
+apps/web/src/components/office/Building.tsx:5:export const BUILDING_MODEL_URL = '/models/building.glb';
+== office/OfficeCanvas in page
+7:const OfficeCanvas = dynamic(() => import('@/components/office/OfficeCanvas'), {
+== ssr: false
+8:  ssr: false,
+== lint count (41-biome-lint-after.txt)
+5
+== git status OfficeCanvas.tsx (unstaged)
+ D apps/web/src/components/OfficeCanvas.tsx

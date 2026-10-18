@@ -1,0 +1,29 @@
+[WebServer] ⚠ `eslint` configuration in next.config.ts is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+[WebServer] ⚠ Invalid next.config.ts options detected: 
+[WebServer] ⚠     Unrecognized key(s) in object: 'eslint'
+[WebServer] ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+
+Running 1 test using 1 worker
+
+[WebServer] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+  ✘  1 e2e/dashboard-office.e2e.ts:34:5 › dashboard office canvas renders identically (8.3s)
+
+
+  1) e2e/dashboard-office.e2e.ts:34:5 › dashboard office canvas renders identically ────────────────
+
+    Error: ENOENT: no such file or directory, open '/home/programer/work/redhunter-reborn/visual-office/apps/.omo/evidence/mvp-1-foundation/14-renderer-before.txt'
+
+      57 |   });
+      58 |   expect(renderer).toBeTruthy();
+    > 59 |   fs.writeFileSync(path.join(EVIDENCE_DIR, `14-renderer-${phase}.txt`), String(renderer));
+         |      ^
+      60 |
+      61 |   await expect(page.getByText(AGENT_TITLE_ANCHOR)).toBeVisible({ timeout: 30_000 });
+      62 |
+        at /home/programer/work/redhunter-reborn/visual-office/apps/web/e2e/dashboard-office.e2e.ts:59:6
+
+    Error Context: ../../.omo/evidence/mvp-1-foundation/pw-output/dashboard-office.e2e.ts-da-6684b--canvas-renders-identically/error-context.md
+
+  1 failed
+    e2e/dashboard-office.e2e.ts:34:5 › dashboard office canvas renders identically ─────────────────
+EXIT=1

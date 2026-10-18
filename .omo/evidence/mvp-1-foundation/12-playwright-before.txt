@@ -1,0 +1,14 @@
+[WebServer] ⚠ `eslint` configuration in next.config.ts is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+[WebServer] ⚠ Invalid next.config.ts options detected: 
+[WebServer] ⚠     Unrecognized key(s) in object: 'eslint'
+[WebServer] ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+
+Running 1 test using 1 worker
+
+[WebServer] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[WebServer] [browser] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.
+A snapshot doesn't exist at /home/programer/work/redhunter-reborn/visual-office/apps/web/e2e/dashboard-office.e2e.ts-snapshots/dashboard-office-linux.png, writing actual.
+  ✓  1 e2e/dashboard-office.e2e.ts:35:5 › dashboard office canvas renders identically (15.6s)
+
+  1 passed (19.2s)
+EXIT=0

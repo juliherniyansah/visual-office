@@ -1,0 +1,66 @@
+[WebServer] ⚠ `eslint` configuration in next.config.ts is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+[WebServer] ⚠ Invalid next.config.ts options detected: 
+[WebServer] ⚠     Unrecognized key(s) in object: 'eslint'
+[WebServer] ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+
+Running 1 test using 1 worker
+
+[WebServer] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[WebServer] [browser] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.
+  ✘  1 e2e/dashboard-office.e2e.ts:35:5 › dashboard office canvas renders identically (17.0s)
+
+
+  1) e2e/dashboard-office.e2e.ts:35:5 › dashboard office canvas renders identically ────────────────
+
+    Error: expect(locator).toHaveScreenshot(expected) failed
+
+    Locator: locator('main')
+      22234 pixels (ratio 0.03 of all image pixels) are different.
+
+      Snapshot: dashboard-office.png
+
+    Call log:
+      - Expect "toHaveScreenshot(dashboard-office.png)" locator('main') with timeout 5000ms
+        - verifying given screenshot expectation
+      - waiting for locator('main')
+        - locator resolved to <main class="flex-1 overflow-hidden">…</main>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - 22234 pixels (ratio 0.03 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - waiting for locator('main')
+        - locator resolved to <main class="flex-1 overflow-hidden">…</main>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - captured a stable screenshot
+      - 22234 pixels (ratio 0.03 of all image pixels) are different.
+
+
+      73 |   if (process.env.PW_NEG) await page.addStyleTag({ content: 'canvas{filter:invert(1)}' });
+      74 |
+    > 75 |   await expect(page.locator('main')).toHaveScreenshot('dashboard-office.png', {
+         |                                      ^
+      76 |     maxDiffPixelRatio: 0.01,
+      77 |     animations: 'disabled',
+      78 |   });
+        at /home/programer/work/redhunter-reborn/visual-office/apps/web/e2e/dashboard-office.e2e.ts:75:38
+
+    attachment #1: dashboard-office (image/png) ────────────────────────────────────────────────────
+    Expected: e2e/dashboard-office.e2e.ts-snapshots/dashboard-office-linux.png
+    Received: ../../.omo/evidence/mvp-1-foundation/pw-output/dashboard-office.e2e.ts-da-6684b--canvas-renders-identically/dashboard-office-actual.png
+    Diff:     ../../.omo/evidence/mvp-1-foundation/pw-output/dashboard-office.e2e.ts-da-6684b--canvas-renders-identically/dashboard-office-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../.omo/evidence/mvp-1-foundation/pw-output/dashboard-office.e2e.ts-da-6684b--canvas-renders-identically/error-context.md
+
+  1 failed
+    e2e/dashboard-office.e2e.ts:35:5 › dashboard office canvas renders identically ─────────────────
+EXIT=1

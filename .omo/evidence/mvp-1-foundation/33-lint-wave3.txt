@@ -1,0 +1,87 @@
+apps/web/src/components/office/CameraRig.tsx:13:30 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    11 │   const { target } = useContext(FocusContext);
+    12 │   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  > 13 │   const controlsRef = useRef<any>(null);
+       │                              ^^^
+    14 │   const { camera } = useThree();
+    15 │   const targetPosition = useRef(new THREE.Vector3(0, 6, 18));
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+apps/web/src/components/office/Agent.tsx:26:7 lint/a11y/noStaticElementInteractions ━━━━━━━━━━━━━━━━
+
+  × Unexpected event handler on static element.
+  
+    24 │   return (
+    25 │     <group position={worldPos}>
+  > 26 │       <mesh
+       │       ^^^^^
+  > 27 │         castShadow
+        ...
+  > 31 │         }}
+  > 32 │       >
+       │       ^
+    33 │         <capsuleGeometry args={[0.25, 0.8, 4, 8]} />
+    34 │         <meshStandardMaterial
+  
+  i Static elements should not be interactive. To add interactivity such as a mouse or key event listener to a static element, give the element an appropriate role value.
+  
+
+apps/web/src/components/office/DeskMarkers.tsx:28:24 lint/suspicious/noArrayIndexKey ━━━━━━━━━━━━━━━
+
+  × Avoid using the index of an array as key property in an element.
+  
+    26 │       <meshStandardMaterial color="#78716c" roughness={0.6} metalness={0.3} />
+    27 │       {desks.map((desk, i) => (
+  > 28 │         <Instance key={i} position={desk.position} />
+       │                        ^
+    29 │       ))}
+    30 │     </Instances>
+  
+  i This is the source of the key value.
+  
+    25 │       <boxGeometry args={[0.8, 0.1, 0.5]} />
+    26 │       <meshStandardMaterial color="#78716c" roughness={0.6} metalness={0.3} />
+  > 27 │       {desks.map((desk, i) => (
+       │                         ^
+    28 │         <Instance key={i} position={desk.position} />
+    29 │       ))}
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+apps/web/src/components/office/FloorSelector.tsx:29:11 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━
+
+  × Provide an explicit type prop for the button element.
+  
+    27 │         const isActive = fid === currentFloor;
+    28 │         return (
+  > 29 │           <button
+       │           ^^^^^^^
+  > 30 │             key={floor.id}
+        ...
+  > 44 │             }}
+  > 45 │           >
+       │           ^
+    46 │             F{floor.id} · {floor.name}
+    47 │           </button>
+  
+  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
+  
+  i Allowed button types are: submit, button or reset
+  
+
+Checked 13 files in 11ms. No fixes applied.
+Found 3 errors.
+Found 1 warning.
+lint ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Some errors were emitted while running checks.
+  
+

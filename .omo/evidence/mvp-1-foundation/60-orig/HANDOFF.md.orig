@@ -1,0 +1,16 @@
+# Redhunter HQ — MVP Handoff Log
+
+Append-only. Setiap MVP menambah satu bagian di akhir sesi: apa yang selesai, file/nama yang
+tersedia untuk MVP berikutnya, keterbatasan. MVP berikutnya WAJIB membaca file ini.
+
+<!-- Format:
+## MVP-N — <judul> (YYYY-MM-DD)
+- Selesai: ...
+- Output untuk MVP berikutnya: ...
+- Keterbatasan / catatan: ...
+-->
+
+## MVP-0 — Visi Terkunci (2026-10-17)
+- Selesai: 15 keputusan visi diwawancarai & ditulis ke guide §4.1 Atmosfer, §5.1 (tanpa TBD), §8.4 Game Feel, §11 #13–#17; .html sinkron.
+- Output untuk MVP berikutnya: MVP-2 (P0) → §4.1 palet, exterior taman+jalan, HemisphereLight + DirectionalLight PCFSoft 2048; naming tambahan di hq.glb: 1 empty `NAV_wp_<room_id>` per `ROOM_*` (contoh `NAV_wp_lobby`, `NAV_wp_meeting_a`, `NAV_wp_workstation_a`) + area sofa di `ROOM_lobby`. MVP-3 (P1–P2) → §4.1 day-night 4 fase; §8.4 cinematic intro ≤ 4 s, juice sedang. MVP-4 (P3) → §5.1 humanoid 1.7 m, 7 clip, shape key face_blink/face_smile/face_talk di tiap CHAR_FACE_<id>, ≤ 8k tris, ring AI 0.25 m; demo `walk` sepanjang `NAV_wp_*` tanpa data backend — mapping dipasang di MVP-5. MVP-5 (P4) → §8.4 mapping `AGENT_STATUSES` → ruangan/clip, XP/level/badge backend, ambient bubble idle non-status + prop bergerak.
+- Keterbatasan / catatan: tidak ada kode/Blender/git di MVP-0. Day-night = 4 setup lighting; disarankan (bukan keharusan) MVP-2 render QA minimal fase siang + malam. Shape key bergantung output Meshy; fallback manual Blender. §5.1 menggantikan daftar clip §7.2 (idle/walk/sit/type → 7 clip).

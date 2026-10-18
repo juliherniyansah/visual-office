@@ -1,0 +1,68 @@
+ M .omo/boulder.json
+ M .omo/run-continuation/ses_ecad8cc00ffe33XD6QEBTwwY5H.json
+ M .omo/run-continuation/ses_ed63da937ffenrMu1yYkV62W8j.json
+ M apps/api/package.json
+ M apps/api/src/auth/credentials.ts
+ M apps/api/src/config/env.ts
+ M apps/api/src/http/response.ts
+ M apps/api/src/index.ts
+ M apps/api/src/routes/auth.ts
+ M apps/api/src/seed/cli.ts
+ M apps/api/src/seed/index.ts
+ M apps/web/next-env.d.ts
+ M apps/web/src/app/login/page.tsx
+ M apps/web/src/app/page.tsx
+ M apps/web/src/components/landing/Nav.tsx
+ M apps/web/src/lib/api.ts
+ M apps/web/src/stores/useAuthStore.ts
+ M apps/web/test-results/.last-run.json
+ M package.json
+ M packages/shared/src/index.ts
+?? .omo/drafts/mvp-0-vision.md
+?? .omo/drafts/mvp-1-foundation.md
+?? .omo/evidence/mvp-1-foundation/
+?? .omo/notepads/initial-setup/
+?? .omo/notepads/mvp-0-vision/
+?? .omo/notepads/mvp-1-foundation/
+?? .omo/plans/initial-setup.md
+?? .omo/plans/mvp-0-vision.md
+?? .omo/plans/mvp-1-foundation.md
+?? .omo/run-continuation/ses_eb8d49cd6ffe4wVSMCmMVvD42k.json
+?? .omo/run-continuation/ses_eb8d4da28ffefLu8ktvTlw2gYg.json
+?? .omo/run-continuation/ses_eb8d76700ffegiS5SF46vzZwed.json
+?? .omo/run-continuation/ses_eb8d78e24ffedkpdC6odyz7pRt.json
+?? .omo/run-continuation/ses_eb8dc06bdffe1lBItVERcGtlt7.json
+?? .omo/run-continuation/ses_eb8e67bc7ffeFSBfpYsHjfQ9pl.json
+?? .omo/run-continuation/ses_eb8e6ba4fffeAbsh71x1Sh3nmM.json
+?? .omo/run-continuation/ses_eb97520a7ffeTxez2qMZDZRzuO.json
+?? .omo/run-continuation/ses_eb9765a37ffeYDCM2kIthugS7W.json
+?? .omo/run-continuation/ses_eb9779cd9ffeJCRpuzueYk1RaA.json
+?? .omo/run-continuation/ses_ec0629fbfffeRiq2aBgNjxvOhP.json
+?? .omo/run-continuation/ses_ec062ad84ffejzH3q9LZiOEtIu.json
+?? .omo/run-continuation/ses_ec062c07affe33kKY15ukMvbeO.json
+?? .omo/run-continuation/ses_ec0689d6dffeT5X2aQekw7Uf0t.json
+?? .omo/run-continuation/ses_ec068ae88ffebQi654RO9GDsom.json
+?? .omo/run-continuation/ses_ec06dbf46ffeqG6ykJigIKFN1S.json
+?? .omo/run-continuation/ses_ec06dcf9cffeqssymTIh1eubrK.json
+?? .omo/run-continuation/ses_ec06de259ffeJZCKEeih0eveyA.json
+?? .omo/run-continuation/ses_ec06df24fffeaftNz3ucFllm25.json
+?? .omo/run-continuation/ses_ec070691effe4r6tHXY5GxPNCM.json
+?? .omo/run-continuation/ses_ec074ba52ffeE2curNEzjEDRFO.json
+?? .omo/run-continuation/ses_ec1922729ffeiKgSDrsDlTjZJH.json
+?? apps/.omo/evidence/vyron-setup-flow/
+?? apps/api/AGENTS.md
+?? apps/api/scripts/
+?? apps/api/src/routes/setup.test.ts
+?? apps/web/AGENTS.md
+?? apps/web/e2e/setup-global-setup.ts
+?? apps/web/e2e/setup.spec.ts
+?? apps/web/playwright-report/
+?? apps/web/playwright.setup.config.ts
+?? apps/web/src/app/setup/
+?? docs/mvp/
+?? docs/redhunter-hq-brainstorming-guided.html
+?? docs/redhunter-hq-brainstorming-guided.md
+?? docs/redhunter-hq-step-prompts.md
+?? packages/adapters/AGENTS.md
+?? packages/agent-runtime/AGENTS.md
+?? packages/shared/src/password.ts

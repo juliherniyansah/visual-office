@@ -1,0 +1,8 @@
+ apps/web/next-env.d.ts                  |  4 +-
+ apps/web/src/app/login/page.tsx         | 80 ++++++++++++++++++++++++++++-----
+ apps/web/src/app/page.tsx               | 59 ++++++++++++++++++++++++
+ apps/web/src/components/landing/Nav.tsx |  8 ++++
+ apps/web/src/lib/api.ts                 | 34 +++++++++++++-
+ apps/web/src/stores/useAuthStore.ts     |  3 +-
+ apps/web/test-results/.last-run.json    |  2 +-
+ 7 files changed, 171 insertions(+), 19 deletions(-)

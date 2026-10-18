@@ -1,0 +1,27 @@
+# per-block diff: monolith range vs new-file range (expected deltas: export prefix; Lighting wrapper)
+$ diff <(sed -n '176,228p' OfficeCanvas.tsx) <(sed -n '8,60p' office/Agent.tsx)
+1c1
+< function Agent({
+---
+> export function Agent({
+EXIT=1
+$ diff <(sed -n '94,129p' OfficeCanvas.tsx) <(sed -n '10,45p' office/CameraRig.tsx)
+1c1
+< function CameraRig() {
+---
+> export function CameraRig() {
+EXIT=1
+$ diff <(sed -n '277,323p' OfficeCanvas.tsx) <(sed -n '6,52p' office/FloorSelector.tsx)
+1c1
+< function FloorSelector({
+---
+> export function FloorSelector({
+EXIT=1
+$ diff <(sed -n '325,369p' OfficeCanvas.tsx) <(sed -n '5,49p' office/WebGLErrorBoundary.tsx)
+5c5
+< class WebGLErrorBoundary extends Component<{ children: ReactNode }, WebGLErrorBoundaryState> {
+---
+> export class WebGLErrorBoundary extends Component<{ children: ReactNode }, WebGLErrorBoundaryState> {
+EXIT=1
+$ diff <(sed -n '242,253p' OfficeCanvas.tsx) <(sed -n '6,17p' office/Lighting.tsx)
+EXIT=0

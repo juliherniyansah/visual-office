@@ -6,10 +6,12 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
+    "dev": "bun run --watch src/index.ts",
     "start": "bun run src/index.ts",
     "seed": "bun run src/seed/cli.ts",
     "test": "bun test",
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "tsc --noEmit -p .",
+    "doctor": "bash scripts/doctor.sh"
   },
   "dependencies": {
     "@redhunter/adapters": "workspace:*",

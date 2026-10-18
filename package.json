@@ -11,7 +11,8 @@
     "typecheck": "bun run --filter '*' typecheck",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "test": "bun test --pass-with-no-tests"
+    "test": "bun test --pass-with-no-tests",
+    "doctor": "bash apps/api/scripts/doctor.sh"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.15",

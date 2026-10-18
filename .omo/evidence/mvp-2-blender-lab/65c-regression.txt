@@ -1,0 +1,13 @@
+# Regression (todo 17b part 2)
+plain build (bpy default, --check) EXIT=0 SELF_CHECK OK 387 objects 6630 tris
+plain build names == 24a-names-v01.txt as sets: True (387 == 387)
+--check --inject-bad-col                    EXIT=1 (expected fail)
+--check --inject-missing-nav                EXIT=1 (expected fail)
+tests/test_furniture.py                     EXIT=0
+tests/test_normalize_kit.py                 EXIT=0 (incl. 3 new v2 tests: keep 4K texture, tris_cap, v1 defaults)
+tests/test_viewport_colors.py               EXIT=0
+md5 hq_v01.blend  29a9335853af9bc029aea4eb88445110  OK
+md5 hq_v02.blend  559159834244a82a3d996a783675774a  OK
+md5 hq_v03.blend  8845bc7eadbbb6566f66ece44ea8a837  OK
+hq_v04.blend      edc83c06afbc3e2b416e08947931bbf6  (rebuilt, see 65d)
+blend1 files left: 0

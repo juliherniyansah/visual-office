@@ -1,0 +1,4 @@
+# animation task 01a14d23-6cf3-76c6-bd63-5802c870ea97 (idle, action_id 0; URLs expire 2026-10-21T03:52:14Z)
+idle GLB: Animation_Idle_withSkin.glb
+idle FBX: Animation_Idle_withSkin.fbx
+base: https://assets.meshy.ai/7d6d0be9-02d4-4605-8ab6-2bf30f7af5f6/tasks/01a14d23-6cf3-76c6-bd63-5802c870ea97/output/

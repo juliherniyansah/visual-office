@@ -1,0 +1,96 @@
+--- /home/programer/work/redhunter-reborn/visual-office/.omo/evidence/mvp-2-blender-lab/00c-pre/redhunter-hq-brainstorming-guided.md	2026-10-17 16:05:03.967722721 +0000
++++ docs/redhunter-hq-brainstorming-guided.md	2026-10-17 16:06:22.584588138 +0000
+@@ -55,7 +55,7 @@
+ 1. **MUST NOT** blockout Floor 1, clone Nexus HQ/Huddly, atau ubah kode tanpa persetujuan eksplisit user di pesan saat itu.
+ 2. **MUST NOT** bangun 4 lantai detail sekaligus — Floor 1 dulu, evaluasi, baru perluas.
+ 3. **MUST NOT** generate gedung/ruangan utuh sebagai satu mesh via Meshy/Sloyd (monolitik, tidak bisa floor-switch/collision per dinding). Yang boleh: **potongan kit modular** (panel dinding, lantai, pintu, tangga) yang dijahit bpy — lihat §3 'Kit Meshy'.
+-4. **MUST NOT** pakai smooth shading, tekstur blur, atau bentuk "meleleh" (lihat §4).
++4. **MUST NOT** pakai tekstur blur/noise, bentuk "meleleh", atau smooth shading di luar auto-smooth ≤ 30° (lihat §4).
+ 5. **MUST NOT** expose socket Blender MCP (`127.0.0.1:9876`) ke Tailscale/jaringan — `execute_blender_code` = Python arbitrer.
+ 6. **MUST NOT** membuat endpoint backend fiktif, status agent palsu, atau mock task permanen di scene.
+ 7. **MUST NOT** mengubah `apps/web/src/components/office/` di luar plan MVP aktif (MVP-1 memecah `OfficeCanvas.tsx` ke folder ini; edit lanjutan mengikuti plan MVP).
+@@ -86,12 +86,12 @@
+ | Topik | Keputusan | Alasan singkat |
+ |---|---|---|
+ | Produk | **Redhunter HQ** — Interactive 3D AI Virtual Office, tagline "Where Humans and AI Work Together" | 3D = antarmuka operasional, bukan dekorasi |
+-| Style | **Low-poly flat-shaded ala bruno-simon.com, kualitas tinggi** (bukan dark glass realistis) | Achievable via bpy, ringan, konsisten |
++| Style | **Mid-poly stylized bertekstur tajam** (siluet low-poly ala bruno-simon.com + tekstur hand-painted bersih; bukan dark glass foto-realistis) | Achievable via bpy + Meshy t2.5, ringan, konsisten; user m0019 MVP-2 |
+ | Stack web | Next.js 16, React 19, Three.js, R3F, Drei, Tailwind 4, shadcn/ui | Sudah ada di repo |
+ | Backend | Express 5, MongoDB/Mongoose, Socket.IO, Tailscale | Source of truth |
+ | Pipeline | Blender → GLB → Next.js + R3F | Blender authoring, R3F interaksi |
+ | MCP | **mcp-for-blender saja** (`uvx mcp-for-blender`) | Hindari MCP tumpang tindih |
+-| Konsistensi style | **Satu bahasa visual untuk SEMUA objek**: exterior, interior, furniture, karakter, props = low-poly flat-shaded. Tidak ada campuran realistis/bertekstur | Transisi helicopter↔FPV mulus, agents terlihat "menghuni", satu sistem lighting |
++| Konsistensi style | **Satu bahasa visual untuk SEMUA objek**: exterior, interior, furniture, karakter, props = mid-poly stylized, siluet tegas, tekstur hand-painted tajam atau palet flat. Tidak ada campuran foto-realistis/PBR | Transisi helicopter↔FPV mulus, agents terlihat "menghuni", satu sistem lighting |
+ | Gedung/interior/furniture/terrain | **Procedural bpy** via MCP = default. Collider `COL_*`, `NAV_*`, `ROOM_*`/`TASK_*` naming & layout **selalu bpy** | Modular, $0, kontrol penuh |
+ | Hybrid Meshy (conditional) | **Level 1 (default)**: Meshy per objek (furniture/props kompleks), bpy struktur. **Level 2 = Kit Meshy**: Meshy generate **potongan kit modular** (panel dinding 1×3.2 m, panel dinding+pintu/jendela/kaca, panel lantai, tangga, pilar, kusen) → bpy normalisasi skala ke grid 1 m, pivot dasar, snap, instancing, susun sesuai denah. **Bukan per ruangan.** Aktif hanya jika uji MVP-2 fase 2b lolos §4 + disetujui user | Reuse = hemat kredit & style konsisten; grid presisi tanpa celah/dinding dobel; revisi murah |
+ | Karakter | **Meshy = generator utama** (auto-rig + 600+ motions) | Kualitas dinilai user "cukup baik" |
+@@ -110,23 +110,23 @@
+ 
+ | Properti | Nilai wajib |
+ |---|---|
+-| Gaya | Low-poly flat-shaded, playful, gamified, **clean & tajam** |
+-| Shading | Flat. Smooth hanya jika user minta eksplisit |
+-| Material | Vertex colors / palet flat, 1 shared material per kit bila bisa |
+-| Tekstur bitmap | Hindari; jika ada (hasil Meshy) wajib tajam di kamera dekat |
++| Gaya | Mid-poly stylized, playful, gamified, **clean & tajam** |
++| Shading | Auto-smooth ≤ 30° (sudut tajam tetap tajam). Flat untuk geometri bpy |
++| Material | Tekstur hand-painted tajam (Meshy) atau vertex colors/palet (bpy); 1 shared material/atlas per objek bila bisa |
++| Tekstur bitmap | Diizinkan; wajib tajam di kamera dekat, ≤ 2048² karakter, ≤ 1024² kit/prop, tanpa noise/blur |
+ | Aksen | Merah Redhunter terkendali: signage, core tangga, detail kecil |
+ | Skala | Meter real-world, origin di ground (y=0) |
+ | Grid modular | Dinding segmen 1 m, tinggi lantai 3.2 m, kolom grid 4 m, props snap 0.8–1 m |
+-| Batas bawah kualitas | Setara output Meshy |
++| Batas bawah kualitas | Setara output Meshy t2.5 + refine 2k/4k |
+ | Realisme | Boleh sedikit (proporsi, lighting) selama tetap stylized |
+ 
+-**Konsistensi interior (MUST):** interior ikut style yang sama dengan exterior. Variasi dicapai lewat **bentuk, prop, dan palet**, bukan tekstur:
++**Konsistensi interior (MUST):** interior ikut style yang sama dengan exterior. Variasi dicapai lewat **bentuk, prop, dan palet**, bukan tekstur foto-realistis:
+ - Palet interior boleh lebih hangat (krem/abu terang) dari exterior; aksen merah tetap terkendali
+ - Zona warna per fungsi (kerja, meeting, lounge, AI Core) — style sama, aksen beda
+-- Kekayaan visual dari siluet prop (rak, tanaman, lampu, whiteboard, sofa), tetap flat-shaded
++- Kekayaan visual dari siluet prop (rak, tanaman, lampu, whiteboard, sofa), tetap §4 shading
+ - Aset Meshy/Sloyd untuk interior wajib lolos checklist di bawah; gagal → regenerate atau ganti bpy
+ 
+-**Tolak (anti-pattern visual):** campuran objek realistis/PBR-bertekstur dengan objek low-poly dalam satu scene, bentuk meleleh/blobby, siku tidak 90° tanpa alasan, skala antar-aset tidak konsisten, warna acak di luar palet, neon berlebihan, dekorasi acak, bangunan kotak generik tanpa siluet.
++**Tolak (anti-pattern visual):** campuran objek foto-realistis PBR dengan objek stylized dalam satu scene, bentuk meleleh/blobby, siku tidak 90° tanpa alasan, skala antar-aset tidak konsisten, warna acak di luar palet, neon berlebihan, dekorasi acak, bangunan kotak generik tanpa siluet.
+ 
+ **Checklist QA render (jalankan tiap iterasi):**
+ - [ ] Siluet terbaca dari kamera isometrik **dan** eye-level
+@@ -139,7 +139,7 @@
+ 
+ | Properti | Nilai |
+ |---|---|
+-| Vibe | Startup playful: warna cerah-pastel, prop fun (bean bag, tanaman, mural dinding), tetap §4 flat-shaded |
++| Vibe | Startup playful: warna cerah-pastel, prop fun (bean bag, tanaman, mural dinding), tetap §4 |
+ | Waktu | Day-night cycle, 4 fase: pagi 06–10, siang 10–16, senja 16–19, malam 19–06 (jam lokal client; transisi lerp ≤ 60 s) |
+ | Palet "Playful Pastel" | Exterior `#F4EFE6` · Interior `#FFF8F0` · Lantai `#D9D4CB` · Sekunder `#FFB74D` (oranye) + `#4DB6AC` (teal) · Aksen merah Redhunter `#E53935` (signage, core tangga, detail kecil — bukan ring AI) |
+ | Langit per fase | Pagi `#FFE0B2`→`#BFE3F7` · Siang `#BFE3F7`→`#E3F4FC` · Senja `#FF8A65`→`#7E57C2` · Malam `#1A237E`→`#0D1B2A` (gradient atas→bawah) |
+@@ -157,12 +157,12 @@
+ 
+ | Atribut | Nilai |
+ |---|---|
+-| Bentuk | Humanoid low-poly, proporsi realistis-stylized |
++| Bentuk | Humanoid mid-poly stylized, proporsi realistis-stylized |
+ | Tinggi | 1.7 m (skala real, konsisten grid §4) |
+ | Staff vs AI agent | Bentuk & rig SAMA (`CHAR_BASE`). AI dibedakan **aksen visual**: ring torus low-poly ≤ 200 tris melayang 0.25 m di atas kepala, warna = aksen per-agent (bukan merah global) + warna aksen sama pada `CHAR_TOP_*`. Bukan bentuk berbeda. Ring termasuk budget polycount |
+ | Wajah | Ekspresif: mata + mulut termodel pada `CHAR_FACE_*`. Shape key wajib di **setiap** `CHAR_FACE_<id>` (part wajah swappable §5.2): `face_blink`, `face_smile`, `face_talk` (jika Meshy tidak menghasilkan → buat manual di Blender) |
+ | Animasi wajib | `idle`, `walk`, `sit`, `type`, `wave`, `talk`, `celebrate` (7 clip body). Clip `talk` = gerak tubuh + men-drive shape key `face_talk`. Daftar ini menggantikan daftar clip §7.2 |
+-| Polycount | ≤ 8.000 tris per karakter (base body + semua parts terpasang + ring); semua parts share 1 material/atlas; tekstur ≤ 1024² atau vertex color. Budget scene: 10 agents ≈ 80k tris |
++| Polycount | ≤ 20.000 tris per karakter (base body + semua parts terpasang + ring); semua parts share 1 material/atlas; tekstur ≤ 2048². Budget scene: 10 agents ≈ 200k tris |
+ | Pose dasar | T-pose atau A-pose (untuk rigging) |
+ | Pembeda antar agent | Warna aksen + kombinasi parts DIY (§5.2) |
+ | Generator | Meshy (utama), procedural bpy (parts sederhana), Sloyd (opsional) |
+@@ -327,7 +327,7 @@
+ ### Generator AI (dievaluasi)
+ | Tool | Peran | Biaya |
+ |---|---|---|
+-| Meshy | **Utama** — karakter + rig + 600+ motions, props kompleks, kit modular (Level 2), REST API (Pro) | Free 100 kredit web-only; Pro $20/bln 1.000 kredit + API; generate ±20–30 kredit, rig/animate/remesh 0 |
++| Meshy | **Utama** — karakter + rig + 600+ motions, props kompleks, kit modular (Level 2), REST API (Pro) | Free 100 kredit web-only; Pro $20/bln 1.000 kredit + API; generate ±20–30 kredit, rig 5, animate 3/aksi, remesh 5, convert/resize 1 (harga live MCP 2026-10-17) |
+ | Sloyd | **Ditunda** — props low-poly, ekspor .blend, REST API | Web $15/bln; API prepaid min $12 |
+ | Mixamo | Rig + animasi gratis | $0 |
+ | Tripo / Hyper3D-Rodin / Hunyuan3D / Luma / Spline / Kaedim | Dicatat, tidak dipakai | — |
+@@ -356,3 +356,4 @@
+ | 16 | Dunia luar: taman + jalan low-poly | MVP-0 Q10 |
+ | 17 | Game feel: cinematic ≤ 4 s skippable, juice sedang, agents desk-default + pindah per enum status backend (idle → ROOM_lobby), XP/level/badge backend, ambient bubble idle non-status + prop bergerak | MVP-0 Q11–Q15 |
+ | 18 | Kit Meshy (Level 2): Meshy generate potongan kit modular (dinding/lantai/pintu/tangga), bpy menjahit di grid 1 m; diuji di MVP-2 vs full bpy. Langganan Meshy saja dulu (free = web, Pro = API), Sloyd ditunda | "make object yang di generate meshy dan di jait oleh bpy" → "iya begitu tambahkan" |
++| 19 | Mid-poly stylized + tekstur tajam (bukan flat vertex-color murni); karakter ≤ 20k tris, tekstur ≤ 2048² | "mid poly aja saya butuh texture juga walau poly" (MVP-2) |

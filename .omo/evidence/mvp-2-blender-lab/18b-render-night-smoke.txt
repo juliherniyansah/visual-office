@@ -1,0 +1,11 @@
+00:00.568  blend            | Read blend: "/tmp/hq_scratch_t6.blend"
+00:13.466  render           | Saved: '/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_scratch_t6_iso_night.png'
+BlenderMCP addon registered
+VIEW_TRANSFORM Standard
+RENDER OK /home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_scratch_t6_iso_night.png
+STATS iso mean_lum=0.144 red_ratio=0.000 unique_colors=1195
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0

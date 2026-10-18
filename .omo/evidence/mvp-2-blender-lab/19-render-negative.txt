@@ -1,0 +1,6 @@
+00:00.559  blend            | Read blend: "/tmp/hq_scratch_t6.blend"
+Blender 5.0.1
+BlenderMCP addon registered
+unknown view nonexistent
+BlenderMCP addon unregistered
+EXIT=2

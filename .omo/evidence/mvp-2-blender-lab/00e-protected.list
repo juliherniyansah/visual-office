@@ -1,0 +1,664 @@
+diff --git a/apps/api/package.json b/apps/api/package.json
+index d1a1b62..ae6c402 100644
+--- a/apps/api/package.json
++++ b/apps/api/package.json
+@@ -6,10 +6,12 @@
+   "main": "src/index.ts",
+   "types": "src/index.ts",
+   "scripts": {
++    "dev": "bun run --watch src/index.ts",
+     "start": "bun run src/index.ts",
+     "seed": "bun run src/seed/cli.ts",
+     "test": "bun test",
+-    "typecheck": "tsc --noEmit -p ."
++    "typecheck": "tsc --noEmit -p .",
++    "doctor": "bash scripts/doctor.sh"
+   },
+   "dependencies": {
+     "@redhunter/adapters": "workspace:*",
+diff --git a/apps/api/src/auth/credentials.ts b/apps/api/src/auth/credentials.ts
+index bd02068..b1f7286 100644
+--- a/apps/api/src/auth/credentials.ts
++++ b/apps/api/src/auth/credentials.ts
+@@ -1,10 +1,11 @@
+ import { z } from 'zod';
++import { PASSWORD_MIN_LENGTH } from '@redhunter/shared';
+ 
+ // RFC 5321 path limit; also bounds work done per request.
+ export const MAX_EMAIL_LENGTH = 254;
+ // Upper bound keeps argon2 work per login request bounded.
+ export const MAX_PASSWORD_LENGTH = 1024;
+-export const MIN_OWNER_PASSWORD_LENGTH = 12;
++export const MIN_OWNER_PASSWORD_LENGTH = PASSWORD_MIN_LENGTH;
+ 
+ // Emails are stored and looked up trimmed + lowercased so case variants map to one account.
+ export const EmailInputSchema = z
+@@ -21,6 +22,24 @@ export const LoginBodySchema = z.object({
+ });
+ export type LoginBody = z.infer<typeof LoginBodySchema>;
+ 
++export const SetupBodySchema = z
++  .object({
++    email: EmailInputSchema,
++    password: z
++      .string()
++      .min(PASSWORD_MIN_LENGTH, `Password harus minimal ${PASSWORD_MIN_LENGTH} karakter`)
++      .max(MAX_PASSWORD_LENGTH)
++      .regex(/[A-Z]/, 'Password harus mengandung minimal 1 huruf kapital')
++      .regex(/[0-9]/, 'Password harus mengandung minimal 1 angka')
++      .regex(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, 'Password harus mengandung minimal 1 simbol'),
++    confirmPassword: z.string().min(1),
++  })
++  .refine((data) => data.password === data.confirmPassword, {
++    message: 'Passwords do not match',
++    path: ['confirmPassword'],
++  });
++export type SetupBody = z.infer<typeof SetupBodySchema>;
++
+ export interface OwnerCredentials {
+   readonly email: string;
+   readonly password: string;
+diff --git a/apps/api/src/config/env.ts b/apps/api/src/config/env.ts
+index 0e882ba..30ff5a0 100644
+--- a/apps/api/src/config/env.ts
++++ b/apps/api/src/config/env.ts
+@@ -1,27 +1,16 @@
+ import { z } from 'zod';
+-import {
+-  EmailInputSchema,
+-  MAX_PASSWORD_LENGTH,
+-  MIN_OWNER_PASSWORD_LENGTH,
+-  type OwnerCredentials,
+-} from '../auth/credentials';
+ 
+ export const DEFAULT_PORT = 4000;
+ // Loopback by default; Tailscale binding is opt-in via HOST (plan section 13).
+ export const DEFAULT_HOST = '127.0.0.1';
+ export const DEFAULT_MONGO_URL = 'mongodb://127.0.0.1:27017/redhunter';
+-export const MIN_JWT_SECRET_LENGTH = 32;
+ const MAX_PORT = 65_535;
+-// Values shipped in .env.example must never pass as real secrets.
+-const PLACEHOLDER_SECRETS: readonly string[] = ['change-me-to-a-long-random-string'];
+ 
+ const ENV_KEYS = [
+   'PORT',
+   'HOST',
+   'MONGO_URL',
+   'JWT_SECRET',
+-  'OWNER_EMAIL',
+-  'OWNER_PASSWORD',
+   'EVENTS_DISPATCH',
+   'CORS_ORIGINS',
+ ] as const;
+@@ -47,25 +36,9 @@ const EnvSchema = z
+       .string()
+       .regex(/^mongodb(\+srv)?:\/\//, 'must start with mongodb:// or mongodb+srv://')
+       .default(DEFAULT_MONGO_URL),
+-    JWT_SECRET: z
+-      .string()
+-      .min(MIN_JWT_SECRET_LENGTH, `must be at least ${MIN_JWT_SECRET_LENGTH} characters`)
+-      .refine(
+-        (secret) => !PLACEHOLDER_SECRETS.includes(secret),
+-        'placeholder value is not allowed',
+-      ),
+-    OWNER_EMAIL: EmailInputSchema.optional(),
+-    OWNER_PASSWORD: z
+-      .string()
+-      .min(MIN_OWNER_PASSWORD_LENGTH, `must be at least ${MIN_OWNER_PASSWORD_LENGTH} characters`)
+-      .max(MAX_PASSWORD_LENGTH)
+-      .optional(),
++    JWT_SECRET: z.string().min(1, 'JWT_SECRET is required'),
+     EVENTS_DISPATCH: z.enum(['on', 'off']).default('on'),
+     CORS_ORIGINS: z.string().default(DEFAULT_CORS_ORIGINS).pipe(CorsOriginsSchema),
+-  })
+-  .refine((env) => env.OWNER_EMAIL === undefined || env.OWNER_PASSWORD !== undefined, {
+-    path: ['OWNER_PASSWORD'],
+-    message: 'is required when OWNER_EMAIL is set',
+   });
+ 
+ export interface Env {
+@@ -75,7 +48,6 @@ export interface Env {
+   readonly jwtSecret: string;
+   readonly eventsDispatch: 'on' | 'off';
+   readonly corsOrigins: readonly string[];
+-  readonly owner: OwnerCredentials | undefined;
+ }
+ 
+ // Empty strings count as unset so `KEY=` in .env behaves like a missing key.
+@@ -101,10 +73,6 @@ export function loadEnv(source: Record<string, string | undefined> = process.env
+     throw new Error(`Invalid environment: ${formatIssues(result.error)}`);
+   }
+   const env = result.data;
+-  const owner =
+-    env.OWNER_EMAIL !== undefined && env.OWNER_PASSWORD !== undefined
+-      ? { email: env.OWNER_EMAIL, password: env.OWNER_PASSWORD }
+-      : undefined;
+   return {
+     port: env.PORT,
+     host: env.HOST,
+@@ -112,6 +80,5 @@ export function loadEnv(source: Record<string, string | undefined> = process.env
+     jwtSecret: env.JWT_SECRET,
+     eventsDispatch: env.EVENTS_DISPATCH,
+     corsOrigins: env.CORS_ORIGINS,
+-    owner,
+   };
+ }
+diff --git a/apps/api/src/http/response.ts b/apps/api/src/http/response.ts
+index 5f8fdc1..dc17f2a 100644
+--- a/apps/api/src/http/response.ts
++++ b/apps/api/src/http/response.ts
+@@ -11,6 +11,7 @@ export const ERROR_MESSAGES = {
+   notFound: 'Rute tidak ditemukan',
+   resourceNotFound: 'Data tidak ditemukan',
+   conflict: 'Perubahan status ditolak karena konflik',
++  setupConflict: 'Users already exist, cannot create super admin.',
+   internal: 'Terjadi kesalahan internal',
+ } as const;
+ 
+diff --git a/apps/api/src/index.ts b/apps/api/src/index.ts
+index 9ca10a4..a5afd03 100644
+--- a/apps/api/src/index.ts
++++ b/apps/api/src/index.ts
+@@ -20,7 +20,7 @@ async function main(): Promise<void> {
+   const connection = await connectDatabase(env.mongoUrl);
+   const models = await createModels(connection);
+   // Boot seed is idempotent and never resets an existing owner password.
+-  const seed = await runSeed({ models, owner: env.owner });
++  const seed = await runSeed({ models });
+   const ownerSummary = seed.owner === undefined ? 'skipped' : JSON.stringify(seed.owner);
+   console.info(`seed: agents=${seed.agents} owner=${ownerSummary}`);
+ 
+@@ -58,6 +58,7 @@ async function main(): Promise<void> {
+       hermesSource: createAgentHermesSource(hermesStore),
+       connection,
+       adapters: Object.fromEntries(adapters),
++      allowedOrigins: env.corsOrigins,
+     }),
+   );
+   const gateway = createRealtimeGateway(server, {
+diff --git a/apps/api/src/routes/auth.ts b/apps/api/src/routes/auth.ts
+index 7824da4..64bd3fe 100644
+--- a/apps/api/src/routes/auth.ts
++++ b/apps/api/src/routes/auth.ts
+@@ -1,6 +1,6 @@
+ import { Router } from 'express';
+-import { LoginBodySchema } from '../auth/credentials';
+-import { verifyPassword } from '../auth/password';
++import { LoginBodySchema, SetupBodySchema } from '../auth/credentials';
++import { hashPassword, verifyPassword } from '../auth/password';
+ import { signAccessToken } from '../auth/token';
+ import { toPublicUser } from '../db/mappers';
+ import type { Models } from '../db/models';
+@@ -35,5 +35,67 @@ export function createAuthRouter(deps: AuthRouterDeps): Router {
+     sendSuccess(res, { token, user: publicUser });
+   });
+ 
++  router.get('/auth/setup-status', async (_req, res) => {
++    try {
++      const userCount = await deps.models.User.countDocuments();
++      sendSuccess(res, { setupComplete: userCount > 0 });
++    } catch (error) {
++      const message = error instanceof Error ? error.message : 'unknown error';
++      sendError(res, 500, `failed to check setup status: ${message}`);
++    }
++  });
++
++  router.post('/auth/setup', async (req, res) => {
++    const body = SetupBodySchema.safeParse(req.body);
++    if (!body.success) {
++      const errors = body.error.issues.map(e => `${e.path.join('.')}: ${e.message}`).join(', ');
++      sendError(res, 400, `${ERROR_MESSAGES.invalidBody}: ${errors}`);
++      return;
++    }
++    try {
++      const userCount = await deps.models.User.countDocuments();
++      if (userCount > 0) {
++        sendError(res, 409, ERROR_MESSAGES.setupConflict);
++        return;
++      }
++      const passwordHash = await hashPassword(body.data.password);
++      const inserted = await deps.models.User.insertMany([
++        {
++          email: body.data.email,
++          passwordHash,
++          role: 'owner',
++          status: 'active',
++          kind: 'human',
++          createdAt: new Date(),
++          updatedAt: new Date(),
++        },
++      ]);
++      const user = inserted[0];
++      if (!user) {
++        sendError(res, 500, 'failed to create owner: insert returned empty');
++        return;
++      }
++      const publicUser = toPublicUser(user);
++      const token = await signAccessToken(
++        { sub: publicUser.id, role: publicUser.role },
++        deps.jwtSecret,
++      );
++      sendSuccess(res, { token, user: publicUser }, 201);
++    } catch (error) {
++      const message = error instanceof Error ? error.message : 'unknown error';
++      sendError(res, 500, `failed to create owner: ${message}`);
++    }
++  });
++
++  router.get('/auth/setup-status', async (_req, res) => {
++    try {
++      const userCount = await deps.models.User.countDocuments();
++      sendSuccess(res, { setupComplete: userCount > 0 });
++    } catch (error) {
++      const message = error instanceof Error ? error.message : 'unknown error';
++      sendError(res, 500, `failed to check setup status: ${message}`);
++    }
++  });
++
+   return router;
+ }
+diff --git a/apps/api/src/seed/cli.ts b/apps/api/src/seed/cli.ts
+index 6cbe8d9..0888d75 100644
+--- a/apps/api/src/seed/cli.ts
++++ b/apps/api/src/seed/cli.ts
+@@ -12,7 +12,6 @@ async function main(): Promise<void> {
+   try {
+     const result = await runSeed({
+       models: await createModels(connection),
+-      owner: env.owner,
+       forceOwnerPassword: process.argv.includes(FORCE_OWNER_PASSWORD_FLAG),
+     });
+     const ownerSummary = result.owner === undefined ? 'skipped' : JSON.stringify(result.owner);
+diff --git a/apps/api/src/seed/index.ts b/apps/api/src/seed/index.ts
+index ee3b644..c6bc1f8 100644
+--- a/apps/api/src/seed/index.ts
++++ b/apps/api/src/seed/index.ts
+@@ -1,26 +1,16 @@
+-import type { OwnerCredentials } from '../auth/credentials';
+ import type { Models } from '../db/models';
+ import { seedAgents } from './agents';
+-import { type OwnerSeedResult, seedOwner } from './owner';
+ 
+ export interface SeedOptions {
+   readonly models: Models;
+-  readonly owner?: OwnerCredentials;
+   readonly forceOwnerPassword?: boolean;
+ }
+ 
+ export interface SeedResult {
+   readonly agents: number;
+-  readonly owner: OwnerSeedResult | undefined;
+ }
+ 
+ export async function runSeed(options: SeedOptions): Promise<SeedResult> {
+   const agents = await seedAgents(options.models);
+-  const owner =
+-    options.owner === undefined
+-      ? undefined
+-      : await seedOwner(options.models, options.owner, {
+-          forcePassword: options.forceOwnerPassword === true,
+-        });
+-  return { agents, owner };
++  return { agents };
+ }
+diff --git a/apps/web/next-env.d.ts b/apps/web/next-env.d.ts
+index ce4e94a..a419cbe 100644
+--- a/apps/web/next-env.d.ts
++++ b/apps/web/next-env.d.ts
+@@ -1,7 +1,7 @@
+ /// <reference types="next" />
+ /// <reference types="next/image-types/global" />
+-import "./.next/types/routes.d.ts";
+-import "./.next/types/root-params.d.ts";
++import "./.next/dev/types/routes.d.ts";
++import "./.next/dev/types/root-params.d.ts";
+ 
+ // NOTE: This file should not be edited
+ // see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
+diff --git a/apps/web/src/app/login/page.tsx b/apps/web/src/app/login/page.tsx
+index 1482a08..05ededa 100644
+--- a/apps/web/src/app/login/page.tsx
++++ b/apps/web/src/app/login/page.tsx
+@@ -1,9 +1,10 @@
+ 'use client';
+ 
+-import { useState } from 'react';
++import { useState, useEffect } from 'react';
+ import type { FormEvent } from 'react';
+ import { useRouter } from 'next/navigation';
+ import { useAuthStore } from '@/stores/useAuthStore';
++import { apiClient } from '@/lib/api';
+ 
+ export default function LoginPage() {
+   const router = useRouter();
+@@ -12,13 +13,36 @@ export default function LoginPage() {
+   const [email, setEmail] = useState('');
+   const [password, setPassword] = useState('');
+   const [error, setError] = useState<string | null>(null);
+-  const [loading, setLoading] = useState(false);
++  const [showPassword, setShowPassword] = useState(false);
++  const [loading, setLoading] = useState(true);
++  const [setupChecked, setSetupChecked] = useState(false);
++
++  useEffect(() => {
++    async function checkSetup() {
++      try {
++        const response = await apiClient.checkSetupStatus();
++        if (response.success && response.data && !response.data.setupComplete) {
++          router.push('/setup');
++          return;
++        }
++      } catch (err) {
++        console.error('Setup check failed:', err);
++        setError('Failed to check setup status');
++      } finally {
++        setSetupChecked(true);
++        setLoading(false);
++      }
++    }
++
++    checkSetup();
++  }, [router]);
+ 
+   const handleSubmit = async (e: FormEvent) => {
+     e.preventDefault();
+     setError(null);
+     setLoading(true);
+ 
++    setLoading(true);
+     try {
+       const success = await login(email, password);
+       if (success) {
+@@ -33,6 +57,17 @@ export default function LoginPage() {
+     }
+   };
+ 
++  if (!setupChecked || loading) {
++    return (
++      <div className="min-h-screen flex items-center justify-center bg-gray-50">
++        <div className="text-center">
++          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
++          <p className="mt-4 text-gray-600">Checking setup status...</p>
++        </div>
++      </div>
++    );
++  }
++
+   return (
+     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+       <div className="max-w-md w-full space-y-8">
+@@ -71,16 +106,37 @@ export default function LoginPage() {
+               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                 Password
+               </label>
+-              <input
+-                id="password"
+-                type="password"
+-                required
+-                value={password}
+-                onChange={(e) => setPassword(e.target.value)}
+-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+-                placeholder="••••••••"
+-                disabled={loading}
+-              />
++              <div className="relative">
++                <input
++                  id="password"
++                  type={showPassword ? 'text' : 'password'}
++                  required
++                  value={password}
++                  onChange={(e) => setPassword(e.target.value)}
++                  className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
++                  placeholder="••••••••"
++                  disabled={loading}
++                />
++                <button
++                  type="button"
++                  onClick={() => setShowPassword(!showPassword)}
++                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
++                  tabIndex={-1}
++                  aria-label={showPassword ? 'Hide password' : 'Show password'}
++                >
++                  {showPassword ? (
++                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
++                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
++                      <line x1="1" y1="1" x2="23" y2="23" />
++                    </svg>
++                  ) : (
++                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
++                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
++                      <circle cx="12" cy="12" r="3" />
++                    </svg>
++                  )}
++                </button>
++              </div>
+             </div>
+           </div>
+ 
+diff --git a/apps/web/src/app/page.tsx b/apps/web/src/app/page.tsx
+index f25c0f2..db392b8 100644
+--- a/apps/web/src/app/page.tsx
++++ b/apps/web/src/app/page.tsx
+@@ -1,5 +1,7 @@
+ 'use client';
+ 
++import { useEffect, useState } from "react";
++import { useRouter } from "next/navigation";
+ import { Nav } from "@/components/landing/Nav";
+ import { Hero } from "@/components/landing/Hero";
+ import { ProductIntro } from "@/components/landing/ProductIntro";
+@@ -11,8 +13,65 @@ import { HowItWorks } from "@/components/landing/HowItWorks";
+ import { OfficeShowcase } from "@/components/landing/OfficeShowcase";
+ import { FinalCta } from "@/components/landing/FinalCta";
+ import { Footer } from "@/components/landing/Footer";
++import { apiClient } from "@/lib/api";
+ 
+ export default function Page() {
++  const router = useRouter();
++  const [isLoading, setIsLoading] = useState(true);
++  const [error, setError] = useState<string | null>(null);
++
++  useEffect(() => {
++    async function checkSetup() {
++      try {
++        const response = await apiClient.checkSetupStatus();
++        if (response.success && response.data) {
++          if (!response.data.setupComplete) {
++            router.replace('/setup');
++            return;
++          }
++          if (localStorage.getItem('auth_token')) {
++            router.replace('/dashboard');
++            return;
++          }
++        }
++      } catch (err) {
++        console.error('Setup check failed:', err);
++        setError('Failed to check setup status');
++      } finally {
++        setIsLoading(false);
++      }
++    }
++
++    checkSetup();
++  }, [router]);
++
++  if (isLoading) {
++    return (
++      <div className="min-h-screen flex items-center justify-center">
++        <div className="text-center">
++          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
++          <p className="text-muted-foreground">Memeriksa status...</p>
++        </div>
++      </div>
++    );
++  }
++
++  if (error) {
++    return (
++      <div className="min-h-screen flex items-center justify-center">
++        <div className="text-center space-y-4">
++          <p className="text-destructive">{error}</p>
++          <button
++            onClick={() => window.location.reload()}
++            className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
++          >
++            Coba Lagi
++          </button>
++        </div>
++      </div>
++    );
++  }
++
+   return (
+     <>
+       <Nav />
+diff --git a/apps/web/src/components/landing/Nav.tsx b/apps/web/src/components/landing/Nav.tsx
+index ac4c90c..101eaeb 100644
+--- a/apps/web/src/components/landing/Nav.tsx
++++ b/apps/web/src/components/landing/Nav.tsx
+@@ -42,6 +42,14 @@ export function Nav() {
+               </a>
+             </li>
+           ))}
++          <li>
++            <a
++              href="/login"
++              className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90"
++            >
++              Sign in
++            </a>
++          </li>
+         </ul>
+       </nav>
+     </header>
+diff --git a/apps/web/src/lib/api.ts b/apps/web/src/lib/api.ts
+index b9b2d02..cb2c92e 100644
+--- a/apps/web/src/lib/api.ts
++++ b/apps/web/src/lib/api.ts
+@@ -24,7 +24,27 @@ export interface LoginRequest {
+   password: string;
+ }
+ 
+-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
++export interface User {
++  email: string;
++  role: string;
++}
++
++export interface SetupStatusResponse {
++  setupComplete: boolean;
++}
++
++export interface SetupResponse {
++  token: string;
++  user: User;
++}
++
++export interface CreateSuperAdminRequest {
++  email: string;
++  password: string;
++  confirmPassword: string;
++}
++
++const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
+ 
+ class ApiClient {
+   private baseUrl: string;
+@@ -60,9 +80,11 @@ class ApiClient {
+       };
+     }
+ 
++    // Backend already wraps payloads as { success, data }; unwrap to avoid double nesting.
++    const payload = data !== null && typeof data === 'object' && 'data' in data ? data.data : data;
+     return {
+       success: true,
+-      data: data as T,
++      data: payload as T,
+     };
+   }
+ 
+@@ -118,6 +140,14 @@ class ApiClient {
+   async login(email: string, password: string): Promise<ApiResponse<LoginResponse>> {
+     return this.post<LoginResponse>('/auth/login', { email, password });
+   }
++
++  async checkSetupStatus(): Promise<ApiResponse<SetupStatusResponse>> {
++    return this.get<SetupStatusResponse>('/auth/setup-status');
++  }
++
++  async createSuperAdmin(data: CreateSuperAdminRequest): Promise<ApiResponse<SetupResponse>> {
++    return this.post<SetupResponse>('/auth/setup', data);
++  }
+ }
+ 
+ export const apiClient = new ApiClient(API_BASE_URL);
+diff --git a/apps/web/src/stores/useAuthStore.ts b/apps/web/src/stores/useAuthStore.ts
+index 08645cc..a6909a5 100644
+--- a/apps/web/src/stores/useAuthStore.ts
++++ b/apps/web/src/stores/useAuthStore.ts
+@@ -68,10 +68,9 @@ export const useAuthStore = create<AuthState>((set, get) => ({
+       return false;
+     }
+ 
+-    const { token } = response.data;
++    const { token, user } = response.data;
+     setToken(token);
+ 
+-    const user = decodeToken(token);
+     set({
+       token,
+       user,
+diff --git a/apps/web/test-results/.last-run.json b/apps/web/test-results/.last-run.json
+index cbcc1fb..5fca3f8 100644
+--- a/apps/web/test-results/.last-run.json
++++ b/apps/web/test-results/.last-run.json
+@@ -1,4 +1,4 @@
+ {
+-  "status": "passed",
++  "status": "failed",
+   "failedTests": []
+ }
+\ No newline at end of file
+diff --git a/package.json b/package.json
+index 123d4de..2058210 100644
+--- a/package.json
++++ b/package.json
+@@ -11,7 +11,8 @@
+     "typecheck": "bun run --filter '*' typecheck",
+     "lint": "biome check .",
+     "format": "biome format --write .",
+-    "test": "bun test --pass-with-no-tests"
++    "test": "bun test --pass-with-no-tests",
++    "doctor": "bash apps/api/scripts/doctor.sh"
+   },
+   "devDependencies": {
+     "@biomejs/biome": "^2.5.15",
+diff --git a/packages/shared/src/index.ts b/packages/shared/src/index.ts
+index 71b87ff..3d2e53e 100644
+--- a/packages/shared/src/index.ts
++++ b/packages/shared/src/index.ts
+@@ -7,4 +7,5 @@ export * from './enums';
+ export * from './event-sink';
+ export * from './events';
+ export * from './office-layout';
++export * from './password';
+ export * from './schemas';
+b2890e7ee5f29f630e5a24ab970d56e128802f183532873f5e18212cf58b05ca  apps/api/AGENTS.md
+928a7d60f1a893b3f03bb56f79871a200ceeda128c5b16cf0c881f9753bc97d2  apps/api/scripts/doctor.sh
+2b841f021da7a823295d13c59cacc4f2e662a81647a3c331ea5c1faaf9db34b3  apps/api/src/routes/setup.test.ts
+d59d5eebedcd589a21d9eab27978eb072d675a373e2a1bc640c185d4f327c87a  apps/web/AGENTS.md
+f873a133f08e129240c9dcb9c8bf0e1893120a4a8c48543edb9d44d6431364a3  apps/web/e2e/setup-global-setup.ts
+acc76abd87783320769450b78ee34fc9cd44a784720f84c061458de2249dbe59  apps/web/e2e/setup.spec.ts
+1e28cdf78a0735ef811f58062eb9e86f7daaecb160cb74e8ab0910ab4e71429a  apps/web/playwright-report/data/1a4c55c76466174ca411e5ec9e133063ac6cec8e.md
+9a0a020030580fa6b41b126f8dcfa2fec00c17fb593ae0e46994f31d43b63b48  apps/web/playwright-report/data/517d0a22533fa0e5ed26942b8c265fdb626d8ece.png
+195d2661093c32b206bfe3331537f975b7248a594376c6f1a9649ad0345040ca  apps/web/playwright-report/data/7f04d50720a457cc65bf0a2e8238a146a695337b.png
+5808d0bfd29fc0880849119466df917a577c694e66d81a9a216eaefd126571a8  apps/web/playwright-report/data/8dc88bf7a312c87973414c2d9091d371c036b247.md
+a0824368a6dcc1da36dfd5d014e48e1937d9254635923fca25188e2d323a6241  apps/web/playwright-report/data/91660a11870985219ad55786c368af35266351fe.png
+3d463051099537d22056934175578fdbc2956a81684d50abf90847aca326a792  apps/web/playwright-report/data/cf15265343dd5fa04b522a4a774d7f55aca1a926.md
+26f24d9a3a6eed72b3bf0bceb98219ca1cd4da503fa3d55a42616680d95489c4  apps/web/playwright-report/index.html
+a58cea255281bebaed590716a8eec089c2ef9fb7f971b3643d32339baf55f0d8  apps/web/playwright.setup.config.ts
+f36a096e3fe3422f59879aeb669bb073857a653c122d1bb8efda4cc3f5e2c380  apps/web/src/app/setup/page.tsx
+1dc9248b76197154cc89866bde7f4fa70682f1c66878058d7dbc6639dd057ce7  packages/adapters/AGENTS.md
+162bf675debee03b73fbabafb84dc16cda03a4c1393aa3545618e6d02acb2808  packages/agent-runtime/AGENTS.md
+cd2d1f8f5e3e160337232cca286b5ecea75ee39781cded944e95368a065e76e3  packages/shared/src/password.ts

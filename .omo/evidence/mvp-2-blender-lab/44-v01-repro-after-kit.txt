@@ -1,0 +1,11 @@
+BlenderMCP addon registered
+VIEW_TRANSFORM Khronos PBR Neutral
+VIEW_EXPOSURE 0.0
+SELF_CHECK OK 387 objects 6630 tris
+Info: Saved as "hq_v01_repro2.blend"
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0
+NAMES_DIFF_EXIT=0

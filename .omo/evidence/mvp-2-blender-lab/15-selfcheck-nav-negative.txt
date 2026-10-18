@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_lib.py", line 375, in run_self_checks
+    check()
+    ~~~~~^^
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_floor1.py", line 384, in check_floor1
+    assert not missing, f"check_floor1: missing objects {missing}"
+           ^^^^^^^^^^^
+AssertionError: check_floor1: missing objects ['NAV_wp_lobby']
+
+Error: script failed, expr: 'import sys;sys.path.insert(0,'apps/assets/blender');import hq_lib,hq_massing,hq_floor1;hq_lib.reset_startup_scene();hq_lib.clear_project_collections();hq_massing.build_exterior();hq_massing.build_massing();hq_floor1.build_kit_bpy();hq_floor1.build_floor_1();hq_lib.run_self_checks()', exiting.
+BlenderMCP addon registered
+SELF_CHECK FAIL check_floor1
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=1

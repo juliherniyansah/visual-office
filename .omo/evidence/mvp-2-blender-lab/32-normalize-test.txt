@@ -1,0 +1,22 @@
+BlenderMCP addon registered
+18:10:15 | INFO: Data are loaded, start creating Blender stuff
+18:10:15 | INFO: Blender create Mesh node BuildingBody
+18:10:15 | INFO: Blender create Mesh node Roof
+18:10:15 | INFO: Blender create Mesh node Window_F0_C0
+18:10:15 | INFO: Blender create Mesh node Window_F0_C1
+18:10:15 | INFO: Blender create Mesh node Window_F1_C0
+18:10:15 | INFO: Blender create Mesh node Window_F1_C1
+18:10:15 | INFO: Blender create Mesh node Window_F2_C0
+18:10:15 | INFO: Blender create Mesh node Window_F2_C1
+18:10:15 | INFO: Blender create Mesh node Door
+18:10:15 | INFO: glTF import finished in 0.02s
+/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/normalize_kit.py:101: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  if not material or not material.use_nodes:
+Info: Saved as "kit_test.blend"
+NORMALIZE OK {"tris": 1500, "dims": [1.0, 0.15, 3.2], "z_min": 0.0, "nonuniform": true, "fallback": true, "smooth": true, "texture_size": [0, 0], "snapped_verts": 780}
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0
+OUT {'name': 'KIT_meshy_wall_1m', 'mesh': 'KIT_meshy_wall_1m', 'in_kit_meshy': True, 'hide_render': True, 'dims': [1.0, 0.15, 3.2], 'z_min': 0.0, 'loc': (0.0, 0.0, 0.0), 'mat': 'MAT_exterior'}

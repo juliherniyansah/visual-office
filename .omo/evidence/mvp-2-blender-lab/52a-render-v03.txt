@@ -1,0 +1,18 @@
+00:00.816  blend            | Read blend: "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_v03.blend"
+02:14.207  render           | Saved: '/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v03_lobby.png'
+03:16.668  render           | Saved: '/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v03_iso.png'
+05:08.493  render           | Saved: '/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v03_character_closeup.png'
+BlenderMCP addon registered
+VIEW_TRANSFORM Khronos PBR Neutral
+VIEW_EXPOSURE 0.0
+RENDER OK /home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v03_lobby.png
+STATS lobby mean_lum=0.636 red_ratio=0.000 unique_colors=4874
+RENDER OK /home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v03_iso.png
+STATS iso mean_lum=0.707 red_ratio=0.000 unique_colors=1567
+RENDER OK /home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v03_character_closeup.png
+STATS character_closeup mean_lum=0.615 red_ratio=0.000 unique_colors=6513
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0

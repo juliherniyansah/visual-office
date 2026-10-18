@@ -1,0 +1,9 @@
+OUT vt ['NONE']
+OUT ee {'use_shadows': True, 'use_gtao': False, 'taa_render_samples': True, 'use_raytracing': True, 'use_fast_gi': True}
+OUT mat {'surface_render_method': True, 'blend_method': True, 'use_transparent_shadow': True} ['DITHERED', 'BLENDED']
+OUT light {'use_shadow': True, 'use_shadow_jitter': True, 'angle': True}
+OUT area SQUARE ['SQUARE', 'RECTANGLE', 'DISK', 'ELLIPSE']
+OUT ops True True
+OUT ad True
+OUT world True
+OUT eevee_samples 64

@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/normalize_kit.py", line 328, in <module>
+    main(sys.argv)
+    ~~~~^^^^^^^^^^
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/normalize_kit.py", line 320, in main
+    _, info = normalize_kit_piece(args["glb"], args["name"], args["size"])
+              ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/normalize_kit.py", line 264, in normalize_kit_piece
+    obj = _import_glb(glb_path)
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/normalize_kit.py", line 65, in _import_glb
+    raise FileNotFoundError(f"GLB not found: {path}")
+FileNotFoundError: GLB not found: /nonexistent.glb
+BlenderMCP addon registered
+
+Error: script failed, file: 'apps/assets/blender/normalize_kit.py', exiting.
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=1

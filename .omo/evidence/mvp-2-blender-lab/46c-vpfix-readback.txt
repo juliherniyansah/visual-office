@@ -1,0 +1,18 @@
+00:00.628  blend            | Read blend: "/tmp/hq_vp_fix.blend"
+BlenderMCP addon registered
+OUT MAT_floor (0.6939, 0.6584, 0.5972, 1.0)
+OUT MAT_floor base (0.6939, 0.6584, 0.5972, 1.0)
+OUT MAT_ground (0.3763, 0.6724, 0.3864, 1.0)
+OUT MAT_ground base (0.3763, 0.6724, 0.3864, 1.0)
+OUT MAT_red (0.7835, 0.0409, 0.0356, 1.0)
+OUT MAT_red base (0.7835, 0.0409, 0.0356, 1.0)
+OUT MAT_glass (0.521, 0.7682, 0.9301, 0.35)
+OUT MAT_glass base (0.521, 0.7682, 0.9301, 1.0)
+OUT view3d_spaces 10
+OUT shading_types ['MATERIAL'] color_types ['MATERIAL']
+OUT screens_sample [('Animation', 'MATERIAL', 'MATERIAL'), ('Animation', 'MATERIAL', 'MATERIAL'), ('Geometry Nodes', 'MATERIAL', 'MATERIAL')]
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0

@@ -1,0 +1,11 @@
+total 21904
+drwxrwxr-x 2 programer programer    4096 Oct 17 18:39 .
+drwxrwxr-x 3 programer programer    4096 Oct 17 18:04 ..
+-rw-rw-r-- 1 programer programer 2072620 Oct 17 18:35 KIT_floor_1m.glb
+-rw-rw-r-- 1 programer programer 4505294 Oct 17 18:35 KIT_floor_1m_base_color.png
+-rw-rw-r-- 1 programer programer 1792076 Oct 17 18:39 KIT_pillar.glb
+-rw-rw-r-- 1 programer programer 3987620 Oct 17 18:39 KIT_pillar_base_color.png
+-rw-rw-r-- 1 programer programer 1895156 Oct 17 18:24 KIT_wall_1m.glb
+-rw-rw-r-- 1 programer programer 3197520 Oct 17 18:24 KIT_wall_1m_base_color.png
+-rw-rw-r-- 1 programer programer 1904232 Oct 17 18:29 KIT_wall_door.glb
+-rw-rw-r-- 1 programer programer 3054845 Oct 17 18:29 KIT_wall_door_base_color.png

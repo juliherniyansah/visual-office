@@ -1,0 +1,38 @@
+--- .omo/evidence/mvp-2-blender-lab/00-git-status-before.txt	2026-10-17 16:08:54.351182503 +0000
++++ .omo/evidence/mvp-2-blender-lab/70-git-status-after.txt	2026-10-18 09:51:52.788839139 +0000
+@@ -42,7 +42,26 @@
+ ?? .omo/plans/mvp-0-vision.md
+ ?? .omo/plans/mvp-1-foundation.md
+ ?? .omo/plans/mvp-2-blender-lab.md
++?? .omo/run-continuation/ses_eb19d7029ffehapa7gXSz6sEuI.json
++?? .omo/run-continuation/ses_eb2411c6affe7MZbBTyC6FtKNi.json
++?? .omo/run-continuation/ses_eb2648c92ffeswXhWlHxtWKmnH.json
++?? .omo/run-continuation/ses_eb2c5dad6ffebxk7iOuyBxFYEb.json
++?? .omo/run-continuation/ses_eb2df008fffe1UpuxRsreExRFK.json
++?? .omo/run-continuation/ses_eb2e6cd1bffed6bbYlPlScpeT7.json
++?? .omo/run-continuation/ses_eb2e71913ffeLH2hEcfwDT1Zwz.json
++?? .omo/run-continuation/ses_eb4d27d93ffe1PFtIS6EZDlEAW.json
++?? .omo/run-continuation/ses_eb4ed0bdaffefSPHje7JTCjXp3.json
++?? .omo/run-continuation/ses_eb4f812a7ffeNM6i09I4NFUCAY.json
++?? .omo/run-continuation/ses_eb4f858c8ffeV2iMwppYSJUqSF.json
++?? .omo/run-continuation/ses_eb4fadb41ffelvjnGF1PUmd594.json
++?? .omo/run-continuation/ses_eb53c90f5ffeyjo6et69tDNJkS.json
++?? .omo/run-continuation/ses_eb555d79dffeQsNYQibrH8LtJZ.json
++?? .omo/run-continuation/ses_eb55636b9ffeTEqVBDZoPiM5XT.json
++?? .omo/run-continuation/ses_eb5567898ffejbK7JqcLO8P9cY.json
++?? .omo/run-continuation/ses_eb55ecc3bffeIk1u8e84fIaYah.json
++?? .omo/run-continuation/ses_eb5609a5effeZSlbQHimR07HuH.json
+ ?? .omo/run-continuation/ses_eb56433d3ffeOpYuOWgKKbrKyQ.json
++?? .omo/run-continuation/ses_eb56524d9ffet9sDxAHp9sKclk.json
+ ?? .omo/run-continuation/ses_eb5887be4ffeeEypP3dvnmuliU.json
+ ?? .omo/run-continuation/ses_eb58c58c5ffeOr8I4419Z51nUR.json
+ ?? .omo/run-continuation/ses_eb5902599ffesSV8dZb2nexcjZ.json
+@@ -105,6 +124,8 @@
+ ?? apps/api/AGENTS.md
+ ?? apps/api/scripts/
+ ?? apps/api/src/routes/setup.test.ts
++?? apps/assets/blender/
++?? apps/assets/raw/
+ ?? apps/web/AGENTS.md
+ ?? apps/web/e2e/setup-global-setup.ts
+ ?? apps/web/e2e/setup.spec.ts

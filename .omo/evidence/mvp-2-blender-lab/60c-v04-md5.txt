@@ -1,0 +1,2 @@
+143be11694c44c4791262bcd8b88a001  hq_v04.blend
+# pre-L2 reference: todo 18 may rebuild hq_v04 if user picks Level 2

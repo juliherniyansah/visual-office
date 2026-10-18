@@ -1,0 +1,11 @@
+BlenderMCP addon registered
+VIEWPORT_COLORS checked 15 palette + glass
+VIEWPORT_COLORS OK
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT_GREEN=0
+--- RED run (before hq_lib change; output file overwritten by GREEN run, result recorded here from that run) ---
+AssertionError: MAT_exterior: diffuse_color (0.8, 0.8, 0.8) != (0.9046611743911496, 0.8631572134541023, 0.7912979403326302)
+EXIT_RED=1

@@ -1,0 +1,6 @@
+Scene 'Scene' | 1 camera, 1 light, 1 mesh | active Cube | selected Cube | mode OBJECT
+(unsaved) | engine BLENDER_EEVEE | frames 1-250 (now 1) at 24 fps | 1920x1080 | camera Camera | HDRI none | unit scale 1.0
+Showing 3 of 3 (name | type):
+Cube | mesh
+Light | light
+Camera | camera

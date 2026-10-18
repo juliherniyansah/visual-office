@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/build_hq.py", line 105, in <module>
+    main()
+    ~~~~^^
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/build_hq.py", line 99, in main
+    run_self_checks()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_lib.py", line 375, in run_self_checks
+    check()
+    ~~~~~^^
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_lib.py", line 330, in check_col_hide_render
+    assert not bad, f"check_col_hide_render: renderable COL_* {bad}"
+           ^^^^^^^
+AssertionError: check_col_hide_render: renderable COL_* ['COL_injected_bad']
+BlenderMCP addon registered
+VIEW_TRANSFORM Standard
+SELF_CHECK FAIL check_col_hide_render
+
+Error: script failed, file: 'apps/assets/blender/build_hq.py', exiting.
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=1

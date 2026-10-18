@@ -1,0 +1,140 @@
+ M .omo/boulder.json
+ M .omo/run-continuation/ses_ecad8cc00ffe33XD6QEBTwwY5H.json
+ M .omo/run-continuation/ses_ed63da937ffenrMu1yYkV62W8j.json
+ M .omo/start-work/ledger.jsonl
+ M apps/api/package.json
+ M apps/api/src/auth/credentials.ts
+ M apps/api/src/config/env.ts
+ M apps/api/src/http/response.ts
+ M apps/api/src/index.ts
+ M apps/api/src/routes/auth.ts
+ M apps/api/src/seed/cli.ts
+ M apps/api/src/seed/index.ts
+ M apps/web/next-env.d.ts
+ M apps/web/src/app/login/page.tsx
+ M apps/web/src/app/page.tsx
+ M apps/web/src/components/landing/Nav.tsx
+ M apps/web/src/lib/api.ts
+ M apps/web/src/stores/useAuthStore.ts
+ M apps/web/test-results/.last-run.json
+ M docs/mvp/HANDOFF.md
+ M docs/mvp/MVP-0-vision.md
+ M docs/mvp/MVP-1-foundation.md
+ D docs/mvp/MVP-2-building.md
+ D docs/mvp/MVP-3-explore.md
+ D docs/mvp/MVP-4-character.md
+ M docs/mvp/MVP-5-tasks.md
+ M docs/mvp/README.md
+ M docs/redhunter-hq-brainstorming-guided.html
+ M docs/redhunter-hq-brainstorming-guided.md
+ M package.json
+ M packages/shared/src/index.ts
+?? .omo/drafts/mvp-0-vision.md
+?? .omo/drafts/mvp-1-foundation.md
+?? .omo/drafts/mvp-2-blender-lab.md
+?? .omo/evidence/mvp-1-foundation/
+?? .omo/evidence/mvp-2-blender-lab/
+?? .omo/notepads/initial-setup/
+?? .omo/notepads/mvp-0-vision/
+?? .omo/notepads/mvp-1-foundation/
+?? .omo/notepads/mvp-2-blender-lab/
+?? .omo/plans/initial-setup.md
+?? .omo/plans/mvp-0-vision.md
+?? .omo/plans/mvp-1-foundation.md
+?? .omo/plans/mvp-2-blender-lab.md
+?? .omo/run-continuation/ses_eb19d7029ffehapa7gXSz6sEuI.json
+?? .omo/run-continuation/ses_eb2411c6affe7MZbBTyC6FtKNi.json
+?? .omo/run-continuation/ses_eb2648c92ffeswXhWlHxtWKmnH.json
+?? .omo/run-continuation/ses_eb2c5dad6ffebxk7iOuyBxFYEb.json
+?? .omo/run-continuation/ses_eb2df008fffe1UpuxRsreExRFK.json
+?? .omo/run-continuation/ses_eb2e6cd1bffed6bbYlPlScpeT7.json
+?? .omo/run-continuation/ses_eb2e71913ffeLH2hEcfwDT1Zwz.json
+?? .omo/run-continuation/ses_eb4d27d93ffe1PFtIS6EZDlEAW.json
+?? .omo/run-continuation/ses_eb4ed0bdaffefSPHje7JTCjXp3.json
+?? .omo/run-continuation/ses_eb4f812a7ffeNM6i09I4NFUCAY.json
+?? .omo/run-continuation/ses_eb4f858c8ffeV2iMwppYSJUqSF.json
+?? .omo/run-continuation/ses_eb4fadb41ffelvjnGF1PUmd594.json
+?? .omo/run-continuation/ses_eb53c90f5ffeyjo6et69tDNJkS.json
+?? .omo/run-continuation/ses_eb555d79dffeQsNYQibrH8LtJZ.json
+?? .omo/run-continuation/ses_eb55636b9ffeTEqVBDZoPiM5XT.json
+?? .omo/run-continuation/ses_eb5567898ffejbK7JqcLO8P9cY.json
+?? .omo/run-continuation/ses_eb55ecc3bffeIk1u8e84fIaYah.json
+?? .omo/run-continuation/ses_eb5609a5effeZSlbQHimR07HuH.json
+?? .omo/run-continuation/ses_eb56433d3ffeOpYuOWgKKbrKyQ.json
+?? .omo/run-continuation/ses_eb56524d9ffet9sDxAHp9sKclk.json
+?? .omo/run-continuation/ses_eb5887be4ffeeEypP3dvnmuliU.json
+?? .omo/run-continuation/ses_eb58c58c5ffeOr8I4419Z51nUR.json
+?? .omo/run-continuation/ses_eb5902599ffesSV8dZb2nexcjZ.json
+?? .omo/run-continuation/ses_eb5989842ffe62LhVtHnR6oIjb.json
+?? .omo/run-continuation/ses_eb5aef88dffezG7WtgniyUwduX.json
+?? .omo/run-continuation/ses_eb5af31b8ffesYMiHZacMatvBE.json
+?? .omo/run-continuation/ses_eb5bfc8c2ffekQkimRwmm21LjZ.json
+?? .omo/run-continuation/ses_eb5eaa7b9ffeprXI9LGwrIUa4t.json
+?? .omo/run-continuation/ses_eb5eceb16ffe49pk65QbIW1uXy.json
+?? .omo/run-continuation/ses_eb6bc56abffeiQQvJgKRr7z5n5.json
+?? .omo/run-continuation/ses_eb6bcafa0ffeUPtHUdqJnCqnL3.json
+?? .omo/run-continuation/ses_eb6bcf74effeXfPAuTDn92x53j.json
+?? .omo/run-continuation/ses_eb6bd3c5effenekJbmHP9Tmn1r.json
+?? .omo/run-continuation/ses_eb6bff5daffeqDXebGXhHE8qcx.json
+?? .omo/run-continuation/ses_eb6c4937affeu0EbtnlZ3we0t8.json
+?? .omo/run-continuation/ses_eb6c59ea8ffefvYAbjkqkuX30h.json
+?? .omo/run-continuation/ses_eb6c6e0a6ffevnylnIbl9l5uCJ.json
+?? .omo/run-continuation/ses_eb6c862f7ffeBb8GemtwIeAJH7.json
+?? .omo/run-continuation/ses_eb6c97b1fffeTt4lEvOqfqXscA.json
+?? .omo/run-continuation/ses_eb6caba74ffeA0GrcsCRywXHJm.json
+?? .omo/run-continuation/ses_eb6cbb3daffep05dMFvaSLgAe6.json
+?? .omo/run-continuation/ses_eb6cbdfccffeVm9zORqdl65y5R.json
+?? .omo/run-continuation/ses_eb6cc0803ffend1tzy3SxRloGO.json
+?? .omo/run-continuation/ses_eb6cc30f0ffewOa7IZa85uNYOQ.json
+?? .omo/run-continuation/ses_eb6cd12f4ffeo1vGS4edRiwWJD.json
+?? .omo/run-continuation/ses_eb6cedc2fffewinwM9lfuAAyc4.json
+?? .omo/run-continuation/ses_eb6cf04d3ffeilY4LBiBsMVXHB.json
+?? .omo/run-continuation/ses_eb6d014ddffexzUz0SM5e0r23n.json
+?? .omo/run-continuation/ses_eb6d0b7f3ffefKE3mRQT4Qr538.json
+?? .omo/run-continuation/ses_eb6d127b0ffeRT7YmGhqhMh0eB.json
+?? .omo/run-continuation/ses_eb6d1f47bffeR39MOxTCFq8MHf.json
+?? .omo/run-continuation/ses_eb6d21a1dffeZopWC8xzwhB1tz.json
+?? .omo/run-continuation/ses_eb6d2d14dffegCF8519INyHxmq.json
+?? .omo/run-continuation/ses_eb6d327ccffeZhjVHiXs26sgVm.json
+?? .omo/run-continuation/ses_eb6d361afffecRzYnDYVGBqOgV.json
+?? .omo/run-continuation/ses_eb6d4088cffeM9d2dg3hAN4kru.json
+?? .omo/run-continuation/ses_eb8d49cd6ffe4wVSMCmMVvD42k.json
+?? .omo/run-continuation/ses_eb8d4da28ffefLu8ktvTlw2gYg.json
+?? .omo/run-continuation/ses_eb8d76700ffegiS5SF46vzZwed.json
+?? .omo/run-continuation/ses_eb8d78e24ffedkpdC6odyz7pRt.json
+?? .omo/run-continuation/ses_eb8dc06bdffe1lBItVERcGtlt7.json
+?? .omo/run-continuation/ses_eb8e67bc7ffeFSBfpYsHjfQ9pl.json
+?? .omo/run-continuation/ses_eb8e6ba4fffeAbsh71x1Sh3nmM.json
+?? .omo/run-continuation/ses_eb97520a7ffeTxez2qMZDZRzuO.json
+?? .omo/run-continuation/ses_eb9765a37ffeYDCM2kIthugS7W.json
+?? .omo/run-continuation/ses_eb9779cd9ffeJCRpuzueYk1RaA.json
+?? .omo/run-continuation/ses_ec0629fbfffeRiq2aBgNjxvOhP.json
+?? .omo/run-continuation/ses_ec062ad84ffejzH3q9LZiOEtIu.json
+?? .omo/run-continuation/ses_ec062c07affe33kKY15ukMvbeO.json
+?? .omo/run-continuation/ses_ec0689d6dffeT5X2aQekw7Uf0t.json
+?? .omo/run-continuation/ses_ec068ae88ffebQi654RO9GDsom.json
+?? .omo/run-continuation/ses_ec06dbf46ffeqG6ykJigIKFN1S.json
+?? .omo/run-continuation/ses_ec06dcf9cffeqssymTIh1eubrK.json
+?? .omo/run-continuation/ses_ec06de259ffeJZCKEeih0eveyA.json
+?? .omo/run-continuation/ses_ec06df24fffeaftNz3ucFllm25.json
+?? .omo/run-continuation/ses_ec070691effe4r6tHXY5GxPNCM.json
+?? .omo/run-continuation/ses_ec074ba52ffeE2curNEzjEDRFO.json
+?? .omo/run-continuation/ses_ec1922729ffeiKgSDrsDlTjZJH.json
+?? apps/.omo/evidence/vyron-setup-flow/
+?? apps/api/AGENTS.md
+?? apps/api/scripts/
+?? apps/api/src/routes/setup.test.ts
+?? apps/assets/blender/
+?? apps/assets/raw/
+?? apps/web/AGENTS.md
+?? apps/web/e2e/setup-global-setup.ts
+?? apps/web/e2e/setup.spec.ts
+?? apps/web/playwright-report/
+?? apps/web/playwright.setup.config.ts
+?? apps/web/src/app/setup/
+?? docs/mvp/MVP-2-blender-lab.md
+?? docs/mvp/MVP-3-integration.md
+?? docs/mvp/MVP-4-explore.md
+?? packages/adapters/AGENTS.md
+?? packages/agent-runtime/AGENTS.md
+?? packages/shared/src/password.ts

@@ -1,0 +1,53 @@
+OUT blend /home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_v04.blend
+OUT n_objects 1794
+OUT collections_top ['EXTERIOR', 'FLOOR_1', 'FLOOR_2', 'FLOOR_3', 'FLOOR_4', 'KIT_BPY', 'LIGHTING', 'CAMERAS', 'KIT_MESHY_V2', 'KIT_MESHY', 'FLOOR_1_KIT_TEST', 'CHARACTERS', 'glTF_not_exported', 'VERDICT_STAGE']
+OUT all_collections ['CAMERAS', 'CHARACTERS', 'EXTERIOR', 'FLOOR_1', 'FLOOR_1_KIT_TEST', 'FLOOR_2', 'FLOOR_3', 'FLOOR_4', 'KIT_BPY', 'KIT_MESHY', 'KIT_MESHY_V2', 'KIT_TEST_CEILING', 'LIGHTING', 'VERDICT_STAGE', 'glTF_not_exported']
+OUT coll CAMERAS objs 18 tris 0 hide_render False
+OUT coll CHARACTERS objs 2 tris 19499 hide_render False
+OUT coll EXTERIOR objs 16 tris 522 hide_render False
+OUT coll FLOOR_1 objs 455 tris 231732 hide_render False
+OUT coll FLOOR_1_KIT_TEST objs 72 tris 45695 hide_render False
+OUT coll FLOOR_2 objs 387 tris 251456 hide_render False
+OUT coll FLOOR_3 objs 387 tris 251456 hide_render False
+OUT coll FLOOR_4 objs 389 tris 251480 hide_render False
+OUT coll KIT_BPY objs 5 tris 96 hide_render True
+OUT coll KIT_MESHY objs 4 tris 5279 hide_render True
+OUT coll KIT_MESHY_V2 objs 6 tris 8111 hide_render True
+OUT coll KIT_TEST_CEILING objs 1 tris 12 hide_render False
+OUT coll LIGHTING objs 4 tris 0 hide_render False
+OUT coll VERDICT_STAGE objs 49 tris 61830 hide_render False
+OUT coll glTF_not_exported objs 0 tris 0 hide_render True
+OUT tris_by_collection {'EXTERIOR': 522, 'FLOOR_1': 231732, 'FLOOR_2': 251456, 'FLOOR_3': 251456, 'FLOOR_4': 251480, 'KIT_BPY': 96, 'KIT_MESHY': 5279, 'KIT_MESHY_V2': 8111, 'CHARACTERS': 19499, 'FLOOR_1_KIT_TEST': 45695, 'KIT_TEST_CEILING': 12, 'VERDICT_STAGE': 61830, 'LIGHTING': 0, 'CAMERAS': 0}
+OUT scene_tris 1127156
+OUT prefix FLOOR_ 0 []
+OUT prefix ROOM_ 4 ['ROOM_lobby', 'ROOM_meeting_a', 'ROOM_meeting_a_kit', 'ROOM_workstation_a']
+OUT prefix COL_ 26 ['COL_counter', 'COL_desk_1', 'COL_desk_2', 'COL_desk_3', 'COL_desk_4', 'COL_desk_5', 'COL_desk_6', 'COL_desk_7', 'COL_desk_8', 'COL_slab_floor_1', 'COL_slab_floor_2', 'COL_slab_floor_3', 'COL_slab_floor_4', 'COL_sofa_1', 'COL_sofa_2', 'COL_stair', 'COL_table_meeting', 'COL_table_meeting_kit', 'COL_wall_e', 'COL_wall_meeting_x8', 'COL_wall_meeting_x8_kit', 'COL_wall_meeting_y8', 'COL_wall_meeting_y8_kit', 'COL_wall_n', 'COL_wall_s', 'COL_wall_w']
+OUT prefix NAV_ 8 ['NAV_cam_floor1', 'NAV_cam_iso', 'NAV_cam_workstation', 'NAV_spawn_lobby', 'NAV_wp_lobby', 'NAV_wp_meeting_a', 'NAV_wp_meeting_a_kit', 'NAV_wp_workstation_a']
+OUT prefix TASK_ 10 ['TASK_board', 'TASK_board_kit', 'TASK_desk_1', 'TASK_desk_2', 'TASK_desk_3', 'TASK_desk_4', 'TASK_desk_5', 'TASK_desk_6', 'TASK_desk_7', 'TASK_desk_8']
+OUT prefix CHAR_ 3 ['CHAR_BASE', 'CHAR_BASE_mesh', 'CHAR_BASE_stage']
+OUT prefix KIT_ 9 ['KIT_floor_1m', 'KIT_meshy_floor_1m', 'KIT_meshy_pillar', 'KIT_meshy_wall_1m', 'KIT_meshy_wall_door', 'KIT_pillar', 'KIT_wall_1m', 'KIT_wall_door', 'KIT_wall_glass_1m']
+OUT prefix CAM_ 9 ['CAM_character_closeup', 'CAM_iso', 'CAM_kit2_closeup', 'CAM_kit_compare', 'CAM_lobby', 'CAM_meeting_bpy', 'CAM_meeting_kit', 'CAM_verdict', 'CAM_workstation']
+OUT other_prefixes {'tile': 1120, 'window': 268, 'wall': 171, 'column': 36, 'chair': 22, 'slab': 16, 'stair': 16, 'desk': 10, 'monitor': 10, 'tree': 10, 'TGT': 9, 'KIT2': 6, 'door': 6, 'LIGHT': 4, 'car': 2, 'ground': 2, 'plant': 2, 'sidewalk': 2, 'sofa': 2, 'table': 2, 'whiteboard': 2, 'SIGN': 1, 'STAIR': 1, 'SUN': 1, 'coffee': 1, 'counter': 1, 'road': 1, 'roof': 1}
+OUT kit KIT_floor_1m tris 12 data_users 1 colls ['KIT_BPY']
+OUT kit KIT_meshy_floor_1m tris 1082 data_users 73 colls ['KIT_MESHY']
+OUT kit KIT_meshy_pillar tris 1290 data_users 1 colls ['KIT_MESHY']
+OUT kit KIT_meshy_wall_1m tris 1500 data_users 5 colls ['KIT_MESHY']
+OUT kit KIT_meshy_wall_door tris 1407 data_users 3 colls ['KIT_MESHY']
+OUT kit KIT_pillar tris 12 data_users 1 colls ['KIT_BPY']
+OUT kit KIT_wall_1m tris 12 data_users 2 colls ['KIT_BPY']
+OUT kit KIT_wall_door tris 48 data_users 2 colls ['KIT_BPY']
+OUT kit KIT_wall_glass_1m tris 12 data_users 28 colls ['KIT_BPY']
+OUT char CHAR_BASE ARMATURE action idle tris - scale (0.0103, 0.0103, 0.0103) bones 24
+OUT char CHAR_BASE_mesh MESH action None tris 19499 scale (1.0, 1.0, 1.0) bones -
+OUT char CHAR_BASE_stage MESH action None tris 19499 scale (0.0103, 0.0103, 0.0103) bones -
+OUT actions [('Armature|clip0|baselayer', (0.8000000715255737, 0.8000000715255737)), ('idle', (0.8000000715255737, 96.80000305175781))]
+OUT shape_keys 0
+OUT images [('Image_0', (4096, 4096)), ('Image_0.001', (4096, 4096)), ('Image_0.002', (4096, 4096)), ('Image_0.003', (1024, 1024)), ('Image_0.004', (1024, 1024)), ('Image_0.005', (1024, 1024)), ('Image_0.006', (1024, 1024)), ('Image_0.007', (2048, 2048)), ('Image_1', (2048, 2048)), ('Image_1.001', (2048, 2048)), ('Image_1.002', (2048, 2048)), ('Image_2', (4096, 4096)), ('Image_2.001', (4096, 4096)), ('Image_2.002', (4096, 4096)), ('normal', (4096, 4096)), ('normal.001', (4096, 4096)), ('texture_0', (4096, 4096)), ('texture_0.001', (4096, 4096)), ('texture_0_metallic_roughness', (4096, 4096)), ('texture_0_metallic_roughness.001', (4096, 4096))]
+EXIT=0
+OUT kit2 KIT2_glass_pane MESH tris 12 data_users 135 colls ['KIT_MESHY_V2']
+OUT kit2 KIT2_meshy_floor_1m MESH tris 400 data_users 1049 colls ['KIT_MESHY_V2']
+OUT kit2 KIT2_meshy_pillar MESH tris 1499 data_users 37 colls ['KIT_MESHY_V2']
+OUT kit2 KIT2_meshy_wall_1m MESH tris 1200 data_users 139 colls ['KIT_MESHY_V2']
+OUT kit2 KIT2_meshy_wall_door MESH tris 2500 data_users 4 colls ['KIT_MESHY_V2']
+OUT kit2 KIT2_meshy_window_1m MESH tris 2500 data_users 135 colls ['KIT_MESHY_V2']
+OUT kit_test_ceiling_parent ['FLOOR_1_KIT_TEST']

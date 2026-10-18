@@ -1,0 +1,23 @@
+BlenderMCP addon registered
+VIEW_TRANSFORM Khronos PBR Neutral
+VIEW_EXPOSURE 0.0
+19:06:00 | INFO: Data are loaded, start creating Blender stuff
+19:06:00 | INFO: Blender create Mesh node 0
+19:06:01 | INFO: glTF import finished in 0.05s
+19:06:01 | INFO: Data are loaded, start creating Blender stuff
+19:06:01 | INFO: Blender create Mesh node 0
+19:06:01 | INFO: glTF import finished in 0.03s
+19:06:02 | INFO: Data are loaded, start creating Blender stuff
+19:06:02 | INFO: Blender create Mesh node 0
+19:06:02 | INFO: glTF import finished in 0.03s
+19:06:03 | INFO: Data are loaded, start creating Blender stuff
+19:06:03 | INFO: Blender create Mesh node 0
+19:06:03 | INFO: glTF import finished in 0.03s
+KIT_METRICS {"wall_1m": {"bpy_name": "KIT_wall_1m", "meshy_name": "KIT_meshy_wall_1m", "target_size": [1.0, 0.15, 3.2], "tris_raw": 1542, "tris": 1500, "dims": [1.0, 0.15, 3.2], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 15}, "wall_door": {"bpy_name": "KIT_wall_door", "meshy_name": "KIT_meshy_wall_door", "target_size": [1.0, 0.15, 3.2], "tris_raw": 1414, "tris": 1407, "dims": [1.0, 0.15, 3.2], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 96}, "floor_1m": {"bpy_name": "KIT_floor_1m", "meshy_name": "KIT_meshy_floor_1m", "target_size": [1.0, 1.0, 0.1], "tris_raw": 1108, "tris": 1082, "dims": [1.0, 1.0, 0.1], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 781}, "pillar": {"bpy_name": "KIT_pillar", "meshy_name": "KIT_meshy_pillar", "target_size": [0.3, 0.3, 3.2], "tris_raw": 1540, "tris": 1290, "dims": [0.3, 0.3, 3.2], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 89}}
+SELF_CHECK OK 463 objects 57604 tris
+Info: Saved as "hq_v02.blend"
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0

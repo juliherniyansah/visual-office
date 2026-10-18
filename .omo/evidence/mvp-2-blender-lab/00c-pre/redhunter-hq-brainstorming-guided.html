@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redhunter HQ — AI Rules &amp; Guide</title>
+<style>
+  :root{
+    --bg:#0d0f12; --panel:#15181d; --panel2:#1b1f26; --line:#262c36;
+    --text:#e8eaf0; --muted:#9aa3b2; --red:#e63946; --red-dim:#7a2630;
+    --green:#4ade80; --yellow:#facc15; --blue:#60a5fa;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+  .wrap{max-width:960px;margin:0 auto;padding:48px 24px 96px}
+  header.hero{border:1px solid var(--line);background:linear-gradient(135deg,#171a20 0%,#1d1215 100%);border-radius:14px;padding:32px 36px;margin-bottom:32px}
+  h1{margin:0 0 6px;font-size:30px;letter-spacing:-.5px}
+  h1 .rh{color:var(--red)}
+  .tag{color:var(--muted);font-size:15px;margin:0 0 14px}
+  .badge{display:inline-block;background:var(--red-dim);color:#ffb3ba;border:1px solid var(--red);border-radius:20px;padding:3px 14px;font-size:12.5px;font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+  h2{font-size:21px;margin:44px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  h3{font-size:16px;margin:26px 0 8px;color:#cdd3de}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:22px}
+  li{margin:4px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);font-weight:600}
+  td{background:var(--panel)}
+  code{background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:13px;color:#f0b429}
+  pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:13px;line-height:1.55}
+  pre code{background:none;border:none;padding:0;color:#cfe3ff}
+  blockquote{border-left:3px solid var(--red);background:var(--panel);margin:14px 0;padding:10px 18px;border-radius:0 10px 10px 0;color:var(--muted)}
+  .rule-must{color:var(--green);font-weight:700}
+  .rule-not{color:var(--red);font-weight:700}
+  .status-ok{color:var(--green)}
+  .status-block{color:var(--red)}
+  .tbd{color:var(--yellow);font-weight:600}
+  .note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 16px;margin:12px 0;font-size:14px}
+  footer{margin-top:56px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1><span class="rh">Redhunter</span> HQ — AI Rules &amp; Guide</h1>
+  <p class="tag">"Where Humans and AI Work Together" — Interactive 3D AI Virtual Office. Dokumen sumber kebenaran untuk semua AI agent &amp; 3D skill.</p>
+  <span class="badge">Status: Brainstorming — belum ada implementasi</span>
+</header>
+
+<blockquote>
+<strong>Untuk AI agent:</strong> baca dokumen ini SEBELUM task 3D, Blender, aset, karakter, atau task-integration apapun.
+Skill 3D general = <strong>HOW</strong> (cara teknis). Dokumen ini = <strong>WHAT</strong> (apa yang dibangun, style, aturan proyek).
+Konflik dengan skill → dokumen ini menang. Konflik dengan pesan user terbaru → user menang, lalu update dokumen ini.
+</blockquote>
+
+<h2>0. Cara Membaca (untuk AI)</h2>
+<table>
+  <tr><th>Bagian</th><th>Isi</th><th>Kapan dibaca</th></tr>
+  <tr><td>§1 Hard Rules</td><td>Larangan &amp; kewajiban mutlak</td><td><strong>Selalu</strong></td></tr>
+  <tr><td>§2 Status &amp; Gate</td><td>Apa yang boleh dikerjakan sekarang</td><td><strong>Selalu</strong></td></tr>
+  <tr><td>§3 Keputusan Terkunci</td><td>Pilihan final — jangan dibuka ulang</td><td>Sebelum mengusulkan tool/style</td></tr>
+  <tr><td>§4 Style Spec</td><td>Spesifikasi visual terukur</td><td>Task modeling/render/material</td></tr>
+  <tr><td>§4.1 Atmosfer</td><td>Palet, waktu, lighting, dunia luar</td><td>Task lighting/palet/exterior</td></tr>
+  <tr><td>§5 Karakter</td><td>Preferensi + sistem DIY avatar</td><td>Task karakter/agent</td></tr>
+  <tr><td>§6 Naming Contract</td><td>Nama objek wajib Blender ↔ R3F</td><td>Task Blender, export, R3F</td></tr>
+  <tr><td>§7 Workflow</td><td>Langkah urut pipeline</td><td>Saat eksekusi disetujui</td></tr>
+  <tr><td>§8 Task &amp; Gamification</td><td>Integrasi task/Trello</td><td>Task backend/UI task</td></tr>
+  <tr><td>§8.4 Game Feel</td><td>Entry, juice, perilaku agents, progresi, ambient</td><td>Task kamera/agent/UI</td></tr>
+  <tr><td>§9 Fakta Lingkungan</td><td>Hasil audit, quirk Blender 5</td><td>Sebelum menulis script</td></tr>
+  <tr><td>§10 Referensi</td><td>Repo &amp; aset pembanding</td><td>Saat butuh contoh</td></tr>
+  <tr><td>§11 Changelog Preferensi</td><td>Riwayat keputusan user</td><td>Saat ragu niat user</td></tr>
+</table>
+<p>Tingkat aturan: <span class="rule-must">MUST</span> = wajib, <span class="rule-not">MUST NOT</span> = dilarang, <strong>SHOULD</strong> = default kecuali ada alasan, <span class="tbd">TBD</span> = belum diputuskan — tanya user, jangan mengarang.</p>
+
+<h2>1. Hard Rules</h2>
+<h3 class="rule-must">MUST</h3>
+<ol>
+  <li>Baca §2 dulu; jika gate belum dibuka user → hanya riset/dokumentasi, tanpa implementasi.</li>
+  <li>Ikuti style §4 untuk semua aset (gedung, interior, props, karakter).</li>
+  <li>Pakai naming §6 untuk setiap objek Blender yang akan diekspor.</li>
+  <li>Simpan scene sebagai <code>hq_vNN.blend</code> tiap iterasi (scene hilang saat Blender restart).</li>
+  <li>Jadikan <code>apps/assets/blender/build_hq.py</code> sumber kebenaran scene (rebuildable: <code>blender -b -P build_hq.py</code>).</li>
+  <li>Verifikasi visual dengan <strong>render Eevee ke file PNG</strong> lalu baca file — bukan klaim.</li>
+  <li>Simpan API key (Meshy/Sloyd/Trello) hanya di <code>.env</code> lokal yang di-gitignore.</li>
+  <li>Jaga business logic di backend (Express/MongoDB); objek 3D hanya visual + trigger UI.</li>
+  <li>Update §11 Changelog bila user mengubah preferensi.</li>
+</ol>
+<h3 class="rule-not">MUST NOT</h3>
+<ol>
+  <li>Blockout Floor 1, clone Nexus HQ/Huddly, atau ubah kode tanpa persetujuan eksplisit user di pesan saat itu.</li>
+  <li>Bangun 4 lantai detail sekaligus — Floor 1 dulu, evaluasi, baru perluas.</li>
+  <li>Generate gedung/ruangan utuh sebagai satu mesh via Meshy/Sloyd (monolitik, tidak bisa floor-switch/collision per dinding). Yang boleh: <strong>potongan kit modular</strong> yang dijahit bpy (§3 Kit Meshy).</li>
+  <li>Pakai smooth shading, tekstur blur, atau bentuk "meleleh" (lihat §4).</li>
+  <li>Expose socket Blender MCP (<code>127.0.0.1:9876</code>) ke Tailscale/jaringan — <code>execute_blender_code</code> = Python arbitrer.</li>
+  <li>Membuat endpoint backend fiktif, status agent palsu, atau mock task permanen di scene.</li>
+  <li>Mengubah <code>apps/web/src/components/office/</code> di luar plan MVP aktif (MVP-1 memecah <code>OfficeCanvas.tsx</code> ke folder ini; edit lanjutan mengikuti plan MVP).</li>
+  <li>Berlangganan/menyarankan bayar tool sebelum uji free tier (§3).</li>
+  <li>Menyalin desain/branding/aset berhak cipta dari referensi (bruno-simon.com, Fab, Samantrix).</li>
+</ol>
+
+<h2>2. Status &amp; Gate</h2>
+<table>
+  <tr><th>Item</th><th>Status</th></tr>
+  <tr><td>Fase</td><td><strong>Brainstorming / dokumentasi</strong></td></tr>
+  <tr><td>Implementasi besar</td><td class="status-block">⛔ Menunggu persetujuan user</td></tr>
+  <tr><td>Blender MCP</td><td class="status-ok">✅ Terpasang &amp; smoke test lulus</td></tr>
+  <tr><td>Audit repo + R3F</td><td class="status-ok">✅ Selesai (§9)</td></tr>
+  <tr><td>Style, tooling, karakter, task concept</td><td class="status-ok">✅ Diputuskan (§3)</td></tr>
+  <tr><td>Pending keputusan</td><td>Blockout Floor 1 langsung <strong>vs</strong> preview Nexus HQ/Huddly dulu</td></tr>
+</table>
+<div class="note"><strong>Gate dibuka hanya jika</strong> pesan user saat itu berisi kata kerja eksplisit (buat / bangun / implement / mulai / eksekusi) untuk task tersebut. Izin turn sebelumnya tidak berlaku.</div>
+
+<h2>3. Keputusan Terkunci</h2>
+<p>Jangan buka ulang kecuali user meminta.</p>
+<table>
+  <tr><th>Topik</th><th>Keputusan</th><th>Alasan singkat</th></tr>
+  <tr><td>Produk</td><td><strong>Redhunter HQ</strong> — Interactive 3D AI Virtual Office, tagline "Where Humans and AI Work Together"</td><td>3D = antarmuka operasional, bukan dekorasi</td></tr>
+  <tr><td>Style</td><td><strong>Low-poly flat-shaded ala bruno-simon.com, kualitas tinggi</strong> (bukan dark glass realistis)</td><td>Achievable via bpy, ringan, konsisten</td></tr>
+  <tr><td>Stack web</td><td>Next.js 16, React 19, Three.js, R3F, Drei, Tailwind 4, shadcn/ui</td><td>Sudah ada di repo</td></tr>
+  <tr><td>Backend</td><td>Express 5, MongoDB/Mongoose, Socket.IO, Tailscale</td><td>Source of truth</td></tr>
+  <tr><td>Pipeline</td><td>Blender → GLB → Next.js + R3F</td><td>Blender authoring, R3F interaksi</td></tr>
+  <tr><td>MCP</td><td><strong>mcp-for-blender saja</strong> (<code>uvx mcp-for-blender</code>)</td><td>Hindari MCP tumpang tindih</td></tr>
+  <tr><td>Konsistensi style</td><td><strong>Satu bahasa visual untuk SEMUA objek</strong>: exterior, interior, furniture, karakter, props = low-poly flat-shaded. Tidak ada campuran realistis/bertekstur</td><td>Transisi helicopter↔FPV mulus, agents terlihat "menghuni", satu sistem lighting</td></tr>
+  <tr><td>Gedung/interior/furniture/terrain</td><td><strong>Procedural bpy</strong> via MCP = default. Collider <code>COL_*</code>, <code>NAV_*</code>, naming &amp; layout <code>ROOM_*</code>/<code>TASK_*</code> <strong>selalu bpy</strong></td><td>Modular, $0, kontrol penuh</td></tr>
+  <tr><td>Hybrid Meshy (conditional)</td><td><strong>Level 1 (default)</strong>: Meshy per objek (furniture/props kompleks), bpy struktur. <strong>Level 2 = Kit Meshy</strong>: Meshy generate <strong>potongan kit modular</strong> (panel dinding 1×3.2 m, panel dinding+pintu/jendela/kaca, panel lantai, tangga, pilar, kusen) → bpy normalisasi skala ke grid 1 m, pivot dasar, snap, instancing, susun sesuai denah. <strong>Bukan per ruangan.</strong> Aktif hanya jika uji MVP-2 fase 2b lolos §4 + disetujui user</td><td>Reuse = hemat kredit &amp; style konsisten; grid presisi tanpa celah/dinding dobel; revisi murah</td></tr>
+  <tr><td>Karakter</td><td><strong>Meshy = generator utama</strong> (auto-rig + 600+ motions)</td><td>Kualitas dinilai user "cukup baik"</td></tr>
+  <tr><td>Props variatif</td><td>Sloyd <strong>ditunda</strong> (opsional nanti); props sederhana = bpy, kompleks = Meshy</td><td>Satu langganan dulu</td></tr>
+  <tr><td>Rigging gratis</td><td>Mixamo</td><td>Alternatif tanpa biaya</td></tr>
+  <tr><td>Langganan</td><td><strong>Meshy saja dulu.</strong> Free (100 kredit/bln) = web app saja, <strong>tanpa API</strong>, lisensi CC BY 4.0 → uji manual (download GLB, agent import via MCP). Pro ($20/bln, 1.000 kredit) = API untuk otomasi, ambil setelah uji lolos</td><td>Anti salah bayar</td></tr>
+  <tr><td>Interaksi layout</td><td>100% di R3F</td><td>Blender hanya kirim GLB bernama</td></tr>
+  <tr><td>Physics</td><td>Raycast/capsule collision; Rapier hanya jika perlu</td><td>Hindari kompleksitas</td></tr>
+  <tr><td>Task data</td><td><strong>Kombinasi</strong>: backend Redhunter + Trello sync dua arah</td><td>User memilih</td></tr>
+</table>
+
+<h2>4. Style Spec (terukur)</h2>
+<p>Kutipan user: <em>"walau poly, saya mau poly yang bagus, realistis gk buram"</em>.</p>
+<table>
+  <tr><th>Properti</th><th>Nilai wajib</th></tr>
+  <tr><td>Gaya</td><td>Low-poly flat-shaded, playful, gamified, <strong>clean &amp; tajam</strong></td></tr>
+  <tr><td>Shading</td><td>Flat. Smooth hanya jika user minta eksplisit</td></tr>
+  <tr><td>Material</td><td>Vertex colors / palet flat, 1 shared material per kit bila bisa</td></tr>
+  <tr><td>Tekstur bitmap</td><td>Hindari; jika ada (hasil Meshy) wajib tajam di kamera dekat</td></tr>
+  <tr><td>Aksen</td><td>Merah Redhunter terkendali: signage, core tangga, detail kecil</td></tr>
+  <tr><td>Skala</td><td>Meter real-world, origin di ground (y=0)</td></tr>
+  <tr><td>Grid modular</td><td>Dinding segmen 1 m, tinggi lantai 3.2 m, kolom grid 4 m, props snap 0.8–1 m</td></tr>
+  <tr><td>Batas bawah kualitas</td><td>Setara output Meshy</td></tr>
+  <tr><td>Realisme</td><td>Boleh sedikit (proporsi, lighting) selama tetap stylized</td></tr>
+</table>
+<div class="note">
+<strong>Konsistensi interior (MUST):</strong> interior ikut style yang sama dengan exterior. Variasi dicapai lewat <strong>bentuk, prop, dan palet</strong>, bukan tekstur:
+<ul>
+  <li>Palet interior boleh lebih hangat (krem/abu terang) dari exterior; aksen merah tetap terkendali</li>
+  <li>Zona warna per fungsi (kerja, meeting, lounge, AI Core) — style sama, aksen beda</li>
+  <li>Kekayaan visual dari siluet prop (rak, tanaman, lampu, whiteboard, sofa), tetap flat-shaded</li>
+  <li>Aset Meshy/Sloyd untuk interior wajib lolos checklist di bawah; gagal → regenerate atau ganti bpy</li>
+</ul>
+</div>
+<p><strong>Tolak (anti-pattern visual):</strong> campuran objek realistis/PBR-bertekstur dengan objek low-poly dalam satu scene, bentuk meleleh/blobby, siku tidak 90° tanpa alasan, skala antar-aset tidak konsisten, warna acak di luar palet, neon berlebihan, dekorasi acak, bangunan kotak generik tanpa siluet.</p>
+<p><strong>Checklist QA render (jalankan tiap iterasi):</strong></p>
+<ul>
+  <li>Siluet terbaca dari kamera isometrik <strong>dan</strong> eye-level</li>
+  <li>Tidak ada permukaan blur/noise</li>
+  <li>Aksen merah tidak dominan</li>
+  <li>Skala manusia 1.7 m masuk akal terhadap pintu/desk</li>
+  <li>Naming §6 lengkap</li>
+</ul>
+<h3>4.1 Atmosfer (MVP-0, terkunci)</h3>
+<table>
+  <tr><th>Properti</th><th>Nilai</th></tr>
+  <tr><td>Vibe</td><td>Startup playful: warna cerah-pastel, prop fun (bean bag, tanaman, mural dinding), tetap §4 flat-shaded</td></tr>
+  <tr><td>Waktu</td><td>Day-night cycle, 4 fase: pagi 06–10, siang 10–16, senja 16–19, malam 19–06 (jam lokal client; transisi lerp ≤ 60 s)</td></tr>
+  <tr><td>Palet "Playful Pastel"</td><td>Exterior <code>#F4EFE6</code> · Interior <code>#FFF8F0</code> · Lantai <code>#D9D4CB</code> · Sekunder <code>#FFB74D</code> (oranye) + <code>#4DB6AC</code> (teal) · Aksen merah Redhunter <code>#E53935</code> (signage, core tangga, detail kecil — bukan ring AI)</td></tr>
+  <tr><td>Langit per fase</td><td>Pagi <code>#FFE0B2</code>→<code>#BFE3F7</code> · Siang <code>#BFE3F7</code>→<code>#E3F4FC</code> · Senja <code>#FF8A65</code>→<code>#7E57C2</code> · Malam <code>#1A237E</code>→<code>#0D1B2A</code> (gradient atas→bawah)</td></tr>
+  <tr><td>Sun per fase</td><td>Pagi <code>#FFD180</code> intensitas 1.0 · Siang <code>#FFFFFF</code> 1.4 · Senja <code>#FF7043</code> 0.8 · Malam <code>#5C6BC0</code> 0.25 + emissive jendela interior <code>#FFF3C4</code></td></tr>
+  <tr><td>Lighting</td><td><code>HemisphereLight</code> (skyColor/groundColor = warna langit atas/bawah fase aktif) + 1 <code>DirectionalLight</code> shadow <code>PCFSoft</code>, map 2048², shadow bias -0.0005; tanpa AO bake</td></tr>
+  <tr><td>Dunia luar gedung</td><td>Taman + jalan low-poly: ground plane 80×80 m <code>#A5D6A7</code>, jalan <code>#9E9E9E</code> lebar 6 m, trotoar <code>#CFCFCF</code>, 8–12 pohon bulat/kerucut, 1–2 mobil statis low-poly. Semua ikut §4</td></tr>
+</table>
+<p>Nilai di atas dipakai MVP-2 (fase P0: palet, exterior, lighting) dan MVP-3 (fase P1–P2: day-night, kamera). Peta MVP↔fase: <code>docs/mvp/README.md</code>.</p>
+
+<h2>5. Karakter</h2>
+<h3>5.1 Preferensi (dokumen hidup — user boleh revisi)</h3>
+<table>
+  <tr><th>Atribut</th><th>Nilai</th></tr>
+  <tr><td>Bentuk</td><td>Humanoid low-poly, proporsi realistis-stylized</td></tr>
+  <tr><td>Tinggi</td><td>1.7 m (skala real, konsisten grid §4)</td></tr>
+  <tr><td>Staff vs AI agent</td><td>Bentuk &amp; rig SAMA (<code>CHAR_BASE</code>). AI dibedakan <strong>aksen visual</strong>: ring torus low-poly ≤ 200 tris melayang 0.25 m di atas kepala, warna = aksen per-agent (bukan merah global) + warna aksen sama pada <code>CHAR_TOP_*</code>. Bukan bentuk berbeda. Ring termasuk budget polycount</td></tr>
+  <tr><td>Wajah</td><td>Ekspresif: mata + mulut termodel pada <code>CHAR_FACE_*</code>. Shape key wajib di <strong>setiap</strong> <code>CHAR_FACE_&lt;id&gt;</code> (part wajah swappable §5.2): <code>face_blink</code>, <code>face_smile</code>, <code>face_talk</code> (jika Meshy tidak menghasilkan → buat manual di Blender)</td></tr>
+  <tr><td>Animasi wajib</td><td><code>idle</code>, <code>walk</code>, <code>sit</code>, <code>type</code>, <code>wave</code>, <code>talk</code>, <code>celebrate</code> (7 clip body). Clip <code>talk</code> = gerak tubuh + men-drive shape key <code>face_talk</code>. Daftar ini menggantikan daftar clip §7.2</td></tr>
+  <tr><td>Polycount</td><td>≤ 8.000 tris per karakter (base body + semua parts terpasang + ring); semua parts share 1 material/atlas; tekstur ≤ 1024² atau vertex color. Budget scene: 10 agents ≈ 80k tris</td></tr>
+  <tr><td>Pose dasar</td><td>T-pose atau A-pose (untuk rigging)</td></tr>
+  <tr><td>Pembeda antar agent</td><td>Warna aksen + kombinasi parts DIY (§5.2)</td></tr>
+  <tr><td>Generator</td><td>Meshy (utama), procedural bpy (parts sederhana), Sloyd (opsional)</td></tr>
+</table>
+<p>Semua atribut §5.1 sudah terkunci (MVP-0, lihat <code>docs/mvp/README.md</code>). Revisi hanya atas permintaan user → update §11.</p>
+<h3>5.2 Sistem Avatar DIY (keputusan user)</h3>
+<p>Setiap staff/agent bisa kustom avatar sendiri — sistem <strong>slot-based</strong> ala game.</p>
+<ul>
+  <li><strong>Satu base body rigged</strong> (<code>CHAR_BASE</code>) dengan skeleton sama untuk semua.</li>
+  <li><strong>Part library per slot:</strong> rambut, wajah, atasan, bawahan, sepatu, aksesori.</li>
+  <li>Parts di-skin/parent ke bone <code>CHAR_BASE</code> → semua animasi berlaku untuk semua kombinasi. Parts <strong>tidak</strong> di-rig ulang.</li>
+  <li>Rigging dilakukan <strong>sekali</strong> untuk base body (Meshy Animate atau Mixamo).</li>
+  <li>Konfigurasi per staff disimpan di <strong>MongoDB</strong>, bukan di file 3D.</li>
+  <li>R3F merakit parts saat load berdasarkan config. UI pemilih avatar = fase berikutnya.</li>
+  <li>Semua parts wajib lulus §4.</li>
+</ul>
+<pre><code>{ "hair": "hair_01", "face": "face_02", "top": "top_03",
+  "bottom": "bottom_01", "shoes": "shoes_02", "acc": ["acc_glasses"] }</code></pre>
+
+<h2>6. Naming Contract (Blender ↔ R3F)</h2>
+<p>R3F mencari objek berdasarkan prefix ini. Nama salah = fitur rusak.</p>
+<table>
+  <tr><th>Prefix</th><th>Arti</th><th>Dipakai R3F untuk</th></tr>
+  <tr><td><code>FLOOR_&lt;n&gt;</code></td><td>Collection per lantai (1–4)</td><td>Floor switching, isolasi lantai</td></tr>
+  <tr><td><code>ROOM_&lt;id&gt;</code></td><td>Ruangan (<code>ROOM_lobby</code>, <code>ROOM_meeting_a</code>)</td><td>Room selection, fokus kamera</td></tr>
+  <tr><td><code>COL_&lt;name&gt;</code></td><td>Collider, hidden saat render</td><td>Collision FPV</td></tr>
+  <tr><td><code>NAV_&lt;name&gt;</code></td><td>Spawn point / marker kamera</td><td>Posisi awal, transisi kamera</td></tr>
+  <tr><td><code>TASK_&lt;name&gt;</code></td><td>Anchor task board / workstation</td><td>Trigger panel task (§8)</td></tr>
+  <tr><td><code>CHAR_BASE</code></td><td>Body + rig karakter</td><td>Animasi</td></tr>
+  <tr><td><code>CHAR_&lt;SLOT&gt;_&lt;id&gt;</code></td><td>Part avatar: <code>HAIR</code>, <code>FACE</code>, <code>TOP</code>, <code>BOTTOM</code>, <code>SHOES</code>, <code>ACC</code></td><td>Perakitan avatar DIY</td></tr>
+  <tr><td><code>KIT_&lt;piece&gt;</code></td><td>Potongan kit modular (Meshy Level 2 atau bpy): <code>KIT_wall_1m</code>, <code>KIT_wall_door</code>, <code>KIT_floor_1m</code></td><td>Instancing di Blender; R3F tidak bergantung</td></tr>
+</table>
+<p><code>&lt;id&gt;</code>/<code>&lt;name&gt;</code>: <code>snake_case</code> bahasa Inggris.</p>
+
+<h2>7. Workflow</h2>
+<h3>7.1 Scene Blender (gedung/interior)</h3>
+<ol>
+  <li>Baca §1–§6.</li>
+  <li>Tulis/ubah fungsi builder di <code>apps/assets/blender/build_hq.py</code> (<code>make_wall()</code>, <code>make_desk()</code>, <code>make_stairs()</code>, …) — modular, linked duplicates.</li>
+  <li>Jalankan via MCP <code>execute_blender_code</code> (atau headless <code>blender -b -P build_hq.py</code>).</li>
+  <li>Save <code>hq_vNN.blend</code> (naikkan NN).</li>
+  <li>Render Eevee (<code>BLENDER_EEVEE</code>) dua kamera: isometrik + eye-level → PNG.</li>
+  <li>Baca PNG, jalankan checklist §4, revisi.</li>
+  <li>(Opsional, Level 2 Kit Meshy) Import potongan kit dari <code>apps/assets/raw/meshy/kit/</code> → normalisasi skala ke grid 1 m, pivot di dasar, Remesh (0 kredit) + rapikan tepi seam, ganti tekstur ke vertex color/palet §4.1 bila tidak lolos, nama <code>KIT_&lt;piece&gt;</code> → instancing oleh builder bpy. Collider tetap kotak bpy.</li>
+  <li>Export GLB headless → <code>gltf-transform</code> (meshopt; KTX2 hanya jika ada tekstur).</li>
+  <li>Verifikasi GLB: skala, orientasi, hierarchy, naming §6.</li>
+  <li>Output kandidat → <code>apps/web/public/models/hq.glb</code> (ganti <code>building.glb</code> hanya setelah user setuju).</li>
+</ol>
+<h3>7.2 Karakter via API (tanpa buka web)</h3>
+<pre><code>prompt (+ style §4, preferensi §5)
+  → curl Meshy API (text/image-to-3D) → poll job → download GLB
+  → import Blender via MCP → cek §4, rename sesuai §6
+  → Meshy Animate API (rig + idle/walk/sit/type)  |  alternatif: Mixamo
+  → export GLB animated → apps/web/public/models/</code></pre>
+<ul>
+  <li>Alur API butuh <strong>Meshy Pro</strong> (free tier tidak punya API). Selama free tier: user generate di web Meshy, simpan GLB ke <code>apps/assets/raw/meshy/</code>, agent lanjut dari langkah import.</li>
+  <li>Langkah manual user hanya sekali: daftar akun + buat API key → <code>.env</code> (<code>MESHY_API_KEY</code>; <code>SLOYD_API_KEY</code> nanti bila Sloyd dipakai).</li>
+  <li>Addon mcp-for-blender punya integrasi built-in Tripo/Hyper3D (nonaktif, butuh key) — bukan pilihan utama.</li>
+</ul>
+<h3>7.3 Urutan fase</h3>
+<ul>
+  <li><strong>P0:</strong> deklarasi <code>three</code>/<code>@react-three/fiber</code>/<code>@react-three/drei</code> di <code>apps/web/package.json</code> → <code>build_hq.py</code> massing 4 lantai + Floor 1 detail (lobby, meeting kaca, 8 workstation, koridor, tangga) → 2–3 iterasi render → export &amp; verifikasi GLB.</li>
+  <li><strong>P1:</strong> helicopter/isometric camera → floor switching → room selection.</li>
+  <li><strong>P2:</strong> FPV (WASD + mouse-look, pointer lock exit jelas) + collision <code>COL_*</code>.</li>
+  <li><strong>P3:</strong> minimap → karakter Meshy + avatar DIY → integrasi agent backend.</li>
+  <li><strong>P4:</strong> task board + Trello (§8).</li>
+  <li>Third-person view: opsional, paling akhir.</li>
+</ul>
+<h3>7.4 Contoh prompt siap pakai</h3>
+<pre><code>Baca docs/redhunter-hq-brainstorming-guided.md. Buat blockout kantor low-poly 4 lantai:
+footprint 20×14 m, tinggi lantai 3.2 m, style §4. Floor 1 detail: lobby, meeting room kaca,
+8 workstation, koridor, tangga. Naming §6. Render isometrik + eye-level, simpan hq_v01.blend.</code></pre>
+
+<h2>8. Task &amp; Gamification</h2>
+<p>Kutipan user: <em>"selain fungsi game, fungsi kerjaan juga bisa di pakai"</em> — Redhunter HQ = game <strong>dan</strong> alat kerja nyata.</p>
+<h3>8.1 Data</h3>
+<ul>
+  <li><strong>Source of truth:</strong> backend Redhunter (Express + MongoDB).</li>
+  <li><strong>Trello:</strong> sync dua arah (token/OAuth + REST + webhook).</li>
+  <li>3D tidak menyimpan state task.</li>
+</ul>
+<h3>8.2 Wujud di 3D</h3>
+<table>
+  <tr><th>Fitur</th><th>Perilaku</th></tr>
+  <tr><td>Task board 3D (meeting room, anchor <code>TASK_board</code>)</td><td>Kolom To Do / Doing / Done; klik kartu → panel HTML shadcn (detail, komentar, status)</td></tr>
+  <tr><td>Workstation (<code>TASK_desk_&lt;id&gt;</code>)</td><td>Dekat desk → tekan <code>E</code> → panel task staff (pola Huddly)</td></tr>
+  <tr><td>Agent aktif</td><td>Animasi <code>type</code>, speech bubble judul task dari backend</td></tr>
+  <tr><td>Task selesai</td><td>Kartu pindah kolom + animasi selebrasi kecil</td></tr>
+  <tr><td>Notifikasi spasial</td><td>Indikator melayang di atas agent/ruangan (mention, deadline)</td></tr>
+  <tr><td>Minimap</td><td>Marker aktivitas task per lantai/ruangan</td></tr>
+</table>
+<h3>8.3 Batas</h3>
+<ul>
+  <li>Tidak dibangun di P0–P3. Demo data hanya jika jelas dilabeli "demo mode".</li>
+</ul>
+<h3>8.4 Game Feel (MVP-0, terkunci)</h3>
+<table>
+  <tr><th>Aspek</th><th>Nilai</th></tr>
+  <tr><td>Entry</td><td>Cinematic intro ≤ 4 s: kamera orbit turun dari 60 m → settle helicopter view (isometrik). Skip = klik/tombol apa pun. Checkbox "Jangan tampilkan lagi" → Zustand <code>persist</code> (localStorage). Setelah intro: helicopter view + floor selector</td></tr>
+  <tr><td>Juice (sedang)</td><td>Hover HANYA pada objek interaktif (<code>TASK_*</code>, <code>ROOM_*</code>, agent): emissive <code>#E53935</code> intensitas 0.35 + kursor pointer — state UI sementara, tidak dihitung dalam checklist "aksen merah tidak dominan" §4. Klik: scale bounce 1.05 → 1.0 dalam 180 ms. Transisi kamera: ease-in-out 0.6 s. Tanpa SFX; partikel hanya saat <code>celebrate</code></td></tr>
+  <tr><td>Perilaku agents</td><td>Default di <code>TASK_desk_&lt;id&gt;</code>. Mapping enum <code>AGENT_STATUSES</code> (<code>packages/shared/src/enums.ts</code>) → lokasi+clip: <code>working</code>/<code>thinking</code> → desk + <code>type</code>; <code>blocked</code>/<code>waiting_permission</code> → <code>ROOM_meeting_a</code> + <code>sit</code> (loop) dengan <code>talk</code> overlay 2 s saat status berubah (butuh perhatian manusia); <code>idle</code> → <code>ROOM_lobby</code> area sofa + <code>idle</code>; <code>offline</code> → tidak dirender. MUST NOT menambah status di luar enum backend (§1 MUST NOT 6). Pindah = <code>walk</code> mengikuti waypoint <code>NAV_wp_&lt;room_id&gt;</code> (1 empty per <code>ROOM_*</code>, garis lurus antar waypoint; tanpa navmesh). MVP-4 (P3) mengirim 7 clip + demo <code>walk</code> sepanjang <code>NAV_wp_*</code> tanpa data backend; mapping ke status live dipasang di MVP-5 (P4) atau fase sesudahnya</td></tr>
+  <tr><td>Progresi</td><td>XP + level + badge, <strong>data di backend</strong> (MongoDB). Aturan XP/level/badge + endpoint = scope MVP-5 (fase P4). 3D hanya menampilkan: level di name tag, badge ikon di panel profil, <code>celebrate</code> saat level-up</td></tr>
+  <tr><td>Ambient idle</td><td>Bubble idle dari pool teks lokal (contoh: "☕ brb coffee", "🎧 focus mode") — <strong>bukan data task/status, bukan demo data</strong> (tidak melanggar §1 MUST NOT 6 / §8.3); style bubble abu-abu tanpa ikon status, berbeda dari bubble task backend. Interval bubble 20–60 s acak per agent. Prop bergerak: kipas 1 putaran/s, layar monitor ganti warna tiap 4 s, tanaman goyang ±3° periode 3 s</td></tr>
+</table>
+<p>Batas §8.3 ("tidak dibangun di P0–P3") berlaku untuk §8.1–8.2 (task board/Trello) saja. §8.4 dibangun per MVP: entry+juice → MVP-3 (P1–P2), clip+waypoint → MVP-4 (P3), mapping status + progresi + ambient → MVP-5 (P4). Peta: <<h3>Repo</h3>
+<ul>
+  <li><code>apps/web/package.json</code>: next ^16.2.11, react 19, zustand, tailwind 4. Sejak MVP-1 three/fiber/drei dideklarasikan: <code>three ^0.186.1</code>, <code>@react-three/fiber ^9.8.1</code>, <code>@react-three/drei ^10.7.9</code>, devDep <code>@types/three ^0.186.0</code>.</li>
+  <li><code>apps/web/src/components/office/</code>: 13 file hasil pecahan MVP-1 dari monolith <code>OfficeCanvas.tsx</code> (dulu 417 LOC); <code>BUILDING_MODEL_URL</code> di <code>Building.tsx</code>, lighting (ambient 0.4 + 1 directional) di <code>Lighting.tsx</code>, tone mapping ACES di <code>OfficeCanvas.tsx</code>.</li>
+  <li>Model sekarang: <code>building.glb</code> 12.4 KB, <code>character.glb</code> 38.2 KB — prosedural three.js dari <code>apps/assets/scripts/generate-assets.ts</code> (710 LOC).</li>
+  <li>Penyebab visual buruk: aset prosedural non-authored, lighting flat, inline material override, monolith, deps tidak dideklarasikan.</li>
+</ul>
+flat, inline material override, monolith, deps tidak dideklarasikan.</li>
+</ul>
+<h3>Blender</h3>
+<table>
+  <tr><th>Fakta</th><th>Implikasi untuk script</th></tr>
+  <tr><td>Blender 5.0.1 di <code>/usr/bin/blender</code></td><td>Pakai API 5.x</td></tr>
+  <tr><td>Engine: <code>BLENDER_EEVEE</code> (EEVEE_NEXT tidak ada)</td><td>Set engine dalam try/except</td></tr>
+  <tr><td>Viewport screenshot addon sering gelap</td><td>Render ke PNG lalu baca</td></tr>
+  <tr><td><code>look</code> mode image butuh numpy (tidak ada)</td><td>Jangan pakai</td></tr>
+  <tr><td>Scene tidak persist antar restart</td><td>Save <code>.blend</code> tiap iterasi</td></tr>
+  <tr><td>Addon: polyhaven/sketchfab/polypizza &amp; tripo/hyper3d/hunyuan3d OFF</td><td>Procedural bpy saja di awal</td></tr>
+  <tr><td>Addon file <code>~/.config/blender/5.0/scripts/addons/blender_mcp.py</code>, tab sidebar "MCP for Blender"</td><td>Server listen <code>127.0.0.1:9876</code></td></tr>
+  <tr><td>MCP terdaftar di <code>~/.config/opencode/opencode.json</code></td><td>Restart OpenCode jika config berubah</td></tr>
+  <tr><td>Shader node: cari via <code>n.type == "BSDF_PRINCIPLED"</code></td><td>Nama node bisa terlokalisasi</td></tr>
+</table>
+
+<h2>10. Referensi</h2>
+<h3>Interaksi (open source, untuk pola — jangan salin aset)</h3>
+<table>
+  <tr><th>Proyek</th><th>Pola yang dipelajari</th></tr>
+  <tr><td>Nexus HQ — github.com/xbrxr03/nexus-hq ⭐</td><td>Dashboard AI agents 3D, zones, live feed, WebSocket</td></tr>
+  <tr><td>AI Office — github.com/Gaurav2693/ai-office</td><td>Diorama isometrik, agent behavior, day/night</td></tr>
+  <tr><td>Huddly — github.com/harshal0704/huddly</td><td>FPV WASD, Tab toggle UI, <code>E</code> interaksi (Next.js + R3F)</td></tr>
+  <tr><td>Aura Plan — github.com/sujalvk888/aura-plan</td><td>FPV + PointerLockControls + collision</td></tr>
+  <tr><td>VirtualOffice3D — github.com/ktauchert/VirtualOffice3D</td><td>Click-to-move pathfinding</td></tr>
+</table>
+<h3>Visual</h3>
+<ul>
+  <li>bruno-simon.com — acuan style &amp; fitur map.</li>
+  <li>Fab commercial buildings, Samantrix virtual office — acuan kualitas/interaksi saja.</li>
+</ul>
+<h3>Aset gratis (cadangan, cek lisensi per item)</h3>
+<p>threejsassets.com/assets/free (komersial), polyfork.dev (komersial, vertex color), antics.gg interior kit (CC-BY), 3dassets.dev Open Plan Office Floor (CC0, referensi layout Floor 1), Poly Haven (CC0), Quaternius &amp; Kenney (CC0).</p>
+<h3>Generator AI (dievaluasi)</h3>
+<table>
+  <tr><th>Tool</th><th>Peran</th><th>Biaya</th></tr>
+  <tr><td>Meshy</td><td><strong>Utama</strong> — karakter + rig + 600+ motions, props kompleks, kit modular (Level 2), REST API (Pro)</td><td>Free 100 kredit web-only; Pro $20/bln 1.000 kredit + API; generate ±20–30 kredit, rig/animate/remesh 0</td></tr>
+  <tr><td>Sloyd</td><td><strong>Ditunda</strong> — props low-poly, ekspor .blend, REST API</td><td>Web $15/bln; API prepaid min $12</td></tr>
+  <tr><td>Mixamo</td><td>Rig + animasi gratis</td><td>$0</td></tr>
+  <tr><td>Tripo / Hyper3D-Rodin / Hunyuan3D / Luma / Spline / Kaedim</td><td>Dicatat, tidak dipakai</td><td>—</td></tr>
+</table>
+
+<h2>11. Changelog Preferensi User</h2>
+<table>
+  <tr><th>#</th><th>Keputusan</th><th>Kutipan/inti</th></tr>
+  <tr><td>1</td><td>MCP = ahujasid lineage → <code>mcp-for-blender</code></td><td>"A"</td></tr>
+  <tr><td>2</td><td>Style low-poly ala Bruno Simon</td><td>"design stylenya polygon gitu", "gamification low poly art"</td></tr>
+  <tr><td>3</td><td>Gedung/interior/furniture procedural bpy</td><td>Kontrol penuh, $0</td></tr>
+  <tr><td>4</td><td>Meshy + Sloyd, uji free tier dulu</td><td>"gak papa bayar, saya cuma gk mau salah bayar"</td></tr>
+  <tr><td>5</td><td>Prompting via API dari agent, bukan web</td><td>Otomasi penuh</td></tr>
+  <tr><td>6</td><td>Avatar DIY per staff (baju, rambut, muka, sepatu, celana)</td><td>"karakternya bisa DIY"</td></tr>
+  <tr><td>7</td><td>Task terhubung Trello, sumber data kombinasi</td><td>"fungsi kerjaan juga bisa di pakai"</td></tr>
+  <tr><td>8</td><td>Low-poly kualitas tinggi, tidak buram; Meshy utama</td><td>"poly yang bagus, realistis gk buram"</td></tr>
+  <tr><td>9</td><td>Tetap brainstorming, jangan implementasi/blockout/clone</td><td>"jangan dulu implementasi apapun"</td></tr>
+  <tr><td>10</td><td>File ini dijadikan rules &amp; guide untuk AI</td><td>"jadi rules dan guided untuk AI"</td></tr>
+  <tr><td>11</td><td>Hybrid Meshy conditional: default Meshy per objek; per ruangan hanya setelah uji free tier lolos</td><td>"emang gak bisa hybrid? ... atau conditioning aja"</td></tr>
+  <tr><td>12</td><td>Interior wajib low-poly sama dengan exterior, satu bahasa visual</td><td>"interior perlu style poly juga untuk jaga konsistensi" → "iya"</td></tr>
+  <tr><td>13</td><td>Karakter: humanoid 1.7 m, satu rig untuk staff &amp; AI, AI beda ring aksen per-agent 0.25 m; wajah ekspresif + shape key face_*; 7 clip; ≤ 8k tris</td><td>MVP-0 wawancara Q1–Q5</td></tr>
+  <tr><td>14</td><td>Atmosfer: day-night cycle 4 fase, vibe startup playful</td><td>MVP-0 Q6–Q7</td></tr>
+  <tr><td>15</td><td>Palet "Playful Pastel" (#F4EFE6/#FFF8F0/#D9D4CB, #FFB74D+#4DB6AC, merah #E53935); HemisphereLight + soft shadow 2048</td><td>MVP-0 Q8–Q9</td></tr>
+  <tr><td>16</td><td>Dunia luar: taman + jalan low-poly</td><td>MVP-0 Q10</td></tr>
+  <tr><td>17</td><td>Game feel: cinematic ≤ 4 s skippable, juice sedang, agents desk-default + pindah per enum status backend (idle → ROOM_lobby), XP/level/badge backend, ambient bubble idle non-status + prop bergerak</td><td>MVP-0 Q11–Q15</td></tr>
+  <tr><td>18</td><td>Kit Meshy (Level 2): Meshy generate potongan kit modular (dinding/lantai/pintu/tangga), bpy menjahit di grid 1 m; diuji di MVP-2 vs full bpy. Langganan Meshy saja dulu (free = web, Pro = API), Sloyd ditunda</td><td>"make object yang di generate meshy dan di jait oleh bpy" → "iya begitu tambahkan"</td></tr>
+</table>
+
+<footer>
+  Redhunter HQ — AI Rules &amp; Guide · sumber kebenaran: <code>docs/redhunter-hq-brainstorming-guided.md</code> · repo <code>redhunter-reborn/visual-office</code>
+</footer>
+
+</div>
+</body>
+</html>

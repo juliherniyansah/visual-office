@@ -1,0 +1,31 @@
+VIEW_TRANSFORM Khronos PBR Neutral
+VIEW_EXPOSURE 0.0
+07:20:52 | INFO: Data are loaded, start creating Blender stuff
+07:20:52 | INFO: Blender create Mesh node 0
+07:20:52 | INFO: glTF import finished in 0.03s
+07:20:53 | INFO: Data are loaded, start creating Blender stuff
+07:20:53 | INFO: Blender create Mesh node 0
+07:20:53 | INFO: glTF import finished in 0.04s
+07:20:54 | INFO: Data are loaded, start creating Blender stuff
+07:20:54 | INFO: Blender create Mesh node 0
+07:20:54 | INFO: glTF import finished in 0.04s
+07:20:55 | INFO: Data are loaded, start creating Blender stuff
+07:20:55 | INFO: Blender create Mesh node 0
+07:20:55 | INFO: glTF import finished in 0.03s
+KIT_METRICS {"wall_1m": {"bpy_name": "KIT_wall_1m", "meshy_name": "KIT_meshy_wall_1m", "target_size": [1.0, 0.15, 3.2], "tris_raw": 1542, "tris": 1500, "dims": [1.0, 0.15, 3.2], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 15}, "wall_door": {"bpy_name": "KIT_wall_door", "meshy_name": "KIT_meshy_wall_door", "target_size": [1.0, 0.15, 3.2], "tris_raw": 1414, "tris": 1407, "dims": [1.0, 0.15, 3.2], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 96}, "floor_1m": {"bpy_name": "KIT_floor_1m", "meshy_name": "KIT_meshy_floor_1m", "target_size": [1.0, 1.0, 0.1], "tris_raw": 1108, "tris": 1082, "dims": [1.0, 1.0, 0.1], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 781}, "pillar": {"bpy_name": "KIT_pillar", "meshy_name": "KIT_meshy_pillar", "target_size": [0.3, 0.3, 3.2], "tris_raw": 1540, "tris": 1290, "dims": [0.3, 0.3, 3.2], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 89}}
+07:20:55 | INFO: Data are loaded, start creating Blender stuff
+07:20:56 | INFO: Blender create Mesh node Mesh_0
+07:20:56 | INFO: glTF import finished in 0.31s
+07:20:56 | INFO: Data are loaded, start creating Blender stuff
+07:20:56 | INFO: Blender create Mesh node Mesh_0
+07:20:56 | INFO: glTF import finished in 0.31s
+CHARACTER {'mode': 'rigged', 'tris_before': 20474, 'tris_after': 19499, 'zero_weight_verts': 0, 'vertex_groups': 24, 'bones': 24, 'height': 1.7, 'feet_z': -0.0121, 'rescaled': True, 'frame_end': 96}
+CHECK_CHARACTER facing_dot 0.972 height 1.700 tris 19499 feet_z -0.0121
+CHECK_VERDICT_STAGE height 1.700 zmin 0.0000 tiles 36
+SELF_CHECK OK 514 objects 138933 tris
+VIEWPORT_SHADING 10 spaces set
+Info: Saved as "hq_v04_bpy.blend"
+Blender 5.0.1
+
+Blender quit
+EXIT=0

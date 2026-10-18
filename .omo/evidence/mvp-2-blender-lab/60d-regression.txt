@@ -1,0 +1,29 @@
+== 1 plain build (names reproduce v01)
+plain EXIT=0
+ref 387 cur 387
+only_ref []
+only_cur []
+IDENTICAL
+== 2 kit-only build (v02 style)
+kit-only EXIT=0
+== 3 kit+character build (v03 style)
+kit+char EXIT=0
+== 4 inject-bad-col (expect !=0)
+inject-bad-col EXIT=1
+== 5 inject-missing-nav (expect !=0)
+inject-missing-nav EXIT=1
+== 6 HQ_INJECT_BAD_CHAR_HEIGHT (expect !=0)
+bad-char-height EXIT=1
+AssertionError: check_character: height 2.550 outside 1.65-1.75
+== 7 HQ_INJECT_BAD_STAGE (expect !=0)
+bad-stage EXIT=1
+AssertionError: check_verdict_stage: character feet z 0.5000 off the plate
+== 8 verdict-stage without kit/char (expect !=0)
+stage-no-deps EXIT=1
+== 9 furniture test
+furniture EXIT=0
+== 10 normalize_kit test
+normalize EXIT=0
+== 11 viewport colors test
+viewport EXIT=0
+REGRESSION DONE

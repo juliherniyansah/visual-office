@@ -1,0 +1,111 @@
+--- .omo/evidence/mvp-2-blender-lab/00c-pre/redhunter-hq-brainstorming-guided.html	2026-10-17 16:05:03.967820724 +0000
++++ docs/redhunter-hq-brainstorming-guided.html	2026-10-18 09:41:24.020668340 +0000
+@@ -92,7 +92,7 @@
+   <li>Blockout Floor 1, clone Nexus HQ/Huddly, atau ubah kode tanpa persetujuan eksplisit user di pesan saat itu.</li>
+   <li>Bangun 4 lantai detail sekaligus — Floor 1 dulu, evaluasi, baru perluas.</li>
+   <li>Generate gedung/ruangan utuh sebagai satu mesh via Meshy/Sloyd (monolitik, tidak bisa floor-switch/collision per dinding). Yang boleh: <strong>potongan kit modular</strong> yang dijahit bpy (§3 Kit Meshy).</li>
+-  <li>Pakai smooth shading, tekstur blur, atau bentuk "meleleh" (lihat §4).</li>
++  <li>Pakai tekstur blur/noise, bentuk "meleleh", atau smooth shading di luar auto-smooth ≤ 30° (lihat §4).</li>
+   <li>Expose socket Blender MCP (<code>127.0.0.1:9876</code>) ke Tailscale/jaringan — <code>execute_blender_code</code> = Python arbitrer.</li>
+   <li>Membuat endpoint backend fiktif, status agent palsu, atau mock task permanen di scene.</li>
+   <li>Mengubah <code>apps/web/src/components/office/</code> di luar plan MVP aktif (MVP-1 memecah <code>OfficeCanvas.tsx</code> ke folder ini; edit lanjutan mengikuti plan MVP).</li>
+@@ -117,14 +117,14 @@
+ <table>
+   <tr><th>Topik</th><th>Keputusan</th><th>Alasan singkat</th></tr>
+   <tr><td>Produk</td><td><strong>Redhunter HQ</strong> — Interactive 3D AI Virtual Office, tagline "Where Humans and AI Work Together"</td><td>3D = antarmuka operasional, bukan dekorasi</td></tr>
+-  <tr><td>Style</td><td><strong>Low-poly flat-shaded ala bruno-simon.com, kualitas tinggi</strong> (bukan dark glass realistis)</td><td>Achievable via bpy, ringan, konsisten</td></tr>
++  <tr><td>Style</td><td><strong>Mid-poly stylized bertekstur tajam</strong> (siluet low-poly ala bruno-simon.com + tekstur hand-painted bersih; bukan dark glass foto-realistis)</td><td>Achievable via bpy + Meshy t2.5, ringan, konsisten; user m0019 MVP-2</td></tr>
+   <tr><td>Stack web</td><td>Next.js 16, React 19, Three.js, R3F, Drei, Tailwind 4, shadcn/ui</td><td>Sudah ada di repo</td></tr>
+   <tr><td>Backend</td><td>Express 5, MongoDB/Mongoose, Socket.IO, Tailscale</td><td>Source of truth</td></tr>
+   <tr><td>Pipeline</td><td>Blender → GLB → Next.js + R3F</td><td>Blender authoring, R3F interaksi</td></tr>
+   <tr><td>MCP</td><td><strong>mcp-for-blender saja</strong> (<code>uvx mcp-for-blender</code>)</td><td>Hindari MCP tumpang tindih</td></tr>
+-  <tr><td>Konsistensi style</td><td><strong>Satu bahasa visual untuk SEMUA objek</strong>: exterior, interior, furniture, karakter, props = low-poly flat-shaded. Tidak ada campuran realistis/bertekstur</td><td>Transisi helicopter↔FPV mulus, agents terlihat "menghuni", satu sistem lighting</td></tr>
++  <tr><td>Konsistensi style</td><td><strong>Satu bahasa visual untuk SEMUA objek</strong>: exterior, interior, furniture, karakter, props = mid-poly stylized, siluet tegas, tekstur hand-painted tajam atau palet flat. Tidak ada campuran foto-realistis/PBR</td><td>Transisi helicopter↔FPV mulus, agents terlihat "menghuni", satu sistem lighting</td></tr>
+   <tr><td>Gedung/interior/furniture/terrain</td><td><strong>Procedural bpy</strong> via MCP = default. Collider <code>COL_*</code>, <code>NAV_*</code>, naming &amp; layout <code>ROOM_*</code>/<code>TASK_*</code> <strong>selalu bpy</strong></td><td>Modular, $0, kontrol penuh</td></tr>
+-  <tr><td>Hybrid Meshy (conditional)</td><td><strong>Level 1 (default)</strong>: Meshy per objek (furniture/props kompleks), bpy struktur. <strong>Level 2 = Kit Meshy</strong>: Meshy generate <strong>potongan kit modular</strong> (panel dinding 1×3.2 m, panel dinding+pintu/jendela/kaca, panel lantai, tangga, pilar, kusen) → bpy normalisasi skala ke grid 1 m, pivot dasar, snap, instancing, susun sesuai denah. <strong>Bukan per ruangan.</strong> Aktif hanya jika uji MVP-2 fase 2b lolos §4 + disetujui user</td><td>Reuse = hemat kredit &amp; style konsisten; grid presisi tanpa celah/dinding dobel; revisi murah</td></tr>
++  <tr><td>Hybrid Meshy (conditional)</td><td><strong>Level 1 (default)</strong>: Meshy per objek (furniture/props kompleks), bpy struktur. <strong>Level 2 = Kit Meshy</strong>: Meshy generate <strong>potongan kit modular</strong> (panel dinding 1×3.2 m, panel dinding+pintu/jendela/kaca, panel lantai, tangga, pilar, kusen) → bpy normalisasi skala ke grid 1 m, pivot dasar, snap, instancing, susun sesuai denah. <strong>Bukan per ruangan.</strong> <strong>Hasil uji MVP-2 (2026-10-18): Level 2 dipilih untuk dinding/lantai (kit Meshy v2: 1 panel per jenis, realistis 4K, bpy merakit); furniture kompleks = Meshy.</strong> Alasan: user memilih tampilan realistis bergaya poly; uji verdict menunjukkan gaya tekstur kit dan karakter konsisten, biaya tris (~1,1 jt di hq_v04) ditangani di MVP-3 lewat decimate/LOD + KTX2.</td><td>Reuse = hemat kredit &amp; style konsisten; grid presisi tanpa celah/dinding dobel; revisi murah</td></tr>
+   <tr><td>Karakter</td><td><strong>Meshy = generator utama</strong> (auto-rig + 600+ motions)</td><td>Kualitas dinilai user "cukup baik"</td></tr>
+   <tr><td>Props variatif</td><td>Sloyd <strong>ditunda</strong> (opsional nanti); props sederhana = bpy, kompleks = Meshy</td><td>Satu langganan dulu</td></tr>
+   <tr><td>Rigging gratis</td><td>Mixamo</td><td>Alternatif tanpa biaya</td></tr>
+@@ -138,26 +138,26 @@
+ <p>Kutipan user: <em>"walau poly, saya mau poly yang bagus, realistis gk buram"</em>.</p>
+ <table>
+   <tr><th>Properti</th><th>Nilai wajib</th></tr>
+-  <tr><td>Gaya</td><td>Low-poly flat-shaded, playful, gamified, <strong>clean &amp; tajam</strong></td></tr>
+-  <tr><td>Shading</td><td>Flat. Smooth hanya jika user minta eksplisit</td></tr>
+-  <tr><td>Material</td><td>Vertex colors / palet flat, 1 shared material per kit bila bisa</td></tr>
+-  <tr><td>Tekstur bitmap</td><td>Hindari; jika ada (hasil Meshy) wajib tajam di kamera dekat</td></tr>
++  <tr><td>Gaya</td><td>Mid-poly stylized, playful, gamified, <strong>clean &amp; tajam</strong></td></tr>
++  <tr><td>Shading</td><td>Auto-smooth ≤ 30° (sudut tajam tetap tajam). Flat untuk geometri bpy</td></tr>
++  <tr><td>Material</td><td>Tekstur hand-painted tajam (Meshy) atau vertex colors/palet (bpy); 1 shared material/atlas per objek bila bisa</td></tr>
++  <tr><td>Tekstur bitmap</td><td>Diizinkan; wajib tajam di kamera dekat, ≤ 2048² karakter, ≤ 1024² kit/prop, tanpa noise/blur</td></tr>
+   <tr><td>Aksen</td><td>Merah Redhunter terkendali: signage, core tangga, detail kecil</td></tr>
+   <tr><td>Skala</td><td>Meter real-world, origin di ground (y=0)</td></tr>
+   <tr><td>Grid modular</td><td>Dinding segmen 1 m, tinggi lantai 3.2 m, kolom grid 4 m, props snap 0.8–1 m</td></tr>
+-  <tr><td>Batas bawah kualitas</td><td>Setara output Meshy</td></tr>
++  <tr><td>Batas bawah kualitas</td><td>Setara output Meshy t2.5 + refine 2k/4k</td></tr>
+   <tr><td>Realisme</td><td>Boleh sedikit (proporsi, lighting) selama tetap stylized</td></tr>
+ </table>
+ <div class="note">
+-<strong>Konsistensi interior (MUST):</strong> interior ikut style yang sama dengan exterior. Variasi dicapai lewat <strong>bentuk, prop, dan palet</strong>, bukan tekstur:
++<strong>Konsistensi interior (MUST):</strong> interior ikut style yang sama dengan exterior. Variasi dicapai lewat <strong>bentuk, prop, dan palet</strong>, bukan tekstur foto-realistis:
+ <ul>
+   <li>Palet interior boleh lebih hangat (krem/abu terang) dari exterior; aksen merah tetap terkendali</li>
+   <li>Zona warna per fungsi (kerja, meeting, lounge, AI Core) — style sama, aksen beda</li>
+-  <li>Kekayaan visual dari siluet prop (rak, tanaman, lampu, whiteboard, sofa), tetap flat-shaded</li>
++  <li>Kekayaan visual dari siluet prop (rak, tanaman, lampu, whiteboard, sofa), tetap §4 shading</li>
+   <li>Aset Meshy/Sloyd untuk interior wajib lolos checklist di bawah; gagal → regenerate atau ganti bpy</li>
+ </ul>
+ </div>
+-<p><strong>Tolak (anti-pattern visual):</strong> campuran objek realistis/PBR-bertekstur dengan objek low-poly dalam satu scene, bentuk meleleh/blobby, siku tidak 90° tanpa alasan, skala antar-aset tidak konsisten, warna acak di luar palet, neon berlebihan, dekorasi acak, bangunan kotak generik tanpa siluet.</p>
++<p><strong>Tolak (anti-pattern visual):</strong> campuran objek foto-realistis PBR dengan objek stylized dalam satu scene, bentuk meleleh/blobby, siku tidak 90° tanpa alasan, skala antar-aset tidak konsisten, warna acak di luar palet, neon berlebihan, dekorasi acak, bangunan kotak generik tanpa siluet.</p>
+ <p><strong>Checklist QA render (jalankan tiap iterasi):</strong></p>
+ <ul>
+   <li>Siluet terbaca dari kamera isometrik <strong>dan</strong> eye-level</li>
+@@ -169,7 +169,7 @@
+ <h3>4.1 Atmosfer (MVP-0, terkunci)</h3>
+ <table>
+   <tr><th>Properti</th><th>Nilai</th></tr>
+-  <tr><td>Vibe</td><td>Startup playful: warna cerah-pastel, prop fun (bean bag, tanaman, mural dinding), tetap §4 flat-shaded</td></tr>
++  <tr><td>Vibe</td><td>Startup playful: warna cerah-pastel, prop fun (bean bag, tanaman, mural dinding), tetap §4</td></tr>
+   <tr><td>Waktu</td><td>Day-night cycle, 4 fase: pagi 06–10, siang 10–16, senja 16–19, malam 19–06 (jam lokal client; transisi lerp ≤ 60 s)</td></tr>
+   <tr><td>Palet "Playful Pastel"</td><td>Exterior <code>#F4EFE6</code> · Interior <code>#FFF8F0</code> · Lantai <code>#D9D4CB</code> · Sekunder <code>#FFB74D</code> (oranye) + <code>#4DB6AC</code> (teal) · Aksen merah Redhunter <code>#E53935</code> (signage, core tangga, detail kecil — bukan ring AI)</td></tr>
+   <tr><td>Langit per fase</td><td>Pagi <code>#FFE0B2</code>→<code>#BFE3F7</code> · Siang <code>#BFE3F7</code>→<code>#E3F4FC</code> · Senja <code>#FF8A65</code>→<code>#7E57C2</code> · Malam <code>#1A237E</code>→<code>#0D1B2A</code> (gradient atas→bawah)</td></tr>
+@@ -183,12 +183,12 @@
+ <h3>5.1 Preferensi (dokumen hidup — user boleh revisi)</h3>
+ <table>
+   <tr><th>Atribut</th><th>Nilai</th></tr>
+-  <tr><td>Bentuk</td><td>Humanoid low-poly, proporsi realistis-stylized</td></tr>
++  <tr><td>Bentuk</td><td>Humanoid mid-poly stylized, proporsi realistis-stylized</td></tr>
+   <tr><td>Tinggi</td><td>1.7 m (skala real, konsisten grid §4)</td></tr>
+   <tr><td>Staff vs AI agent</td><td>Bentuk &amp; rig SAMA (<code>CHAR_BASE</code>). AI dibedakan <strong>aksen visual</strong>: ring torus low-poly ≤ 200 tris melayang 0.25 m di atas kepala, warna = aksen per-agent (bukan merah global) + warna aksen sama pada <code>CHAR_TOP_*</code>. Bukan bentuk berbeda. Ring termasuk budget polycount</td></tr>
+   <tr><td>Wajah</td><td>Ekspresif: mata + mulut termodel pada <code>CHAR_FACE_*</code>. Shape key wajib di <strong>setiap</strong> <code>CHAR_FACE_&lt;id&gt;</code> (part wajah swappable §5.2): <code>face_blink</code>, <code>face_smile</code>, <code>face_talk</code> (jika Meshy tidak menghasilkan → buat manual di Blender)</td></tr>
+   <tr><td>Animasi wajib</td><td><code>idle</code>, <code>walk</code>, <code>sit</code>, <code>type</code>, <code>wave</code>, <code>talk</code>, <code>celebrate</code> (7 clip body). Clip <code>talk</code> = gerak tubuh + men-drive shape key <code>face_talk</code>. Daftar ini menggantikan daftar clip §7.2</td></tr>
+-  <tr><td>Polycount</td><td>≤ 8.000 tris per karakter (base body + semua parts terpasang + ring); semua parts share 1 material/atlas; tekstur ≤ 1024² atau vertex color. Budget scene: 10 agents ≈ 80k tris</td></tr>
++  <tr><td>Polycount</td><td>≤ 20.000 tris per karakter (base body + semua parts terpasang + ring); semua parts share 1 material/atlas; tekstur ≤ 2048². Budget scene: 10 agents ≈ 200k tris</td></tr>
+   <tr><td>Pose dasar</td><td>T-pose atau A-pose (untuk rigging)</td></tr>
+   <tr><td>Pembeda antar agent</td><td>Warna aksen + kombinasi parts DIY (§5.2)</td></tr>
+   <tr><td>Generator</td><td>Meshy (utama), procedural bpy (parts sederhana), Sloyd (opsional)</td></tr>
+@@ -336,11 +336,12 @@
+ <h3>Generator AI (dievaluasi)</h3>
+ <table>
+   <tr><th>Tool</th><th>Peran</th><th>Biaya</th></tr>
+-  <tr><td>Meshy</td><td><strong>Utama</strong> — karakter + rig + 600+ motions, props kompleks, kit modular (Level 2), REST API (Pro)</td><td>Free 100 kredit web-only; Pro $20/bln 1.000 kredit + API; generate ±20–30 kredit, rig/animate/remesh 0</td></tr>
++  <tr><td>Meshy</td><td><strong>Utama</strong> — karakter + rig + 600+ motions, props kompleks, kit modular (Level 2), REST API (Pro)</td><td>Free 100 kredit web-only; Pro $20/bln 1.000 kredit + API; generate ±20–30 kredit, rig 5, animate 3/aksi, remesh 5, convert/resize 1 (harga live MCP 2026-10-17)</td></tr>
+   <tr><td>Sloyd</td><td><strong>Ditunda</strong> — props low-poly, ekspor .blend, REST API</td><td>Web $15/bln; API prepaid min $12</td></tr>
+   <tr><td>Mixamo</td><td>Rig + animasi gratis</td><td>$0</td></tr>
+   <tr><td>Tripo / Hyper3D-Rodin / Hunyuan3D / Luma / Spline / Kaedim</td><td>Dicatat, tidak dipakai</td><td>—</td></tr>
+ </table>
++<p>Cap kredit Meshy MVP-2: 450 (disetujui user 2026-10-18); kit v2 ≤ 330, furniture Meshy butuh otorisasi terpisah.</p>
+ 
+ <h2>11. Changelog Preferensi User</h2>
+ <table>
+@@ -363,6 +364,8 @@
+   <tr><td>16</td><td>Dunia luar: taman + jalan low-poly</td><td>MVP-0 Q10</td></tr>
+   <tr><td>17</td><td>Game feel: cinematic ≤ 4 s skippable, juice sedang, agents desk-default + pindah per enum status backend (idle → ROOM_lobby), XP/level/badge backend, ambient bubble idle non-status + prop bergerak</td><td>MVP-0 Q11–Q15</td></tr>
+   <tr><td>18</td><td>Kit Meshy (Level 2): Meshy generate potongan kit modular (dinding/lantai/pintu/tangga), bpy menjahit di grid 1 m; diuji di MVP-2 vs full bpy. Langganan Meshy saja dulu (free = web, Pro = API), Sloyd ditunda</td><td>"make object yang di generate meshy dan di jait oleh bpy" → "iya begitu tambahkan"</td></tr>
++  <tr><td>19</td><td>Mid-poly stylized + tekstur tajam (bukan flat vertex-color murni); karakter ≤ 20k tris, tekstur ≤ 2048²</td><td>"mid poly aja saya butuh texture juga walau poly" (MVP-2)</td></tr>
++  <tr><td>20</td><td>Verdict MVP-2: Level 2 dinding/lantai (kit Meshy v2, semua lantai), furniture kompleks Meshy</td><td>"buat dengan meshy contoh lantainya, kacanya dinding nya, ... kemudian bpy baru merakitnya, saya mau design high poly, dimana realistic, tapi style designnya poly"</td></tr>
+ </table>
+ 
+ <footer>

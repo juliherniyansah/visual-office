@@ -1,0 +1,24 @@
+== 1 plain build (names reproduce v01)
+plain EXIT=0
+names diff vs 24a EXIT=1 (390 lines)
+== 2 kit-only build (v02 style)
+kit-only EXIT=0
+== 3 inject-bad-col (expect !=0)
+inject-bad-col EXIT=1
+== 4 inject-missing-nav (expect !=0)
+inject-missing-nav EXIT=1
+== 5 HQ_INJECT_BAD_CHAR_HEIGHT (expect !=0)
+bad-char-height EXIT=1
+AssertionError: check_character: height 2.550 outside 1.65-1.75
+== 6 furniture test
+furniture EXIT=0
+== 7 normalize_kit test
+normalize EXIT=0
+== 8 viewport colors test
+viewport EXIT=0
+REGRESSION DONE
+== 1b names diff normalization: 24a-names-v01.txt is a Python list literal (single line); raw diff vs one-per-line is a format artifact. Normalized comparison:
+ref 387 cur 387
+only_ref []
+only_cur []
+IDENTICAL

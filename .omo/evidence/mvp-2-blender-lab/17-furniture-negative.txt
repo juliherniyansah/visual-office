@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/tests/test_furniture.py", line 90, in <module>
+    main()
+    ~~~~^^
+  File "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/tests/test_furniture.py", line 71, in main
+    assert lo <= height <= hi, (
+           ^^^^^^^^^^^^^^^^^^
+AssertionError: desk: height 1.500 outside [0.7, 0.78]
+BlenderMCP addon registered
+
+Error: script failed, file: 'apps/assets/blender/tests/test_furniture.py', exiting.
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=1

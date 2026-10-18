@@ -1,0 +1,8 @@
+# Kit v2 normalize (from 65-build-v04-kit2.txt, raw import + normalize_kit_piece)
+6:KIT2_NORMALIZE wall_1m {'tris_raw': 16338, 'tris': 1200, 'dims': [1.0004, 0.1504, 3.2001], 'z_min': 0.0, 'nonuniform': True, 'fallback': False, 'smooth': True, 'texture_size': [4096, 4096], 'snapped_verts': 2399}
+10:KIT2_NORMALIZE window_1m {'tris_raw': 15364, 'tris': 2500, 'dims': [1.0009, 0.1504, 3.2004], 'z_min': 0.0, 'nonuniform': True, 'fallback': False, 'smooth': True, 'texture_size': [4096, 4096], 'snapped_verts': 3172, 'open_point': [0.0, 1.8]}
+14:KIT2_NORMALIZE wall_door {'tris_raw': 15992, 'tris': 2500, 'dims': [1.0, 0.15, 3.2], 'z_min': 0.0, 'nonuniform': True, 'fallback': False, 'smooth': True, 'texture_size': [4096, 4096], 'snapped_verts': 1931}
+18:KIT2_NORMALIZE floor_1m {'tris_raw': 15778, 'tris': 400, 'dims': [1.0, 1.0, 0.1], 'z_min': 0.0, 'nonuniform': True, 'fallback': False, 'smooth': True, 'texture_size': [4096, 4096], 'snapped_verts': 7297}
+22:KIT2_NORMALIZE pillar {'tris_raw': 9856, 'tris': 1499, 'dims': [0.3001, 0.3001, 3.2004], 'z_min': 0.0, 'nonuniform': True, 'fallback': False, 'smooth': True, 'texture_size': [4096, 4096], 'snapped_verts': 364}
+window opening probe: open_point (piece-local x,z) = [0.0, 1.8] -> ray through centre hits nothing on panel; glass pane hit confirmed by check_kit_v2 (_glass_ray_hits_pane)
+tris_raw = Meshy GLB; tris = after decimate; wall_1m cap 1200, window 2500, door 2500, floor 400, pillar 1500

@@ -1,0 +1,30 @@
+/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/tests/test_normalize_kit.py:44: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+BlenderMCP addon registered
+ERROR Draco mesh compression is not available because library could not be found at /usr/lib/blender/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+18:10:48 | INFO: Starting glTF 2.0 export
+18:10:48 | INFO: Extracting primitive: NKCube
+18:10:48 | INFO: Primitives created: 1
+18:10:48 | INFO: Finished glTF 2.0 export in 0.023398160934448242 s
+
+18:10:48 | INFO: Starting glTF 2.0 export
+18:10:48 | INFO: Extracting primitive: NKDense
+18:10:48 | INFO: Primitives created: 1
+18:10:48 | INFO: Finished glTF 2.0 export in 0.00687098503112793 s
+
+18:10:48 | INFO: Data are loaded, start creating Blender stuff
+18:10:48 | INFO: Blender create Mesh node NKCube
+18:10:48 | INFO: glTF import finished in 0.00s
+/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/tests/test_normalize_kit.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  n.image for m in obj.data.materials if m and m.use_nodes
+OUT texture_downscale {'tris': 12, 'dims': [1.0, 1.0, 1.0], 'z_min': 0.0, 'nonuniform': False, 'fallback': False, 'smooth': True, 'texture_size': [1024, 1024], 'snapped_verts': 8}
+18:10:49 | INFO: Data are loaded, start creating Blender stuff
+18:10:49 | INFO: Blender create Mesh node NKDense
+18:10:49 | INFO: glTF import finished in 0.01s
+OUT decimate_dense {'tris': 1500, 'dims': [1.0018, 1.0009, 1.0021], 'z_min': 0.0, 'nonuniform': False, 'fallback': True, 'smooth': True, 'texture_size': [0, 0], 'snapped_verts': 24}
+NORMALIZE_EXTRA OK
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0

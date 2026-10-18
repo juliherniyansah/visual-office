@@ -1,0 +1,8 @@
+29a9335853af9bc029aea4eb88445110  hq_v01.blend
+559159834244a82a3d996a783675774a  hq_v02.blend
+8845bc7eadbbb6566f66ece44ea8a837  hq_v03.blend
+refs:
+29a9335853af9bc029aea4eb88445110  apps/assets/blender/hq_v01.blend
+559159834244a82a3d996a783675774a  apps/assets/blender/hq_v02.blend
+8845bc7eadbbb6566f66ece44ea8a837  /home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_v03.blend
+FROZEN_MD5 OK

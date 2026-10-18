@@ -1,0 +1,15 @@
+00:00.702  blend            | Read blend: "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_v02.blend"
+02:07.013  render           | Saved: '/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v02_meeting_bpy.png'
+03:23.936  render           | Saved: '/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v02_meeting_kit.png'
+BlenderMCP addon registered
+VIEW_TRANSFORM Khronos PBR Neutral
+VIEW_EXPOSURE 0.0
+RENDER OK /home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v02_meeting_bpy.png
+STATS meeting_bpy mean_lum=0.655 red_ratio=0.000 unique_colors=2629
+RENDER OK /home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v02_meeting_kit.png
+STATS meeting_kit mean_lum=0.617 red_ratio=0.000 unique_colors=4561
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0

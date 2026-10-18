@@ -1,0 +1,55 @@
+BlenderMCP addon registered
+VIEW_TRANSFORM Khronos PBR Neutral
+VIEW_EXPOSURE 0.0
+09:57:07 | INFO: Data are loaded, start creating Blender stuff
+09:57:07 | INFO: Blender create Mesh node Mesh0
+09:57:07 | INFO: glTF import finished in 0.11s
+KIT2_NORMALIZE wall_1m {'tris_raw': 16338, 'tris': 1200, 'dims': [1.0004, 0.1504, 3.2001], 'z_min': 0.0, 'nonuniform': True, 'fallback': False, 'smooth': True, 'texture_size': [4096, 4096], 'snapped_verts': 2399}
+09:57:08 | INFO: Data are loaded, start creating Blender stuff
+09:57:08 | INFO: Blender create Mesh node 0
+09:57:08 | INFO: glTF import finished in 0.08s
+KIT2_NORMALIZE window_1m {'tris_raw': 15364, 'tris': 2500, 'dims': [1.0009, 0.1504, 3.2004], 'z_min': 0.0, 'nonuniform': True, 'fallback': False, 'smooth': True, 'texture_size': [4096, 4096], 'snapped_verts': 3172, 'open_point': [0.0, 1.8]}
+09:57:09 | INFO: Data are loaded, start creating Blender stuff
+09:57:09 | INFO: Blender create Mesh node 0
+09:57:09 | INFO: glTF import finished in 0.11s
+KIT2_NORMALIZE wall_door {'tris_raw': 15992, 'tris': 2500, 'dims': [1.0, 0.15, 3.2], 'z_min': 0.0, 'nonuniform': True, 'fallback': False, 'smooth': True, 'texture_size': [4096, 4096], 'snapped_verts': 1931}
+09:57:10 | INFO: Data are loaded, start creating Blender stuff
+09:57:10 | INFO: Blender create Mesh node Mesh0
+09:57:10 | INFO: glTF import finished in 0.12s
+KIT2_NORMALIZE floor_1m {'tris_raw': 15778, 'tris': 400, 'dims': [1.0, 1.0, 0.1], 'z_min': 0.0, 'nonuniform': True, 'fallback': False, 'smooth': True, 'texture_size': [4096, 4096], 'snapped_verts': 7297}
+09:57:11 | INFO: Data are loaded, start creating Blender stuff
+09:57:11 | INFO: Blender create Mesh node 0
+09:57:11 | INFO: glTF import finished in 0.07s
+KIT2_NORMALIZE pillar {'tris_raw': 9856, 'tris': 1499, 'dims': [0.3001, 0.3001, 3.2004], 'z_min': 0.0, 'nonuniform': True, 'fallback': False, 'smooth': True, 'texture_size': [4096, 4096], 'snapped_verts': 364}
+KIT2_REMOVED 221 bpy objects
+09:57:11 | INFO: Data are loaded, start creating Blender stuff
+09:57:11 | INFO: Blender create Mesh node 0
+09:57:12 | INFO: glTF import finished in 0.12s
+09:57:13 | INFO: Data are loaded, start creating Blender stuff
+09:57:13 | INFO: Blender create Mesh node 0
+09:57:13 | INFO: glTF import finished in 0.11s
+09:57:13 | INFO: Data are loaded, start creating Blender stuff
+09:57:14 | INFO: Blender create Mesh node 0
+09:57:14 | INFO: glTF import finished in 0.11s
+09:57:14 | INFO: Data are loaded, start creating Blender stuff
+09:57:14 | INFO: Blender create Mesh node 0
+09:57:15 | INFO: glTF import finished in 0.12s
+KIT_METRICS {"wall_1m": {"bpy_name": "KIT_wall_1m", "meshy_name": "KIT_meshy_wall_1m", "target_size": [1.0, 0.15, 3.2], "tris_raw": 1542, "tris": 1500, "dims": [1.0, 0.15, 3.2], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 15}, "wall_door": {"bpy_name": "KIT_wall_door", "meshy_name": "KIT_meshy_wall_door", "target_size": [1.0, 0.15, 3.2], "tris_raw": 1414, "tris": 1407, "dims": [1.0, 0.15, 3.2], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 96}, "floor_1m": {"bpy_name": "KIT_floor_1m", "meshy_name": "KIT_meshy_floor_1m", "target_size": [1.0, 1.0, 0.1], "tris_raw": 1108, "tris": 1082, "dims": [1.0, 1.0, 0.1], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 781}, "pillar": {"bpy_name": "KIT_pillar", "meshy_name": "KIT_meshy_pillar", "target_size": [0.3, 0.3, 3.2], "tris_raw": 1540, "tris": 1290, "dims": [0.3, 0.3, 3.2], "z_min": 0.0, "nonuniform": true, "fallback": false, "smooth": true, "texture_size": [1024, 1024], "snapped_verts": 89}}
+09:57:16 | INFO: Data are loaded, start creating Blender stuff
+09:57:16 | INFO: Blender create Mesh node Mesh_0
+09:57:16 | INFO: glTF import finished in 0.79s
+09:57:17 | INFO: Data are loaded, start creating Blender stuff
+09:57:17 | INFO: Blender create Mesh node Mesh_0
+09:57:17 | INFO: glTF import finished in 0.69s
+CHARACTER {'mode': 'rigged', 'tris_before': 20474, 'tris_after': 19499, 'zero_weight_verts': 0, 'vertex_groups': 24, 'bones': 24, 'height': 1.7, 'feet_z': -0.0121, 'rescaled': True, 'frame_end': 96}
+CHECK_KIT_V2 counts {'wall_1m': 138, 'window_1m': 134, 'wall_door': 3, 'floor_1m': 1048, 'pillar': 36} tiles 1048 windows 134 scene_tris 1127156
+CHECK_CHARACTER facing_dot 0.972 height 1.700 tris 19499 feet_z 0.0050
+CHECK_VERDICT_STAGE height 1.700 zmin 0.0000 tiles 36
+SELF_CHECK OK 1794 objects 1127156 tris
+VIEWPORT_SHADING 10 spaces set
+Info: Saved as "hq_f3.blend"
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0

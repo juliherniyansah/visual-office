@@ -1,0 +1,43 @@
+MCP parity (todo 8). Live scene was unsaved/default (21a) -> exec allowed.
+
+blender_execute_blender_code(user_prompt=".omo/plans/mvp-2-blender-lab.md"):
+  code: p='<repo>/apps/assets/blender/build_hq.py'; import sys; sys.argv=['blender','--']; exec(open(p).read(), {'__name__':'__main__','__file__':p})
+  (no --save; hq_v01.blend written only by headless BL_BUILD)
+Result: Code executed successfully:
+  VIEW_TRANSFORM Standard
+  VIEW_EXPOSURE -1.0
+  MCP_BUILD_DONE
+
+blender_get_scene_info(fields=["details","hidden"], root="FLOOR_1", limit=60)
+-> Error: No object named 'FLOOR_1' (tool root= expects an OBJECT, FLOOR_1 is a
+collection). DEVIATION: substituted query= filters, same fields/limit intent:
+
+query="ROOM_" (3/3):
+ROOM_lobby | mesh | 6 faces
+ROOM_meeting_a | mesh | 6 faces
+ROOM_workstation_a | mesh | 6 faces
+
+query="COL_" (23/23, all hidden):
+COL_slab_floor_1, COL_wall_s, COL_wall_n, COL_wall_w, COL_wall_e,
+COL_wall_meeting_x8, COL_wall_meeting_y8, COL_counter, COL_sofa_1, COL_sofa_2,
+COL_table_meeting, COL_desk_1..8, COL_stair, COL_slab_floor_2..4
+-> every COL_* mesh | 6 faces | hidden
+
+query="NAV_" (7/7 empties):
+NAV_spawn_lobby, NAV_cam_floor1, NAV_cam_iso, NAV_cam_workstation,
+NAV_wp_lobby, NAV_wp_meeting_a, NAV_wp_workstation_a
+
+query="TASK_" (9/9 empties):
+TASK_board, TASK_desk_1..8
+
+Scene header after exec: 8 camera, 25 empty, 4 light, 350 mesh (= 387 objects,
+matches headless SELF_CHECK OK 387). PARITY OK.
+
+## r3 addendum
+MCP parity exec NOT rerun (per instruction). Parity established in the
+previous run; r3 changes touch only lighting/view/camera constants
+(hq_lighting.py, hq_lib.py view constants + workstation CAM entry), no
+object-graph changes (SELF_CHECK still 387 objects 6630 tris, repro diff
+empty). Re-check via blender_get_scene_info(fields=["settings"]) only:
+live scene still holds the project build — 8 camera, 25 empty, 4 light,
+350 mesh = 387 objects, camera CAM_iso, unsaved (project's own build, OK).

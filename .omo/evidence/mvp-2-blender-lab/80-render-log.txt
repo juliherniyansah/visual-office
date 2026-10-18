@@ -1,0 +1,17 @@
+RUN views=['01', '02', '03'] preview=False res=1280x720 samples=16 engine=BLENDER_EEVEE lights=['LIGHT_area_lobby', 'LIGHT_area_meeting', 'LIGHT_area_meeting_kit', 'LIGHT_area_workstation', 'SUN_main']
+STATS tour_01_entrance mean_lum=0.595 red_ratio=0.000 unique_colors=7013 exposure=+0.0 attempt=0 seconds=273 hidden=[] GATE OK
+STATS tour_02_lobby_sofa mean_lum=0.619 red_ratio=0.000 unique_colors=6830 exposure=+0.0 attempt=0 seconds=178 hidden=[] GATE OK
+STATS tour_03_workstation_row mean_lum=0.639 red_ratio=0.000 unique_colors=7178 exposure=+0.0 attempt=0 seconds=292 hidden=[] GATE OK
+RUN DONE 744s failed=[]
+RUN views=['04', '05', '06', '07'] preview=False res=1280x720 samples=16 engine=BLENDER_EEVEE lights=['LIGHT_area_lobby', 'LIGHT_area_meeting', 'LIGHT_area_meeting_kit', 'LIGHT_area_workstation', 'SUN_main']
+STATS tour_04_workstation_wide mean_lum=0.620 red_ratio=0.000 unique_colors=7881 exposure=+0.0 attempt=0 seconds=329 hidden=[] GATE OK
+STATS tour_05_meeting_room mean_lum=0.667 red_ratio=0.000 unique_colors=7000 exposure=+0.0 attempt=0 seconds=181 hidden=[] GATE OK
+STATS tour_06_kit_test_room mean_lum=0.686 red_ratio=0.000 unique_colors=5457 exposure=+0.0 attempt=0 seconds=67 hidden=[] GATE OK
+STATS tour_07_corridor_stairs mean_lum=0.586 red_ratio=0.000 unique_colors=4320 exposure=+0.0 attempt=0 seconds=145 hidden=[] GATE OK
+RUN DONE 722s failed=[]
+RUN views=['08', '09', '10', '11'] preview=False res=1280x720 samples=16 engine=BLENDER_EEVEE lights=['LIGHT_area_lobby', 'LIGHT_area_meeting', 'LIGHT_area_meeting_kit', 'LIGHT_area_workstation', 'SUN_main']
+STATS tour_08_floor1_cutaway_top mean_lum=0.686 red_ratio=0.000 unique_colors=6353 exposure=+0.0 attempt=0 seconds=90 hidden=['FLOOR_2', 'FLOOR_3', 'FLOOR_4', 'FLOOR_1_KIT_TEST', 'VERDICT_STAGE'] GATE OK
+STATS tour_09_floor2 mean_lum=0.581 red_ratio=0.000 unique_colors=3060 exposure=+0.0 attempt=0 seconds=259 hidden=[] GATE OK
+STATS tour_10_floor4_top mean_lum=0.603 red_ratio=0.000 unique_colors=3301 exposure=+0.0 attempt=0 seconds=99 hidden=[] GATE OK
+STATS tour_11_exterior_front mean_lum=0.698 red_ratio=0.000 unique_colors=4790 exposure=+0.0 attempt=0 seconds=268 hidden=['VERDICT_STAGE'] GATE OK
+RUN DONE 718s failed=[]

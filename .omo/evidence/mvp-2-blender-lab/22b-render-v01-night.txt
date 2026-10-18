@@ -1,0 +1,12 @@
+00:00.576  blend            | Read blend: "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_v01.blend"
+00:16.258  render           | Saved: '/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v01_iso_night.png'
+BlenderMCP addon registered
+VIEW_TRANSFORM Khronos PBR Neutral
+VIEW_EXPOSURE 0.0
+RENDER OK /home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v01_iso_night.png
+STATS iso mean_lum=0.120 red_ratio=0.000 unique_colors=800
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0

@@ -1,0 +1,40 @@
+      2226     0.0 MB  apps/assets/raw/meshy/PROMPTS.md
+       152     0.0 MB  apps/assets/raw/meshy/README.md
+   3562972     3.4 MB  apps/assets/raw/meshy/char_base_raw.glb
+   4738615     4.5 MB  apps/assets/raw/meshy/char_base_raw_base_color.png
+   4283216     4.1 MB  apps/assets/raw/meshy/char_base_rigged.glb
+   4342096     4.1 MB  apps/assets/raw/meshy/char_idle.glb
+   4252692     4.1 MB  apps/assets/raw/meshy/char_run.glb
+   4263288     4.1 MB  apps/assets/raw/meshy/char_walk.glb
+    907529     0.9 MB  apps/assets/raw/meshy/style_reference_character.png
+    808401     0.8 MB  apps/assets/raw/meshy/style_reference_kit.png
+   2072620     2.0 MB  apps/assets/raw/meshy/kit/KIT_floor_1m.glb
+   4505294     4.3 MB  apps/assets/raw/meshy/kit/KIT_floor_1m_base_color.png
+   1792076     1.7 MB  apps/assets/raw/meshy/kit/KIT_pillar.glb
+   3987620     3.8 MB  apps/assets/raw/meshy/kit/KIT_pillar_base_color.png
+   1895156     1.8 MB  apps/assets/raw/meshy/kit/KIT_wall_1m.glb
+   3197520     3.0 MB  apps/assets/raw/meshy/kit/KIT_wall_1m_base_color.png
+   1904232     1.8 MB  apps/assets/raw/meshy/kit/KIT_wall_door.glb
+   3054845     2.9 MB  apps/assets/raw/meshy/kit/KIT_wall_door_base_color.png
+  36370888    34.7 MB  apps/assets/raw/meshy/kit_v2/KIT2_floor_1m.glb  [>10MB]
+    583719     0.6 MB  apps/assets/raw/meshy/kit_v2/KIT2_floor_1m_design.png
+  26759220    25.5 MB  apps/assets/raw/meshy/kit_v2/KIT2_floor_1m_hi.glb  [>10MB]
+  14034424    13.4 MB  apps/assets/raw/meshy/kit_v2/KIT2_pillar.glb  [>10MB]
+    529083     0.5 MB  apps/assets/raw/meshy/kit_v2/KIT2_pillar_design.png
+  20007312    19.1 MB  apps/assets/raw/meshy/kit_v2/KIT2_wall_1m.glb  [>10MB]
+    215701     0.2 MB  apps/assets/raw/meshy/kit_v2/KIT2_wall_1m_design.png
+  18092272    17.3 MB  apps/assets/raw/meshy/kit_v2/KIT2_wall_1m_hi.glb  [>10MB]
+  11207456    10.7 MB  apps/assets/raw/meshy/kit_v2/KIT2_wall_door.glb  [>10MB]
+    506635     0.5 MB  apps/assets/raw/meshy/kit_v2/KIT2_wall_door_design.png
+  20359932    19.4 MB  apps/assets/raw/meshy/kit_v2/KIT2_wall_door_hi.glb  [>10MB]
+  24395088    23.3 MB  apps/assets/raw/meshy/kit_v2/KIT2_wall_door_tex1.glb  [>10MB]
+  11411240    10.9 MB  apps/assets/raw/meshy/kit_v2/KIT2_window_1m.glb  [>10MB]
+    312325     0.3 MB  apps/assets/raw/meshy/kit_v2/KIT2_window_1m_design.png
+  24772944    23.6 MB  apps/assets/raw/meshy/kit_v2/KIT2_window_1m_hi.glb  [>10MB]
+  25872024    24.7 MB  apps/assets/raw/meshy/kit_v2/KIT2_window_1m_tex1.glb  [>10MB]
+    178508     0.2 MB  apps/assets/blender/hq_v01.blend  md5 29a9335853af9bc029aea4eb88445110
+   4712546     4.5 MB  apps/assets/blender/hq_v02.blend  md5 559159834244a82a3d996a783675774a
+   8695672     8.3 MB  apps/assets/blender/hq_v03.blend  md5 8845bc7eadbbb6566f66ece44ea8a837
+  97843441    93.3 MB  apps/assets/blender/hq_v04.blend  md5 edc83c06afbc3e2b416e08947931bbf6  [>10MB]
+PYCACHE apps/assets/blender/__pycache__
+tmp bpy fallback exists True

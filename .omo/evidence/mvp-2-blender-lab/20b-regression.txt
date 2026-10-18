@@ -1,0 +1,8 @@
+# regressions vs FINAL r3 code (Khronos PBR Neutral, world 0.6, area 100)
+inject-bad-col EXIT=1 (expect !=0)
+AssertionError: check_col_hide_render: renderable COL_* ['COL_injected_bad']
+inject-missing-nav EXIT=1 (expect !=0)
+AssertionError: check_floor1: missing objects ['NAV_wp_lobby']
+env HQ_INJECT_MISSING_NAV EXIT=1 (expect !=0)
+AssertionError: check_floor1: missing objects ['NAV_wp_lobby']
+furniture EXIT=0 (expect 0): FURNITURE OK

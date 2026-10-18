@@ -1,0 +1,529 @@
+blend /home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_v04.blend
+objects 1794
+COLL Scene Collection objs=0 hide_render=False
+  COLL EXTERIOR objs=16 hide_render=False
+  COLL FLOOR_1 objs=455 hide_render=False
+  COLL FLOOR_2 objs=387 hide_render=False
+  COLL FLOOR_3 objs=387 hide_render=False
+  COLL FLOOR_4 objs=389 hide_render=False
+  COLL KIT_BPY objs=5 hide_render=True
+  COLL LIGHTING objs=4 hide_render=False
+  COLL CAMERAS objs=18 hide_render=False
+  COLL KIT_MESHY_V2 objs=6 hide_render=True
+  COLL KIT_MESHY objs=4 hide_render=True
+  COLL FLOOR_1_KIT_TEST objs=71 hide_render=False
+    COLL KIT_TEST_CEILING objs=1 hide_render=False
+  COLL CHARACTERS objs=2 hide_render=False
+  COLL glTF_not_exported objs=0 hide_render=True
+  COLL VERDICT_STAGE objs=49 hide_render=False
+OBJ CAM_character_closeup CAMERA [CAMERAS] hr=False loc(5.70,4.25,1.50) 
+OBJ CAM_iso CAMERA [CAMERAS] hr=False loc(34.00,-22.00,26.00) 
+OBJ CAM_kit2_closeup CAMERA [CAMERAS] hr=False loc(5.50,5.00,1.60) 
+OBJ CAM_kit_compare CAMERA [CAMERAS] hr=False loc(26.00,-22.00,14.00) 
+OBJ CAM_lobby CAMERA [CAMERAS] hr=False loc(1.50,1.50,1.60) 
+OBJ CAM_meeting_bpy CAMERA [CAMERAS] hr=False loc(8.80,8.70,1.60) 
+OBJ CAM_meeting_kit CAMERA [CAMERAS] hr=False loc(38.80,8.70,1.60) 
+OBJ CAM_verdict CAMERA [CAMERAS] hr=False loc(3.00,-46.00,4.00) 
+OBJ CAM_workstation CAMERA [CAMERAS] hr=False loc(8.40,4.00,1.60) 
+OBJ CHAR_BASE ARMATURE [CHARACTERS] hr=False loc(7.00,6.00,0.02) 
+OBJ CHAR_BASE_mesh MESH [CHARACTERS] hr=False min(6.41,5.43,0.00) max(7.49,6.49,1.70) Material_0.007
+OBJ CHAR_BASE_stage MESH [VERDICT_STAGE] hr=False min(2.57,-27.41,0.00) max(3.40,-26.71,1.70) Material_0.007
+OBJ COL_counter MESH [FLOOR_1] hr=True min(0.50,5.60,0.00) max(3.50,6.40,1.10) 
+OBJ COL_desk_1 MESH [FLOOR_1] hr=True min(8.70,1.60,0.00) max(10.30,2.40,0.77) 
+OBJ COL_desk_2 MESH [FLOOR_1] hr=True min(11.20,1.60,0.00) max(12.80,2.40,0.77) 
+OBJ COL_desk_3 MESH [FLOOR_1] hr=True min(13.70,1.60,0.00) max(15.30,2.40,0.77) 
+OBJ COL_desk_4 MESH [FLOOR_1] hr=True min(16.20,1.60,0.00) max(17.80,2.40,0.77) 
+OBJ COL_desk_5 MESH [FLOOR_1] hr=True min(8.70,5.60,0.00) max(10.30,6.40,0.77) 
+OBJ COL_desk_6 MESH [FLOOR_1] hr=True min(11.20,5.60,0.00) max(12.80,6.40,0.77) 
+OBJ COL_desk_7 MESH [FLOOR_1] hr=True min(13.70,5.60,0.00) max(15.30,6.40,0.77) 
+OBJ COL_desk_8 MESH [FLOOR_1] hr=True min(16.20,5.60,0.00) max(17.80,6.40,0.77) 
+OBJ COL_slab_floor_1 MESH [FLOOR_1] hr=True min(0.00,0.00,-0.20) max(20.00,14.00,0.00) 
+OBJ COL_slab_floor_2 MESH [FLOOR_2] hr=True min(0.00,0.00,3.00) max(20.00,14.00,3.20) 
+OBJ COL_slab_floor_3 MESH [FLOOR_3] hr=True min(0.00,0.00,6.20) max(20.00,14.00,6.40) 
+OBJ COL_slab_floor_4 MESH [FLOOR_4] hr=True min(0.00,0.00,9.40) max(20.00,14.00,9.60) 
+OBJ COL_sofa_1 MESH [FLOOR_1] hr=True min(5.60,1.15,0.00) max(7.60,2.05,0.85) 
+OBJ COL_sofa_2 MESH [FLOOR_1] hr=True min(5.60,3.15,0.00) max(7.60,4.05,0.85) 
+OBJ COL_stair MESH [FLOOR_1] hr=True min(16.00,8.88,0.00) max(19.00,13.00,3.36) 
+OBJ COL_table_meeting MESH [FLOOR_1] hr=True min(9.80,10.40,0.00) max(12.20,11.60,0.75) 
+OBJ COL_table_meeting_kit MESH [FLOOR_1_KIT_TEST] hr=True min(39.80,10.40,0.00) max(42.20,11.60,0.75) 
+OBJ COL_wall_e MESH [FLOOR_1] hr=True min(19.85,0.00,0.00) max(20.00,14.00,3.20) 
+OBJ COL_wall_meeting_x8 MESH [FLOOR_1] hr=True min(7.97,8.00,0.00) max(8.02,14.00,3.20) 
+OBJ COL_wall_meeting_x8_kit MESH [FLOOR_1_KIT_TEST] hr=True min(37.97,8.00,0.00) max(38.03,14.00,3.20) 
+OBJ COL_wall_meeting_y8 MESH [FLOOR_1] hr=True min(8.00,7.97,0.00) max(14.00,8.02,3.20) 
+OBJ COL_wall_meeting_y8_kit MESH [FLOOR_1_KIT_TEST] hr=True min(38.00,7.97,0.00) max(44.00,8.02,3.20) 
+OBJ COL_wall_n MESH [FLOOR_1] hr=True min(0.00,13.85,0.00) max(20.00,14.00,3.20) 
+OBJ COL_wall_s MESH [FLOOR_1] hr=True min(0.00,0.00,0.00) max(20.00,0.15,3.20) 
+OBJ COL_wall_w MESH [FLOOR_1] hr=True min(0.00,0.00,0.00) max(0.15,14.00,3.20) 
+OBJ KIT2_glass_pane MESH [KIT_MESHY_V2] hr=False min(-0.48,-0.01,0.00) max(0.48,0.01,3.10) MAT_glass
+OBJ KIT2_meshy_floor_1m MESH [KIT_MESHY_V2] hr=True min(-0.50,-0.50,0.00) max(0.50,0.50,0.10) BakedMaterial.001
+OBJ KIT2_meshy_pillar MESH [KIT_MESHY_V2] hr=True min(-0.15,-0.15,0.00) max(0.15,0.15,3.20) Material_0.002
+OBJ KIT2_meshy_wall_1m MESH [KIT_MESHY_V2] hr=True min(-0.50,-0.08,0.00) max(0.50,0.08,3.20) BakedMaterial
+OBJ KIT2_meshy_wall_door MESH [KIT_MESHY_V2] hr=True min(-0.50,-0.08,0.00) max(0.50,0.08,3.20) Material_0.001
+OBJ KIT2_meshy_window_1m MESH [KIT_MESHY_V2] hr=True min(-0.50,-0.08,0.00) max(0.50,0.08,3.20) Material_0
+OBJ KIT_floor_1m MESH [KIT_BPY] hr=False min(-0.50,-5.50,0.00) max(0.50,-4.50,0.10) MAT_floor
+OBJ KIT_meshy_floor_1m MESH [KIT_MESHY] hr=True min(-0.50,-0.50,0.00) max(0.50,0.50,0.10) Material_0.005
+OBJ KIT_meshy_pillar MESH [KIT_MESHY] hr=True min(-0.15,-0.15,0.00) max(0.15,0.15,3.20) Material_0.006
+OBJ KIT_meshy_wall_1m MESH [KIT_MESHY] hr=True min(-0.50,-0.08,0.00) max(0.50,0.08,3.20) Material_0.003
+OBJ KIT_meshy_wall_door MESH [KIT_MESHY] hr=True min(-0.50,-0.08,0.00) max(0.50,0.08,3.20) Material_0.004
+OBJ KIT_pillar MESH [KIT_BPY] hr=False min(-0.15,-5.15,0.00) max(0.15,-4.85,3.20) MAT_exterior
+OBJ KIT_wall_1m MESH [KIT_BPY] hr=False min(-0.50,-5.07,0.00) max(0.50,-4.93,3.20) MAT_interior
+OBJ KIT_wall_door MESH [KIT_BPY] hr=False min(-0.50,-5.07,0.00) max(0.50,-4.93,3.20) MAT_interior,MAT_orange
+OBJ KIT_wall_glass_1m MESH [KIT_BPY] hr=False min(-0.50,-5.03,0.00) max(0.50,-4.97,3.20) MAT_glass
+OBJ LIGHT_area_lobby LIGHT [LIGHTING] hr=False loc(4.00,7.00,2.90) 
+OBJ LIGHT_area_meeting LIGHT [LIGHTING] hr=False loc(11.00,11.00,2.90) 
+OBJ LIGHT_area_meeting_kit LIGHT [FLOOR_1_KIT_TEST] hr=False loc(41.00,11.00,2.90) 
+OBJ LIGHT_area_workstation LIGHT [LIGHTING] hr=False loc(14.00,4.00,2.90) 
+OBJ NAV_cam_floor1 EMPTY [FLOOR_1] hr=False loc(1.50,1.50,1.60) 
+OBJ NAV_cam_iso EMPTY [FLOOR_1] hr=False loc(34.00,-22.00,26.00) 
+OBJ NAV_cam_workstation EMPTY [FLOOR_1] hr=False loc(8.40,4.00,1.60) 
+OBJ NAV_spawn_lobby EMPTY [FLOOR_1] hr=False loc(7.00,6.00,0.00) 
+OBJ NAV_wp_lobby EMPTY [FLOOR_1] hr=False loc(7.00,6.00,0.00) 
+OBJ NAV_wp_meeting_a EMPTY [FLOOR_1] hr=False loc(11.00,11.00,0.00) 
+OBJ NAV_wp_meeting_a_kit EMPTY [FLOOR_1_KIT_TEST] hr=False loc(41.00,11.00,0.00) 
+OBJ NAV_wp_workstation_a EMPTY [FLOOR_1] hr=False loc(14.00,4.00,0.00) 
+OBJ ROOM_lobby MESH [FLOOR_1] hr=True min(0.00,0.00,0.01) max(8.00,14.00,0.02) MAT_floor
+OBJ ROOM_meeting_a MESH [FLOOR_1] hr=True min(8.00,8.00,0.01) max(14.00,14.00,0.02) MAT_floor
+OBJ ROOM_meeting_a_kit MESH [FLOOR_1_KIT_TEST] hr=True min(38.00,8.00,0.01) max(44.00,14.00,0.02) MAT_floor
+OBJ ROOM_workstation_a MESH [FLOOR_1] hr=True min(8.00,0.00,0.01) max(20.00,8.00,0.02) MAT_floor
+OBJ SIGN_redhunter MESH [FLOOR_4] hr=False min(8.00,-0.20,11.20) max(12.00,0.00,12.00) MAT_red
+OBJ STAIR_core EMPTY [FLOOR_1] hr=False loc(17.50,9.00,0.00) 
+OBJ SUN_main LIGHT [LIGHTING] hr=False loc(0.00,0.00,0.00) 
+OBJ TASK_board EMPTY [FLOOR_1] hr=False loc(11.00,13.90,1.50) 
+OBJ TASK_board_kit EMPTY [FLOOR_1_KIT_TEST] hr=False loc(41.00,13.90,1.50) 
+OBJ TASK_desk_1 EMPTY [FLOOR_1] hr=False loc(9.50,2.00,0.75) 
+OBJ TASK_desk_2 EMPTY [FLOOR_1] hr=False loc(12.00,2.00,0.75) 
+OBJ TASK_desk_3 EMPTY [FLOOR_1] hr=False loc(14.50,2.00,0.75) 
+OBJ TASK_desk_4 EMPTY [FLOOR_1] hr=False loc(17.00,2.00,0.75) 
+OBJ TASK_desk_5 EMPTY [FLOOR_1] hr=False loc(9.50,6.00,0.75) 
+OBJ TASK_desk_6 EMPTY [FLOOR_1] hr=False loc(12.00,6.00,0.75) 
+OBJ TASK_desk_7 EMPTY [FLOOR_1] hr=False loc(14.50,6.00,0.75) 
+OBJ TASK_desk_8 EMPTY [FLOOR_1] hr=False loc(17.00,6.00,0.75) 
+OBJ TGT_character_closeup EMPTY [CAMERAS] hr=False loc(7.00,6.00,1.40) 
+OBJ TGT_iso EMPTY [CAMERAS] hr=False loc(10.00,7.00,5.50) 
+OBJ TGT_kit2_closeup EMPTY [CAMERAS] hr=False loc(3.80,0.20,1.30) 
+OBJ TGT_kit_compare EMPTY [CAMERAS] hr=False loc(26.00,11.00,1.00) 
+OBJ TGT_lobby EMPTY [CAMERAS] hr=False loc(7.00,6.00,1.20) 
+OBJ TGT_meeting_bpy EMPTY [CAMERAS] hr=False loc(12.00,12.00,0.60) 
+OBJ TGT_meeting_kit EMPTY [CAMERAS] hr=False loc(42.00,12.00,0.60) 
+OBJ TGT_verdict EMPTY [CAMERAS] hr=False loc(3.00,-27.00,1.00) 
+OBJ TGT_workstation EMPTY [CAMERAS] hr=False loc(16.00,4.60,1.00) 
+OBJ car_1 MESH [EXTERIOR] hr=False min(-10.00,-12.90,0.01) max(-6.00,-11.10,1.21) MAT_teal
+OBJ car_2 MESH [EXTERIOR] hr=False min(26.00,-12.90,0.01) max(30.00,-11.10,1.21) MAT_orange
+OBJ chair_desk_1 MESH [FLOOR_1] hr=False min(9.25,0.85,0.00) max(9.75,1.35,0.96) MAT_teal,MAT_dark
+OBJ chair_desk_2 MESH [FLOOR_1] hr=False min(11.75,0.85,0.00) max(12.25,1.35,0.96) MAT_teal,MAT_dark
+OBJ chair_desk_3 MESH [FLOOR_1] hr=False min(14.25,0.85,0.00) max(14.75,1.35,0.96) MAT_teal,MAT_dark
+OBJ chair_desk_4 MESH [FLOOR_1] hr=False min(16.75,0.85,0.00) max(17.25,1.35,0.96) MAT_teal,MAT_dark
+OBJ chair_desk_5 MESH [FLOOR_1] hr=False min(9.25,6.65,0.00) max(9.75,7.15,0.96) MAT_teal,MAT_dark
+OBJ chair_desk_6 MESH [FLOOR_1] hr=False min(11.75,6.65,0.00) max(12.25,7.15,0.96) MAT_teal,MAT_dark
+OBJ chair_desk_7 MESH [FLOOR_1] hr=False min(14.25,6.65,0.00) max(14.75,7.15,0.96) MAT_teal,MAT_dark
+OBJ chair_desk_8 MESH [FLOOR_1] hr=False min(16.75,6.65,0.00) max(17.25,7.15,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_1 MESH [FLOOR_1] hr=False min(9.75,9.75,0.00) max(10.25,10.25,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_2 MESH [FLOOR_1] hr=False min(10.75,9.75,0.00) max(11.25,10.25,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_3 MESH [FLOOR_1] hr=False min(11.75,9.75,0.00) max(12.25,10.25,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_4 MESH [FLOOR_1] hr=False min(9.75,11.75,0.00) max(10.25,12.25,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_5 MESH [FLOOR_1] hr=False min(10.75,11.75,0.00) max(11.25,12.25,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_6 MESH [FLOOR_1] hr=False min(11.75,11.75,0.00) max(12.25,12.25,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_kit_1 MESH [FLOOR_1_KIT_TEST] hr=False min(39.75,9.75,0.00) max(40.25,10.25,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_kit_2 MESH [FLOOR_1_KIT_TEST] hr=False min(40.75,9.75,0.00) max(41.25,10.25,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_kit_3 MESH [FLOOR_1_KIT_TEST] hr=False min(41.75,9.75,0.00) max(42.25,10.25,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_kit_4 MESH [FLOOR_1_KIT_TEST] hr=False min(39.75,11.75,0.00) max(40.25,12.25,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_kit_5 MESH [FLOOR_1_KIT_TEST] hr=False min(40.75,11.75,0.00) max(41.25,12.25,0.96) MAT_teal,MAT_dark
+OBJ chair_meeting_kit_6 MESH [FLOOR_1_KIT_TEST] hr=False min(41.75,11.75,0.00) max(42.25,12.25,0.96) MAT_teal,MAT_dark
+OBJ chair_verdict_bpy MESH [VERDICT_STAGE] hr=False min(8.75,-28.15,0.00) max(9.25,-27.65,0.96) MAT_teal,MAT_dark
+OBJ chair_verdict_meshy MESH [VERDICT_STAGE] hr=False min(-3.25,-28.15,0.00) max(-2.75,-27.65,0.96) MAT_teal,MAT_dark
+OBJ coffee_table_lobby MESH [FLOOR_1] hr=False min(6.10,2.30,0.00) max(7.10,2.90,0.42) MAT_wood
+OBJ counter_lobby MESH [FLOOR_1] hr=False min(0.45,5.55,0.00) max(3.55,6.45,1.14) MAT_teal,MAT_desk_top
+OBJ desk_1 MESH [FLOOR_1] hr=False min(8.70,1.60,0.00) max(10.30,2.40,0.77) MAT_desk_top,MAT_wood
+OBJ desk_2 MESH [FLOOR_1] hr=False min(11.20,1.60,0.00) max(12.80,2.40,0.77) MAT_desk_top,MAT_wood
+OBJ desk_3 MESH [FLOOR_1] hr=False min(13.70,1.60,0.00) max(15.30,2.40,0.77) MAT_desk_top,MAT_wood
+OBJ desk_4 MESH [FLOOR_1] hr=False min(16.20,1.60,0.00) max(17.80,2.40,0.77) MAT_desk_top,MAT_wood
+OBJ desk_5 MESH [FLOOR_1] hr=False min(8.70,5.60,0.00) max(10.30,6.40,0.77) MAT_desk_top,MAT_wood
+OBJ desk_6 MESH [FLOOR_1] hr=False min(11.20,5.60,0.00) max(12.80,6.40,0.77) MAT_desk_top,MAT_wood
+OBJ desk_7 MESH [FLOOR_1] hr=False min(13.70,5.60,0.00) max(15.30,6.40,0.77) MAT_desk_top,MAT_wood
+OBJ desk_8 MESH [FLOOR_1] hr=False min(16.20,5.60,0.00) max(17.80,6.40,0.77) MAT_desk_top,MAT_wood
+OBJ desk_verdict_bpy MESH [VERDICT_STAGE] hr=False min(8.20,-27.40,0.00) max(9.80,-26.60,0.77) MAT_desk_top,MAT_wood
+OBJ desk_verdict_meshy MESH [VERDICT_STAGE] hr=False min(-3.80,-27.40,0.00) max(-2.20,-26.60,0.77) MAT_desk_top,MAT_wood
+OBJ door_f1_meeting MESH [FLOOR_1] hr=False min(7.92,8.50,0.00) max(8.08,9.50,3.20) Material_0.001
+OBJ door_f1_s MESH [FLOOR_1] hr=False min(3.50,-0.00,0.00) max(4.50,0.15,3.20) Material_0.001
+OBJ door_f1_w MESH [FLOOR_1] hr=False min(0.00,6.50,0.00) max(0.15,7.50,3.20) Material_0.001
+OBJ door_kit_meeting MESH [FLOOR_1_KIT_TEST] hr=False min(37.92,8.50,0.00) max(38.08,9.50,3.20) Material_0.004
+OBJ door_verdict_bpy MESH [VERDICT_STAGE] hr=False min(9.00,-24.18,0.00) max(10.00,-24.02,3.20) MAT_interior,MAT_orange
+OBJ door_verdict_meshy MESH [VERDICT_STAGE] hr=False min(-3.00,-24.18,0.00) max(-2.00,-24.02,3.21) Material_0.004
+OBJ ground_main MESH [EXTERIOR] hr=False min(-30.00,-33.00,-0.06) max(50.00,47.00,-0.01) MAT_ground
+OBJ ground_verdict MESH [VERDICT_STAGE] hr=False min(-17.00,-61.00,-0.06) max(23.00,-33.00,-0.01) MAT_ground
+OBJ monitor_1 MESH [FLOOR_1] hr=False min(9.23,1.92,0.77) max(9.77,2.08,1.20) MAT_dark,MAT_screen_emit
+OBJ monitor_2 MESH [FLOOR_1] hr=False min(11.73,1.92,0.77) max(12.27,2.08,1.20) MAT_dark,MAT_screen_emit
+OBJ monitor_3 MESH [FLOOR_1] hr=False min(14.23,1.92,0.77) max(14.77,2.08,1.20) MAT_dark,MAT_screen_emit
+OBJ monitor_4 MESH [FLOOR_1] hr=False min(16.73,1.92,0.77) max(17.27,2.08,1.20) MAT_dark,MAT_screen_emit
+OBJ monitor_5 MESH [FLOOR_1] hr=False min(9.23,5.93,0.77) max(9.77,6.07,1.20) MAT_dark,MAT_screen_emit
+OBJ monitor_6 MESH [FLOOR_1] hr=False min(11.73,5.93,0.77) max(12.27,6.07,1.20) MAT_dark,MAT_screen_emit
+OBJ monitor_7 MESH [FLOOR_1] hr=False min(14.23,5.93,0.77) max(14.77,6.07,1.20) MAT_dark,MAT_screen_emit
+OBJ monitor_8 MESH [FLOOR_1] hr=False min(16.73,5.93,0.77) max(17.27,6.07,1.20) MAT_dark,MAT_screen_emit
+OBJ monitor_verdict_bpy MESH [VERDICT_STAGE] hr=False min(8.73,-27.08,0.77) max(9.27,-26.92,1.20) MAT_dark,MAT_screen_emit
+OBJ monitor_verdict_meshy MESH [VERDICT_STAGE] hr=False min(-3.28,-27.08,0.77) max(-2.72,-26.92,1.20) MAT_dark,MAT_screen_emit
+OBJ plant_1 MESH [FLOOR_1] hr=False min(0.29,0.30,0.00) max(0.91,0.90,0.95) MAT_wood,MAT_leaf
+OBJ plant_2 MESH [FLOOR_1] hr=False min(7.09,13.10,0.00) max(7.71,13.70,0.95) MAT_wood,MAT_leaf
+OBJ road_main MESH [EXTERIOR] hr=False min(-30.00,-15.00,-0.04) max(50.00,-9.00,0.01) MAT_road
+OBJ roof_top MESH [FLOOR_4] hr=False min(0.00,0.00,12.60) max(20.00,14.00,12.80) MAT_exterior
+OBJ sidewalk_n MESH [EXTERIOR] hr=False min(-30.00,-9.00,-0.03) max(50.00,-7.00,0.02) MAT_sidewalk
+OBJ sidewalk_s MESH [EXTERIOR] hr=False min(-30.00,-17.00,-0.03) max(50.00,-15.00,0.02) MAT_sidewalk
+OBJ slab_floor_1 MESH [FLOOR_1] hr=False min(0.00,0.00,-0.20) max(20.00,14.00,0.00) MAT_floor
+OBJ slab_floor_2_e MESH [FLOOR_2] hr=False min(19.00,0.00,3.00) max(20.00,14.00,3.20) MAT_floor
+OBJ slab_floor_2_n MESH [FLOOR_2] hr=False min(16.00,13.00,3.00) max(19.00,14.00,3.20) MAT_floor
+OBJ slab_floor_2_s MESH [FLOOR_2] hr=False min(16.00,0.00,3.00) max(19.00,9.00,3.20) MAT_floor
+OBJ slab_floor_2_w MESH [FLOOR_2] hr=False min(0.00,0.00,3.00) max(16.00,14.00,3.20) MAT_floor
+OBJ slab_floor_3_e MESH [FLOOR_3] hr=False min(19.00,0.00,6.20) max(20.00,14.00,6.40) MAT_floor
+OBJ slab_floor_3_n MESH [FLOOR_3] hr=False min(16.00,13.00,6.20) max(19.00,14.00,6.40) MAT_floor
+OBJ slab_floor_3_s MESH [FLOOR_3] hr=False min(16.00,0.00,6.20) max(19.00,9.00,6.40) MAT_floor
+OBJ slab_floor_3_w MESH [FLOOR_3] hr=False min(0.00,0.00,6.20) max(16.00,14.00,6.40) MAT_floor
+OBJ slab_floor_4_e MESH [FLOOR_4] hr=False min(19.00,0.00,9.40) max(20.00,14.00,9.60) MAT_floor
+OBJ slab_floor_4_n MESH [FLOOR_4] hr=False min(16.00,13.00,9.40) max(19.00,14.00,9.60) MAT_floor
+OBJ slab_floor_4_s MESH [FLOOR_4] hr=False min(16.00,0.00,9.40) max(19.00,9.00,9.60) MAT_floor
+OBJ slab_floor_4_w MESH [FLOOR_4] hr=False min(0.00,0.00,9.40) max(16.00,14.00,9.60) MAT_floor
+OBJ slab_kit_ceiling MESH [KIT_TEST_CEILING] hr=False min(30.00,0.00,3.00) max(50.00,14.00,3.20) MAT_floor
+OBJ slab_kit_floor MESH [FLOOR_1_KIT_TEST] hr=False min(30.00,0.00,-0.20) max(50.00,14.00,0.00) MAT_floor
+OBJ slab_verdict_bpy MESH [VERDICT_STAGE] hr=False min(6.00,-30.00,-0.10) max(12.00,-24.00,0.00) MAT_floor
+OBJ sofa_1 MESH [FLOOR_1] hr=False min(5.60,1.15,0.00) max(7.60,2.05,0.85) MAT_orange
+OBJ sofa_2 MESH [FLOOR_1] hr=False min(5.60,3.15,0.00) max(7.60,4.05,0.85) MAT_orange
+OBJ stair_step_1 MESH [FLOOR_1] hr=False min(16.00,9.00,0.00) max(19.00,9.25,0.20) MAT_floor
+OBJ stair_step_10 MESH [FLOOR_1] hr=False min(16.00,11.25,1.80) max(19.00,11.50,2.00) MAT_floor
+OBJ stair_step_11 MESH [FLOOR_1] hr=False min(16.00,11.50,2.00) max(19.00,11.75,2.20) MAT_floor
+OBJ stair_step_12 MESH [FLOOR_1] hr=False min(16.00,11.75,2.20) max(19.00,12.00,2.40) MAT_floor
+OBJ stair_step_13 MESH [FLOOR_1] hr=False min(16.00,12.00,2.40) max(19.00,12.25,2.60) MAT_floor
+OBJ stair_step_14 MESH [FLOOR_1] hr=False min(16.00,12.25,2.60) max(19.00,12.50,2.80) MAT_floor
+OBJ stair_step_15 MESH [FLOOR_1] hr=False min(16.00,12.50,2.80) max(19.00,12.75,3.00) MAT_floor
+OBJ stair_step_16 MESH [FLOOR_1] hr=False min(16.00,12.75,3.00) max(19.00,13.00,3.20) MAT_floor
+OBJ stair_step_2 MESH [FLOOR_1] hr=False min(16.00,9.25,0.20) max(19.00,9.50,0.40) MAT_floor
+OBJ stair_step_3 MESH [FLOOR_1] hr=False min(16.00,9.50,0.40) max(19.00,9.75,0.60) MAT_floor
+OBJ stair_step_4 MESH [FLOOR_1] hr=False min(16.00,9.75,0.60) max(19.00,10.00,0.80) MAT_floor
+OBJ stair_step_5 MESH [FLOOR_1] hr=False min(16.00,10.00,0.80) max(19.00,10.25,1.00) MAT_floor
+OBJ stair_step_6 MESH [FLOOR_1] hr=False min(16.00,10.25,1.00) max(19.00,10.50,1.20) MAT_floor
+OBJ stair_step_7 MESH [FLOOR_1] hr=False min(16.00,10.50,1.20) max(19.00,10.75,1.40) MAT_floor
+OBJ stair_step_8 MESH [FLOOR_1] hr=False min(16.00,10.75,1.40) max(19.00,11.00,1.60) MAT_floor
+OBJ stair_step_9 MESH [FLOOR_1] hr=False min(16.00,11.00,1.60) max(19.00,11.25,1.80) MAT_floor
+OBJ table_meeting_a MESH [FLOOR_1] hr=False min(9.80,10.40,0.00) max(12.20,11.60,0.77) MAT_desk_top,MAT_dark
+OBJ table_meeting_kit MESH [FLOOR_1_KIT_TEST] hr=False min(39.80,10.40,0.00) max(42.20,11.60,0.77) MAT_desk_top,MAT_dark
+OBJ tile_kit_1 MESH [FLOOR_1_KIT_TEST] hr=False min(38.00,8.00,-0.09) max(39.00,9.00,0.01) Material_0.005
+OBJ tile_kit_10 MESH [FLOOR_1_KIT_TEST] hr=False min(39.00,11.00,-0.09) max(40.00,12.00,0.01) Material_0.005
+OBJ tile_kit_11 MESH [FLOOR_1_KIT_TEST] hr=False min(39.00,12.00,-0.09) max(40.00,13.00,0.01) Material_0.005
+OBJ tile_kit_12 MESH [FLOOR_1_KIT_TEST] hr=False min(39.00,13.00,-0.09) max(40.00,14.00,0.01) Material_0.005
+OBJ tile_kit_13 MESH [FLOOR_1_KIT_TEST] hr=False min(40.00,8.00,-0.09) max(41.00,9.00,0.01) Material_0.005
+OBJ tile_kit_14 MESH [FLOOR_1_KIT_TEST] hr=False min(40.00,9.00,-0.09) max(41.00,10.00,0.01) Material_0.005
+OBJ tile_kit_15 MESH [FLOOR_1_KIT_TEST] hr=False min(40.00,10.00,-0.09) max(41.00,11.00,0.01) Material_0.005
+OBJ tile_kit_16 MESH [FLOOR_1_KIT_TEST] hr=False min(40.00,11.00,-0.09) max(41.00,12.00,0.01) Material_0.005
+OBJ tile_kit_17 MESH [FLOOR_1_KIT_TEST] hr=False min(40.00,12.00,-0.09) max(41.00,13.00,0.01) Material_0.005
+OBJ tile_kit_18 MESH [FLOOR_1_KIT_TEST] hr=False min(40.00,13.00,-0.09) max(41.00,14.00,0.01) Material_0.005
+OBJ tile_kit_19 MESH [FLOOR_1_KIT_TEST] hr=False min(41.00,8.00,-0.09) max(42.00,9.00,0.01) Material_0.005
+OBJ tile_kit_2 MESH [FLOOR_1_KIT_TEST] hr=False min(38.00,9.00,-0.09) max(39.00,10.00,0.01) Material_0.005
+OBJ tile_kit_20 MESH [FLOOR_1_KIT_TEST] hr=False min(41.00,9.00,-0.09) max(42.00,10.00,0.01) Material_0.005
+OBJ tile_kit_21 MESH [FLOOR_1_KIT_TEST] hr=False min(41.00,10.00,-0.09) max(42.00,11.00,0.01) Material_0.005
+OBJ tile_kit_22 MESH [FLOOR_1_KIT_TEST] hr=False min(41.00,11.00,-0.09) max(42.00,12.00,0.01) Material_0.005
+OBJ tile_kit_23 MESH [FLOOR_1_KIT_TEST] hr=False min(41.00,12.00,-0.09) max(42.00,13.00,0.01) Material_0.005
+OBJ tile_kit_24 MESH [FLOOR_1_KIT_TEST] hr=False min(41.00,13.00,-0.09) max(42.00,14.00,0.01) Material_0.005
+OBJ tile_kit_25 MESH [FLOOR_1_KIT_TEST] hr=False min(42.00,8.00,-0.09) max(43.00,9.00,0.01) Material_0.005
+OBJ tile_kit_26 MESH [FLOOR_1_KIT_TEST] hr=False min(42.00,9.00,-0.09) max(43.00,10.00,0.01) Material_0.005
+OBJ tile_kit_27 MESH [FLOOR_1_KIT_TEST] hr=False min(42.00,10.00,-0.09) max(43.00,11.00,0.01) Material_0.005
+OBJ tile_kit_28 MESH [FLOOR_1_KIT_TEST] hr=False min(42.00,11.00,-0.09) max(43.00,12.00,0.01) Material_0.005
+OBJ tile_kit_29 MESH [FLOOR_1_KIT_TEST] hr=False min(42.00,12.00,-0.09) max(43.00,13.00,0.01) Material_0.005
+OBJ tile_kit_3 MESH [FLOOR_1_KIT_TEST] hr=False min(38.00,10.00,-0.09) max(39.00,11.00,0.01) Material_0.005
+OBJ tile_kit_30 MESH [FLOOR_1_KIT_TEST] hr=False min(42.00,13.00,-0.09) max(43.00,14.00,0.01) Material_0.005
+OBJ tile_kit_31 MESH [FLOOR_1_KIT_TEST] hr=False min(43.00,8.00,-0.09) max(44.00,9.00,0.01) Material_0.005
+OBJ tile_kit_32 MESH [FLOOR_1_KIT_TEST] hr=False min(43.00,9.00,-0.09) max(44.00,10.00,0.01) Material_0.005
+OBJ tile_kit_33 MESH [FLOOR_1_KIT_TEST] hr=False min(43.00,10.00,-0.09) max(44.00,11.00,0.01) Material_0.005
+OBJ tile_kit_34 MESH [FLOOR_1_KIT_TEST] hr=False min(43.00,11.00,-0.09) max(44.00,12.00,0.01) Material_0.005
+OBJ tile_kit_35 MESH [FLOOR_1_KIT_TEST] hr=False min(43.00,12.00,-0.09) max(44.00,13.00,0.01) Material_0.005
+OBJ tile_kit_36 MESH [FLOOR_1_KIT_TEST] hr=False min(43.00,13.00,-0.09) max(44.00,14.00,0.01) Material_0.005
+OBJ tile_kit_4 MESH [FLOOR_1_KIT_TEST] hr=False min(38.00,11.00,-0.09) max(39.00,12.00,0.01) Material_0.005
+OBJ tile_kit_5 MESH [FLOOR_1_KIT_TEST] hr=False min(38.00,12.00,-0.09) max(39.00,13.00,0.01) Material_0.005
+OBJ tile_kit_6 MESH [FLOOR_1_KIT_TEST] hr=False min(38.00,13.00,-0.09) max(39.00,14.00,0.01) Material_0.005
+OBJ tile_kit_7 MESH [FLOOR_1_KIT_TEST] hr=False min(39.00,8.00,-0.09) max(40.00,9.00,0.01) Material_0.005
+OBJ tile_kit_8 MESH [FLOOR_1_KIT_TEST] hr=False min(39.00,9.00,-0.09) max(40.00,10.00,0.01) Material_0.005
+OBJ tile_kit_9 MESH [FLOOR_1_KIT_TEST] hr=False min(39.00,10.00,-0.09) max(40.00,11.00,0.01) Material_0.005
+OBJ tile_verdict_1 MESH [VERDICT_STAGE] hr=False min(-6.00,-30.00,-0.09) max(-5.00,-29.00,0.01) Material_0.005
+OBJ tile_verdict_10 MESH [VERDICT_STAGE] hr=False min(-5.00,-27.00,-0.09) max(-4.00,-26.00,0.01) Material_0.005
+OBJ tile_verdict_11 MESH [VERDICT_STAGE] hr=False min(-5.00,-26.00,-0.09) max(-4.00,-25.00,0.01) Material_0.005
+OBJ tile_verdict_12 MESH [VERDICT_STAGE] hr=False min(-5.00,-25.00,-0.09) max(-4.00,-24.00,0.01) Material_0.005
+OBJ tile_verdict_13 MESH [VERDICT_STAGE] hr=False min(-4.00,-30.00,-0.09) max(-3.00,-29.00,0.01) Material_0.005
+OBJ tile_verdict_14 MESH [VERDICT_STAGE] hr=False min(-4.00,-29.00,-0.09) max(-3.00,-28.00,0.01) Material_0.005
+OBJ tile_verdict_15 MESH [VERDICT_STAGE] hr=False min(-4.00,-28.00,-0.09) max(-3.00,-27.00,0.01) Material_0.005
+OBJ tile_verdict_16 MESH [VERDICT_STAGE] hr=False min(-4.00,-27.00,-0.09) max(-3.00,-26.00,0.01) Material_0.005
+OBJ tile_verdict_17 MESH [VERDICT_STAGE] hr=False min(-4.00,-26.00,-0.09) max(-3.00,-25.00,0.01) Material_0.005
+OBJ tile_verdict_18 MESH [VERDICT_STAGE] hr=False min(-4.00,-25.00,-0.09) max(-3.00,-24.00,0.01) Material_0.005
+OBJ tile_verdict_19 MESH [VERDICT_STAGE] hr=False min(-3.00,-30.00,-0.09) max(-2.00,-29.00,0.01) Material_0.005
+OBJ tile_verdict_2 MESH [VERDICT_STAGE] hr=False min(-6.00,-29.00,-0.09) max(-5.00,-28.00,0.01) Material_0.005
+OBJ tile_verdict_20 MESH [VERDICT_STAGE] hr=False min(-3.00,-29.00,-0.09) max(-2.00,-28.00,0.01) Material_0.005
+OBJ tile_verdict_21 MESH [VERDICT_STAGE] hr=False min(-3.00,-28.00,-0.09) max(-2.00,-27.00,0.01) Material_0.005
+OBJ tile_verdict_22 MESH [VERDICT_STAGE] hr=False min(-3.00,-27.00,-0.09) max(-2.00,-26.00,0.01) Material_0.005
+OBJ tile_verdict_23 MESH [VERDICT_STAGE] hr=False min(-3.00,-26.00,-0.09) max(-2.00,-25.00,0.01) Material_0.005
+OBJ tile_verdict_24 MESH [VERDICT_STAGE] hr=False min(-3.00,-25.00,-0.09) max(-2.00,-24.00,0.01) Material_0.005
+OBJ tile_verdict_25 MESH [VERDICT_STAGE] hr=False min(-2.00,-30.00,-0.09) max(-1.00,-29.00,0.01) Material_0.005
+OBJ tile_verdict_26 MESH [VERDICT_STAGE] hr=False min(-2.00,-29.00,-0.09) max(-1.00,-28.00,0.01) Material_0.005
+OBJ tile_verdict_27 MESH [VERDICT_STAGE] hr=False min(-2.00,-28.00,-0.09) max(-1.00,-27.00,0.01) Material_0.005
+OBJ tile_verdict_28 MESH [VERDICT_STAGE] hr=False min(-2.00,-27.00,-0.09) max(-1.00,-26.00,0.01) Material_0.005
+OBJ tile_verdict_29 MESH [VERDICT_STAGE] hr=False min(-2.00,-26.00,-0.09) max(-1.00,-25.00,0.01) Material_0.005
+OBJ tile_verdict_3 MESH [VERDICT_STAGE] hr=False min(-6.00,-28.00,-0.09) max(-5.00,-27.00,0.01) Material_0.005
+OBJ tile_verdict_30 MESH [VERDICT_STAGE] hr=False min(-2.00,-25.00,-0.09) max(-1.00,-24.00,0.01) Material_0.005
+OBJ tile_verdict_31 MESH [VERDICT_STAGE] hr=False min(-1.00,-30.00,-0.09) max(0.00,-29.00,0.01) Material_0.005
+OBJ tile_verdict_32 MESH [VERDICT_STAGE] hr=False min(-1.00,-29.00,-0.09) max(0.00,-28.00,0.01) Material_0.005
+OBJ tile_verdict_33 MESH [VERDICT_STAGE] hr=False min(-1.00,-28.00,-0.09) max(0.00,-27.00,0.01) Material_0.005
+OBJ tile_verdict_34 MESH [VERDICT_STAGE] hr=False min(-1.00,-27.00,-0.09) max(0.00,-26.00,0.01) Material_0.005
+OBJ tile_verdict_35 MESH [VERDICT_STAGE] hr=False min(-1.00,-26.00,-0.09) max(0.00,-25.00,0.01) Material_0.005
+OBJ tile_verdict_36 MESH [VERDICT_STAGE] hr=False min(-1.00,-25.00,-0.09) max(0.00,-24.00,0.01) Material_0.005
+OBJ tile_verdict_4 MESH [VERDICT_STAGE] hr=False min(-6.00,-27.00,-0.09) max(-5.00,-26.00,0.01) Material_0.005
+OBJ tile_verdict_5 MESH [VERDICT_STAGE] hr=False min(-6.00,-26.00,-0.09) max(-5.00,-25.00,0.01) Material_0.005
+OBJ tile_verdict_6 MESH [VERDICT_STAGE] hr=False min(-6.00,-25.00,-0.09) max(-5.00,-24.00,0.01) Material_0.005
+OBJ tile_verdict_7 MESH [VERDICT_STAGE] hr=False min(-5.00,-30.00,-0.09) max(-4.00,-29.00,0.01) Material_0.005
+OBJ tile_verdict_8 MESH [VERDICT_STAGE] hr=False min(-5.00,-29.00,-0.09) max(-4.00,-28.00,0.01) Material_0.005
+OBJ tile_verdict_9 MESH [VERDICT_STAGE] hr=False min(-5.00,-28.00,-0.09) max(-4.00,-27.00,0.01) Material_0.005
+OBJ tree_1 MESH [EXTERIOR] hr=False min(-7.07,2.98,0.00) max(-4.93,5.02,3.00) MAT_wood,MAT_leaf
+OBJ tree_10 MESH [EXTERIOR] hr=False min(-21.20,12.80,0.00) max(-18.80,15.20,3.50) MAT_wood,MAT_leaf
+OBJ tree_2 MESH [EXTERIOR] hr=False min(-7.07,10.98,0.00) max(-4.93,13.02,3.00) MAT_wood,MAT_leaf
+OBJ tree_3 MESH [EXTERIOR] hr=False min(-5.07,20.98,0.00) max(-2.93,23.02,3.00) MAT_wood,MAT_leaf
+OBJ tree_4 MESH [EXTERIOR] hr=False min(2.93,22.98,0.00) max(5.07,25.02,3.00) MAT_wood,MAT_leaf
+OBJ tree_5 MESH [EXTERIOR] hr=False min(12.93,22.98,0.00) max(15.07,25.02,3.00) MAT_wood,MAT_leaf
+OBJ tree_6 MESH [EXTERIOR] hr=False min(22.80,20.80,0.00) max(25.20,23.20,3.50) MAT_wood,MAT_leaf
+OBJ tree_7 MESH [EXTERIOR] hr=False min(24.80,4.80,0.00) max(27.20,7.20,3.50) MAT_wood,MAT_leaf
+OBJ tree_8 MESH [EXTERIOR] hr=False min(-15.20,-5.20,0.00) max(-12.80,-2.80,3.50) MAT_wood,MAT_leaf
+OBJ tree_9 MESH [EXTERIOR] hr=False min(28.80,-5.20,0.00) max(31.20,-2.80,3.50) MAT_wood,MAT_leaf
+OBJ wall_f1_meeting_x8_3 MESH [FLOOR_1] hr=False min(7.97,10.00,0.00) max(8.02,11.00,3.20) MAT_glass
+OBJ wall_f1_meeting_x8_4 MESH [FLOOR_1] hr=False min(7.97,11.00,0.00) max(8.02,12.00,3.20) MAT_glass
+OBJ wall_f1_meeting_x8_5 MESH [FLOOR_1] hr=False min(7.97,12.00,0.00) max(8.02,13.00,3.20) MAT_glass
+OBJ wall_f1_meeting_x8_6 MESH [FLOOR_1] hr=False min(7.97,13.00,0.00) max(8.02,14.00,3.20) MAT_glass
+OBJ wall_f1_meeting_x8_fill_1 MESH [FLOOR_1] hr=False min(7.97,8.00,0.00) max(8.02,8.50,3.20) MAT_glass
+OBJ wall_f1_meeting_x8_fill_2 MESH [FLOOR_1] hr=False min(7.97,9.50,0.00) max(8.02,10.00,3.20) MAT_glass
+OBJ wall_f1_meeting_y8_1 MESH [FLOOR_1] hr=False min(8.00,7.97,0.00) max(9.00,8.02,3.20) MAT_glass
+OBJ wall_f1_meeting_y8_2 MESH [FLOOR_1] hr=False min(9.00,7.97,0.00) max(10.00,8.02,3.20) MAT_glass
+OBJ wall_f1_meeting_y8_3 MESH [FLOOR_1] hr=False min(10.00,7.97,0.00) max(11.00,8.02,3.20) MAT_glass
+OBJ wall_f1_meeting_y8_4 MESH [FLOOR_1] hr=False min(11.00,7.97,0.00) max(12.00,8.02,3.20) MAT_glass
+OBJ wall_f1_meeting_y8_5 MESH [FLOOR_1] hr=False min(12.00,7.97,0.00) max(13.00,8.02,3.20) MAT_glass
+OBJ wall_f1_meeting_y8_6 MESH [FLOOR_1] hr=False min(13.00,7.97,0.00) max(14.00,8.02,3.20) MAT_glass
+OBJ wall_f1_s_fill_1 MESH [FLOOR_1] hr=False min(3.00,-0.00,0.00) max(3.50,0.15,3.20) BakedMaterial
+OBJ wall_f1_s_fill_2 MESH [FLOOR_1] hr=False min(4.50,-0.00,0.00) max(5.00,0.15,3.20) BakedMaterial
+OBJ wall_f1_w_fill_1 MESH [FLOOR_1] hr=False min(0.00,6.00,0.00) max(0.15,6.50,3.20) BakedMaterial
+OBJ wall_f1_w_fill_2 MESH [FLOOR_1] hr=False min(0.00,7.50,0.00) max(0.15,8.00,3.20) BakedMaterial
+OBJ wall_kit_n_10 MESH [FLOOR_1_KIT_TEST] hr=False min(39.00,13.90,0.00) max(40.00,13.95,3.20) MAT_glass
+OBJ wall_kit_n_11 MESH [FLOOR_1_KIT_TEST] hr=False min(40.00,13.85,0.00) max(41.00,14.00,3.20) Material_0.003
+OBJ wall_kit_n_12 MESH [FLOOR_1_KIT_TEST] hr=False min(41.00,13.90,0.00) max(42.00,13.95,3.20) MAT_glass
+OBJ wall_kit_n_13 MESH [FLOOR_1_KIT_TEST] hr=False min(42.00,13.85,0.00) max(43.00,14.00,3.20) Material_0.003
+OBJ wall_kit_n_14 MESH [FLOOR_1_KIT_TEST] hr=False min(43.00,13.90,0.00) max(44.00,13.95,3.20) MAT_glass
+OBJ wall_kit_n_9 MESH [FLOOR_1_KIT_TEST] hr=False min(38.00,13.85,0.00) max(39.00,14.00,3.20) Material_0.003
+OBJ wall_kit_x8_3 MESH [FLOOR_1_KIT_TEST] hr=False min(37.97,10.00,0.00) max(38.03,11.00,3.20) MAT_glass
+OBJ wall_kit_x8_4 MESH [FLOOR_1_KIT_TEST] hr=False min(37.97,11.00,0.00) max(38.03,12.00,3.20) MAT_glass
+OBJ wall_kit_x8_5 MESH [FLOOR_1_KIT_TEST] hr=False min(37.97,12.00,0.00) max(38.03,13.00,3.20) MAT_glass
+OBJ wall_kit_x8_6 MESH [FLOOR_1_KIT_TEST] hr=False min(37.97,13.00,0.00) max(38.03,14.00,3.20) MAT_glass
+OBJ wall_kit_x8_fill_1 MESH [FLOOR_1_KIT_TEST] hr=False min(37.97,8.00,0.00) max(38.03,8.50,3.20) MAT_glass
+OBJ wall_kit_x8_fill_2 MESH [FLOOR_1_KIT_TEST] hr=False min(37.97,9.50,0.00) max(38.03,10.00,3.20) MAT_glass
+OBJ wall_kit_y8_1 MESH [FLOOR_1_KIT_TEST] hr=False min(38.00,7.97,0.00) max(39.00,8.02,3.20) MAT_glass
+OBJ wall_kit_y8_2 MESH [FLOOR_1_KIT_TEST] hr=False min(39.00,7.97,0.00) max(40.00,8.02,3.20) MAT_glass
+OBJ wall_kit_y8_3 MESH [FLOOR_1_KIT_TEST] hr=False min(40.00,7.97,0.00) max(41.00,8.02,3.20) MAT_glass
+OBJ wall_kit_y8_4 MESH [FLOOR_1_KIT_TEST] hr=False min(41.00,7.97,0.00) max(42.00,8.02,3.20) MAT_glass
+OBJ wall_kit_y8_5 MESH [FLOOR_1_KIT_TEST] hr=False min(42.00,7.97,0.00) max(43.00,8.02,3.20) MAT_glass
+OBJ wall_kit_y8_6 MESH [FLOOR_1_KIT_TEST] hr=False min(43.00,7.97,0.00) max(44.00,8.02,3.20) MAT_glass
+OBJ wall_stair_core MESH [FLOOR_1] hr=False min(16.00,13.00,0.00) max(19.00,13.15,3.20) MAT_red
+OBJ wall_verdict_bpy MESH [VERDICT_STAGE] hr=False min(8.00,-24.18,0.00) max(9.00,-24.02,3.20) MAT_interior
+OBJ wall_verdict_meshy MESH [VERDICT_STAGE] hr=False min(-4.00,-24.18,0.00) max(-3.00,-24.02,3.21) Material_0.003
+OBJ whiteboard_meeting_a MESH [FLOOR_1] hr=False min(9.50,13.87,0.00) max(12.50,13.93,2.15) MAT_white,MAT_dark
+OBJ whiteboard_meeting_kit MESH [FLOOR_1_KIT_TEST] hr=False min(39.50,13.87,0.00) max(42.50,13.93,2.15) MAT_white,MAT_dark
+BULK column_f2 [FLOOR_2] n=12 min(3.85,3.85,3.20) max(16.15,12.15,6.40)
+BULK column_f3 [FLOOR_3] n=12 min(3.85,3.85,6.40) max(16.15,12.15,9.60)
+BULK column_f4 [FLOOR_4] n=12 min(3.85,3.85,9.60) max(16.15,12.15,12.80)
+BULK tile_f1 [FLOOR_1] n=244 min(-0.00,-0.00,-0.09) max(20.00,14.00,0.01)
+BULK tile_f2 [FLOOR_2] n=268 min(-0.00,-0.00,3.11) max(20.00,14.00,3.21)
+BULK tile_f3 [FLOOR_3] n=268 min(-0.00,-0.00,6.30) max(20.00,14.00,6.41)
+BULK tile_f4 [FLOOR_4] n=268 min(-0.00,-0.00,9.51) max(20.00,14.00,9.61)
+BULK wall_f1_e_1 [FLOOR_1] n=1 min(19.85,-0.00,0.00) max(20.00,1.00,3.20)
+BULK wall_f1_e_11 [FLOOR_1] n=1 min(19.85,10.00,0.00) max(20.00,11.00,3.20)
+BULK wall_f1_e_13 [FLOOR_1] n=1 min(19.85,12.00,0.00) max(20.00,13.00,3.20)
+BULK wall_f1_e_3 [FLOOR_1] n=1 min(19.85,2.00,0.00) max(20.00,3.00,3.20)
+BULK wall_f1_e_5 [FLOOR_1] n=1 min(19.85,4.00,0.00) max(20.00,5.00,3.20)
+BULK wall_f1_e_7 [FLOOR_1] n=1 min(19.85,6.00,0.00) max(20.00,7.00,3.20)
+BULK wall_f1_e_9 [FLOOR_1] n=1 min(19.85,8.00,0.00) max(20.00,9.00,3.20)
+BULK wall_f1_n_1 [FLOOR_1] n=1 min(-0.00,13.85,0.00) max(1.00,14.00,3.20)
+BULK wall_f1_n_11 [FLOOR_1] n=1 min(10.00,13.85,0.00) max(11.00,14.00,3.20)
+BULK wall_f1_n_13 [FLOOR_1] n=1 min(12.00,13.85,0.00) max(13.00,14.00,3.20)
+BULK wall_f1_n_15 [FLOOR_1] n=1 min(14.00,13.85,0.00) max(15.00,14.00,3.20)
+BULK wall_f1_n_17 [FLOOR_1] n=1 min(16.00,13.85,0.00) max(17.00,14.00,3.20)
+BULK wall_f1_n_19 [FLOOR_1] n=1 min(18.00,13.85,0.00) max(19.00,14.00,3.20)
+BULK wall_f1_n_3 [FLOOR_1] n=1 min(2.00,13.85,0.00) max(3.00,14.00,3.20)
+BULK wall_f1_n_5 [FLOOR_1] n=1 min(4.00,13.85,0.00) max(5.00,14.00,3.20)
+BULK wall_f1_n_7 [FLOOR_1] n=1 min(6.00,13.85,0.00) max(7.00,14.00,3.20)
+BULK wall_f1_n_9 [FLOOR_1] n=1 min(8.00,13.85,0.00) max(9.00,14.00,3.20)
+BULK wall_f1_s_1 [FLOOR_1] n=1 min(-0.00,-0.00,0.00) max(1.00,0.15,3.20)
+BULK wall_f1_s_11 [FLOOR_1] n=1 min(10.00,-0.00,0.00) max(11.00,0.15,3.20)
+BULK wall_f1_s_13 [FLOOR_1] n=1 min(12.00,-0.00,0.00) max(13.00,0.15,3.20)
+BULK wall_f1_s_15 [FLOOR_1] n=1 min(14.00,-0.00,0.00) max(15.00,0.15,3.20)
+BULK wall_f1_s_17 [FLOOR_1] n=1 min(16.00,-0.00,0.00) max(17.00,0.15,3.20)
+BULK wall_f1_s_19 [FLOOR_1] n=1 min(18.00,-0.00,0.00) max(19.00,0.15,3.20)
+BULK wall_f1_s_3 [FLOOR_1] n=1 min(2.00,-0.00,0.00) max(3.00,0.15,3.20)
+BULK wall_f1_s_7 [FLOOR_1] n=1 min(6.00,-0.00,0.00) max(7.00,0.15,3.20)
+BULK wall_f1_s_9 [FLOOR_1] n=1 min(8.00,-0.00,0.00) max(9.00,0.15,3.20)
+BULK wall_f1_w_1 [FLOOR_1] n=1 min(0.00,-0.00,0.00) max(0.15,1.00,3.20)
+BULK wall_f1_w_11 [FLOOR_1] n=1 min(0.00,10.00,0.00) max(0.15,11.00,3.20)
+BULK wall_f1_w_13 [FLOOR_1] n=1 min(0.00,12.00,0.00) max(0.15,13.00,3.20)
+BULK wall_f1_w_3 [FLOOR_1] n=1 min(0.00,2.00,0.00) max(0.15,3.00,3.20)
+BULK wall_f1_w_5 [FLOOR_1] n=1 min(0.00,4.00,0.00) max(0.15,5.00,3.20)
+BULK wall_f1_w_9 [FLOOR_1] n=1 min(0.00,8.00,0.00) max(0.15,9.00,3.20)
+BULK wall_f2_e_1 [FLOOR_2] n=1 min(19.85,-0.00,3.20) max(20.00,1.00,6.40)
+BULK wall_f2_e_11 [FLOOR_2] n=1 min(19.85,10.00,3.20) max(20.00,11.00,6.40)
+BULK wall_f2_e_13 [FLOOR_2] n=1 min(19.85,12.00,3.20) max(20.00,13.00,6.40)
+BULK wall_f2_e_3 [FLOOR_2] n=1 min(19.85,2.00,3.20) max(20.00,3.00,6.40)
+BULK wall_f2_e_5 [FLOOR_2] n=1 min(19.85,4.00,3.20) max(20.00,5.00,6.40)
+BULK wall_f2_e_7 [FLOOR_2] n=1 min(19.85,6.00,3.20) max(20.00,7.00,6.40)
+BULK wall_f2_e_9 [FLOOR_2] n=1 min(19.85,8.00,3.20) max(20.00,9.00,6.40)
+BULK wall_f2_n_1 [FLOOR_2] n=1 min(-0.00,13.85,3.20) max(1.00,14.00,6.40)
+BULK wall_f2_n_11 [FLOOR_2] n=1 min(10.00,13.85,3.20) max(11.00,14.00,6.40)
+BULK wall_f2_n_13 [FLOOR_2] n=1 min(12.00,13.85,3.20) max(13.00,14.00,6.40)
+BULK wall_f2_n_15 [FLOOR_2] n=1 min(14.00,13.85,3.20) max(15.00,14.00,6.40)
+BULK wall_f2_n_17 [FLOOR_2] n=1 min(16.00,13.85,3.20) max(17.00,14.00,6.40)
+BULK wall_f2_n_19 [FLOOR_2] n=1 min(18.00,13.85,3.20) max(19.00,14.00,6.40)
+BULK wall_f2_n_3 [FLOOR_2] n=1 min(2.00,13.85,3.20) max(3.00,14.00,6.40)
+BULK wall_f2_n_5 [FLOOR_2] n=1 min(4.00,13.85,3.20) max(5.00,14.00,6.40)
+BULK wall_f2_n_7 [FLOOR_2] n=1 min(6.00,13.85,3.20) max(7.00,14.00,6.40)
+BULK wall_f2_n_9 [FLOOR_2] n=1 min(8.00,13.85,3.20) max(9.00,14.00,6.40)
+BULK wall_f2_s_1 [FLOOR_2] n=1 min(-0.00,-0.00,3.20) max(1.00,0.15,6.40)
+BULK wall_f2_s_11 [FLOOR_2] n=1 min(10.00,-0.00,3.20) max(11.00,0.15,6.40)
+BULK wall_f2_s_13 [FLOOR_2] n=1 min(12.00,-0.00,3.20) max(13.00,0.15,6.40)
+BULK wall_f2_s_15 [FLOOR_2] n=1 min(14.00,-0.00,3.20) max(15.00,0.15,6.40)
+BULK wall_f2_s_17 [FLOOR_2] n=1 min(16.00,-0.00,3.20) max(17.00,0.15,6.40)
+BULK wall_f2_s_19 [FLOOR_2] n=1 min(18.00,-0.00,3.20) max(19.00,0.15,6.40)
+BULK wall_f2_s_3 [FLOOR_2] n=1 min(2.00,-0.00,3.20) max(3.00,0.15,6.40)
+BULK wall_f2_s_5 [FLOOR_2] n=1 min(4.00,-0.00,3.20) max(5.00,0.15,6.40)
+BULK wall_f2_s_7 [FLOOR_2] n=1 min(6.00,-0.00,3.20) max(7.00,0.15,6.40)
+BULK wall_f2_s_9 [FLOOR_2] n=1 min(8.00,-0.00,3.20) max(9.00,0.15,6.40)
+BULK wall_f2_w_1 [FLOOR_2] n=1 min(0.00,-0.00,3.20) max(0.15,1.00,6.40)
+BULK wall_f2_w_11 [FLOOR_2] n=1 min(0.00,10.00,3.20) max(0.15,11.00,6.40)
+BULK wall_f2_w_13 [FLOOR_2] n=1 min(0.00,12.00,3.20) max(0.15,13.00,6.40)
+BULK wall_f2_w_3 [FLOOR_2] n=1 min(0.00,2.00,3.20) max(0.15,3.00,6.40)
+BULK wall_f2_w_5 [FLOOR_2] n=1 min(0.00,4.00,3.20) max(0.15,5.00,6.40)
+BULK wall_f2_w_7 [FLOOR_2] n=1 min(0.00,6.00,3.20) max(0.15,7.00,6.40)
+BULK wall_f2_w_9 [FLOOR_2] n=1 min(0.00,8.00,3.20) max(0.15,9.00,6.40)
+BULK wall_f3_e_1 [FLOOR_3] n=1 min(19.85,-0.00,6.40) max(20.00,1.00,9.60)
+BULK wall_f3_e_11 [FLOOR_3] n=1 min(19.85,10.00,6.40) max(20.00,11.00,9.60)
+BULK wall_f3_e_13 [FLOOR_3] n=1 min(19.85,12.00,6.40) max(20.00,13.00,9.60)
+BULK wall_f3_e_3 [FLOOR_3] n=1 min(19.85,2.00,6.40) max(20.00,3.00,9.60)
+BULK wall_f3_e_5 [FLOOR_3] n=1 min(19.85,4.00,6.40) max(20.00,5.00,9.60)
+BULK wall_f3_e_7 [FLOOR_3] n=1 min(19.85,6.00,6.40) max(20.00,7.00,9.60)
+BULK wall_f3_e_9 [FLOOR_3] n=1 min(19.85,8.00,6.40) max(20.00,9.00,9.60)
+BULK wall_f3_n_1 [FLOOR_3] n=1 min(-0.00,13.85,6.40) max(1.00,14.00,9.60)
+BULK wall_f3_n_11 [FLOOR_3] n=1 min(10.00,13.85,6.40) max(11.00,14.00,9.60)
+BULK wall_f3_n_13 [FLOOR_3] n=1 min(12.00,13.85,6.40) max(13.00,14.00,9.60)
+BULK wall_f3_n_15 [FLOOR_3] n=1 min(14.00,13.85,6.40) max(15.00,14.00,9.60)
+BULK wall_f3_n_17 [FLOOR_3] n=1 min(16.00,13.85,6.40) max(17.00,14.00,9.60)
+BULK wall_f3_n_19 [FLOOR_3] n=1 min(18.00,13.85,6.40) max(19.00,14.00,9.60)
+BULK wall_f3_n_3 [FLOOR_3] n=1 min(2.00,13.85,6.40) max(3.00,14.00,9.60)
+BULK wall_f3_n_5 [FLOOR_3] n=1 min(4.00,13.85,6.40) max(5.00,14.00,9.60)
+BULK wall_f3_n_7 [FLOOR_3] n=1 min(6.00,13.85,6.40) max(7.00,14.00,9.60)
+BULK wall_f3_n_9 [FLOOR_3] n=1 min(8.00,13.85,6.40) max(9.00,14.00,9.60)
+BULK wall_f3_s_1 [FLOOR_3] n=1 min(-0.00,-0.00,6.40) max(1.00,0.15,9.60)
+BULK wall_f3_s_11 [FLOOR_3] n=1 min(10.00,-0.00,6.40) max(11.00,0.15,9.60)
+BULK wall_f3_s_13 [FLOOR_3] n=1 min(12.00,-0.00,6.40) max(13.00,0.15,9.60)
+BULK wall_f3_s_15 [FLOOR_3] n=1 min(14.00,-0.00,6.40) max(15.00,0.15,9.60)
+BULK wall_f3_s_17 [FLOOR_3] n=1 min(16.00,-0.00,6.40) max(17.00,0.15,9.60)
+BULK wall_f3_s_19 [FLOOR_3] n=1 min(18.00,-0.00,6.40) max(19.00,0.15,9.60)
+BULK wall_f3_s_3 [FLOOR_3] n=1 min(2.00,-0.00,6.40) max(3.00,0.15,9.60)
+BULK wall_f3_s_5 [FLOOR_3] n=1 min(4.00,-0.00,6.40) max(5.00,0.15,9.60)
+BULK wall_f3_s_7 [FLOOR_3] n=1 min(6.00,-0.00,6.40) max(7.00,0.15,9.60)
+BULK wall_f3_s_9 [FLOOR_3] n=1 min(8.00,-0.00,6.40) max(9.00,0.15,9.60)
+BULK wall_f3_w_1 [FLOOR_3] n=1 min(0.00,-0.00,6.40) max(0.15,1.00,9.60)
+BULK wall_f3_w_11 [FLOOR_3] n=1 min(0.00,10.00,6.40) max(0.15,11.00,9.60)
+BULK wall_f3_w_13 [FLOOR_3] n=1 min(0.00,12.00,6.40) max(0.15,13.00,9.60)
+BULK wall_f3_w_3 [FLOOR_3] n=1 min(0.00,2.00,6.40) max(0.15,3.00,9.60)
+BULK wall_f3_w_5 [FLOOR_3] n=1 min(0.00,4.00,6.40) max(0.15,5.00,9.60)
+BULK wall_f3_w_7 [FLOOR_3] n=1 min(0.00,6.00,6.40) max(0.15,7.00,9.60)
+BULK wall_f3_w_9 [FLOOR_3] n=1 min(0.00,8.00,6.40) max(0.15,9.00,9.60)
+BULK wall_f4_e_1 [FLOOR_4] n=1 min(19.85,-0.00,9.60) max(20.00,1.00,12.80)
+BULK wall_f4_e_11 [FLOOR_4] n=1 min(19.85,10.00,9.60) max(20.00,11.00,12.80)
+BULK wall_f4_e_13 [FLOOR_4] n=1 min(19.85,12.00,9.60) max(20.00,13.00,12.80)
+BULK wall_f4_e_3 [FLOOR_4] n=1 min(19.85,2.00,9.60) max(20.00,3.00,12.80)
+BULK wall_f4_e_5 [FLOOR_4] n=1 min(19.85,4.00,9.60) max(20.00,5.00,12.80)
+BULK wall_f4_e_7 [FLOOR_4] n=1 min(19.85,6.00,9.60) max(20.00,7.00,12.80)
+BULK wall_f4_e_9 [FLOOR_4] n=1 min(19.85,8.00,9.60) max(20.00,9.00,12.80)
+BULK wall_f4_n_1 [FLOOR_4] n=1 min(-0.00,13.85,9.60) max(1.00,14.00,12.80)
+BULK wall_f4_n_11 [FLOOR_4] n=1 min(10.00,13.85,9.60) max(11.00,14.00,12.80)
+BULK wall_f4_n_13 [FLOOR_4] n=1 min(12.00,13.85,9.60) max(13.00,14.00,12.80)
+BULK wall_f4_n_15 [FLOOR_4] n=1 min(14.00,13.85,9.60) max(15.00,14.00,12.80)
+BULK wall_f4_n_17 [FLOOR_4] n=1 min(16.00,13.85,9.60) max(17.00,14.00,12.80)
+BULK wall_f4_n_19 [FLOOR_4] n=1 min(18.00,13.85,9.60) max(19.00,14.00,12.80)
+BULK wall_f4_n_3 [FLOOR_4] n=1 min(2.00,13.85,9.60) max(3.00,14.00,12.80)
+BULK wall_f4_n_5 [FLOOR_4] n=1 min(4.00,13.85,9.60) max(5.00,14.00,12.80)
+BULK wall_f4_n_7 [FLOOR_4] n=1 min(6.00,13.85,9.60) max(7.00,14.00,12.80)
+BULK wall_f4_n_9 [FLOOR_4] n=1 min(8.00,13.85,9.60) max(9.00,14.00,12.80)
+BULK wall_f4_s_1 [FLOOR_4] n=1 min(-0.00,-0.00,9.60) max(1.00,0.15,12.80)
+BULK wall_f4_s_11 [FLOOR_4] n=1 min(10.00,-0.00,9.60) max(11.00,0.15,12.80)
+BULK wall_f4_s_13 [FLOOR_4] n=1 min(12.00,-0.00,9.60) max(13.00,0.15,12.80)
+BULK wall_f4_s_15 [FLOOR_4] n=1 min(14.00,-0.00,9.60) max(15.00,0.15,12.80)
+BULK wall_f4_s_17 [FLOOR_4] n=1 min(16.00,-0.00,9.60) max(17.00,0.15,12.80)
+BULK wall_f4_s_19 [FLOOR_4] n=1 min(18.00,-0.00,9.60) max(19.00,0.15,12.80)
+BULK wall_f4_s_3 [FLOOR_4] n=1 min(2.00,-0.00,9.60) max(3.00,0.15,12.80)
+BULK wall_f4_s_5 [FLOOR_4] n=1 min(4.00,-0.00,9.60) max(5.00,0.15,12.80)
+BULK wall_f4_s_7 [FLOOR_4] n=1 min(6.00,-0.00,9.60) max(7.00,0.15,12.80)
+BULK wall_f4_s_9 [FLOOR_4] n=1 min(8.00,-0.00,9.60) max(9.00,0.15,12.80)
+BULK wall_f4_w_1 [FLOOR_4] n=1 min(0.00,-0.00,9.60) max(0.15,1.00,12.80)
+BULK wall_f4_w_11 [FLOOR_4] n=1 min(0.00,10.00,9.60) max(0.15,11.00,12.80)
+BULK wall_f4_w_13 [FLOOR_4] n=1 min(0.00,12.00,9.60) max(0.15,13.00,12.80)
+BULK wall_f4_w_3 [FLOOR_4] n=1 min(0.00,2.00,9.60) max(0.15,3.00,12.80)
+BULK wall_f4_w_5 [FLOOR_4] n=1 min(0.00,4.00,9.60) max(0.15,5.00,12.80)
+BULK wall_f4_w_7 [FLOOR_4] n=1 min(0.00,6.00,9.60) max(0.15,7.00,12.80)
+BULK wall_f4_w_9 [FLOOR_4] n=1 min(0.00,8.00,9.60) max(0.15,9.00,12.80)
+BULK window_f1 [FLOOR_1] n=64 min(0.00,-0.00,0.00) max(20.00,14.00,3.20)
+BULK window_f2 [FLOOR_2] n=68 min(0.00,-0.00,3.20) max(20.00,14.00,6.40)
+BULK window_f3 [FLOOR_3] n=68 min(0.00,-0.00,6.40) max(20.00,14.00,9.60)
+BULK window_f4 [FLOOR_4] n=68 min(0.00,-0.00,9.60) max(20.00,14.00,12.80)
+MATERIALS ['BakedMaterial', 'BakedMaterial.001', 'MAT_dark', 'MAT_desk_top', 'MAT_exterior', 'MAT_floor', 'MAT_glass', 'MAT_ground', 'MAT_interior', 'MAT_leaf', 'MAT_orange', 'MAT_red', 'MAT_road', 'MAT_screen_emit', 'MAT_sidewalk', 'MAT_teal', 'MAT_white', 'MAT_wood', 'Material_0', 'Material_0.001', 'Material_0.002', 'Material_0.003', 'Material_0.004', 'Material_0.005', 'Material_0.006', 'Material_0.007']
+SCENE camera=CAM_iso
+VIEW Khronos PBR Neutral
+== preview pass 1 2026-10-18T10:57:56+00:00
+RUN views=['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11'] preview=True res=640x360 samples=16 engine=BLENDER_WORKBENCH lights=['LIGHT_area_lobby', 'LIGHT_area_meeting', 'LIGHT_area_meeting_kit', 'LIGHT_area_workstation', 'SUN_main']
+CAMCHECK 01 try0 loc=(4.00,0.70,1.60) target=(5.60,7.00,1.20) first_hit=plant_2@13.04 min_axis_clear=0.58 OK
+CAMCHECK 02 try0 loc=(4.20,8.80,1.60) target=(5.60,2.60,0.60) first_hit=sofa_1@7.35 min_axis_clear=1.51 OK
+CAMCHECK 03 try0 loc=(19.30,4.00,1.60) target=(9.00,4.30,0.90) first_hit=wall_f1_w_5@19.23 min_axis_clear=0.55 OK
+CAMCHECK 04 try0 loc=(19.30,0.70,1.70) target=(11.00,5.50,0.80) first_hit=tile_f1_52@18.14 min_axis_clear=0.55 OK
+CAMCHECK 05 try0 loc=(13.50,8.50,1.60) target=(10.60,12.60,0.90) first_hit=window_f1_n_10@6.68 min_axis_clear=0.48 OK
+CAMCHECK 06 try0 loc=(43.50,8.50,1.60) target=(40.60,12.60,0.90) first_hit=wall_kit_n_10@6.68 min_axis_clear=0.48 OK
+CAMCHECK 07 try0 loc=(15.00,7.50,1.70) target=(17.60,11.60,1.00) first_hit=stair_step_6@3.50 min_axis_clear=1.30 OK
+CAMCHECK 08 try0 loc=(24.00,-7.00,18.00) target=(10.00,7.20,0.00) first_hit=slab_floor_1@26.86 min_axis_clear=18.01 OK
+CAMCHECK 09 try0 loc=(1.20,1.20,4.80) target=(14.00,9.50,4.00) first_hit=window_f2_e_14@22.26 min_axis_clear=1.11 OK
+CAMCHECK 10 try0 loc=(19.40,13.40,11.20) target=(6.00,3.00,10.30) first_hit=wall_f4_s_3@21.64 min_axis_clear=0.51 OK
+CAMCHECK 11 try0 loc=(10.00,-30.00,1.70) target=(10.00,0.00,6.20) first_hit=slab_floor_3_w@30.34 min_axis_clear=1.71 OK
+RUN DONE 36s failed=[]
+== preview pass 2 (reframe 01,07,10,11) 2026-10-18T11:00:38+00:00
+RUN views=['01', '07', '08', '10', '11'] preview=True res=640x360 samples=16 engine=BLENDER_WORKBENCH lights=['LIGHT_area_lobby', 'LIGHT_area_meeting', 'LIGHT_area_meeting_kit', 'LIGHT_area_workstation', 'SUN_main']
+CAMCHECK 01 try0 loc=(4.00,0.70,1.60) target=(6.30,6.50,1.10) first_hit=wall_f1_meeting_x8_3@10.82 min_axis_clear=0.58 OK
+CAMCHECK 07 try0 loc=(13.20,7.40,1.70) target=(18.00,11.50,1.20) first_hit=wall_f1_meeting_y8_6@0.89 min_axis_clear=0.57 BLOCKED
+CAMCHECK 07 try1 loc=(12.82,7.08,1.70) target=(18.00,11.50,1.20) first_hit=wall_f1_meeting_y8_6@1.47 min_axis_clear=0.90 OK
+CAMCHECK 08 try0 loc=(24.00,-7.00,18.00) target=(10.00,7.20,0.00) first_hit=slab_floor_1@26.86 min_axis_clear=18.01 OK
+CAMCHECK 10 try0 loc=(13.00,12.80,11.20) target=(19.00,6.00,10.20) first_hit=window_f4_e_6@10.41 min_axis_clear=1.40 OK
+CAMCHECK 11 try0 loc=(10.00,-27.00,1.70) target=(10.00,0.00,6.20) first_hit=slab_floor_3_w@27.37 min_axis_clear=1.71 OK
+RUN DONE 19s failed=[]
+== preview pass 3 (07 clear of meeting glass) 2026-10-18T11:01:45+00:00
+RUN views=['07'] preview=True res=640x360 samples=16 engine=BLENDER_WORKBENCH lights=['LIGHT_area_lobby', 'LIGHT_area_meeting', 'LIGHT_area_meeting_kit', 'LIGHT_area_workstation', 'SUN_main']
+CAMCHECK 07 try0 loc=(15.50,7.60,1.70) target=(17.80,11.80,1.10) first_hit=stair_step_7@3.33 min_axis_clear=1.41 OK
+RUN DONE 5s failed=[]
+== preview pass 4 (07 from workstation aisle) 2026-10-18T11:02:26+00:00
+RUN views=['07'] preview=True res=640x360 samples=16 engine=BLENDER_WORKBENCH lights=['LIGHT_area_lobby', 'LIGHT_area_meeting', 'LIGHT_area_meeting_kit', 'LIGHT_area_workstation', 'SUN_main']
+CAMCHECK 07 try0 loc=(14.60,4.40,1.75) target=(17.40,11.60,1.00) first_hit=stair_step_6@6.31 min_axis_clear=1.25 OK
+RUN DONE 5s failed=[]
+== preview pass 5 (07 via desk gap x15.3-16.2) 2026-10-18T11:03:02+00:00
+RUN views=['07'] preview=True res=640x360 samples=16 engine=BLENDER_WORKBENCH lights=['LIGHT_area_lobby', 'LIGHT_area_meeting', 'LIGHT_area_meeting_kit', 'LIGHT_area_workstation', 'SUN_main']
+CAMCHECK 07 try0 loc=(15.75,3.80,1.75) target=(17.00,11.60,1.00) first_hit=stair_step_6@6.56 min_axis_clear=1.25 OK
+RUN DONE 6s failed=[]
+== EEVEE batch A 2026-10-18T11:03:53+00:00
+RUN views=['01', '02', '03'] preview=False res=1280x720 samples=16 engine=BLENDER_EEVEE lights=['LIGHT_area_lobby', 'LIGHT_area_meeting', 'LIGHT_area_meeting_kit', 'LIGHT_area_workstation', 'SUN_main']
+CAMCHECK 01 try0 loc=(4.00,0.70,1.60) target=(6.30,6.50,1.10) first_hit=wall_f1_meeting_x8_3@10.82 min_axis_clear=0.58 OK
+CAMCHECK 02 try0 loc=(4.20,8.80,1.60) target=(5.60,2.60,0.60) first_hit=sofa_1@7.35 min_axis_clear=1.51 OK
+CAMCHECK 03 try0 loc=(19.30,4.00,1.60) target=(9.00,4.30,0.90) first_hit=wall_f1_w_5@19.23 min_axis_clear=0.55 OK
+RUN DONE 744s failed=[]
+== EEVEE batch B 2026-10-18T11:16:50+00:00
+RUN views=['04', '05', '06', '07'] preview=False res=1280x720 samples=16 engine=BLENDER_EEVEE lights=['LIGHT_area_lobby', 'LIGHT_area_meeting', 'LIGHT_area_meeting_kit', 'LIGHT_area_workstation', 'SUN_main']
+CAMCHECK 04 try0 loc=(19.30,0.70,1.70) target=(11.00,5.50,0.80) first_hit=tile_f1_52@18.14 min_axis_clear=0.55 OK
+CAMCHECK 05 try0 loc=(13.50,8.50,1.60) target=(10.60,12.60,0.90) first_hit=window_f1_n_10@6.68 min_axis_clear=0.48 OK
+CAMCHECK 06 try0 loc=(43.50,8.50,1.60) target=(40.60,12.60,0.90) first_hit=wall_kit_n_10@6.68 min_axis_clear=0.48 OK
+CAMCHECK 07 try0 loc=(14.60,4.40,1.75) target=(17.40,11.60,1.00) first_hit=stair_step_6@6.31 min_axis_clear=1.25 OK
+RUN DONE 722s failed=[]
+== EEVEE batch C 2026-10-18T11:29:42+00:00
+RUN views=['08', '09', '10', '11'] preview=False res=1280x720 samples=16 engine=BLENDER_EEVEE lights=['LIGHT_area_lobby', 'LIGHT_area_meeting', 'LIGHT_area_meeting_kit', 'LIGHT_area_workstation', 'SUN_main']
+CAMCHECK 08 try0 loc=(24.00,-7.00,18.00) target=(10.00,7.20,0.00) first_hit=slab_floor_1@26.86 min_axis_clear=18.01 OK
+CAMCHECK 09 try0 loc=(1.20,1.20,4.80) target=(14.00,9.50,4.00) first_hit=window_f2_e_14@22.26 min_axis_clear=1.11 OK
+CAMCHECK 10 try0 loc=(13.00,12.80,11.20) target=(19.00,6.00,10.20) first_hit=window_f4_e_6@10.41 min_axis_clear=1.40 OK
+CAMCHECK 11 try0 loc=(10.00,-27.00,1.70) target=(10.00,0.00,6.20) first_hit=slab_floor_3_w@27.37 min_axis_clear=1.71 OK
+RUN DONE 718s failed=[]

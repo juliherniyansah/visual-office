@@ -1,0 +1,5 @@
+# docs read in full (todo 1 step 0)
+docs/redhunter-hq-brainstorming-guided.md 358 lines READ_FULL
+docs/mvp/README.md 32 lines READ_FULL
+docs/mvp/HANDOFF.md 67 lines READ_FULL
+docs/mvp/MVP-2-blender-lab.md 82 lines READ_FULL

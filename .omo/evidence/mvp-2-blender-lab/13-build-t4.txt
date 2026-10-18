@@ -1,0 +1,8 @@
+BlenderMCP addon registered
+SELF_CHECK OK 367 objects 6630 tris
+Info: Saved as "hq_scratch_t4.blend"
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0

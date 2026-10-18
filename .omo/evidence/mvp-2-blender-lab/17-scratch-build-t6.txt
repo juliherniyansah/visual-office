@@ -1,0 +1,8 @@
+BlenderMCP addon registered
+Info: Saved as "hq_scratch_t6.blend"
+SCRATCH OK 205
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0

@@ -1,0 +1,1 @@
+hq_v04.blend md5 edc83c06afbc3e2b416e08947931bbf6 (kit2 build, replaces pre-L2 143be11694c44c4791262bcd8b88a001; backup /tmp/hq_v04_preL2.blend)

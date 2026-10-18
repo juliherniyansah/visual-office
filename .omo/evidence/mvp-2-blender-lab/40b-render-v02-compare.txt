@@ -1,0 +1,12 @@
+00:00.729  blend            | Read blend: "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_v02.blend"
+00:34.924  render           | Saved: '/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v02_r1_kit_compare.png'
+BlenderMCP addon registered
+VIEW_TRANSFORM Khronos PBR Neutral
+VIEW_EXPOSURE 0.0
+RENDER OK /home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/renders/hq_v02_r1_kit_compare.png
+STATS kit_compare mean_lum=0.712 red_ratio=0.000 unique_colors=3322
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit
+EXIT=0

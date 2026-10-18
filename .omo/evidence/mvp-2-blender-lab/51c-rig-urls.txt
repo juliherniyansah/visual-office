@@ -1,0 +1,10 @@
+# rig task 01a14d22-2671-70fa-b382-21aa910c2328 (download URLs, signed, expire 2026-10-21T03:50:58Z)
+rigged GLB: Character_output.glb
+rigged FBX: Character_output.fbx
+walking GLB: Animation_Walking_withSkin.glb
+walking FBX: Animation_Walking_withSkin.fbx
+walking armature GLB: Animation_Walking_withSkin_armature.glb
+running GLB: Animation_Running_withSkin.glb
+running FBX: Animation_Running_withSkin.fbx
+running armature GLB: Animation_Running_withSkin_armature.glb
+base: https://assets.meshy.ai/7d6d0be9-02d4-4605-8ab6-2bf30f7af5f6/tasks/01a14d22-2671-70fa-b382-21aa910c2328/output/

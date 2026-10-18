@@ -1,0 +1,7 @@
+inject_bad_col EXIT=1
+inject_missing_nav EXIT=1
+inject_bad_kit_tile EXIT=1
+FURNITURE OK
+furniture EXIT=0
+NORMALIZE_EXTRA OK
+normalize EXIT=0

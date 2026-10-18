@@ -1,0 +1,1 @@
+29a9335853af9bc029aea4eb88445110  apps/assets/blender/hq_v01.blend

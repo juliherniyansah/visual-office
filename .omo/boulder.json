@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "active_work_id": "vyron-landing-page-b7f2a91",
+  "active_work_id": "mvp-2-blender-lab-a3c71e5d",
   "works": {
     "redhunter-master-plan-ea9d6f52": {
       "work_id": "redhunter-master-plan-ea9d6f52",
-      "active_plan": "/home/programer/work/visual-office/.omo/plans/redhunter-master-plan.md",
+      "active_plan": "/home/programer/work/Redhunter New Born/visual-office/.omo/plans/redhunter-master-plan.md",
       "plan_name": "redhunter-master-plan",
       "session_ids": [
         "opencode:ses_ecad754b0ffe4V1Kj37yM2yXQp"
@@ -15,7 +15,7 @@
     },
     "vyron-landing-page-b7f2a91": {
       "work_id": "vyron-landing-page-b7f2a91",
-      "active_plan": "/home/programer/work/visual-office/.omo/plans/vyron-landing-page.md",
+      "active_plan": "/home/programer/work/Redhunter New Born/visual-office/.omo/plans/vyron-landing-page.md",
       "plan_name": "vyron-landing-page",
       "session_ids": [
         "opencode:ses_ecad8cc00ffe33XD6QEBTwwY5H",
@@ -29,216 +29,637 @@
       ],
       "status": "active",
       "worktree_path": null,
-      "started_at": "2026-10-13T12:05:24.192Z",
-      "session_origins": {
-        "opencode:ses_ec90c0615ffeNAnVVstwm4PNF8": "appended",
-        "opencode:ses_ec90be957ffeVuhUtFnSReMXkt": "appended",
-        "opencode:ses_ec90bcdabffebpIxaHDrpY4jL0": "appended",
-        "opencode:ses_ec8c29e91ffeKczu79MZkZELXq": "appended",
-        "opencode:ses_ec8c285d2ffeYelmm8uyj0kJdm": "appended",
-        "opencode:ses_ec8c26b16ffetoAw3BcOuyQOMb": "appended",
-        "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA": "appended"
-      },
+      "session_origins": {}
+    },
+    "initial-setup-7f3c9a21": {
+      "work_id": "initial-setup-7f3c9a21",
+      "active_plan": "/home/programer/work/Redhunter New Born/visual-office/.omo/plans/initial-setup.md",
+      "plan_name": "initial-setup",
+      "session_ids": [
+        "opencode:ses_ec070691effe4r6tHXY5GxPNCM"
+      ],
+      "status": "completed",
+      "worktree_path": null,
+      "started_at": "2026-10-15T12:35:37.436Z",
+      "session_origins": {},
       "task_sessions": {
         "todo:1": {
           "task_key": "todo:1",
           "task_label": "1",
-          "task_title": "Nav",
-          "session_id": "opencode:ses_ec853fc5dffe7sIRYt1i1nmmN7",
+          "task_title": "Add error message to `apps/api/src/http/response.ts`",
+          "session_id": "opencode:ses_ec06df24fffeaftNz3ucFllm25",
           "agent": "Sisyphus-Junior",
-          "category": "implementation",
-          "started_at": "2026-10-13T17:03:52.260Z",
+          "category": "quick",
+          "updated_at": "2026-10-15T12:43:40.687Z",
+          "started_at": "2026-10-15T12:41:14.424Z",
           "status": "completed",
-          "updated_at": "2026-10-13T23:52:33.327Z",
-          "ended_at": "2026-10-13T23:52:33.327Z",
-          "elapsed_ms": 24521067
-        },
-        "todo:2": {
-          "task_key": "todo:2",
-          "task_label": "2",
-          "task_title": "Site constants `apps/web/src/lib/site.ts`",
-          "session_id": "opencode:ses_ec90bcdabffebpIxaHDrpY4jL0",
-          "agent": "Sisyphus-Junior",
-          "category": "testing",
-          "started_at": "2026-10-13T20:57:52.976Z",
-          "status": "running",
-          "updated_at": "2026-10-13T20:57:55.812Z"
+          "ended_at": "2026-10-15T12:43:40.687Z",
+          "elapsed_ms": 146263
         },
         "todo:5": {
           "task_key": "todo:5",
           "task_label": "5",
-          "task_title": "`Nav.tsx` + `Footer.tsx`",
-          "session_id": "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA",
+          "task_title": "Create setup page at `apps/web/src/app/setup/page.tsx`",
+          "session_id": "opencode:ses_ec068ae88ffebQi654RO9GDsom",
           "agent": "Sisyphus-Junior",
-          "category": "visual-engineering",
-          "updated_at": "2026-10-13T23:49:18.745Z",
-          "ended_at": "2026-10-13T23:49:18.745Z",
-          "status": "completed"
+          "category": "quick",
+          "updated_at": "2026-10-15T12:49:58.749Z",
+          "started_at": "2026-10-15T12:49:01.481Z",
+          "status": "completed",
+          "ended_at": "2026-10-15T12:49:58.749Z",
+          "elapsed_ms": 57268
         },
-        "todo:11": {
-          "task_key": "todo:11",
-          "task_label": "11",
-          "task_title": "Assemble `page.tsx`, enable full e2e, capture screenshots",
-          "session_id": "opencode:ses_ec84fa96affeylqAzApfjJai4u",
+        "final-wave:f1": {
+          "task_key": "final-wave:f1",
+          "task_label": "F1",
+          "task_title": "**Backend integration test**",
+          "session_id": "opencode:ses_ec062c07affe33kKY15ukMvbeO",
           "agent": "Sisyphus-Junior",
           "category": "testing",
-          "updated_at": "2026-10-14T00:06:25.234Z",
-          "started_at": "2026-10-14T00:05:18.693Z",
+          "updated_at": "2026-10-15T13:28:24.868Z",
+          "started_at": "2026-10-15T12:52:41.256Z",
           "status": "completed",
-          "ended_at": "2026-10-14T00:06:25.234Z",
-          "elapsed_ms": 66541
+          "ended_at": "2026-10-15T13:28:24.868Z",
+          "elapsed_ms": 2143612
+        }
+      },
+      "updated_at": "2026-10-15T13:29:06.016Z",
+      "completed_at": "2026-10-15T12:45:00Z",
+      "ended_at": "2026-10-15T13:29:06.016Z",
+      "elapsed_ms": 3208580
+    },
+    "mvp-0-vision-fead8dea": {
+      "work_id": "mvp-0-vision-fead8dea",
+      "active_plan": "/home/programer/work/redhunter-reborn/visual-office/.omo/plans/mvp-0-vision.md",
+      "plan_name": "mvp-0-vision",
+      "status": "completed",
+      "started_at": "2026-10-17T09:23:00.714Z",
+      "updated_at": "2026-10-17T09:35:27.000Z",
+      "session_ids": [
+        "opencode:ses_eb6d4088cffeM9d2dg3hAN4kru"
+      ],
+      "session_origins": {
+        "opencode:ses_eb6d4088cffeM9d2dg3hAN4kru": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {},
+      "ended_at": "2026-10-17T09:35:27.000Z",
+      "completed_at": "2026-10-17T09:35:27.000Z",
+      "elapsed_ms": 746286
+    },
+    "mvp-0-vision-d590928a": {
+      "work_id": "mvp-0-vision-d590928a",
+      "active_plan": "/home/programer/work/redhunter-reborn/visual-office/.omo/plans/mvp-0-vision.md",
+      "plan_name": "mvp-0-vision",
+      "status": "completed",
+      "started_at": "2026-10-17T09:23:00.759Z",
+      "updated_at": "2026-10-17T09:35:27.000Z",
+      "session_ids": [
+        "opencode:ses_eb6d4088cffeM9d2dg3hAN4kru"
+      ],
+      "session_origins": {
+        "opencode:ses_eb6d4088cffeM9d2dg3hAN4kru": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "§4.1, §5.1, §8.4: every table cell has concrete values (hex/number/identifier); grep these sections for `mungkin|sebaiknya|TBD|kira-kira|nanti` (expect none; report any hit).",
+          "session_id": "opencode:ses_eb6cc0803ffend1tzy3SxRloGO",
+          "agent": "Sisyphus-Junior",
+          "category": "reviewer",
+          "started_at": "2026-10-17T09:24:38.846Z",
+          "ended_at": "2026-10-17T09:33:41.699Z",
+          "elapsed_ms": 542853,
+          "status": "completed",
+          "updated_at": "2026-10-17T09:33:41.699Z"
+        },
+        "todo:2": {
+          "task_key": "todo:2",
+          "task_label": "2",
+          "task_title": "Declare 3D deps in `apps/web/package.json` and run `bun install`",
+          "session_id": "opencode:ses_eb6d127b0ffeRT7YmGhqhMh0eB",
+          "agent": "Sisyphus-Junior",
+          "category": "writing",
+          "started_at": "2026-10-17T09:25:38.764Z",
+          "ended_at": "2026-10-17T09:26:48.877Z",
+          "elapsed_ms": 70113,
+          "status": "completed",
+          "updated_at": "2026-10-17T09:26:48.877Z"
+        },
+        "todo:3": {
+          "task_key": "todo:3",
+          "task_label": "3",
+          "task_title": "Write permanent spec `apps/web/e2e/dashboard-office.e2e.ts` and capture the BEFORE-split baseline",
+          "session_id": "opencode:ses_eb6cc30f0ffewOa7IZa85uNYOQ",
+          "agent": "Sisyphus-Junior",
+          "category": "reviewer",
+          "started_at": "2026-10-17T09:27:53.411Z",
+          "ended_at": "2026-10-17T09:34:46.759Z",
+          "elapsed_ms": 413348,
+          "status": "completed",
+          "updated_at": "2026-10-17T09:34:46.759Z"
+        }
+      },
+      "ended_at": "2026-10-17T09:35:27.000Z",
+      "completed_at": "2026-10-17T09:35:27.000Z",
+      "elapsed_ms": 746241
+    },
+    "mvp-1-foundation-fa34c987": {
+      "work_id": "mvp-1-foundation-fa34c987",
+      "active_plan": "/home/programer/work/redhunter-reborn/visual-office/.omo/plans/mvp-1-foundation.md",
+      "plan_name": "mvp-1-foundation",
+      "status": "completed",
+      "started_at": "2026-10-17T09:23:43.455Z",
+      "updated_at": "2026-10-17T09:57:53.396Z",
+      "session_ids": [
+        "opencode:ses_eb6d361afffecRzYnDYVGBqOgV"
+      ],
+      "session_origins": {
+        "opencode:ses_eb6d361afffecRzYnDYVGBqOgV": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "Capture pre-state: evidence dir, dirty-worktree ledger, resolved versions, typecheck/lint baseline, install dry-run",
+          "session_id": "opencode:ses_eb6d2d14dffegCF8519INyHxmq",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-10-17T09:24:55.736Z",
+          "started_at": "2026-10-17T09:24:47.953Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T09:24:55.736Z",
+          "elapsed_ms": 7783
+        },
+        "todo:2": {
+          "task_key": "todo:2",
+          "task_label": "2",
+          "task_title": "Declare 3D deps in `apps/web/package.json` and run `bun install`",
+          "session_id": "opencode:ses_eb6d1f47bffeR39MOxTCFq8MHf",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-10-17T09:26:09.398Z",
+          "started_at": "2026-10-17T09:25:52.849Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T09:26:09.398Z",
+          "elapsed_ms": 16549
+        },
+        "todo:3": {
+          "task_key": "todo:3",
+          "task_label": "3",
+          "task_title": "Write permanent spec `apps/web/e2e/dashboard-office.e2e.ts` and capture the BEFORE-split baseline",
+          "session_id": "opencode:ses_eb6d0b7f3ffefKE3mRQT4Qr538",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-10-17T09:32:47.096Z",
+          "started_at": "2026-10-17T09:32:24.730Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T09:32:47.096Z",
+          "elapsed_ms": 22366
+        },
+        "todo:4": {
+          "task_key": "todo:4",
+          "task_label": "4",
+          "task_title": "Create support files `constants.ts`, `focusContext.ts`, `deskLayout.ts`",
+          "session_id": "opencode:ses_eb6caba74ffeA0GrcsCRywXHJm",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-10-17T09:34:10.821Z",
+          "started_at": "2026-10-17T09:33:57.419Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T09:34:10.821Z",
+          "elapsed_ms": 13402
+        },
+        "todo:5": {
+          "task_key": "todo:5",
+          "task_label": "5",
+          "task_title": "Create `Building.tsx` (with `BUILDING_MODEL_URL`), `FloorPlane.tsx`, `DeskMarkers.tsx`",
+          "session_id": "opencode:ses_eb6c97b1fffeTt4lEvOqfqXscA",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-10-17T09:35:25.324Z",
+          "started_at": "2026-10-17T09:35:12.261Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T09:35:25.324Z",
+          "elapsed_ms": 13063
+        },
+        "todo:6": {
+          "task_key": "todo:6",
+          "task_label": "6",
+          "task_title": "Create `Agent.tsx`, `CameraRig.tsx`, `FloorSelector.tsx`, `WebGLErrorBoundary.tsx`, `Lighting.tsx`",
+          "session_id": "opencode:ses_eb6c862f7ffeBb8GemtwIeAJH7",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-10-17T09:36:58.856Z",
+          "started_at": "2026-10-17T09:36:44.524Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T09:36:58.856Z",
+          "elapsed_ms": 14332
+        },
+        "todo:7": {
+          "task_key": "todo:7",
+          "task_label": "7",
+          "task_title": "Create `Scene.tsx` and root `office/OfficeCanvas.tsx`",
+          "session_id": "opencode:ses_eb6c6e0a6ffevnylnIbl9l5uCJ",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-10-17T09:38:28.486Z",
+          "started_at": "2026-10-17T09:38:06.138Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T09:38:28.486Z",
+          "elapsed_ms": 22348
+        },
+        "todo:8": {
+          "task_key": "todo:8",
+          "task_label": "8",
+          "task_title": "Switch `dashboard/page.tsx` import, delete old monolith",
+          "session_id": "opencode:ses_eb6c59ea8ffefvYAbjkqkuX30h",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-10-17T09:39:26.149Z",
+          "started_at": "2026-10-17T09:39:13.047Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T09:39:26.149Z",
+          "elapsed_ms": 13102
+        },
+        "todo:9": {
+          "task_key": "todo:9",
+          "task_label": "9",
+          "task_title": "Regression run: snapshot matches baseline, console clean, typecheck green",
+          "session_id": "opencode:ses_eb6c4937affeu0EbtnlZ3we0t8",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-10-17T09:44:14.859Z",
+          "started_at": "2026-10-17T09:43:50.233Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T09:44:14.859Z",
+          "elapsed_ms": 24626
+        },
+        "todo:10": {
+          "task_key": "todo:10",
+          "task_label": "10",
+          "task_title": "Docs: append HANDOFF report, update guide §1/§9 and `apps/web/AGENTS.md`",
+          "session_id": "opencode:ses_eb6bff5daffeqDXebGXhHE8qcx",
+          "agent": "Sisyphus-Junior",
+          "category": "writing",
+          "updated_at": "2026-10-17T09:47:23.488Z",
+          "started_at": "2026-10-17T09:47:06.639Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T09:47:23.488Z",
+          "elapsed_ms": 16849
+        },
+        "final-wave:f1": {
+          "task_key": "final-wave:f1",
+          "task_label": "F1",
+          "task_title": "Plan compliance audit",
+          "session_id": "opencode:ses_eb6bd3c5effenekJbmHP9Tmn1r",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-10-17T09:57:37.462Z",
+          "started_at": "2026-10-17T09:56:51.034Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T09:57:37.462Z",
+          "elapsed_ms": 46428
+        }
+      },
+      "ended_at": "2026-10-17T09:57:53.396Z",
+      "elapsed_ms": 2049941
+    },
+    "mvp-2-blender-lab-a3c71e5d": {
+      "work_id": "mvp-2-blender-lab-a3c71e5d",
+      "active_plan": "/home/programer/work/redhunter-reborn/visual-office/.omo/plans/mvp-2-blender-lab.md",
+      "plan_name": "mvp-2-blender-lab",
+      "status": "completed",
+      "started_at": "2026-10-17T16:04:20.000Z",
+      "updated_at": "2026-10-18T10:16:44.522Z",
+      "session_ids": [
+        "opencode:ses_eb56524d9ffet9sDxAHp9sKclk"
+      ],
+      "session_origins": {
+        "opencode:ses_eb56524d9ffet9sDxAHp9sKclk": "direct"
+      },
+      "worktree_path": null,
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "Guide style revision: mid-poly + crisp textures written to `.md` and `.html`",
+          "session_id": "opencode:ses_eb56433d3ffeOpYuOWgKKbrKyQ",
+          "agent": "Sisyphus-Junior",
+          "category": "writing",
+          "updated_at": "2026-10-17T16:08:16.233Z",
+          "started_at": "2026-10-17T16:08:02.212Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T16:08:16.233Z",
+          "elapsed_ms": 14021
+        },
+        "todo:2": {
+          "task_key": "todo:2",
+          "task_label": "2",
+          "task_title": "Pre-state + skeleton: evidence dir, raw dirs, ledger, Blender/Meshy baselines",
+          "session_id": "opencode:ses_eb5609a5effeZSlbQHimR07HuH",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-low",
+          "updated_at": "2026-10-17T16:10:00.568Z",
+          "started_at": "2026-10-17T16:09:22.810Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T16:10:00.568Z",
+          "elapsed_ms": 37758
+        },
+        "todo:3": {
+          "task_key": "todo:3",
+          "task_label": "3",
+          "task_title": "`hq_lib.py` (shared helpers, constants, self_check registry) + `hq_massing.py` (4-floor shell + exterior) + `build_hq.py` skeleton",
+          "session_id": "opencode:ses_eb55ecc3bffeIk1u8e84fIaYah",
+          "agent": "Sisyphus-Junior",
+          "category": "deep",
+          "updated_at": "2026-10-17T16:19:20.247Z",
+          "started_at": "2026-10-17T16:18:49.418Z",
+          "status": "completed",
+          "ended_at": "2026-10-17T16:19:20.247Z",
+          "elapsed_ms": 30829
+        },
+        "todo:4": {
+          "task_key": "todo:4",
+          "task_label": "4",
+          "task_title": "`hq_floor1.py`: bpy modular kit, Floor 1 rooms, corridor, stairs, colliders, NAV/TASK empties",
+          "session_id": "opencode:ses_eb55636b9ffeTEqVBDZoPiM5XT",
+          "agent": "Sisyphus-Junior",
+          "started_at": "2026-10-17T16:34:07.747Z",
+          "status": "completed",
+          "updated_at": "2026-10-17T16:47:06.083Z",
+          "ended_at": "2026-10-17T16:47:06.083Z",
+          "elapsed_ms": 778336
+        },
+        "todo:7": {
+          "task_key": "todo:7",
+          "task_label": "7",
+          "task_title": "Meshy style reference images (2 paid calls) + prompt preset file",
+          "session_id": "opencode:ses_eb4f858c8ffeV2iMwppYSJUqSF",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "started_at": "2026-10-17T17:12:18.835Z",
+          "status": "running",
+          "updated_at": "2026-10-17T18:05:51.755Z"
+        },
+        "todo:10": {
+          "task_key": "todo:10",
+          "task_label": "10",
+          "task_title": "Generate 3-4 Meshy kit pieces (Smart Topology t2.5 + refine, shared reference) → `apps/assets/raw/meshy/kit/`",
+          "session_id": "opencode:ses_eb4ed0bdaffefSPHje7JTCjXp3",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-10-17T18:41:23.772Z",
+          "started_at": "2026-10-17T18:41:23.772Z",
+          "status": "running"
         },
         "todo:12": {
           "task_key": "todo:12",
           "task_label": "12",
-          "task_title": "Write delivery summary",
-          "session_id": "opencode:ses_ec812e9e2ffeQFpU2yOEf4fC4x",
+          "task_title": "Normalize real kit, stitch `ROOM_meeting_a_kit`, side-by-side render, metrics, `hq_v02.blend`",
+          "session_id": "opencode:ses_eb4d27d93ffe1PFtIS6EZDlEAW",
           "agent": "Sisyphus-Junior",
-          "category": "implementation",
-          "started_at": "2026-10-14T00:09:25.907Z",
+          "category": "deep",
+          "updated_at": "2026-10-17T19:14:02.723Z",
+          "started_at": "2026-10-17T19:14:02.723Z",
+          "status": "running"
+        },
+        "todo:14": {
+          "task_key": "todo:14",
+          "task_label": "14",
+          "task_title": "Generate 1 Meshy character (t2.5 smart-topology, t-pose, ≤ 20k tris) + refine 2k",
+          "session_id": "opencode:ses_eb2e71913ffeLH2hEcfwDT1Zwz",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-high",
+          "updated_at": "2026-10-18T03:46:53.807Z",
+          "started_at": "2026-10-18T03:46:53.807Z",
+          "status": "running"
+        },
+        "todo:15": {
+          "task_key": "todo:15",
+          "task_label": "15",
+          "task_title": "Import character, scale 1.7 m, place at `NAV_spawn_lobby`, rig + idle via Meshy, `hq_v03.blend`, lobby render",
+          "session_id": "opencode:ses_eb2df008fffe1UpuxRsreExRFK",
+          "agent": "Sisyphus-Junior",
+          "category": "deep",
+          "updated_at": "2026-10-18T04:10:00.276Z",
+          "started_at": "2026-10-18T04:10:00.276Z",
+          "status": "running"
+        },
+        "todo:17": {
+          "task_key": "todo:17",
+          "task_label": "17",
+          "task_title": "⏸ Verdict render (bpy furniture vs Meshy kit vs Meshy character in one frame) + Level 1/2 question",
+          "session_id": "opencode:ses_eb2c5dad6ffebxk7iOuyBxFYEb",
+          "agent": "Sisyphus-Junior",
+          "category": "deep",
+          "updated_at": "2026-10-18T04:36:12.523Z",
+          "started_at": "2026-10-18T04:36:12.523Z",
+          "status": "running"
+        },
+        "todo:18": {
+          "task_key": "todo:18",
+          "task_label": "18",
+          "task_title": "Write verdict to guide §3 + §11 (+ §10 note), sync `.html`; if Level 2 switch `build_hq.py` Floor 1 to `KIT_MESHY`",
+          "session_id": "opencode:ses_eb19d7029ffehapa7gXSz6sEuI",
+          "agent": "Sisyphus-Junior",
+          "category": "writing",
+          "started_at": "2026-10-18T09:39:28.593Z",
           "status": "running",
-          "updated_at": "2026-10-14T01:03:17.835Z"
+          "updated_at": "2026-10-18T09:42:40.684Z"
         },
-        "final-wave:f4": {
-          "task_key": "final-wave:f4",
-          "task_label": "F4",
-          "task_title": "Scope fidelity — verify nothing beyond Must have was built and nothing in Must have is missing.",
-          "session_id": "opencode:ses_ec8055b00ffeVAttYi08fl700r",
+        "todo:19": {
+          "task_key": "todo:19",
+          "task_label": "19",
+          "task_title": "HANDOFF report for MVP-2 (append to `docs/mvp/HANDOFF.md`)",
+          "session_id": "opencode:ses_eb1992564ffeUwCxMxTty9mT6J",
           "agent": "Sisyphus-Junior",
-          "category": "review",
-          "started_at": "2026-10-14T00:54:34.135Z",
-          "status": "completed",
-          "updated_at": "2026-10-14T01:16:47.022Z",
-          "ended_at": "2026-10-14T01:16:47.022Z",
-          "elapsed_ms": 1332887
+          "category": "writing",
+          "updated_at": "2026-10-18T09:52:28.905Z",
+          "started_at": "2026-10-18T09:52:28.905Z",
+          "status": "running"
         },
-        "final-wave:f2": {
-          "task_key": "final-wave:f2",
-          "task_label": "F2",
-          "task_title": "Code quality review — verify all 7 checks pass after fixes.",
-          "session_id": "opencode:ses_ec8147eedffe1WCkfLU9DxvtPb",
-          "agent": "Sisyphus-Junior",
-          "category": "review",
-          "started_at": "2026-10-14T00:54:59.200Z",
-          "status": "completed",
-          "updated_at": "2026-10-14T01:09:31.369Z",
-          "ended_at": "2026-10-14T01:09:31.369Z",
-          "elapsed_ms": 872169
+        "final-wave:f1": {
+          "task_key": "final-wave:f1",
+          "task_label": "F1",
+          "task_title": "Plan compliance audit",
+          "session_id": "opencode:ses_eb1915192ffeZXOkRei6Umj6UA",
+          "agent": "oracle",
+          "updated_at": "2026-10-18T09:58:28.587Z",
+          "started_at": "2026-10-18T09:58:28.587Z",
+          "status": "running"
         }
       },
-      "updated_at": "2026-10-14T01:16:47.022Z"
+      "ended_at": "2026-10-18T10:16:44.522Z",
+      "elapsed_ms": 65544522
     }
   },
   "session_ids": [
-    "opencode:ses_ecad8cc00ffe33XD6QEBTwwY5H",
-    "opencode:ses_ec90c0615ffeNAnVVstwm4PNF8",
-    "opencode:ses_ec90be957ffeVuhUtFnSReMXkt",
-    "opencode:ses_ec90bcdabffebpIxaHDrpY4jL0",
-    "opencode:ses_ec8c29e91ffeKczu79MZkZELXq",
-    "opencode:ses_ec8c285d2ffeYelmm8uyj0kJdm",
-    "opencode:ses_ec8c26b16ffetoAw3BcOuyQOMb",
-    "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA"
+    "opencode:ses_eb56524d9ffet9sDxAHp9sKclk"
   ],
   "session_origins": {
-    "opencode:ses_ec90c0615ffeNAnVVstwm4PNF8": "appended",
-    "opencode:ses_ec90be957ffeVuhUtFnSReMXkt": "appended",
-    "opencode:ses_ec90bcdabffebpIxaHDrpY4jL0": "appended",
-    "opencode:ses_ec8c29e91ffeKczu79MZkZELXq": "appended",
-    "opencode:ses_ec8c285d2ffeYelmm8uyj0kJdm": "appended",
-    "opencode:ses_ec8c26b16ffetoAw3BcOuyQOMb": "appended",
-    "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA": "appended"
+    "opencode:ses_eb56524d9ffet9sDxAHp9sKclk": "direct"
   },
   "task_sessions": {
     "todo:1": {
       "task_key": "todo:1",
       "task_label": "1",
-      "task_title": "Nav",
-      "session_id": "opencode:ses_ec853fc5dffe7sIRYt1i1nmmN7",
+      "task_title": "Guide style revision: mid-poly + crisp textures written to `.md` and `.html`",
+      "session_id": "opencode:ses_eb56433d3ffeOpYuOWgKKbrKyQ",
       "agent": "Sisyphus-Junior",
-      "category": "implementation",
-      "started_at": "2026-10-13T17:03:52.260Z",
+      "category": "writing",
+      "updated_at": "2026-10-17T16:08:16.233Z",
+      "started_at": "2026-10-17T16:08:02.212Z",
       "status": "completed",
-      "updated_at": "2026-10-13T23:52:33.327Z",
-      "ended_at": "2026-10-13T23:52:33.327Z",
-      "elapsed_ms": 24521067
+      "ended_at": "2026-10-17T16:08:16.233Z",
+      "elapsed_ms": 14021
     },
     "todo:2": {
       "task_key": "todo:2",
       "task_label": "2",
-      "task_title": "Site constants `apps/web/src/lib/site.ts`",
-      "session_id": "opencode:ses_ec90bcdabffebpIxaHDrpY4jL0",
+      "task_title": "Pre-state + skeleton: evidence dir, raw dirs, ledger, Blender/Meshy baselines",
+      "session_id": "opencode:ses_eb5609a5effeZSlbQHimR07HuH",
       "agent": "Sisyphus-Junior",
-      "category": "testing",
-      "started_at": "2026-10-13T20:57:52.976Z",
-      "status": "running",
-      "updated_at": "2026-10-13T20:57:55.812Z"
-    },
-    "todo:5": {
-      "task_key": "todo:5",
-      "task_label": "5",
-      "task_title": "`Nav.tsx` + `Footer.tsx`",
-      "session_id": "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA",
-      "agent": "Sisyphus-Junior",
-      "category": "visual-engineering",
-      "updated_at": "2026-10-13T23:49:18.745Z",
-      "ended_at": "2026-10-13T23:49:18.745Z",
-      "status": "completed"
-    },
-    "todo:11": {
-      "task_key": "todo:11",
-      "task_label": "11",
-      "task_title": "Assemble `page.tsx`, enable full e2e, capture screenshots",
-      "session_id": "opencode:ses_ec84fa96affeylqAzApfjJai4u",
-      "agent": "Sisyphus-Junior",
-      "category": "testing",
-      "updated_at": "2026-10-14T00:06:25.234Z",
-      "started_at": "2026-10-14T00:05:18.693Z",
+      "category": "unspecified-low",
+      "updated_at": "2026-10-17T16:10:00.568Z",
+      "started_at": "2026-10-17T16:09:22.810Z",
       "status": "completed",
-      "ended_at": "2026-10-14T00:06:25.234Z",
-      "elapsed_ms": 66541
+      "ended_at": "2026-10-17T16:10:00.568Z",
+      "elapsed_ms": 37758
+    },
+    "todo:3": {
+      "task_key": "todo:3",
+      "task_label": "3",
+      "task_title": "`hq_lib.py` (shared helpers, constants, self_check registry) + `hq_massing.py` (4-floor shell + exterior) + `build_hq.py` skeleton",
+      "session_id": "opencode:ses_eb55ecc3bffeIk1u8e84fIaYah",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-10-17T16:19:20.247Z",
+      "started_at": "2026-10-17T16:18:49.418Z",
+      "status": "completed",
+      "ended_at": "2026-10-17T16:19:20.247Z",
+      "elapsed_ms": 30829
+    },
+    "todo:4": {
+      "task_key": "todo:4",
+      "task_label": "4",
+      "task_title": "`hq_floor1.py`: bpy modular kit, Floor 1 rooms, corridor, stairs, colliders, NAV/TASK empties",
+      "session_id": "opencode:ses_eb55636b9ffeTEqVBDZoPiM5XT",
+      "agent": "Sisyphus-Junior",
+      "started_at": "2026-10-17T16:34:07.747Z",
+      "status": "completed",
+      "updated_at": "2026-10-17T16:47:06.083Z",
+      "ended_at": "2026-10-17T16:47:06.083Z",
+      "elapsed_ms": 778336
+    },
+    "todo:7": {
+      "task_key": "todo:7",
+      "task_label": "7",
+      "task_title": "Meshy style reference images (2 paid calls) + prompt preset file",
+      "session_id": "opencode:ses_eb4f858c8ffeV2iMwppYSJUqSF",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "started_at": "2026-10-17T17:12:18.835Z",
+      "status": "running",
+      "updated_at": "2026-10-17T18:05:51.755Z"
+    },
+    "todo:10": {
+      "task_key": "todo:10",
+      "task_label": "10",
+      "task_title": "Generate 3-4 Meshy kit pieces (Smart Topology t2.5 + refine, shared reference) → `apps/assets/raw/meshy/kit/`",
+      "session_id": "opencode:ses_eb4ed0bdaffefSPHje7JTCjXp3",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-10-17T18:41:23.772Z",
+      "started_at": "2026-10-17T18:41:23.772Z",
+      "status": "running"
     },
     "todo:12": {
       "task_key": "todo:12",
       "task_label": "12",
-      "task_title": "Write delivery summary",
-      "session_id": "opencode:ses_ec812e9e2ffeQFpU2yOEf4fC4x",
+      "task_title": "Normalize real kit, stitch `ROOM_meeting_a_kit`, side-by-side render, metrics, `hq_v02.blend`",
+      "session_id": "opencode:ses_eb4d27d93ffe1PFtIS6EZDlEAW",
       "agent": "Sisyphus-Junior",
-      "category": "implementation",
-      "started_at": "2026-10-14T00:09:25.907Z",
+      "category": "deep",
+      "updated_at": "2026-10-17T19:14:02.723Z",
+      "started_at": "2026-10-17T19:14:02.723Z",
+      "status": "running"
+    },
+    "todo:14": {
+      "task_key": "todo:14",
+      "task_label": "14",
+      "task_title": "Generate 1 Meshy character (t2.5 smart-topology, t-pose, ≤ 20k tris) + refine 2k",
+      "session_id": "opencode:ses_eb2e71913ffeLH2hEcfwDT1Zwz",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-10-18T03:46:53.807Z",
+      "started_at": "2026-10-18T03:46:53.807Z",
+      "status": "running"
+    },
+    "todo:15": {
+      "task_key": "todo:15",
+      "task_label": "15",
+      "task_title": "Import character, scale 1.7 m, place at `NAV_spawn_lobby`, rig + idle via Meshy, `hq_v03.blend`, lobby render",
+      "session_id": "opencode:ses_eb2df008fffe1UpuxRsreExRFK",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-10-18T04:10:00.276Z",
+      "started_at": "2026-10-18T04:10:00.276Z",
+      "status": "running"
+    },
+    "todo:17": {
+      "task_key": "todo:17",
+      "task_label": "17",
+      "task_title": "⏸ Verdict render (bpy furniture vs Meshy kit vs Meshy character in one frame) + Level 1/2 question",
+      "session_id": "opencode:ses_eb2c5dad6ffebxk7iOuyBxFYEb",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-10-18T04:36:12.523Z",
+      "started_at": "2026-10-18T04:36:12.523Z",
+      "status": "running"
+    },
+    "todo:18": {
+      "task_key": "todo:18",
+      "task_label": "18",
+      "task_title": "Write verdict to guide §3 + §11 (+ §10 note), sync `.html`; if Level 2 switch `build_hq.py` Floor 1 to `KIT_MESHY`",
+      "session_id": "opencode:ses_eb19d7029ffehapa7gXSz6sEuI",
+      "agent": "Sisyphus-Junior",
+      "category": "writing",
+      "started_at": "2026-10-18T09:39:28.593Z",
       "status": "running",
-      "updated_at": "2026-10-14T01:03:17.835Z"
+      "updated_at": "2026-10-18T09:42:40.684Z"
     },
-    "final-wave:f4": {
-      "task_key": "final-wave:f4",
-      "task_label": "F4",
-      "task_title": "Scope fidelity — verify nothing beyond Must have was built and nothing in Must have is missing.",
-      "session_id": "opencode:ses_ec8055b00ffeVAttYi08fl700r",
+    "todo:19": {
+      "task_key": "todo:19",
+      "task_label": "19",
+      "task_title": "HANDOFF report for MVP-2 (append to `docs/mvp/HANDOFF.md`)",
+      "session_id": "opencode:ses_eb1992564ffeUwCxMxTty9mT6J",
       "agent": "Sisyphus-Junior",
-      "category": "review",
-      "started_at": "2026-10-14T00:54:34.135Z",
-      "status": "completed",
-      "updated_at": "2026-10-14T01:16:47.022Z",
-      "ended_at": "2026-10-14T01:16:47.022Z",
-      "elapsed_ms": 1332887
+      "category": "writing",
+      "updated_at": "2026-10-18T09:52:28.905Z",
+      "started_at": "2026-10-18T09:52:28.905Z",
+      "status": "running"
     },
-    "final-wave:f2": {
-      "task_key": "final-wave:f2",
-      "task_label": "F2",
-      "task_title": "Code quality review — verify all 7 checks pass after fixes.",
-      "session_id": "opencode:ses_ec8147eedffe1WCkfLU9DxvtPb",
-      "agent": "Sisyphus-Junior",
-      "category": "review",
-      "started_at": "2026-10-14T00:54:59.200Z",
-      "status": "completed",
-      "updated_at": "2026-10-14T01:09:31.369Z",
-      "ended_at": "2026-10-14T01:09:31.369Z",
-      "elapsed_ms": 872169
+    "final-wave:f1": {
+      "task_key": "final-wave:f1",
+      "task_label": "F1",
+      "task_title": "Plan compliance audit",
+      "session_id": "opencode:ses_eb1915192ffeZXOkRei6Umj6UA",
+      "agent": "oracle",
+      "updated_at": "2026-10-18T09:58:28.587Z",
+      "started_at": "2026-10-18T09:58:28.587Z",
+      "status": "running"
     }
   },
-  "active_plan": "/home/programer/work/visual-office/.omo/plans/vyron-landing-page.md",
-  "plan_name": "vyron-landing-page",
-  "status": "active",
-  "started_at": "2026-10-13T12:05:24.192Z",
-  "updated_at": "2026-10-14T01:16:47.022Z",
-  "worktree_path": null
+  "active_plan": "/home/programer/work/redhunter-reborn/visual-office/.omo/plans/mvp-2-blender-lab.md",
+  "plan_name": "mvp-2-blender-lab",
+  "status": "completed",
+  "started_at": "2026-10-17T16:04:20.000Z",
+  "updated_at": "2026-10-18T10:16:44.522Z",
+  "worktree_path": null,
+  "ended_at": "2026-10-18T10:16:44.522Z",
+  "elapsed_ms": 65544522
 }

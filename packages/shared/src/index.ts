@@ -7,4 +7,5 @@ export * from './enums';
 export * from './event-sink';
 export * from './events';
 export * from './office-layout';
+export * from './password';
 export * from './schemas';

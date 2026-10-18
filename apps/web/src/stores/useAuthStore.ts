@@ -68,10 +68,9 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       return false;
     }
 
-    const { token } = response.data;
+    const { token, user } = response.data;
     setToken(token);
 
-    const user = decodeToken(token);
     set({
       token,
       user,

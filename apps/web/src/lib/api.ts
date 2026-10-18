@@ -24,7 +24,27 @@ export interface LoginRequest {
   password: string;
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+export interface User {
+  email: string;
+  role: string;
+}
+
+export interface SetupStatusResponse {
+  setupComplete: boolean;
+}
+
+export interface SetupResponse {
+  token: string;
+  user: User;
+}
+
+export interface CreateSuperAdminRequest {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
 
 class ApiClient {
   private baseUrl: string;
@@ -60,9 +80,11 @@ class ApiClient {
       };
     }
 
+    // Backend already wraps payloads as { success, data }; unwrap to avoid double nesting.
+    const payload = data !== null && typeof data === 'object' && 'data' in data ? data.data : data;
     return {
       success: true,
-      data: data as T,
+      data: payload as T,
     };
   }
 
@@ -117,6 +139,14 @@ class ApiClient {
 
   async login(email: string, password: string): Promise<ApiResponse<LoginResponse>> {
     return this.post<LoginResponse>('/auth/login', { email, password });
+  }
+
+  async checkSetupStatus(): Promise<ApiResponse<SetupStatusResponse>> {
+    return this.get<SetupStatusResponse>('/auth/setup-status');
+  }
+
+  async createSuperAdmin(data: CreateSuperAdminRequest): Promise<ApiResponse<SetupResponse>> {
+    return this.post<SetupResponse>('/auth/setup', data);
   }
 }
 

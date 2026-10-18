@@ -12,7 +12,6 @@ async function main(): Promise<void> {
   try {
     const result = await runSeed({
       models: await createModels(connection),
-      owner: env.owner,
       forceOwnerPassword: process.argv.includes(FORCE_OWNER_PASSWORD_FLAG),
     });
     const ownerSummary = result.owner === undefined ? 'skipped' : JSON.stringify(result.owner);

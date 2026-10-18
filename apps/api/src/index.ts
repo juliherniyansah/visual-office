@@ -20,7 +20,7 @@ async function main(): Promise<void> {
   const connection = await connectDatabase(env.mongoUrl);
   const models = await createModels(connection);
   // Boot seed is idempotent and never resets an existing owner password.
-  const seed = await runSeed({ models, owner: env.owner });
+  const seed = await runSeed({ models });
   const ownerSummary = seed.owner === undefined ? 'skipped' : JSON.stringify(seed.owner);
   console.info(`seed: agents=${seed.agents} owner=${ownerSummary}`);
 
@@ -58,6 +58,7 @@ async function main(): Promise<void> {
       hermesSource: createAgentHermesSource(hermesStore),
       connection,
       adapters: Object.fromEntries(adapters),
+      allowedOrigins: env.corsOrigins,
     }),
   );
   const gateway = createRealtimeGateway(server, {

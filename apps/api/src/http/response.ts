@@ -11,6 +11,7 @@ export const ERROR_MESSAGES = {
   notFound: 'Rute tidak ditemukan',
   resourceNotFound: 'Data tidak ditemukan',
   conflict: 'Perubahan status ditolak karena konflik',
+  setupConflict: 'Users already exist, cannot create super admin.',
   internal: 'Terjadi kesalahan internal',
 } as const;
 

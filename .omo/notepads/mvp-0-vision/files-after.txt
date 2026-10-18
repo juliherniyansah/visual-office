@@ -1,0 +1,12 @@
+docs/architecture.md
+docs/mvp/HANDOFF.md
+docs/mvp/MVP-0-vision.md
+docs/mvp/MVP-1-foundation.md
+docs/mvp/MVP-2-building.md
+docs/mvp/MVP-3-explore.md
+docs/mvp/MVP-4-character.md
+docs/mvp/MVP-5-tasks.md
+docs/mvp/README.md
+docs/redhunter-hq-brainstorming-guided.html
+docs/redhunter-hq-brainstorming-guided.md
+docs/redhunter-hq-step-prompts.md

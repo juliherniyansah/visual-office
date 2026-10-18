@@ -2,7 +2,7 @@
 
 **Goal:** semua keputusan rasa/visual yang masih TBD terkunci di guide, supaya MVP-2/3/4 tidak menebak.
 **Demo:** guide berisi §4 "Atmosfer", §5.1 tanpa TBD, §8.4 "Game Feel".
-**Handoff:** keputusan visi → MVP-2 (palet/lighting), MVP-3 (game feel), MVP-4 (karakter).
+**Handoff:** keputusan visi → MVP-2 (palet/lighting/karakter di Blender), MVP-4 (game feel).
 
 ## Prompt (paste ke sesi baru)
 

@@ -2,7 +2,7 @@
 
 **Goal:** task nyata terlihat & bisa dikelola dari dalam kantor 3D, tersinkron dengan Trello.
 **Demo:** buat kartu di Trello → muncul di task board 3D meeting room; tekan E di desk → panel task; ubah status → Trello ikut berubah.
-**Butuh:** MVP-3 (sistem interactable, FPV), MVP-4 (agent untuk visualisasi status), `TRELLO_KEY` + `TRELLO_TOKEN`.
+**Butuh:** MVP-4 (sistem interactable, FPV), MVP-3 (agent char_base.glb untuk visualisasi status), `TRELLO_KEY` + `TRELLO_TOKEN`.
 **Handoff:** sistem task end-to-end → fase berikutnya (avatar DIY, gamification XP, lantai 2–4).
 
 ## Prompt (paste ke sesi baru)
@@ -12,7 +12,7 @@ Repo: /home/programer/work/redhunter-reborn/visual-office. Sesi ini = MVP-5 Redh
 
 LANGKAH PERTAMA WAJIB: baca docs/redhunter-hq-brainstorming-guided.md LENGKAP (fokus §1, §8
 lengkap termasuk §8.4 Game Feel), docs/mvp/README.md, docs/mvp/HANDOFF.md (cara menambah
-interactable dari MVP-3, anchor TASK_board/TASK_desk_* dari MVP-2). Juga baca AGENTS.md
+interactable dari MVP-4, anchor TASK_board/TASK_desk_* dari MVP-2). Juga baca AGENTS.md
 apps/api untuk konvensi backend (factory createX, zod di setiap boundary, routes tipis +
 logic di services). Guide = sumber kebenaran; konflik → guide menang.
 Saya mengizinkan implementasi untuk scope MVP-5 ini saja.
@@ -44,7 +44,7 @@ FASE 3 — Trigger dari 3D:
 6. TASK_board di ROOM_meeting_a → klik (helicopter) / E (FPV) → panel board.
 7. TASK_desk_<n> → E saat dekat (FPV) / klik → panel task staff desk itu.
 8. Feedback sesuai §8.4: agent di desk menampilkan speech bubble judul task "doing";
-   task done → animasi selebrasi kecil (jika ada di MVP-4) / indikator.
+   task done → animasi selebrasi kecil (jika ada animasinya) / indikator.
 9. Verifikasi end-to-end (bukti, bukan klaim): buat kartu di Trello → muncul di panel 3D;
    ubah status dari panel → berubah di Trello. Screenshot + log request.
 

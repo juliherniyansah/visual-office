@@ -1,19 +1,19 @@
-# MVP-3 — Menjelajah Kantor (Helicopter + FPV + Minimap)
+# MVP-4 — Menjelajah Kantor (Helicopter + FPV + Minimap)
 
 **Goal:** kantor bisa dijelajah seperti game: pilih lantai, fokus ruangan, jalan first-person, minimap.
 **Demo:** klik lantai → terisolasi; klik ruangan → kamera fokus; toggle FPV → WASD jalan dari lobby naik tangga; minimap live.
-**Butuh:** MVP-2 (`hq.glb` dengan ROOM_/COL_/NAV_), MVP-0 (§8.4 Game Feel).
+**Butuh:** MVP-3 (`hq_shell.glb` + `floor_N.glb` live, loader per lantai + helper node COL_/NAV_/TASK_), MVP-2 (naming ROOM_/COL_/NAV_), MVP-0 (§8.4 Game Feel).
 **Handoff:** store kamera/mode + sistem interaksi → MVP-5 (tekan E di desk, klik task board).
 
 ## Prompt (paste ke sesi baru)
 
 ```
-Repo: /home/programer/work/redhunter-reborn/visual-office. Sesi ini = MVP-3 Redhunter HQ.
+Repo: /home/programer/work/redhunter-reborn/visual-office. Sesi ini = MVP-4 Redhunter HQ.
 
 LANGKAH PERTAMA WAJIB: baca docs/redhunter-hq-brainstorming-guided.md LENGKAP (fokus §1, §3,
 §6, §8.4 Game Feel), docs/mvp/README.md, docs/mvp/HANDOFF.md (daftar nama ROOM_/COL_/NAV_
-dari MVP-2). Guide = sumber kebenaran; konflik → guide menang.
-Saya mengizinkan implementasi untuk scope MVP-3 ini saja.
+dari MVP-2 + helper node dari MVP-3). Guide = sumber kebenaran; konflik → guide menang.
+Saya mengizinkan implementasi untuk scope MVP-4 ini saja.
 Load skill: 3d-router, threejs-react, threejs-camera, threejs-performance, 3d-visual-qa.
 Physics: raycast/capsule saja (guide §3). Rapier HANYA jika terbukti perlu — tanya saya dulu.
 Jangan tambah dependency tanpa izin (three-mesh-bvh boleh diusulkan, minta izin).
@@ -21,7 +21,7 @@ Jangan tambah dependency tanpa izin (three-mesh-bvh boleh diusulkan, minta izin)
 Referensi pola (jangan salin aset): Nexus HQ (zones), Huddly (WASD, Tab toggle UI, E
 interaksi), Aura Plan (PointerLockControls + collision), bruno-simon.com (map, game feel).
 
-GOAL MVP-3 (3 fase, checkpoint demo di antara fase):
+GOAL MVP-4 (3 fase, checkpoint demo di antara fase):
 
 FASE 1 — Helicopter view:
 1. Zustand store tunggal (ikuti pola store yang ada): mode ('helicopter'|'fpv'), activeFloor,

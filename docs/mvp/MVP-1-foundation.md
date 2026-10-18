@@ -2,7 +2,7 @@
 
 **Goal:** dashboard lama tetap tampil identik, tapi fondasi kode siap menerima gedung baru.
 **Demo:** `bun run dev` → dashboard render seperti sebelumnya, tanpa error; kode 3D terpecah rapi.
-**Handoff:** deps 3D dideklarasi + komponen `apps/web/src/components/office/*` → dipakai MVP-2.
+**Handoff:** deps 3D dideklarasi + komponen `apps/web/src/components/office/*` → dipakai MVP-3 (MVP-2 Blender tidak butuh ini).
 
 ## Prompt (paste ke sesi baru)
 
@@ -30,10 +30,10 @@ Bagian 2 — Pecah monolith:
    FloorPlane.tsx, DeskMarkers.tsx, Agent.tsx, CameraRig.tsx, FloorSelector.tsx,
    Lighting.tsx, WebGLErrorBoundary.tsx).
 5. PINDAHKAN kode apa adanya: perilaku, warna, posisi, kamera tidak berubah. Jangan
-   "sekalian memperbaiki". Biarkan inline material (dirapikan di MVP-2).
+   "sekalian memperbaiki". Biarkan inline material (dirapikan di MVP-3).
 6. Update import di apps/web/src/app/dashboard/page.tsx (dynamic import tetap).
    Hapus file lama setelah semua import pindah.
-7. Building.tsx: path GLB jadikan satu konstanta (BUILDING_MODEL_URL) agar MVP-2 cukup ganti
+7. Building.tsx: path GLB jadikan satu konstanta (BUILDING_MODEL_URL) agar MVP-3 cukup ganti
    satu baris.
 
 Verifikasi (wajib bukti, jangan klaim):

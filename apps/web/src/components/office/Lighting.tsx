@@ -1,19 +1,24 @@
 'use client';
 
+// Daytime phase lighting (plan §4.1 fase siang)
 export function Lighting() {
   return (
     <>
-      <ambientLight intensity={0.4} />
+      {/* args = [skyColor, groundColor]: R3F has no skyColor prop; constructor args are the canonical form */}
+      <hemisphereLight args={['#BFE3F7', '#E3F4FC']} intensity={1.0} />
       <directionalLight
-        position={[10, 20, 10]}
-        intensity={1.5}
+        color="#FFFFFF"
+        intensity={1.4}
+        position={[12, 22, 8]}
         castShadow
-        shadow-mapSize={[2048, 2048]}
-        shadow-camera-far={50}
-        shadow-camera-left={-15}
-        shadow-camera-right={15}
-        shadow-camera-top={15}
-        shadow-camera-bottom={-15}
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+        shadow-bias={-0.0005}
+        shadow-camera-left={-18}
+        shadow-camera-right={18}
+        shadow-camera-top={18}
+        shadow-camera-bottom={-18}
+        shadow-camera-far={60}
       />
     </>
   );

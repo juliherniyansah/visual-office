@@ -1,6 +1,6 @@
 import type { AgentId, AgentStatus, FloorId } from '@redhunter/shared';
 
-export const FLOOR_HEIGHT = 4;
+export const FLOOR_HEIGHT = 3.2;
 export const AGENT_Y_OFFSET = 1.2;
 export const CAMERA_LERP_SPEED = 3;
 

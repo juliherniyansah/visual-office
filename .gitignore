@@ -17,6 +17,15 @@ __pycache__/
 apps/assets/blender/hq_v04.blend
 apps/assets/raw/meshy/kit_v2/*.glb
 
+# Model assets
+# - Staging/export dir is regenerable via export_hq.py + optimize-hq.sh
+apps/assets/models/export/
+# - Final GLBs in apps/web/public/models: files >10 MB are ignored by explicit name when they appear.
+#   Regeneration: export_hq.py + optimize-hq.sh
+apps/web/public/models/hq_shell.glb
+# - Defensive: never commit source-style GLBs
+apps/web/public/models/*_src.glb
+
 # Test run artifacts
 apps/web/playwright-report/
 apps/web/test-results/

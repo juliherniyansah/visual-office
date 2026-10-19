@@ -429,3 +429,8 @@ _Auto-scaffolded by /start-work. Append new entries below - never overwrite._
 - Next.js 16.4.0 build passes with all new pages/components. Dashboard layout: sidebar (AgentDetail) + main grid (DirectivesBoard left, TaskTree + RunConsole right).
 - Auth flow: POST /api/auth/login → {token, user} → zustand persist → redirect /dashboard. Protected route checks `isAuthenticated` in useEffect, redirects to /login if false.
 - API client pattern: plain `fetch('/api/...')` with relative URLs (Next.js proxies to apps/api via rewrites in next.config.ts). Stores handle fetch + set state; components read from stores.
+
+## KTX2 loader lifecycle fix (useHqGltf.ts / OfficeCanvas.tsx)
+- WeakMap cache now stores { loader, holders }; retain/release refcount around ModelPreloader effect.
+- releaseKtx2Loader defers dispose via setTimeout(0) -> StrictMode sync remount re-retains before eviction; true unmount (holders stays 0) disposes + evicts.
+- THREE import switched to `import type` (biome useImportType). typecheck exit 0, biome 0 errors.

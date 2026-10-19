@@ -93,7 +93,7 @@ Jangan buka ulang kecuali user meminta.
 | MCP | **mcp-for-blender saja** (`uvx mcp-for-blender`) | Hindari MCP tumpang tindih |
 | Konsistensi style | **Satu bahasa visual untuk SEMUA objek**: exterior, interior, furniture, karakter, props = mid-poly stylized, siluet tegas, tekstur hand-painted tajam atau palet flat. Tidak ada campuran foto-realistis/PBR | Transisi helicopter↔FPV mulus, agents terlihat "menghuni", satu sistem lighting |
 | Gedung/interior/furniture/terrain | **Procedural bpy** via MCP = default. Collider `COL_*`, `NAV_*`, `ROOM_*`/`TASK_*` naming & layout **selalu bpy** | Modular, $0, kontrol penuh |
-| Hybrid Meshy (conditional) | **Level 1 (default)**: Meshy per objek (furniture/props kompleks), bpy struktur. **Level 2 = Kit Meshy**: Meshy generate **potongan kit modular** (panel dinding 1×3.2 m, panel dinding+pintu/jendela/kaca, panel lantai, tangga, pilar, kusen) → bpy normalisasi skala ke grid 1 m, pivot dasar, snap, instancing, susun sesuai denah. **Bukan per ruangan.** **Hasil uji MVP-2 (2026-10-18): Level 2 dipilih untuk dinding/lantai (kit Meshy v2: 1 panel per jenis, realistis 4K, bpy merakit); furniture kompleks = Meshy.** Alasan: user memilih tampilan realistis bergaya poly; uji verdict menunjukkan gaya tekstur kit dan karakter konsisten, biaya tris (~1,1 jt di hq_v04) ditangani di MVP-3 lewat decimate/LOD + KTX2. | Reuse = hemat kredit & style konsisten; grid presisi tanpa celah/dinding dobel; revisi murah |
+| Hybrid Meshy (conditional) | **Level 1 (default)**: Meshy per objek (furniture/props kompleks), bpy struktur. **Level 2 = Kit Meshy**: Meshy generate **potongan kit modular** (panel dinding 1×3.2 m, panel dinding+pintu/jendela/kaca, panel lantai, tangga, pilar, kusen) → bpy normalisasi skala ke grid 1 m, pivot dasar, snap, instancing, susun sesuai denah. **Bukan per ruangan.** **Hasil uji MVP-2 (2026-10-18): Level 2 dipilih untuk dinding/lantai (kit Meshy v2: 1 panel per jenis, realistis 4K, bpy merakit); furniture kompleks = Meshy.** Alasan: user memilih tampilan realistis bergaya poly; uji verdict menunjukkan gaya tekstur kit dan karakter konsisten, biaya tris (~1,1 jt di hq_v04) ditangani di MVP-3 lewat render per lantai + instancing + meshopt/KTX2, **tanpa decimate** (§7.5, #21). | Reuse = hemat kredit & style konsisten; grid presisi tanpa celah/dinding dobel; revisi murah |
 | Karakter | **Meshy = generator utama** (auto-rig + 600+ motions) | Kualitas dinilai user "cukup baik" |
 | Props variatif | Sloyd **ditunda** (opsional nanti); props sederhana = bpy, kompleks = Meshy | Satu langganan dulu |
 | Rigging gratis | Mixamo | Alternatif tanpa biaya |
@@ -245,6 +245,34 @@ prompt (+ style §4, preferensi §5)
 - **SHOULD:** objek berulang (kit dinding/lantai, furniture) pakai instancing (`EXT_mesh_gpu_instancing`); kompresi meshopt + tekstur KTX2 (resolusi tetap ≤ 2048², §11 #19).
 - `renderer.info` (calls/triangles) & FPS per lantai dicatat sebagai **info**, bukan target pangkas. Lantai berat → instancing/culling dulu; decimate hanya dengan izin user.
 
+### 7.6 Alur produksi aset: konsep → Meshy → bpy (keputusan #22)
+Prinsip: **rencana per ruangan, produksi per objek.** Meshy = tempat mematangkan bentuk/tekstur; bpy = merakit. Meshy tidak pernah generate satu ruangan/gedung utuh (MUST NOT #3).
+
+| # | Langkah | Siapa | Output |
+|---|---|---|---|
+| 1 | Denah tampak atas per lantai (render dari `.blend` aktif) | AI via MCP | `apps/assets/concepts/F<n>_plan.png` |
+| 2 | Gambar konsep per ruangan di AI gambar gratis (Gemini, ChatGPT, Bing/Microsoft Designer, Ideogram, Leonardo, Krea) + prompt style §4/§4.1; opsional tata letak di Sweet Home 3D/Floorplanner (eksplorasi saja, tidak masuk pipeline) | User | `apps/assets/concepts/F<n>_<room>.png` (mis. `F1_lobby.png`) |
+| 3 | Baca gambar konsep → daftar objek + prompt Meshy per objek (style preset sama) | AI | Ditambahkan ke `apps/assets/raw/meshy/PROMPTS.md` |
+| 4 | Generate & matangkan di Meshy (web atau plugin Blender): pilih kandidat, Remesh, Retexture, Rig/Animate. Boleh Image-to-3D dari potongan gambar konsep | User | GLB final |
+| 5 | Download GLB ke folder + nama baku (lihat bawah) lalu kabari AI | User | file di `apps/assets/raw/meshy/` |
+| 6 | Import via MCP: skala meter, pivot dasar, snap grid, taruh di `FLOOR_<n>`/`ROOM_<id>`, naming §6, catat di `build_hq.py` + `LOG.md`, save `hq_vNN.blend` baru | AI | `.blend` naik versi |
+| 7 | Review di Blender (isolasi lantai: Ctrl+klik ikon mata `FLOOR_<n>` di Outliner) | User | Revisi: posisi/ukuran → AI via bpy; bentuk/tekstur → kembali ke langkah 4 |
+| 8 | Export ulang `export_hq.py` → `optimize-hq.sh` → web | AI | `floor_<n>.glb` |
+
+**Folder & nama file (MUST):**
+- Karakter: `apps/assets/raw/meshy/characters/CHAR_BASE.glb`, part DIY `CHAR_<SLOT>_<id>.glb`
+- Furniture/props: `apps/assets/raw/meshy/props/F<n>_<room>_<object>.glb` (mis. `F1_lobby_sofa.glb`)
+- Kit: `apps/assets/raw/meshy/kit_v2/KIT2_<piece>.glb`
+- Ganti versi = timpa nama yang sama (pipeline otomatis ambil terbaru); simpan versi lama dengan akhiran `_old`.
+
+**Aturan edit (MUST):**
+- Bentuk & tekstur diubah **di Meshy**, bukan diedit manual di Blender (akan tertimpa saat rebuild/export).
+- Posisi, ukuran, rotasi, susunan diubah **via bpy** dan dicatat di `build_hq.py`.
+- Edit manual user di Blender → simpan sebagai `hq_vNN.blend` baru + kabari AI agar dicatat.
+- Setiap generate dicatat di `PROMPTS.md` (prompt lengkap) dan `LOG.md` (tanggal, task_id bila ada, kredit, verdict).
+- AI wajib konfirmasi biaya kredit sebelum generate Meshy via API/MCP.
+- Gambar konsep = acuan suasana, bukan spesifikasi ukuran; ukuran mengikuti denah + grid §4.
+
 ### 7.4 Contoh prompt siap pakai
 ```
 Baca docs/redhunter-hq-brainstorming-guided.md. Buat blockout kantor low-poly 4 lantai:
@@ -368,3 +396,4 @@ Cap kredit Meshy MVP-2: 450 (disetujui user 2026-10-18); kit v2 ≤ 330, furnitu
 | 19 | Mid-poly stylized + tekstur tajam (bukan flat vertex-color murni); karakter ≤ 20k tris, tekstur ≤ 2048² | "mid poly aja saya butuh texture juga walau poly" (MVP-2) |
 | 20 | Verdict MVP-2: Level 2 dinding/lantai (kit Meshy v2, semua lantai), furniture kompleks Meshy | "buat dengan meshy contoh lantainya, kacanya dinding nya, ... kemudian bpy baru merakitnya, saya mau design high poly, dimana realistic, tapi style designnya poly" |
 | 21 | Render per lantai: GLB per lantai lazy-load + shell eksterior; helicopter = cutaway lantai aktif; tanpa decimate karakter/scenery; instancing + meshopt/KTX2 | "rendernya per 1 lantai gak langsung 1 gedung ... saya gk mau ngurangi kualitas karakter scenery dll" |
+| 22 | Alur aset: konsep per ruangan di AI gambar gratis → Meshy per objek (dimatangkan di Meshy, download ke folder baku) → bpy merakit; bentuk/tekstur diedit di Meshy, posisi/ukuran via bpy (§7.6) | "perubahannya mau sy patenkan dulu di meshy ai baru nanti di download terus di rakit di bpy" → "update itu ke guided kita" |

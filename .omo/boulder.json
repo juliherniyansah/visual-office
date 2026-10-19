@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "active_work_id": "mvp-2-blender-lab-a3c71e5d",
+  "active_work_id": "mvp3-integration-173324",
   "works": {
     "redhunter-master-plan-ea9d6f52": {
       "work_id": "redhunter-master-plan-ea9d6f52",
@@ -27,9 +27,10 @@
         "opencode:ses_ec8c26b16ffetoAw3BcOuyQOMb",
         "opencode:ses_ec8c251b0ffexJQSct7iIPzZdA"
       ],
-      "status": "active",
+      "status": "paused",
       "worktree_path": null,
-      "session_origins": {}
+      "session_origins": {},
+      "stale_since": "2026-10-18T17:32:24.581Z"
     },
     "initial-setup-7f3c9a21": {
       "work_id": "initial-setup-7f3c9a21",
@@ -495,171 +496,111 @@
       },
       "ended_at": "2026-10-18T10:16:44.522Z",
       "elapsed_ms": 65544522
+    },
+    "mvp3-integration-173324": {
+      "work_id": "mvp3-integration-173324",
+      "active_plan": "/home/programer/work/redhunter-reborn/visual-office/.omo/plans/mvp3-integration.md",
+      "plan_name": "mvp3-integration",
+      "session_ids": [
+        "opencode:ses_eb022e55effeTbuoegSPpkLDsV"
+      ],
+      "session_origins": {
+        "opencode:ses_eb022e55effeTbuoegSPpkLDsV": "direct"
+      },
+      "status": "active",
+      "worktree_path": null,
+      "started_at": "2026-10-18T17:33:24.277550+00:00",
+      "agent": "atlas",
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "Edit root `.gitignore`: add a clearly-commented block — (a) ignore all of `apps/assets/models/export/` (staging, regenerable via export_hq.py + optimize-hq.sh), (b) ignore `apps/web/public/models/*.glb` files >10 MB. IMPORTANT: gitignore cannot match by size directly. Implement (b) as: ignore the specific known-large names pattern is NOT acceptable since none are >10MB now. Instead follow the plan's intent: since current finals are all ≤10 MB they stay tracked; add a commented sentinel rule that ignores nothing today but documents the regen commands + the decision. Concretely: ignore `apps/assets/models/export/` fully; for models dir add comment documenting \">10 MB GLBs are ignored by explicit name here when they appear (regen: export_hq.py + optimize-hq.sh)\" — and additionally defensively ignore `apps/web/public/models/*_src.glb` (nothing should land there). Verify with `git check-ignore -v` for a staging path (must match) and for apps/web/public/models/floor_1.glb (must NOT match).",
+          "session_id": "opencode:ses_eafba4c94ffeh8aE4GMPA1fqby",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "started_at": "2026-10-18T17:45:45.122Z",
+          "ended_at": "2026-10-18T18:29:52.456Z",
+          "elapsed_ms": 2647334,
+          "status": "completed",
+          "updated_at": "2026-10-18T18:29:52.456Z"
+        },
+        "todo:2": {
+          "task_key": "todo:2",
+          "task_label": "2",
+          "task_title": "Pipeline optimasi gltf-transform (meshopt + KTX2 + instance, geometri utuh)",
+          "session_id": "opencode:ses_eafdeca33fferpsUxsnjXAdIJx",
+          "agent": "Sisyphus-Junior",
+          "started_at": "2026-10-18T18:00:52.341Z",
+          "status": "completed",
+          "updated_at": "2026-10-18T18:33:02.605Z",
+          "ended_at": "2026-10-18T18:33:02.605Z",
+          "elapsed_ms": 1930264
+        },
+        "todo:6": {
+          "task_key": "todo:6",
+          "task_label": "6",
+          "task_title": "Loader gedung per lantai + cutaway + dispose (refactor Building/Scene/OfficeCanvas)",
+          "session_id": "opencode:ses_eafb304fdffeOx6jMcg46tBLrJ",
+          "agent": "Sisyphus-Junior",
+          "category": "visual-engineering",
+          "updated_at": "2026-10-18T18:41:15.205Z",
+          "started_at": "2026-10-18T18:41:15.205Z",
+          "status": "running"
+        }
+      },
+      "updated_at": "2026-10-18T18:41:15.204Z"
     }
   },
   "session_ids": [
-    "opencode:ses_eb56524d9ffet9sDxAHp9sKclk"
+    "opencode:ses_eb022e55effeTbuoegSPpkLDsV"
   ],
   "session_origins": {
-    "opencode:ses_eb56524d9ffet9sDxAHp9sKclk": "direct"
+    "opencode:ses_eb022e55effeTbuoegSPpkLDsV": "direct"
   },
   "task_sessions": {
     "todo:1": {
       "task_key": "todo:1",
       "task_label": "1",
-      "task_title": "Guide style revision: mid-poly + crisp textures written to `.md` and `.html`",
-      "session_id": "opencode:ses_eb56433d3ffeOpYuOWgKKbrKyQ",
+      "task_title": "Edit root `.gitignore`: add a clearly-commented block — (a) ignore all of `apps/assets/models/export/` (staging, regenerable via export_hq.py + optimize-hq.sh), (b) ignore `apps/web/public/models/*.glb` files >10 MB. IMPORTANT: gitignore cannot match by size directly. Implement (b) as: ignore the specific known-large names pattern is NOT acceptable since none are >10MB now. Instead follow the plan's intent: since current finals are all ≤10 MB they stay tracked; add a commented sentinel rule that ignores nothing today but documents the regen commands + the decision. Concretely: ignore `apps/assets/models/export/` fully; for models dir add comment documenting \">10 MB GLBs are ignored by explicit name here when they appear (regen: export_hq.py + optimize-hq.sh)\" — and additionally defensively ignore `apps/web/public/models/*_src.glb` (nothing should land there). Verify with `git check-ignore -v` for a staging path (must match) and for apps/web/public/models/floor_1.glb (must NOT match).",
+      "session_id": "opencode:ses_eafba4c94ffeh8aE4GMPA1fqby",
       "agent": "Sisyphus-Junior",
-      "category": "writing",
-      "updated_at": "2026-10-17T16:08:16.233Z",
-      "started_at": "2026-10-17T16:08:02.212Z",
+      "category": "quick",
+      "started_at": "2026-10-18T17:45:45.122Z",
+      "ended_at": "2026-10-18T18:29:52.456Z",
+      "elapsed_ms": 2647334,
       "status": "completed",
-      "ended_at": "2026-10-17T16:08:16.233Z",
-      "elapsed_ms": 14021
+      "updated_at": "2026-10-18T18:29:52.456Z"
     },
     "todo:2": {
       "task_key": "todo:2",
       "task_label": "2",
-      "task_title": "Pre-state + skeleton: evidence dir, raw dirs, ledger, Blender/Meshy baselines",
-      "session_id": "opencode:ses_eb5609a5effeZSlbQHimR07HuH",
+      "task_title": "Pipeline optimasi gltf-transform (meshopt + KTX2 + instance, geometri utuh)",
+      "session_id": "opencode:ses_eafdeca33fferpsUxsnjXAdIJx",
       "agent": "Sisyphus-Junior",
-      "category": "unspecified-low",
-      "updated_at": "2026-10-17T16:10:00.568Z",
-      "started_at": "2026-10-17T16:09:22.810Z",
+      "started_at": "2026-10-18T18:00:52.341Z",
       "status": "completed",
-      "ended_at": "2026-10-17T16:10:00.568Z",
-      "elapsed_ms": 37758
+      "updated_at": "2026-10-18T18:33:02.605Z",
+      "ended_at": "2026-10-18T18:33:02.605Z",
+      "elapsed_ms": 1930264
     },
-    "todo:3": {
-      "task_key": "todo:3",
-      "task_label": "3",
-      "task_title": "`hq_lib.py` (shared helpers, constants, self_check registry) + `hq_massing.py` (4-floor shell + exterior) + `build_hq.py` skeleton",
-      "session_id": "opencode:ses_eb55ecc3bffeIk1u8e84fIaYah",
+    "todo:6": {
+      "task_key": "todo:6",
+      "task_label": "6",
+      "task_title": "Loader gedung per lantai + cutaway + dispose (refactor Building/Scene/OfficeCanvas)",
+      "session_id": "opencode:ses_eafb304fdffeOx6jMcg46tBLrJ",
       "agent": "Sisyphus-Junior",
-      "category": "deep",
-      "updated_at": "2026-10-17T16:19:20.247Z",
-      "started_at": "2026-10-17T16:18:49.418Z",
-      "status": "completed",
-      "ended_at": "2026-10-17T16:19:20.247Z",
-      "elapsed_ms": 30829
-    },
-    "todo:4": {
-      "task_key": "todo:4",
-      "task_label": "4",
-      "task_title": "`hq_floor1.py`: bpy modular kit, Floor 1 rooms, corridor, stairs, colliders, NAV/TASK empties",
-      "session_id": "opencode:ses_eb55636b9ffeTEqVBDZoPiM5XT",
-      "agent": "Sisyphus-Junior",
-      "started_at": "2026-10-17T16:34:07.747Z",
-      "status": "completed",
-      "updated_at": "2026-10-17T16:47:06.083Z",
-      "ended_at": "2026-10-17T16:47:06.083Z",
-      "elapsed_ms": 778336
-    },
-    "todo:7": {
-      "task_key": "todo:7",
-      "task_label": "7",
-      "task_title": "Meshy style reference images (2 paid calls) + prompt preset file",
-      "session_id": "opencode:ses_eb4f858c8ffeV2iMwppYSJUqSF",
-      "agent": "Sisyphus-Junior",
-      "category": "unspecified-high",
-      "started_at": "2026-10-17T17:12:18.835Z",
-      "status": "running",
-      "updated_at": "2026-10-17T18:05:51.755Z"
-    },
-    "todo:10": {
-      "task_key": "todo:10",
-      "task_label": "10",
-      "task_title": "Generate 3-4 Meshy kit pieces (Smart Topology t2.5 + refine, shared reference) → `apps/assets/raw/meshy/kit/`",
-      "session_id": "opencode:ses_eb4ed0bdaffefSPHje7JTCjXp3",
-      "agent": "Sisyphus-Junior",
-      "category": "unspecified-high",
-      "updated_at": "2026-10-17T18:41:23.772Z",
-      "started_at": "2026-10-17T18:41:23.772Z",
-      "status": "running"
-    },
-    "todo:12": {
-      "task_key": "todo:12",
-      "task_label": "12",
-      "task_title": "Normalize real kit, stitch `ROOM_meeting_a_kit`, side-by-side render, metrics, `hq_v02.blend`",
-      "session_id": "opencode:ses_eb4d27d93ffe1PFtIS6EZDlEAW",
-      "agent": "Sisyphus-Junior",
-      "category": "deep",
-      "updated_at": "2026-10-17T19:14:02.723Z",
-      "started_at": "2026-10-17T19:14:02.723Z",
-      "status": "running"
-    },
-    "todo:14": {
-      "task_key": "todo:14",
-      "task_label": "14",
-      "task_title": "Generate 1 Meshy character (t2.5 smart-topology, t-pose, ≤ 20k tris) + refine 2k",
-      "session_id": "opencode:ses_eb2e71913ffeLH2hEcfwDT1Zwz",
-      "agent": "Sisyphus-Junior",
-      "category": "unspecified-high",
-      "updated_at": "2026-10-18T03:46:53.807Z",
-      "started_at": "2026-10-18T03:46:53.807Z",
-      "status": "running"
-    },
-    "todo:15": {
-      "task_key": "todo:15",
-      "task_label": "15",
-      "task_title": "Import character, scale 1.7 m, place at `NAV_spawn_lobby`, rig + idle via Meshy, `hq_v03.blend`, lobby render",
-      "session_id": "opencode:ses_eb2df008fffe1UpuxRsreExRFK",
-      "agent": "Sisyphus-Junior",
-      "category": "deep",
-      "updated_at": "2026-10-18T04:10:00.276Z",
-      "started_at": "2026-10-18T04:10:00.276Z",
-      "status": "running"
-    },
-    "todo:17": {
-      "task_key": "todo:17",
-      "task_label": "17",
-      "task_title": "⏸ Verdict render (bpy furniture vs Meshy kit vs Meshy character in one frame) + Level 1/2 question",
-      "session_id": "opencode:ses_eb2c5dad6ffebxk7iOuyBxFYEb",
-      "agent": "Sisyphus-Junior",
-      "category": "deep",
-      "updated_at": "2026-10-18T04:36:12.523Z",
-      "started_at": "2026-10-18T04:36:12.523Z",
-      "status": "running"
-    },
-    "todo:18": {
-      "task_key": "todo:18",
-      "task_label": "18",
-      "task_title": "Write verdict to guide §3 + §11 (+ §10 note), sync `.html`; if Level 2 switch `build_hq.py` Floor 1 to `KIT_MESHY`",
-      "session_id": "opencode:ses_eb19d7029ffehapa7gXSz6sEuI",
-      "agent": "Sisyphus-Junior",
-      "category": "writing",
-      "started_at": "2026-10-18T09:39:28.593Z",
-      "status": "running",
-      "updated_at": "2026-10-18T09:42:40.684Z"
-    },
-    "todo:19": {
-      "task_key": "todo:19",
-      "task_label": "19",
-      "task_title": "HANDOFF report for MVP-2 (append to `docs/mvp/HANDOFF.md`)",
-      "session_id": "opencode:ses_eb1992564ffeUwCxMxTty9mT6J",
-      "agent": "Sisyphus-Junior",
-      "category": "writing",
-      "updated_at": "2026-10-18T09:52:28.905Z",
-      "started_at": "2026-10-18T09:52:28.905Z",
-      "status": "running"
-    },
-    "final-wave:f1": {
-      "task_key": "final-wave:f1",
-      "task_label": "F1",
-      "task_title": "Plan compliance audit",
-      "session_id": "opencode:ses_eb1915192ffeZXOkRei6Umj6UA",
-      "agent": "oracle",
-      "updated_at": "2026-10-18T09:58:28.587Z",
-      "started_at": "2026-10-18T09:58:28.587Z",
+      "category": "visual-engineering",
+      "updated_at": "2026-10-18T18:41:15.205Z",
+      "started_at": "2026-10-18T18:41:15.205Z",
       "status": "running"
     }
   },
-  "active_plan": "/home/programer/work/redhunter-reborn/visual-office/.omo/plans/mvp-2-blender-lab.md",
-  "plan_name": "mvp-2-blender-lab",
-  "status": "completed",
-  "started_at": "2026-10-17T16:04:20.000Z",
-  "updated_at": "2026-10-18T10:16:44.522Z",
+  "active_plan": "/home/programer/work/redhunter-reborn/visual-office/.omo/plans/mvp3-integration.md",
+  "plan_name": "mvp3-integration",
+  "status": "active",
+  "started_at": "2026-10-18T17:33:24.277550+00:00",
+  "updated_at": "2026-10-18T18:41:15.204Z",
   "worktree_path": null,
-  "ended_at": "2026-10-18T10:16:44.522Z",
-  "elapsed_ms": 65544522
+  "agent": "atlas"
 }

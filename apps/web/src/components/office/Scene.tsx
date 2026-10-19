@@ -1,53 +1,30 @@
 'use client';
 
-import { useContext } from 'react';
-import {
-  AGENT_DEFINITIONS,
-  OFFICE_LAYOUT,
-  findAgentDesk,
-  type AgentId,
-  type FloorId,
-} from '@redhunter/shared';
+import { Suspense } from 'react';
+import type { FloorId } from '@redhunter/shared';
 import { Lighting } from './Lighting';
-import { Building } from './Building';
-import { FloorPlane } from './FloorPlane';
-import { DeskMarkers } from './DeskMarkers';
-import { Agent } from './Agent';
+import { HqShell } from './HqShell';
+import { FloorModel } from './FloorModel';
 import { CameraRig } from './CameraRig';
-import type { AgentStatuses } from './constants';
-import { FocusContext } from './focusContext';
-import { deskToWorld } from './deskLayout';
+import { PerfProbe } from './PerfProbe';
 
-export function Scene({ agentStatuses }: { agentStatuses: AgentStatuses }) {
-  const { setTarget } = useContext(FocusContext);
-
-  const handleAgentClick = (agentId: AgentId) => {
-    const placement = findAgentDesk(agentId);
-    if (!placement) return;
-    const worldPos = deskToWorld(placement.floorId, placement.deskId);
-    setTarget({ position: worldPos, distance: 5 });
-  };
-
+export function Scene({
+  currentFloor,
+  disableCutaway = false,
+}: {
+  currentFloor: FloorId;
+  disableCutaway?: boolean;
+}) {
   return (
     <>
       <Lighting />
+      <PerfProbe floorId={currentFloor} />
 
-      <Building />
+      <HqShell activeFloor={currentFloor} disableCutaway={disableCutaway} />
 
-      {OFFICE_LAYOUT.floors.map((floor) => (
-        <FloorPlane key={floor.id} floorId={floor.id as FloorId} />
-      ))}
-
-      <DeskMarkers />
-
-      {AGENT_DEFINITIONS.map((agent) => (
-        <Agent
-          key={agent.id}
-          agentId={agent.id}
-          status={agentStatuses[agent.id]}
-          onClick={() => handleAgentClick(agent.id)}
-        />
-      ))}
+      <Suspense fallback={null}>
+        <FloorModel n={currentFloor} />
+      </Suspense>
 
       <CameraRig />
     </>

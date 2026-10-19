@@ -1,0 +1,206 @@
+PREFLIGHT PASS: ktx version: v4.4.2
+MODE=ktx2
+KTX_DIR=/home/programer/.local/ktx/KTX-Software-4.4.2-Linux-x86_64
+HQ GLB optimization pipeline
+Started: 2026-10-18T18:17:43+00:00
+Repository: /home/programer/work/redhunter-reborn/visual-office
+Preflight: ktx version: v4.4.2
+Mode: ktx2
+
+=== hq_shell ===
+input: /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/hq_shell_src.glb (52.53 MB)
+
+[hq_shell:dedup] bunx gltf-transform dedup /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/hq_shell_src.glb /tmp/optimize-hq.R785WK/hq_shell_1.glb
+info: hq_shell_src.glb (55.08 MB) → hq_shell_1.glb (55.07 MB)
+[hq_shell:instance] skipped (not a floor)
+
+[hq_shell:meshopt] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/hq_shell_2.glb /tmp/optimize-hq.R785WK/hq_shell_3.glb
+info: prune: Removed types... Accessor (55)
+warn: quantize: Skipping TEXCOORD_0; out of [0,1] range.
+info: prune: Removed types... Accessor (36)
+info: hq_shell_2.glb (55.07 MB) → hq_shell_3.glb (54.9 MB)
+[hq_shell:texture-inspect] max texture size = 4096px
+
+[hq_shell:uastc] bunx gltf-transform uastc /tmp/optimize-hq.R785WK/hq_shell_3.glb /tmp/optimize-hq.R785WK/hq_shell_4.glb --slots {normalTexture,occlusionTexture,metallicRoughnessTexture} --level 2 --rdo --resize 2048
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+info: hq_shell_3.glb (54.9 MB) → hq_shell_4.glb (41.05 MB)
+
+[hq_shell:etc1s] bunx gltf-transform etc1s /tmp/optimize-hq.R785WK/hq_shell_4.glb /tmp/optimize-hq.R785WK/hq_shell_5.glb --quality 255 --resize 2048
+info: hq_shell_4.glb (41.05 MB) → hq_shell_5.glb (13.54 MB)
+
+[hq_shell:meshopt-final] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/hq_shell_5.glb /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/hq_shell.glb
+info: prune: Removed types... Accessor (36)
+warn: quantize: Skipping TEXCOORD_0; out of [0,1] range.
+info: prune: Removed types... Accessor (18)
+info: hq_shell_5.glb (13.54 MB) → hq_shell.glb (13.46 MB)
+output: /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/hq_shell.glb (12.84 MB)
+
+=== floor_1 ===
+input: /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/floor_1_src.glb (44.67 MB)
+
+[floor_1:dedup] bunx gltf-transform dedup /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/floor_1_src.glb /tmp/optimize-hq.R785WK/floor_1_1.glb
+info: floor_1_src.glb (46.84 MB) → floor_1_1.glb (46.77 MB)
+
+[floor_1:instance] bunx gltf-transform instance /tmp/optimize-hq.R785WK/floor_1_1.glb /tmp/optimize-hq.R785WK/floor_1_2.glb --min 9
+info: instance: Created 2 batches, with 256 total instances.
+info: floor_1_1.glb (46.77 MB) → floor_1_2.glb (46.76 MB)
+
+[floor_1:meshopt] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/floor_1_2.glb /tmp/optimize-hq.R785WK/floor_1_3.glb
+info: prune: Removed types... Accessor (156)
+info: prune: Removed types... Accessor (117)
+info: floor_1_2.glb (46.76 MB) → floor_1_3.glb (46.62 MB)
+[floor_1:texture-inspect] max texture size = 4096px
+
+[floor_1:uastc] bunx gltf-transform uastc /tmp/optimize-hq.R785WK/floor_1_3.glb /tmp/optimize-hq.R785WK/floor_1_4.glb --slots {normalTexture,occlusionTexture,metallicRoughnessTexture} --level 2 --rdo --resize 2048
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+info: floor_1_3.glb (46.62 MB) → floor_1_4.glb (29 MB)
+
+[floor_1:etc1s] bunx gltf-transform etc1s /tmp/optimize-hq.R785WK/floor_1_4.glb /tmp/optimize-hq.R785WK/floor_1_5.glb --quality 255 --resize 2048
+info: floor_1_4.glb (29 MB) → floor_1_5.glb (7.09 MB)
+
+[floor_1:meshopt-final] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/floor_1_5.glb /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/floor_1.glb
+info: prune: Removed types... Accessor (87)
+info: prune: Removed types... Accessor (49)
+info: floor_1_5.glb (7.09 MB) → floor_1.glb (7.06 MB)
+output: /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/floor_1.glb (6.73 MB)
+
+=== floor_2 ===
+input: /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/floor_2_src.glb (34.31 MB)
+
+[floor_2:dedup] bunx gltf-transform dedup /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/floor_2_src.glb /tmp/optimize-hq.R785WK/floor_2_1.glb
+info: floor_2_src.glb (35.97 MB) → floor_2_1.glb (35.97 MB)
+
+[floor_2:instance] bunx gltf-transform instance /tmp/optimize-hq.R785WK/floor_2_1.glb /tmp/optimize-hq.R785WK/floor_2_2.glb --min 9
+info: instance: Created 1 batches, with 268 total instances.
+info: floor_2_1.glb (35.97 MB) → floor_2_2.glb (35.95 MB)
+
+[floor_2:meshopt] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/floor_2_2.glb /tmp/optimize-hq.R785WK/floor_2_3.glb
+info: prune: Removed types... Accessor (11)
+info: prune: Removed types... Accessor (7)
+info: floor_2_2.glb (35.95 MB) → floor_2_3.glb (35.95 MB)
+[floor_2:texture-inspect] max texture size = 4096px
+
+[floor_2:uastc] bunx gltf-transform uastc /tmp/optimize-hq.R785WK/floor_2_3.glb /tmp/optimize-hq.R785WK/floor_2_4.glb --slots {normalTexture,occlusionTexture,metallicRoughnessTexture} --level 2 --rdo --resize 2048
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+info: floor_2_3.glb (35.95 MB) → floor_2_4.glb (20.48 MB)
+
+[floor_2:etc1s] bunx gltf-transform etc1s /tmp/optimize-hq.R785WK/floor_2_4.glb /tmp/optimize-hq.R785WK/floor_2_5.glb --quality 255 --resize 2048
+info: floor_2_4.glb (20.48 MB) → floor_2_5.glb (4.1 MB)
+
+[floor_2:meshopt-final] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/floor_2_5.glb /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/floor_2.glb
+info: prune: Removed types... Accessor (12)
+info: prune: Removed types... Accessor (7)
+info: floor_2_5.glb (4.1 MB) → floor_2.glb (4.09 MB)
+output: /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/floor_2.glb (3.90 MB)
+
+=== floor_3 ===
+input: /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/floor_3_src.glb (34.31 MB)
+
+[floor_3:dedup] bunx gltf-transform dedup /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/floor_3_src.glb /tmp/optimize-hq.R785WK/floor_3_1.glb
+info: floor_3_src.glb (35.97 MB) → floor_3_1.glb (35.97 MB)
+
+[floor_3:instance] bunx gltf-transform instance /tmp/optimize-hq.R785WK/floor_3_1.glb /tmp/optimize-hq.R785WK/floor_3_2.glb --min 9
+info: instance: Created 1 batches, with 268 total instances.
+info: floor_3_1.glb (35.97 MB) → floor_3_2.glb (35.95 MB)
+
+[floor_3:meshopt] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/floor_3_2.glb /tmp/optimize-hq.R785WK/floor_3_3.glb
+info: prune: Removed types... Accessor (11)
+info: prune: Removed types... Accessor (7)
+info: floor_3_2.glb (35.95 MB) → floor_3_3.glb (35.95 MB)
+[floor_3:texture-inspect] max texture size = 4096px
+
+[floor_3:uastc] bunx gltf-transform uastc /tmp/optimize-hq.R785WK/floor_3_3.glb /tmp/optimize-hq.R785WK/floor_3_4.glb --slots {normalTexture,occlusionTexture,metallicRoughnessTexture} --level 2 --rdo --resize 2048
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+info: floor_3_3.glb (35.95 MB) → floor_3_4.glb (20.48 MB)
+
+[floor_3:etc1s] bunx gltf-transform etc1s /tmp/optimize-hq.R785WK/floor_3_4.glb /tmp/optimize-hq.R785WK/floor_3_5.glb --quality 255 --resize 2048
+info: floor_3_4.glb (20.48 MB) → floor_3_5.glb (4.1 MB)
+
+[floor_3:meshopt-final] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/floor_3_5.glb /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/floor_3.glb
+info: prune: Removed types... Accessor (12)
+info: prune: Removed types... Accessor (7)
+info: floor_3_5.glb (4.1 MB) → floor_3.glb (4.09 MB)
+output: /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/floor_3.glb (3.90 MB)
+
+=== floor_4 ===
+input: /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/floor_4_src.glb (34.31 MB)
+
+[floor_4:dedup] bunx gltf-transform dedup /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/floor_4_src.glb /tmp/optimize-hq.R785WK/floor_4_1.glb
+info: floor_4_src.glb (35.97 MB) → floor_4_1.glb (35.97 MB)
+
+[floor_4:instance] bunx gltf-transform instance /tmp/optimize-hq.R785WK/floor_4_1.glb /tmp/optimize-hq.R785WK/floor_4_2.glb --min 9
+info: instance: Created 1 batches, with 268 total instances.
+info: floor_4_1.glb (35.97 MB) → floor_4_2.glb (35.95 MB)
+
+[floor_4:meshopt] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/floor_4_2.glb /tmp/optimize-hq.R785WK/floor_4_3.glb
+info: prune: Removed types... Accessor (11)
+info: prune: Removed types... Accessor (7)
+info: floor_4_2.glb (35.95 MB) → floor_4_3.glb (35.95 MB)
+[floor_4:texture-inspect] max texture size = 4096px
+
+[floor_4:uastc] bunx gltf-transform uastc /tmp/optimize-hq.R785WK/floor_4_3.glb /tmp/optimize-hq.R785WK/floor_4_4.glb --slots {normalTexture,occlusionTexture,metallicRoughnessTexture} --level 2 --rdo --resize 2048
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+info: floor_4_3.glb (35.95 MB) → floor_4_4.glb (20.48 MB)
+
+[floor_4:etc1s] bunx gltf-transform etc1s /tmp/optimize-hq.R785WK/floor_4_4.glb /tmp/optimize-hq.R785WK/floor_4_5.glb --quality 255 --resize 2048
+info: floor_4_4.glb (20.48 MB) → floor_4_5.glb (4.1 MB)
+
+[floor_4:meshopt-final] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/floor_4_5.glb /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/floor_4.glb
+info: prune: Removed types... Accessor (12)
+info: prune: Removed types... Accessor (7)
+info: floor_4_5.glb (4.1 MB) → floor_4.glb (4.09 MB)
+output: /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/floor_4.glb (3.90 MB)
+
+=== char_base ===
+input: /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/char_base_src.glb (3.81 MB)
+
+[char_base:dedup] bunx gltf-transform dedup /home/programer/work/redhunter-reborn/visual-office/apps/assets/models/export/char_base_src.glb /tmp/optimize-hq.R785WK/char_base_1.glb
+info: char_base_src.glb (4 MB) → char_base_1.glb (3.99 MB)
+[char_base:instance] skipped (not a floor)
+
+[char_base:meshopt] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/char_base_2.glb /tmp/optimize-hq.R785WK/char_base_3.glb
+info: prune: Removed types... Accessor (6)
+info: prune: Removed types... Skin (1), Accessor (4)
+info: char_base_2.glb (3.99 MB) → char_base_3.glb (2.99 MB)
+[char_base:texture-inspect] max texture size = 2048px
+
+[char_base:uastc] bunx gltf-transform uastc /tmp/optimize-hq.R785WK/char_base_3.glb /tmp/optimize-hq.R785WK/char_base_4.glb --slots {normalTexture,occlusionTexture,metallicRoughnessTexture} --level 2 --rdo
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+info: char_base_3.glb (2.99 MB) → char_base_4.glb (3.35 MB)
+
+[char_base:etc1s] bunx gltf-transform etc1s /tmp/optimize-hq.R785WK/char_base_4.glb /tmp/optimize-hq.R785WK/char_base_5.glb --quality 255
+info: char_base_4.glb (3.35 MB) → char_base_5.glb (1.34 MB)
+
+[char_base:meshopt-final] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/char_base_5.glb /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/char_base.glb
+info: prune: Removed types... Accessor (6)
+info: prune: Removed types... Skin (1), Accessor (3)
+info: char_base_5.glb (1.34 MB) → char_base.glb (977.24 KB)
+output: /home/programer/work/redhunter-reborn/visual-office/apps/web/public/models/char_base.glb (0.93 MB)
+
+=== basis transcoder copy ===
+Copied basis_transcoder.{js,wasm} from /home/programer/work/redhunter-reborn/visual-office/node_modules/.bun/three@0.186.1/node_modules/three/examples/jsm/libs/basis
+
+=== verification ===
+File         Status   BaseTris       Tris      Δ%  Inst  MaxTex Extensions
+----------------------------------------------------------------------------------------------------
+hq_shell     PASS       561718     561718    0.00     0    2048 EXT_meshopt_compression, KHR_mesh_quantization, KHR_texture_basisu
+floor_1      PASS       103148     103148    0.00   256    2048 EXT_mesh_gpu_instancing, EXT_meshopt_compression, KHR_mesh_quantization, KHR_texture_basisu
+floor_2      PASS       107260     107260    0.00   268    2048 EXT_mesh_gpu_instancing, EXT_meshopt_compression, KHR_mesh_quantization, KHR_texture_basisu
+floor_3      PASS       107260     107260    0.00   268    2048 EXT_mesh_gpu_instancing, EXT_meshopt_compression, KHR_mesh_quantization, KHR_texture_basisu
+floor_4      PASS       107260     107260    0.00   268    2048 EXT_mesh_gpu_instancing, EXT_meshopt_compression, KHR_mesh_quantization, KHR_texture_basisu
+char_base    PASS        19499      19499    0.00     0    2048 EXT_meshopt_compression, KHR_mesh_quantization, KHR_texture_basisu
+----------------------------------------------------------------------------------------------------
+ALL PASS
+Expected prefixes (staging): {'hq_shell': {'NAV_': 0, 'TASK_': 0, 'ROOM_': 0, 'COL_': 0}, 'floor_1': {'NAV_': 7, 'TASK_': 9, 'ROOM_': 3, 'COL_': 20}, 'floor_2': {'NAV_': 0, 'TASK_': 0, 'ROOM_': 0, 'COL_': 1}, 'floor_3': {'NAV_': 0, 'TASK_': 0, 'ROOM_': 0, 'COL_': 1}, 'floor_4': {'NAV_': 0, 'TASK_': 0, 'ROOM_': 0, 'COL_': 1}, 'char_base': {'NAV_': 0, 'TASK_': 0, 'ROOM_': 0, 'COL_': 0}}
+
+=== before/after size (MB) ===
+File             Before      After    Ratio
+--------------------------------------------------
+hq_shell          52.53      12.84   24.44%
+floor_1           44.67       6.73   15.07%
+floor_2           34.31       3.90   11.37%
+floor_3           34.31       3.90   11.37%
+floor_4           34.31       3.90   11.37%
+char_base          3.81       0.93   24.45%
+
+Finished: 2026-10-18T18:20:42+00:00

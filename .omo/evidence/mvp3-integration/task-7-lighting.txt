@@ -1,0 +1,72 @@
+TASK 7 — Lighting §4.1 fase siang
+File: apps/web/src/components/office/Lighting.tsx
+Date: 2026-10-18
+
+== 1. GREP — spec values present in file ==
+Command: grep -nE 'color|intensity|position|castShadow|shadow-|hemisphereLight|directionalLight|ambientLight|args' Lighting.tsx
+
+5:      {/* args = [skyColor, groundColor]: R3F has no skyColor prop; constructor args are the canonical form */}
+6:      <hemisphereLight args={['#BFE3F7', '#E3F4FC']} intensity={1.0} />
+9:      <directionalLight
+10:        color="#FFFFFF"
+11:        intensity={1.4}
+12:        position={[12, 22, 8]}
+13:        castShadow
+14:        shadow-mapSize-width={2048}
+15:        shadow-mapSize-height={2048}
+16:        shadow-bias={-0.0005}
+17:        shadow-camera-left={-18}
+18:        shadow-camera-right={18}
+19:        shadow-camera-top={18}
+20:        shadow-camera-bottom={-18}
+21:        shadow-camera-far={60}
+
+Value checklist (all greppable in file):
+  hemisphereLight skyColor    #BFE3F7  ✓ (args[0])
+  hemisphereLight groundColor #E3F4FC  ✓ (args[1])
+  hemisphereLight intensity   1.0      ✓
+  directionalLight color      #FFFFFF  ✓
+  directionalLight intensity  1.4      ✓
+  directionalLight position   [12, 22, 8] ✓
+  castShadow                  present  ✓
+  shadow mapSize              2048x2048 ✓
+  shadow-bias                 -0.0005  ✓
+  shadow camera ±18 / far 60           ✓
+  ambientLight                ABSENT (removed) ✓
+
+NOTE on skyColor prop form:
+  THREE.HemisphereLight exposes .color (sky) + .groundColor; there is NO
+  .skyColor property, and R3F's type rejects skyColor= (verified: TS2322
+  before the fix). Constructor args (skyColor, groundColor, intensity) are
+  the canonical three.js form, so values are passed as
+  args={['#BFE3F7', '#E3F4FC']}. Runtime and types both correct; spec
+  values preserved verbatim.
+
+== 2. TYPECHECK ==
+Command: cd apps/web && bunx tsc --noEmit
+Result: exit 0, no output. Clean.
+(lsp_diagnostics at repo root failed: "Could not find a valid TypeScript
+installation" — tsc via bunx inside apps/web used instead, full project.)
+
+== 3. DEV-SERVER CONSOLE CHECK ==
+Command: bun run dev (next dev -p 3100), curl / and /dashboard, then killed.
+
+Server log:
+  ▲ Next.js 16.4.0 (Turbopack)
+  ✓ Ready in 735ms
+  GET /          200
+  GET /dashboard 200
+
+NEW console/compile errors after change: NONE.
+
+Pre-existing warnings (unrelated to Lighting.tsx, present before change):
+  - next.config.ts: 'eslint' key unrecognized / no longer supported
+    (Next.js 16 config deprecation warning — build config, not runtime).
+  - PCFSoft→PCF shadow fallback warning is a browser-runtime console
+    warning; curl-based capture cannot observe browser console. Per plan
+    it may remain and is recorded here as pre-existing/allowed.
+
+== 4. UNTOUCHED (verified not modified) ==
+  - OfficeCanvas.tsx: Canvas shadows + ACES tone mapping unchanged.
+  - Scene.tsx: import { Lighting } shape unchanged (named export kept).
+  - No other files in apps/web/src/components/office/ modified.

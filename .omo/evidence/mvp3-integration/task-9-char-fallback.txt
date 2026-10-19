@@ -1,0 +1,35 @@
+=== Todo 9 failure scenario: clip 'idle' absent -> fallback index-0 stays alive ===
+Date: 2026-10-18
+
+How the modified GLB was produced:
+  /tmp/patch_glb.py: read apps/web/public/models/char_base.glb, locate "animations" in the JSON chunk,
+  replace the single "idle" name with "idlx" (same byte length 4 -> JSON chunk length/padding unchanged,
+  total file length unchanged 977236 B). Written to /tmp/char_base_noidle.glb. Repo file NOT modified.
+  Verified with python3 struct parse:
+    apps/web/public/models/char_base.glb -> animations: ['idle']   (977236 B)
+    /tmp/char_base_noidle.glb            -> animations: ['idlx']   (977236 B)
+  extensionsUsed (unchanged): EXT_meshopt_compression, KHR_mesh_quantization, KHR_texture_basisu
+
+Run method:
+  Real app: `bun run next dev -p 3100` (as playwright.config.ts: NEXT_PUBLIC_API_URL=http://localhost:4100, BROWSER=none).
+  Scratch script /tmp/fb.mjs (playwright 1.64 from apps/web/node_modules, headless chromium + SwiftShader flags,
+  viewport 1280x800, dummy JWT in localStorage). page.route('**/models/char_base.glb') fulfilled with the patched GLB
+  (route hit count = 1). Waited for floor_1.glb + char_base.glb responses (200), canvas visible, settle 4 s.
+
+Captured console (page.on('console')), CharAgent lines exactly as printed:
+  [warning] [CharAgent] clip 'idle' missing; falling back to 'idlx'
+  [warning] [CharAgent] clip 'idle' missing; falling back to 'idlx'      (printed twice: second mount/StrictMode effect)
+  Other: THREE.Clock deprecated, PCFSoftShadowMap removed, multiple KTX2 loaders (all accepted), [HqShell]/[FloorModel] debug logs.
+  console.error count: 0. pageerror count: 0.
+
+window.__hqChar after settle: {"x":7,"y":0,"z":-6}  (matches NAV_spawn_lobby (7,0,-6); same after 700 ms)
+
+Pixel diff (canvas element screenshots 700 ms apart, fb-t0.png vs fb-t700.png, 1280x729 RGB):
+  Method: python3 PIL + numpy, count pixels where any channel differs (sum |dRGB| > 0).
+  differing pixels: 199, bbox x 922..937, y 392..419 (16x28 px region = the character)
+  => fallback clip 'idlx' plays; character animates.
+Screenshots: .omo/evidence/mvp3-integration/task-9-char-fallback/fb-t0.png, fb-t700.png
+
+FALLBACK WORKS: YES
+
+Cleanup: killed my dev server (bun 234116, node 234118, next-server 234130) by PID; chromium closed by script; `lsof -i :3100 -sTCP:LISTEN` empty. Pre-existing next-server pid 12098 (other user) untouched.

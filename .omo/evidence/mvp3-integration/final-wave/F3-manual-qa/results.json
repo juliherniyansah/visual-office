@@ -1,0 +1,241 @@
+{
+  "S1": {
+    "hq_shell": 1,
+    "floor_1": 1,
+    "char_base": 1,
+    "floor_2": 0,
+    "floor_3": 0,
+    "floor_4": 0,
+    "basis_js": 2,
+    "basis_wasm": 2,
+    "label": true,
+    "char": {
+      "x": 7,
+      "y": 0,
+      "z": -6
+    },
+    "stats": {
+      "floorId": 1,
+      "calls": 568,
+      "triangles": 576326,
+      "fps": 0
+    }
+  },
+  "S6": {
+    "char": {
+      "x": 7,
+      "y": 0,
+      "z": -6
+    },
+    "dist": 0
+  },
+  "S2": {
+    "floor_2": 1,
+    "floor_3": 0,
+    "floor_4": 0,
+    "stats": {
+      "floorId": 2,
+      "calls": 296,
+      "triangles": 380033,
+      "fps": 0
+    }
+  },
+  "S3": {
+    "floor_1": 2,
+    "char": {
+      "x": 7,
+      "y": 0,
+      "z": -6
+    },
+    "dist": 0,
+    "char_base": 2
+  },
+  "S4": {
+    "floor_3": {
+      "fetchedBefore": 0,
+      "fetchedAfter": 1,
+      "sampleA": {
+        "floorId": 3,
+        "calls": 305,
+        "triangles": 388681,
+        "fps": 3
+      },
+      "sampleB": {
+        "floorId": 3,
+        "calls": 305,
+        "triangles": 388681,
+        "fps": 3
+      }
+    },
+    "floor_4": {
+      "fetchedBefore": 0,
+      "fetchedAfter": 1,
+      "sampleA": {
+        "floorId": 4,
+        "calls": 307,
+        "triangles": 391679,
+        "fps": 2
+      },
+      "sampleB": {
+        "floorId": 4,
+        "calls": 307,
+        "triangles": 391679,
+        "fps": 4
+      }
+    },
+    "floor_1_recheck": {
+      "sampleA": {
+        "floorId": 1,
+        "calls": 303,
+        "triangles": 364045,
+        "fps": 3
+      },
+      "sampleB": {
+        "floorId": 1,
+        "calls": 303,
+        "triangles": 364045,
+        "fps": 4
+      }
+    },
+    "floor_2_recheck": {
+      "sampleA": {
+        "floorId": 2,
+        "calls": 296,
+        "triangles": 380033,
+        "fps": 1
+      },
+      "sampleB": {
+        "floorId": 2,
+        "calls": 296,
+        "triangles": 380033,
+        "fps": 3
+      }
+    },
+    "totalFloorFetches": {
+      "1": 3,
+      "2": 2,
+      "3": 1,
+      "4": 1
+    }
+  },
+  "S5shots": {
+    "done": true
+  },
+  "S8": {
+    "errVisible": true,
+    "errMsgText": "Visual Office\nf3@redhunter.local\n•\nAdmin\nLogout\nF1 · Lobby & Server Room\nF2 · Domain Floor\nF3 · Operations\nF4 · CEO Office\nGagal memuat model lantai\nCould not load /models/floor_3.glb: Failed to fetch\nCoba lagi",
+    "webglFallbackCount": 0,
+    "buttons": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "retryVisible": true,
+    "canvasCount": 0,
+    "errBox": {
+      "x": 514.546875,
+      "y": 382.25,
+      "width": 250.90625,
+      "height": 27
+    },
+    "selectorBoxes": [
+      {
+        "x": 1073.75,
+        "y": 87,
+        "width": 190.25,
+        "height": 37.5
+      },
+      {
+        "x": 1073.75,
+        "y": 132.5,
+        "width": 190.25,
+        "height": 37.5
+      },
+      {
+        "x": 1073.75,
+        "y": 178,
+        "width": 190.25,
+        "height": 39.5
+      },
+      {
+        "x": 1073.75,
+        "y": 225.5,
+        "width": 190.25,
+        "height": 37.5
+      }
+    ],
+    "f3Net": [
+      {
+        "url": "/models/floor_3.glb",
+        "status": "FAILED",
+        "failure": "net::ERR_FAILED"
+      }
+    ],
+    "recovered": {
+      "ok": true,
+      "canvasCount": 1,
+      "stats": {
+        "floorId": 1,
+        "calls": 303,
+        "triangles": 364045,
+        "fps": 1
+      },
+      "char": {
+        "x": 7,
+        "y": 0,
+        "z": -6
+      },
+      "dist": 0,
+      "errGone": true
+    }
+  },
+  "S8a": {
+    "err1": true,
+    "f2": true,
+    "floor3Fetched200": true,
+    "f3": true,
+    "stats": {
+      "floorId": 3,
+      "calls": 305,
+      "triangles": 388681,
+      "fps": 1
+    },
+    "errGone": true,
+    "f3Net": [
+      {
+        "url": "/models/floor_3.glb",
+        "status": "FAILED",
+        "failure": "net::ERR_FAILED"
+      },
+      {
+        "url": "/models/floor_3.glb",
+        "status": 200
+      }
+    ]
+  },
+  "S8b": {
+    "err1": true,
+    "floor3Fetched200": true,
+    "f3": true,
+    "stats": {
+      "floorId": 3,
+      "calls": 305,
+      "triangles": 388681,
+      "fps": 1
+    },
+    "errGone": true,
+    "canvasCount": 1,
+    "f3Net": [
+      {
+        "url": "/models/floor_3.glb",
+        "status": "FAILED",
+        "failure": "net::ERR_FAILED"
+      },
+      {
+        "url": "/models/floor_3.glb",
+        "status": 200
+      }
+    ]
+  }
+}

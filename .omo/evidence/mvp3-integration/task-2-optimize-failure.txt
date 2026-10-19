@@ -1,0 +1,13 @@
+Failure-path probe: textureless GLB
+Started: 2026-10-18T18:20:42+00:00
+
+[probe:dedup] bunx gltf-transform dedup /tmp/optimize-hq.R785WK/probe/in.glb /tmp/optimize-hq.R785WK/probe/1.glb
+info: in.glb (12.66 KB) → 1.glb (4.52 KB)
+[probe:meshopt] bunx gltf-transform meshopt /tmp/optimize-hq.R785WK/probe/1.glb /tmp/optimize-hq.R785WK/probe/2.glb
+info: prune: Removed types... Accessor (6)
+info: prune: Removed types... Accessor (4)
+info: 1.glb (4.52 KB) → 2.glb (4.98 KB)
+[probe:uastc+etc1s] SKIP: no textures (EXIT 0)
+
+Probe output: /tmp/optimize-hq.R785WK/probe/out.glb (0.00 MB)
+Finished: 2026-10-18T18:20:44+00:00

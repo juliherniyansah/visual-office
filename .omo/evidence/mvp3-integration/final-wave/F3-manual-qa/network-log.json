@@ -1,0 +1,321 @@
+{
+  "S1-S4": [
+    {
+      "url": "/models/hq_shell.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_1.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/char_base.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_2.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_1.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/char_base.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_3.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_4.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_1.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/char_base.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_2.glb",
+      "status": 200
+    }
+  ],
+  "S5-cut": [
+    {
+      "url": "/models/hq_shell.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_1.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/char_base.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    }
+  ],
+  "S5-nocut": [
+    {
+      "url": "/models/hq_shell.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_1.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/char_base.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    }
+  ],
+  "S8": [
+    {
+      "url": "/models/hq_shell.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_1.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/char_base.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_3.glb",
+      "status": "FAILED",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "/models/floor_1.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/char_base.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    }
+  ],
+  "S8a": [
+    {
+      "url": "/models/hq_shell.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_1.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/char_base.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_3.glb",
+      "status": "FAILED",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "/models/floor_2.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_1.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_3.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    }
+  ],
+  "S8b": [
+    {
+      "url": "/models/hq_shell.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_1.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/char_base.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_3.glb",
+      "status": "FAILED",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "/models/floor_3.glb",
+      "status": 200
+    },
+    {
+      "url": "/models/floor_1.glb",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.js",
+      "status": 200
+    },
+    {
+      "url": "/basis/basis_transcoder.wasm",
+      "status": 200
+    }
+  ]
+}

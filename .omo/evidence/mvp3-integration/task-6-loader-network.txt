@@ -1,0 +1,43 @@
+TASK 6 — per-floor loader + cutaway + dispose network evidence
+run: 2026-10-18T19:01:20.010Z
+
+== /models/ responses (chronological) ==
+18:59:38  200  /models/hq_shell.glb
+18:59:38  200  /models/floor_1.glb
+19:00:07  200  /models/floor_2.glb
+19:00:10  200  /models/floor_1.glb
+19:00:31  200  /models/hq_shell.glb
+19:00:31  200  /models/floor_1.glb
+
+== assertions ==
+PASS  hq_shell.glb fetched 200 on initial load (count=1)
+PASS  floor_1.glb fetched 200 on initial load (count=1)
+PASS  floor_2.glb NOT requested before click (count=0)
+PASS  floor_3/4 NOT requested before click (f3=0 f4=0)
+PASS  floor_2.glb fetched 200 after F2 click (count=1)
+PASS  floor_3/4 still never requested (f3=0 f4=0)
+PASS  floor_1.glb re-fetched 200 after F2->F1 round trip (initial=1 now=2)
+PASS  floor_3/4 never requested entire session
+PASS  no 'setKTX2Loader must be called' console error (found=0)
+PASS  no pageerrors (found=0)
+
+== console (all pages) ==
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[warning] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[debug] [HqShell] cutaway f1: hid 102 facade nodes
+[debug] [FloorModel] floor 1: hid 20 COL_ nodes
+[debug] [HqShell] cutaway f1: hid 102 facade nodes
+[debug] [FloorModel] floor 1: hid 20 COL_ nodes
+[warning] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.
+[debug] [HqShell] cutaway f2: hid 102 facade nodes
+[warning] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+[debug] [FloorModel] floor 2: hid 1 COL_ nodes
+[debug] [HqShell] cutaway f1: hid 102 facade nodes
+[debug] [FloorModel] floor 1: hid 20 COL_ nodes
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[log] [HMR] connected
+[warning] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[debug] [FloorModel] floor 1: hid 20 COL_ nodes
+[debug] [FloorModel] floor 1: hid 20 COL_ nodes
+[warning] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.

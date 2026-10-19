@@ -1,0 +1,125 @@
+# NEG proof: temp spec e2e/task-11-neg.e2e.ts, assertion inverted (.not.toHaveScreenshot) vs copy of baseline. EXPECT: FAIL (non-zero exit)
+[WebServer] ⚠ `eslint` configuration in next.config.ts is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+[WebServer] ⚠ Invalid next.config.ts options detected: 
+[WebServer] ⚠     Unrecognized key(s) in object: 'eslint'
+[WebServer] ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+
+Running 1 test using 1 worker
+
+[WebServer] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[WebServer] [browser] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+  ✘  1 e2e/task-11-neg.e2e.ts:52:5 › NEG inverted: screenshot must differ from baseline (1.4m)
+
+
+  1) e2e/task-11-neg.e2e.ts:52:5 › NEG inverted: screenshot must differ from baseline ──────────────
+
+    Error: Screenshot comparison failed:
+
+      Expected result should be different from the actual one.
+
+      137 |   if (process.env.PW_NEG) await page.addStyleTag({ content: 'canvas{filter:invert(1)}' });
+      138 |
+    > 139 |   await expect(page.locator('main')).not.toHaveScreenshot('dashboard-office.png', {
+          |                                          ^
+      140 |     maxDiffPixelRatio: 0.01,
+      141 |     animations: 'disabled',
+      142 |     // SwiftShader renders the 583k-tri HQ scene at 1-4 FPS; the default 5s assertion
+        at /home/programer/work/redhunter-reborn/visual-office/apps/web/e2e/task-11-neg.e2e.ts:139:42
+
+    Error Context: ../../.omo/evidence/mvp3-integration/pw-output-neg/task-11-neg.e2e.ts-NEG-inv-d418e-t-must-differ-from-baseline/error-context.md
+
+  1 failed
+    e2e/task-11-neg.e2e.ts:52:5 › NEG inverted: screenshot must differ from baseline ───────────────
+NEG_EXIT=1
+NEG_DONE
+
+=== F1 fix: REAL spec with PW_NEG=1 ===
+Date: 2026-10-18
+Command (actually run, with -g to select first test only; port 3100 orphan next dev pid 228803/228804/231394 killed first):
+  (cd apps/web && rm -rf .next/dev && PW_NEG=1 bunx playwright test e2e/dashboard-office.e2e.ts -g "renders identically" --output ../../.omo/evidence/mvp3-integration/pw-output-negreal)
+Baseline md5 BEFORE: 4816ac7234930a6aea5e65856c2e759e
+--- /tmp/pwneg.log (full, 69 lines; contains last >=60 lines) ---
+
+Running 1 test using 1 worker
+
+[WebServer] ⚠ `eslint` configuration in next.config.ts is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+[WebServer] ⚠ Invalid next.config.ts options detected: 
+[WebServer] ⚠     Unrecognized key(s) in object: 'eslint'
+[WebServer] ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+[WebServer] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[WebServer] [browser] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+  ✘  1 e2e/dashboard-office.e2e.ts:52:5 › dashboard office canvas renders identically (1.6m)
+
+
+  1) e2e/dashboard-office.e2e.ts:52:5 › dashboard office canvas renders identically ────────────────
+
+    Error: expect(locator).toHaveScreenshot(expected) failed
+
+    Locator: locator('main')
+    Timeout: 30000ms
+      Timeout 30000ms exceeded.
+
+      Snapshot: dashboard-office.png
+
+    Call log:
+      - Expect "toHaveScreenshot(dashboard-office.png)" locator('main') with timeout 30000ms
+        - verifying given screenshot expectation
+      - waiting for locator('main')
+        - locator resolved to <main class="flex-1 overflow-hidden">…</main>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - 749312 pixels (ratio 0.81 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - waiting for locator('main')
+        - locator resolved to <main class="flex-1 overflow-hidden">…</main>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - Timeout 30000ms exceeded.
+
+
+      137 |   if (process.env.PW_NEG) await page.addStyleTag({ content: 'canvas{filter:invert(1)}' });
+      138 |
+    > 139 |   await expect(page.locator('main')).toHaveScreenshot('dashboard-office.png', {
+          |                                      ^
+      140 |     maxDiffPixelRatio: 0.01,
+      141 |     animations: 'disabled',
+      142 |     // SwiftShader renders the 583k-tri HQ scene at 1-4 FPS; the default 5s assertion
+        at /home/programer/work/redhunter-reborn/visual-office/apps/web/e2e/dashboard-office.e2e.ts:139:38
+
+    attachment #1: dashboard-office (image/png) ────────────────────────────────────────────────────
+    Expected: e2e/dashboard-office.e2e.ts-snapshots/dashboard-office-linux.png
+    Received: ../../.omo/evidence/mvp3-integration/pw-output-negreal/dashboard-office.e2e.ts-da-6684b--canvas-renders-identically/dashboard-office-actual.png
+    Diff:     ../../.omo/evidence/mvp3-integration/pw-output-negreal/dashboard-office.e2e.ts-da-6684b--canvas-renders-identically/dashboard-office-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../.omo/evidence/mvp3-integration/pw-output-negreal/dashboard-office.e2e.ts-da-6684b--canvas-renders-identically/error-context.md
+
+  1 failed
+    e2e/dashboard-office.e2e.ts:52:5 › dashboard office canvas renders identically ─────────────────
+EXIT=1
+--- end log ---
+EXIT=1 (non-zero, expected)
+Key lines:
+  Error: expect(locator).toHaveScreenshot(expected) failed
+  log line 37:      - 749312 pixels (ratio 0.81 of all image pixels) are different.
+  code frame: apps/web/e2e/dashboard-office.e2e.ts:139 -> await expect(page.locator('main')).toHaveScreenshot('dashboard-office.png', {maxDiffPixelRatio: 0.01, ...})
+  PW_NEG inversion applied at spec line 137: canvas{filter:invert(1)}
+Baseline md5 AFTER:  4816ac7234930a6aea5e65856c2e759e
+Artifacts: .omo/evidence/mvp3-integration/pw-output-negreal/ (dashboard-office-actual.png, -diff.png)
+git status apps/web/e2e:  M apps/web/e2e/dashboard-office.e2e.ts
+git status apps/web/e2e:  M apps/web/e2e/dashboard-office.e2e.ts-snapshots/dashboard-office-linux.png
+PW_NEG BITES: YES (comparison fails at toHaveScreenshot with ratio 0.81 > maxDiffPixelRatio 0.01)

@@ -1,0 +1,430 @@
+{
+  "S1-S4": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[HMR] connected"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f2: hid 102 facade nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 2: hid 1 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f3: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 3: hid 1 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f4: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 4: hid 1 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f2: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 2: hid 1 COL_ nodes"
+    }
+  ],
+  "S5-cut": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[HMR] connected"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "type": "warning",
+      "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    }
+  ],
+  "S5-nocut": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[HMR] connected"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "type": "warning",
+      "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    }
+  ],
+  "S8": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[HMR] connected"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "type": "warning",
+      "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f3: hid 102 facade nodes"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "pageerror",
+      "text": "Could not load /models/floor_3.glb: Failed to fetch"
+    },
+    {
+      "type": "error",
+      "text": "%o\n\n%s Error: Could not load /models/floor_3.glb: Failed to fetch\n    at http://localhost:3100/_next/static/chunks/0-q4_%40react-three_fiber_dist_06rv0cjvjubiu._.js:1455:48\n    at Object._onError [as onError] (http://localhost:3100/_next/static/chunks/1m3h_three-stdlib_02w3s9c2mddjk._.js:1650:17)\n    at http://localhost:3100/_next/static/chunks/0i0u_three_build_three_core_08hyyu_rtodda.js:32759:48"
+    },
+    {
+      "type": "error",
+      "text": "[FloorLoadBoundary] floor model failed to load: Error: Could not load /models/floor_3.glb: Failed to fetch\n    at http://localhost:3100/_next/static/chunks/0-q4_%40react-three_fiber_dist_06rv0cjvjubiu._.js:1455:48\n    at Object._onError [as onError] (http://localhost:3100/_next/static/chunks/1m3h_three-stdlib_02w3s9c2mddjk._.js:1650:17)\n    at http://localhost:3100/_next/static/chunks/0i0u_three_b"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    }
+  ],
+  "S8a": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[HMR] connected"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f3: hid 102 facade nodes"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "pageerror",
+      "text": "Could not load /models/floor_3.glb: Failed to fetch"
+    },
+    {
+      "type": "error",
+      "text": "%o\n\n%s Error: Could not load /models/floor_3.glb: Failed to fetch\n    at http://localhost:3100/_next/static/chunks/0-q4_%40react-three_fiber_dist_06rv0cjvjubiu._.js:1455:48\n    at Object._onError [as onError] (http://localhost:3100/_next/static/chunks/1m3h_three-stdlib_02w3s9c2mddjk._.js:1650:17)\n    at http://localhost:3100/_next/static/chunks/0i0u_three_build_three_core_08hyyu_rtodda.js:32759:48"
+    },
+    {
+      "type": "error",
+      "text": "[FloorLoadBoundary] floor model failed to load: Error: Could not load /models/floor_3.glb: Failed to fetch\n    at http://localhost:3100/_next/static/chunks/0-q4_%40react-three_fiber_dist_06rv0cjvjubiu._.js:1455:48\n    at Object._onError [as onError] (http://localhost:3100/_next/static/chunks/1m3h_three-stdlib_02w3s9c2mddjk._.js:1650:17)\n    at http://localhost:3100/_next/static/chunks/0i0u_three_b"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f2: hid 102 facade nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 2: hid 1 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 2: hid 1 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f3: hid 102 facade nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 3: hid 1 COL_ nodes"
+    }
+  ],
+  "S8b": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[HMR] connected"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f1: hid 102 facade nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 1: hid 20 COL_ nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f3: hid 102 facade nodes"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "pageerror",
+      "text": "Could not load /models/floor_3.glb: Failed to fetch"
+    },
+    {
+      "type": "error",
+      "text": "%o\n\n%s Error: Could not load /models/floor_3.glb: Failed to fetch\n    at http://localhost:3100/_next/static/chunks/0-q4_%40react-three_fiber_dist_06rv0cjvjubiu._.js:1455:48\n    at Object._onError [as onError] (http://localhost:3100/_next/static/chunks/1m3h_three-stdlib_02w3s9c2mddjk._.js:1650:17)\n    at http://localhost:3100/_next/static/chunks/0i0u_three_build_three_core_08hyyu_rtodda.js:32759:48"
+    },
+    {
+      "type": "error",
+      "text": "[FloorLoadBoundary] floor model failed to load: Error: Could not load /models/floor_3.glb: Failed to fetch\n    at http://localhost:3100/_next/static/chunks/0-q4_%40react-three_fiber_dist_06rv0cjvjubiu._.js:1455:48\n    at Object._onError [as onError] (http://localhost:3100/_next/static/chunks/1m3h_three-stdlib_02w3s9c2mddjk._.js:1650:17)\n    at http://localhost:3100/_next/static/chunks/0i0u_three_b"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "type": "debug",
+      "text": "[HqShell] cutaway f3: hid 102 facade nodes"
+    },
+    {
+      "type": "warning",
+      "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    },
+    {
+      "type": "warning",
+      "text": "THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances."
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 3: hid 1 COL_ nodes"
+    },
+    {
+      "type": "debug",
+      "text": "[FloorModel] floor 3: hid 1 COL_ nodes"
+    }
+  ]
+}

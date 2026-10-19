@@ -1,0 +1,172 @@
+=== Task 12: typecheck + lint gate (MVP-3) ===
+--- CMD: (cd apps/web && bun run typecheck; echo EXIT=$?)
+$ tsc --noEmit -p .
+EXIT=0
+
+--- CMD: (cd apps/web && bunx biome lint <12 touched files>; echo EXIT=$?)
+src/components/office/CharAgent.tsx:21:37 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    20 │ export function CharAgent({ floorScene }: { floorScene: THREE.Object3D }) {
+  > 21 │   const group = useRef<THREE.Group>(null!);
+       │                                     ^^^^^
+    22 │   const { scene, animations } = useHqGltf(CHAR_URL);
+    23 │   const { actions, names } = useAnimations(animations, group);
+  
+
+src/components/office/FloorModel.tsx:4:8 lint/style/useImportType  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! All these imports are only used as types.
+  
+    3 │ import { Suspense, useEffect } from 'react';
+  > 4 │ import * as THREE from 'three';
+      │        ^^^^^^^^^^^^^^^^^^^^^^^
+    5 │ import { useGLTF } from '@react-three/drei';
+    6 │ import type { FloorId } from '@redhunter/shared';
+  
+  i Importing the types with import type ensures that they are removed by the compilers and avoids loading unnecessary modules.
+  
+  i Safe fix: Use import type.
+  
+    4 │ import·type·*·as·THREE·from·'three';
+      │        +++++                        
+
+src/components/office/OfficeCanvas.tsx:15:8 lint/style/useImportType  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━
+
+  ! All these imports are only used as types.
+  
+    13 │ import { FocusContext, type FocusTarget } from './focusContext';
+    14 │ import { floorCenter } from './deskLayout';
+  > 15 │ import { type AgentStatuses } from './constants';
+       │        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    16 │ 
+    17 │ interface OfficeCanvasProps {
+  
+  i Importing the types with import type ensures that they are removed by the compilers and avoids loading unnecessary modules.
+  
+  i Safe fix: Use import type.
+  
+    13 13 │   import { FocusContext, type FocusTarget } from './focusContext';
+    14 14 │   import { floorCenter } from './deskLayout';
+    15    │ - import·{·type·AgentStatuses·}·from·'./constants';
+       15 │ + import·type·{·AgentStatuses·}·from·'./constants';
+    16 16 │   
+    17 17 │   interface OfficeCanvasProps {
+  
+
+Checked 12 files in 16ms. No fixes applied.
+Found 3 warnings.
+EXIT=0
+
+--- CMD: pre-existing MVP-1 files (reference, still present?)
+src/components/office/CameraRig.tsx:13:30 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    11 │   const { target } = useContext(FocusContext);
+    12 │   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  > 13 │   const controlsRef = useRef<any>(null);
+       │                              ^^^
+    14 │   const { camera } = useThree();
+    15 │   const targetPosition = useRef(new THREE.Vector3(0, 6, 18));
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+/home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/Agent.tsx internalError/io  INTERNAL  ━━━━━━━━━━
+
+  × No such file or directory (os error 2)
+  
+  ! This diagnostic was derived from an internal Biome error. Potential bug, please report it if necessary.
+  
+
+/home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/DeskMarkers.tsx internalError/io  INTERNAL  ━━━━━━━━━━
+
+  × No such file or directory (os error 2)
+  
+  ! This diagnostic was derived from an internal Biome error. Potential bug, please report it if necessary.
+  
+
+src/app/dashboard/page.tsx:38:9 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Provide an explicit type prop for the button element.
+  
+    36 │           )}
+    37 │         </div>
+  > 38 │         <button
+       │         ^^^^^^^
+  > 39 │           onClick={handleLogout}
+  > 40 │           className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+  > 41 │         >
+       │         ^
+    42 │           Logout
+    43 │         </button>
+  
+  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
+  
+  i Allowed button types are: submit, button or reset
+  
+
+src/components/office/FloorSelector.tsx:29:11 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Provide an explicit type prop for the button element.
+  
+    27 │         const isActive = fid === currentFloor;
+    28 │         return (
+  > 29 │           <button
+       │           ^^^^^^^
+  > 30 │             key={floor.id}
+        ...
+  > 44 │             }}
+  > 45 │           >
+       │           ^
+    46 │             F{floor.id} · {floor.name}
+    47 │           </button>
+  
+  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
+  
+  i Allowed button types are: submit, button or reset
+  
+
+Checked 3 files in 11ms. No fixes applied.
+Found 2 errors.
+Found 1 warning.
+lint ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Some errors were emitted while running checks.
+  
+
+EXIT=1
+
+--- BASELINE: OfficeCanvas.tsx import line at HEAD
+12:import { DEFAULT_STATUSES, type AgentStatuses } from './constants';
+15:  agentStatuses?: Partial<AgentStatuses>;
+22:  const agentStatuses = useMemo<AgentStatuses>(
+--- git status office
+ D apps/web/src/components/office/Agent.tsx
+ D apps/web/src/components/office/Building.tsx
+ D apps/web/src/components/office/DeskMarkers.tsx
+ D apps/web/src/components/office/FloorPlane.tsx
+ M apps/web/src/components/office/Lighting.tsx
+ M apps/web/src/components/office/OfficeCanvas.tsx
+ M apps/web/src/components/office/Scene.tsx
+ M apps/web/src/components/office/constants.ts
+?? apps/web/src/components/office/CharAgent.tsx
+?? apps/web/src/components/office/FloorModel.tsx
+?? apps/web/src/components/office/HqShell.tsx
+?? apps/web/src/components/office/PerfProbe.tsx
+?? apps/web/src/components/office/nodes.test.ts
+?? apps/web/src/components/office/nodes.ts
+?? apps/web/src/components/office/useHqGltf.ts
+
+=== SUMMARY / DIFF STATEMENT ===
+Typecheck: `cd apps/web && bun run typecheck` (tsc --noEmit -p .) EXIT=0.
+Biome lint, 12 MVP-3 touched files: EXIT=0, 0 ERRORS, 3 WARNINGS (severity warn, non-blocking, all style/FIXABLE-or-nonblocking, NOT in MVP-1 pre-existing list, introduced by MVP-3, NOT fixed per instruction):
+  1. CharAgent.tsx:21:37 lint/style/noNonNullAssertion (useRef<THREE.Group>(null!))
+  2. FloorModel.tsx:4:8   lint/style/useImportType (import * as THREE only used as type)
+  3. OfficeCanvas.tsx:15:8 lint/style/useImportType (`import { type AgentStatuses }` split from DEFAULT_STATUSES line; HEAD had combined line at :12)
+Pre-existing MVP-1 list (HANDOFF.md ~L53-58): CameraRig.tsx:13 noExplicitAny, Agent.tsx:26 noStaticElementInteractions, DeskMarkers.tsx:28 noArrayIndexKey, FloorSelector.tsx:29 useButtonType, dashboard/page.tsx:38 useButtonType.
+  Still present (MVP-3 did not touch, verified above): CameraRig.tsx:13, FloorSelector.tsx:29, dashboard/page.tsx:38 (2 errors + 1 warning, EXIT=1 on those untouched files).
+  Gone: Agent.tsx, DeskMarkers.tsx deleted in MVP-3 (replaced by CharAgent etc.), so their 2 diagnostics no longer exist.
+VERDICT: 0 new errors; 3 new warnings (listed); 3 pre-existing MVP-1 diagnostics remain in untouched files; 2 vanished with deleted files. Repo-wide format issues (4071) pre-existing, not run/fixed.

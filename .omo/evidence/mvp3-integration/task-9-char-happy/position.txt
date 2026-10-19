@@ -1,0 +1,4 @@
+window.__hqChar: {"x":7,"y":0,"z":-6}
+NAV_spawn_lobby worldPos: {"x":7,"y":0,"z":-6,"chainDepth":1}
+distance: 0.0000 m (assert < 0.5)
+POSITION: PASS

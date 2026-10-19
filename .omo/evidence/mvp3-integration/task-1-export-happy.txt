@@ -1,0 +1,320 @@
+00:00.578  blend            | Read blend: "/home/programer/work/redhunter-reborn/visual-office/apps/assets/blender/hq_v04.blend"
+BlenderMCP addon registered
+SELECTIONS {'floor_1': 353, 'floor_2': 273, 'floor_3': 273, 'floor_4': 273, 'hq_shell': 462, 'char_base': 2}
+CHECK PASS footprint Z-up XxY = 20.00 x 14.00 m (dz 0.20)
+TRANSFORM_APPLY applied=112 skipped_shared=1505
+TRANSFORM_APPLY skipped names sample: ['column_f2_1', 'column_f2_10', 'column_f2_11', 'column_f2_12', 'column_f2_2', 'column_f2_3', 'column_f2_4', 'column_f2_5']
+ACTION remove Armature|clip0|baselayer
+ACTIONS remaining ['idle']
+CHECK PASS bbox invariant 1618 meshes within 0.0001
+ERROR Draco mesh compression is not available because library could not be found at /usr/lib/blender/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+17:42:47 | INFO: Starting glTF 2.0 export
+17:42:47 | INFO: Extracting primitive: slab_floor_1
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_slab_floor_1
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: ROOM_lobby
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: counter_lobby
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: sofa_1
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: sofa_2
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: coffee_table_lobby
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: plant_1
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: plant_2
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: ROOM_meeting_a
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: KIT_wall_glass_1m
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: table_meeting_a
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_meeting_1
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_meeting_4
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_meeting_2
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_meeting_5
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_meeting_3
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_meeting_6
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: whiteboard_meeting_a
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: ROOM_workstation_a
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: desk_1
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_desk_1
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: monitor_1
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: desk_2
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_desk_2
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: monitor_2
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: desk_3
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_desk_3
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: monitor_3
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: desk_4
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_desk_4
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: monitor_4
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: desk_5
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_desk_5
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: monitor_5
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: desk_6
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_desk_6
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: monitor_6
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: desk_7
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_desk_7
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: monitor_7
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: desk_8
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: chair_desk_8
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: monitor_8
+17:42:47 | INFO: Primitives created: 2
+17:42:47 | INFO: Extracting primitive: stair_step_1
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_2
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_3
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_4
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_5
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_6
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_7
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_8
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_9
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_10
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_11
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_12
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_13
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_14
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_15
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: stair_step_16
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: wall_stair_core
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_wall_s
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_wall_n
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_wall_w
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_wall_e
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_wall_meeting_x8
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_wall_meeting_y8
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_counter
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_sofa_1
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_sofa_2
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_table_meeting
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_desk_1
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_desk_2
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_desk_3
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_desk_4
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_desk_5
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_desk_6
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_desk_7
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_desk_8
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: COL_stair
+17:42:47 | INFO: Primitives created: 1
+17:42:47 | INFO: Extracting primitive: KIT2_meshy_wall_door
+17:42:48 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+17:42:48 | INFO: Primitives created: 1
+17:42:48 | INFO: Extracting primitive: KIT2_meshy_floor_1m
+17:42:49 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+17:42:49 | INFO: Primitives created: 1
+17:42:49 | INFO: Finished glTF 2.0 export in 2.397494316101074 s
+
+EXPORTED floor_1_src.glb objects=353 bytes=46835480
+MESH_SHARING floor_1 nodes=353 glb_meshes=82 blend_unique_mesh_datablocks=82
+17:42:49 | INFO: Starting glTF 2.0 export
+17:42:49 | INFO: Extracting primitive: slab_floor_2_w
+17:42:49 | INFO: Primitives created: 1
+17:42:49 | INFO: Extracting primitive: slab_floor_2_e
+17:42:49 | INFO: Primitives created: 1
+17:42:49 | INFO: Extracting primitive: slab_floor_2_s
+17:42:49 | INFO: Primitives created: 1
+17:42:49 | INFO: Extracting primitive: slab_floor_2_n
+17:42:49 | INFO: Primitives created: 1
+17:42:49 | INFO: Extracting primitive: COL_slab_floor_2
+17:42:49 | INFO: Primitives created: 1
+17:42:49 | INFO: Extracting primitive: KIT2_meshy_floor_1m
+17:42:50 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+17:42:50 | INFO: Primitives created: 1
+17:42:50 | INFO: Finished glTF 2.0 export in 0.5140395164489746 s
+
+EXPORTED floor_2_src.glb objects=273 bytes=35974432
+MESH_SHARING floor_2 nodes=273 glb_meshes=6 blend_unique_mesh_datablocks=6
+17:42:50 | INFO: Starting glTF 2.0 export
+17:42:50 | INFO: Extracting primitive: slab_floor_3_w
+17:42:50 | INFO: Primitives created: 1
+17:42:50 | INFO: Extracting primitive: slab_floor_3_e
+17:42:50 | INFO: Primitives created: 1
+17:42:50 | INFO: Extracting primitive: slab_floor_3_s
+17:42:50 | INFO: Primitives created: 1
+17:42:50 | INFO: Extracting primitive: slab_floor_3_n
+17:42:50 | INFO: Primitives created: 1
+17:42:50 | INFO: Extracting primitive: COL_slab_floor_3
+17:42:50 | INFO: Primitives created: 1
+17:42:50 | INFO: Extracting primitive: KIT2_meshy_floor_1m
+17:42:50 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+17:42:50 | INFO: Primitives created: 1
+17:42:50 | INFO: Finished glTF 2.0 export in 0.4820528030395508 s
+
+EXPORTED floor_3_src.glb objects=273 bytes=35974244
+MESH_SHARING floor_3 nodes=273 glb_meshes=6 blend_unique_mesh_datablocks=6
+17:42:50 | INFO: Starting glTF 2.0 export
+17:42:51 | INFO: Extracting primitive: slab_floor_4_w
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Extracting primitive: slab_floor_4_e
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Extracting primitive: slab_floor_4_s
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Extracting primitive: slab_floor_4_n
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Extracting primitive: COL_slab_floor_4
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Extracting primitive: KIT2_meshy_floor_1m
+17:42:51 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Finished glTF 2.0 export in 0.483501672744751 s
+
+EXPORTED floor_4_src.glb objects=273 bytes=35974240
+MESH_SHARING floor_4 nodes=273 glb_meshes=6 blend_unique_mesh_datablocks=6
+17:42:51 | INFO: Starting glTF 2.0 export
+17:42:51 | INFO: Extracting primitive: ground_main
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Extracting primitive: road_main
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Extracting primitive: sidewalk_n
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Extracting primitive: sidewalk_s
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Extracting primitive: tree_1
+17:42:51 | INFO: Primitives created: 2
+17:42:51 | INFO: Extracting primitive: tree_2
+17:42:51 | INFO: Primitives created: 2
+17:42:51 | INFO: Extracting primitive: tree_3
+17:42:51 | INFO: Primitives created: 2
+17:42:51 | INFO: Extracting primitive: tree_4
+17:42:51 | INFO: Primitives created: 2
+17:42:51 | INFO: Extracting primitive: tree_5
+17:42:51 | INFO: Primitives created: 2
+17:42:51 | INFO: Extracting primitive: tree_6
+17:42:51 | INFO: Primitives created: 2
+17:42:51 | INFO: Extracting primitive: tree_7
+17:42:51 | INFO: Primitives created: 2
+17:42:51 | INFO: Extracting primitive: tree_8
+17:42:51 | INFO: Primitives created: 2
+17:42:51 | INFO: Extracting primitive: tree_9
+17:42:51 | INFO: Primitives created: 2
+17:42:51 | INFO: Extracting primitive: tree_10
+17:42:51 | INFO: Primitives created: 2
+17:42:51 | INFO: Extracting primitive: car_1
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Extracting primitive: car_2
+17:42:51 | INFO: Primitives created: 1
+17:42:51 | INFO: Extracting primitive: KIT2_meshy_wall_1m
+17:42:52 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+17:42:52 | INFO: Primitives created: 1
+17:42:52 | INFO: Extracting primitive: KIT2_meshy_window_1m
+17:42:53 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+17:42:53 | INFO: Primitives created: 1
+17:42:53 | INFO: Extracting primitive: KIT2_glass_pane
+17:42:53 | INFO: Primitives created: 1
+17:42:53 | INFO: Extracting primitive: KIT2_meshy_wall_door
+17:42:53 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+17:42:53 | INFO: Primitives created: 1
+17:42:53 | INFO: Extracting primitive: KIT2_meshy_pillar
+17:42:54 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+17:42:54 | INFO: Primitives created: 1
+17:42:54 | INFO: Extracting primitive: roof_top
+17:42:54 | INFO: Primitives created: 1
+17:42:54 | INFO: Extracting primitive: SIGN_redhunter
+17:42:54 | INFO: Primitives created: 1
+17:42:54 | INFO: Finished glTF 2.0 export in 3.089059829711914 s
+
+EXPORTED hq_shell_src.glb objects=462 bytes=55084492
+MESH_SHARING hq_shell nodes=462 glb_meshes=23 blend_unique_mesh_datablocks=23
+17:42:54 | INFO: Starting glTF 2.0 export
+17:42:54 | INFO: Extracting primitive: CHAR_BASE_mesh
+17:42:55 | INFO: Primitives created: 1
+17:42:55 | WARNING: There are more than 4 joint vertex influences.The 4 with highest weight will be used (and normalized).
+17:42:56 | INFO: Finished glTF 2.0 export in 1.511200189590454 s
+
+EXPORTED char_base_src.glb objects=2 bytes=3996392
+MESH_SHARING char_base nodes=26 glb_meshes=1 blend_unique_mesh_datablocks=1
+CHECK PASS floor_1 node count 353 == blend-derived expected
+CHECK PASS floor_1 NAV_spawn_lobby/TASK_board/TASK_desk_1..8/ROOM_lobby
+CHECK PASS floor_1 contains door_f1_meeting
+CHECK PASS floor_2 node count 273 == blend-derived expected
+CHECK PASS floor_3 node count 273 == blend-derived expected
+CHECK PASS floor_4 node count 273 == blend-derived expected
+CHECK PASS hq_shell node count 462 == blend-derived expected
+CHECK PASS hq_shell contains roof_top
+CHECK PASS hq_shell zero TASK_/NAV_/COL_/ROOM_/meeting/stair/core/tile
+CHECK PASS hq_shell excludes door_f1_meeting
+CHECK PASS char_base exactly 1 animation 'idle'
+CHECK PASS char_base nodes CHAR_BASE + CHAR_BASE_mesh
+CHECK PASS prefix NAV_ total 7
+CHECK PASS prefix TASK_ total 9
+CHECK PASS prefix ROOM_ total 3
+CHECK PASS prefix COL_ total 23
+EXPORT_SELF_CHECK OK all outputs
+EXPORT_DONE
+BlenderMCP addon unregistered
+Blender 5.0.1
+
+Blender quit

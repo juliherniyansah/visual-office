@@ -1,0 +1,8 @@
+# Final polish minors (2026-10-19) — orchestrator-verified
+Fix 1 FloorLoadBoundary: reset() clears URL parsed from drei message + floor url + hq_shell + char_base.
+Fix 2 KTX2: WeakMap entry {loader,holders}; retain/release with deferred (setTimeout 0) dispose — StrictMode safe.
+Fix 3 agentStatuses: already absent from OfficeCanvas + caller (dashboard/page.tsx renders <OfficeCanvas />).
+Fix 4 HANDOFF: +1 correction line, numstat 59 0 (additions only).
+typecheck EXIT=0; nodes.test 5 pass; biome 0 errors on changed files
+e2e: 3 passed (2.1m) EXIT=0; snapshot md5 before=after=4816ac7234930a6aea5e65856c2e759e
+Accepted not fixed: StrictMode useGLTF.clear cleanup (F2: acceptable for MVP), NITs.

@@ -1,0 +1,87 @@
+# Task 14 - floor-load failure isolation (2026-10-19)
+
+## (a) RED: new test vs UNFIXED OfficeCanvas (FloorLoadBoundary.tsx existed but was not wired in)
+
+Running 1 test using 1 worker
+
+  ✘  1 e2e/dashboard-office.e2e.ts:177:5 › dashboard office survives a failed floor load (1.1m)
+
+
+  1) e2e/dashboard-office.e2e.ts:177:5 › dashboard office survives a failed floor load ─────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText(/Gagal memuat model lantai/)
+    Expected: visible
+    Timeout: 60000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText(/Gagal memuat model lantai/) with timeout 60000ms
+      - waiting for getByText(/Gagal memuat model lantai/)
+
+
+      199 |
+      200 |   // Accurate message, selector still mounted, no misleading WebGL fallback.
+    > 201 |   await expect(page.getByText(/Gagal memuat model lantai/)).toBeVisible({ timeout: 60_000 });
+          |                                                             ^
+      202 |   await expect(page.getByText(WEBGL_FALLBACK_TEXT)).toHaveCount(0);
+      203 |   for (const label of ['F1', 'F2', 'F3', 'F4']) {
+      204 |     await expect(page.getByRole('button', { name: new RegExp(label) })).toBeVisible();
+        at /home/programer/work/redhunter-reborn/visual-office/apps/web/e2e/dashboard-office.e2e.ts:201:61
+
+    Error Context: ../../.omo/evidence/mvp3-integration/pw-output-task14/dashboard-office.e2e.ts-da-fcb81-urvives-a-failed-floor-load/error-context.md
+
+  1 failed
+    e2e/dashboard-office.e2e.ts:177:5 › dashboard office survives a failed floor load ──────────────
+EXIT=1
+--- page snapshot at failure (error-context.md of RED run, excerpt):
+- main: WebGL not available Your browser or device does not support 3D rendering.   (no F1..F4 buttons in DOM; only 'Logout')
+Console (WebServer) showed: [OfficeCanvas] WebGL error: Error: Could not load /models/floor_3.glb: Failed to fetch  (WebGLErrorBoundary.tsx:20)
+
+## (b) GREEN: new test after fix
+
+Running 1 test using 1 worker
+
+  ✓  1 e2e/dashboard-office.e2e.ts:177:5 › dashboard office survives a failed floor load (36.0s)
+
+  1 passed (47.4s)
+EXIT=0
+Note: first GREEN attempt failed only on the console filter ('Failed to load resource: net::ERR_FAILED' has no floor_3 in its text);
+test fixed to prefix each console error with m.location().url (floor_3 URL) before filtering. Product code unchanged between attempts.
+
+## (c) Full spec
+
+Running 3 tests using 1 worker
+
+  ✓  1 e2e/dashboard-office.e2e.ts:52:5 › dashboard office canvas renders identically (1.3m)
+  ✓  2 e2e/dashboard-office.e2e.ts:151:5 › dashboard office nocut variant renders (23.8s)
+  ✓  3 e2e/dashboard-office.e2e.ts:177:5 › dashboard office survives a failed floor load (36.8s)
+
+  3 passed (2.5m)
+EXIT=0
+
+## (d) Baseline snapshot md5
+before: 4816ac7234930a6aea5e65856c2e759e  dashboard-office-linux.png
+after : 4816ac7234930a6aea5e65856c2e759e  apps/web/e2e/dashboard-office.e2e.ts-snapshots/dashboard-office-linux.png
+No --update-snapshots used; maxDiffPixelRatio untouched; existing tests untouched (third test appended only).
+
+## (e) typecheck + biome
+bun run typecheck (apps/web): EXIT=0 (re-run after removing unused ErrorInfo import)
+biome lint FloorLoadBoundary.tsx OfficeCanvas.tsx e2e/dashboard-office.e2e.ts:
+src/components/office/OfficeCanvas.tsx:16:8 lint/style/useImportType  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━
+Checked 3 files in 15ms. No fixes applied.
+Found 1 warning.
+BIOME_EXIT=0
+(only warning = pre-existing OfficeCanvas.tsx:16 useImportType from todo 12; 0 new errors/warnings)
+lsp_diagnostics unavailable (no TypeScript install for LSP) -> tsc used instead.
+
+## Design
+- New FloorLoadBoundary.tsx wraps ONLY <Canvas>; FloorSelector is a sibling, outside every boundary a model-load error can trip.
+- No extra DOM when healthy; no key on boundary -> Canvas NOT remounted on floor change (lazy-load/round-trip assertions still pass).
+- isModelLoadError(/Could not load|\.glb|Failed to fetch|NetworkError|net::/i); other errors rethrown in render() -> outer WebGLErrorBoundary still shows 'WebGL not available'.
+- Reset: componentDidUpdate when resetKey (currentFloor) changes, and 'Coba lagi' button. Both call useGLTF.clear(url) first, because drei caches the rejected promise and would rethrow it.
+- Retry verified empirically: after page.unroute, clicking F3 fetched floor_3.glb (200), __hqStats.floorId==3, error text gone (assertion in the test).
+- 'Coba lagi' button click not covered by an automated assertion (same reset path as floor change); screenshot shows it rendered.
+- Screenshots: task-14-floor-failure-error.png (message + selector), task-14-floor-failure-recovered.png (after F1).
+- Final: lsof -i :3100 -sTCP:LISTEN -> 0 listeners

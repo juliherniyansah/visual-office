@@ -1,0 +1,20 @@
+[WebServer] ⚠ `eslint` configuration in next.config.ts is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+[WebServer] ⚠ Invalid next.config.ts options detected: 
+[WebServer] ⚠     Unrecognized key(s) in object: 'eslint'
+[WebServer] ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+
+Running 2 tests using 1 worker
+
+[WebServer] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[WebServer] [browser] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+/home/programer/work/redhunter-reborn/visual-office/apps/web/e2e/dashboard-office.e2e.ts-snapshots/dashboard-office-linux.png is re-generated, writing actual.
+  ✓  1 e2e/dashboard-office.e2e.ts:52:5 › dashboard office canvas renders identically (1.3m)
+[WebServer] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[WebServer] [browser] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+  ✓  2 e2e/dashboard-office.e2e.ts:151:5 › dashboard office nocut variant renders (22.7s)
+
+  2 passed (1.8m)

@@ -1,0 +1,36 @@
+=== .gitignore relevant lines ===
+20:# Model assets
+22:apps/assets/models/export/
+26:apps/web/public/models/*_src.glb
+
+=== git check-ignore -v results ===
+.gitignore:22:apps/assets/models/export/	apps/assets/models/export/floor_1.glb
+.gitignore:26:apps/web/public/models/*_src.glb	apps/web/public/models/floor_1_src.glb
+
+=== git status models dirs ===
+?? apps/web/public/models/char_base.glb
+?? apps/web/public/models/floor_1.glb
+?? apps/web/public/models/floor_2.glb
+?? apps/web/public/models/floor_3.glb
+?? apps/web/public/models/floor_4.glb
+?? apps/web/public/models/hq_shell.glb
+=== legacy tracked models ===
+apps/web/public/models/building.glb
+apps/web/public/models/character.glb
+
+=== F1 fix (final wave): hq_shell.glb ignored ===
+$ git check-ignore -v apps/web/public/models/hq_shell.glb
+.gitignore:25:apps/web/public/models/hq_shell.glb	apps/web/public/models/hq_shell.glb
+exit=0
+$ git check-ignore -v floor_1..4 char_base
+exit=1 (no match)
+$ git status --short apps/web/public/models
+ D apps/web/public/models/building.glb
+ D apps/web/public/models/character.glb
+?? apps/web/public/models/char_base.glb
+?? apps/web/public/models/floor_1.glb
+?? apps/web/public/models/floor_2.glb
+?? apps/web/public/models/floor_3.glb
+?? apps/web/public/models/floor_4.glb
+$ ls -l hq_shell.glb
+-rw-rw-r-- 1 programer programer 13461780 Oct 18 18:18 apps/web/public/models/hq_shell.glb

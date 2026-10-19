@@ -1,0 +1,5 @@
+PREFLIGHT PASS: ktx version: v4.4.2
+MODE=ktx2
+KTX_DIR=/home/programer/.local/ktx/KTX-Software-4.4.2-Linux-x86_64
+
+Smoke captured: 2026-10-18T18:30:39+00:00

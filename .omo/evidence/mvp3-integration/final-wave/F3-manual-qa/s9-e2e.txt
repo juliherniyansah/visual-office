@@ -1,0 +1,46 @@
+
+Running 3 tests using 1 worker
+
+[WebServer] ⚠ `eslint` configuration in next.config.ts is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+[WebServer] ⚠ Invalid next.config.ts options detected: 
+[WebServer] ⚠     Unrecognized key(s) in object: 'eslint'
+[WebServer] ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+[WebServer] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[WebServer] [browser] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+  ✓  1 e2e/dashboard-office.e2e.ts:52:5 › dashboard office canvas renders identically (1.2m)
+[WebServer] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[WebServer] [browser] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+  ✓  2 e2e/dashboard-office.e2e.ts:151:5 › dashboard office nocut variant renders (26.7s)
+[WebServer] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[WebServer] [browser] Uncaught Error: Could not load /models/floor_3.glb: Failed to fetch
+[WebServer]     at Scene (src/components/office/Scene.tsx:26:9)
+[WebServer]     at OfficeCanvas (src/components/office/OfficeCanvas.tsx:74:17)
+[WebServer]     at DashboardPage (src/app/dashboard/page.tsx:47:9)
+[WebServer]   24 |
+[WebServer]   25 |       <Suspense fallback={null}>
+[WebServer] > 26 |         <FloorModel n={currentFloor} />
+[WebServer]      |         ^
+[WebServer]   27 |       </Suspense>
+[WebServer]   28 |
+[WebServer]   29 |       <CameraRig />
+[WebServer] [browser] [FloorLoadBoundary] floor model failed to load: Error: Could not load /models/floor_3.glb: Failed to fetch
+[WebServer]     at OfficeCanvas (src/components/office/OfficeCanvas.tsx:58:9)
+[WebServer]     at DashboardPage (src/app/dashboard/page.tsx:47:9)
+[WebServer]   56 |       <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+[WebServer]   57 |         <FloorSelector currentFloor={currentFloor} onSelect={handleFloorSelect} />
+[WebServer] > 58 |         <FloorLoadBoundary resetKey={currentFloor} modelUrl={`/models/floor_${currentFloor}.glb`}>
+[WebServer]      |         ^
+[WebServer]   59 |           <Canvas
+[WebServer]   60 |             shadows
+[WebServer]   61 |             camera={{ position: [14, 12, 18], fov: 60, near: 0.1, far: 200 }} (src/components/office/FloorLoadBoundary.tsx:38:13)
+[WebServer] [browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[WebServer] [browser] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.
+[WebServer] [browser] THREE.KTX2Loader: Multiple active KTX2 loaders may cause performance issues. Use a single KTX2Loader instance, or call .dispose() on old instances.
+  ✓  3 e2e/dashboard-office.e2e.ts:177:5 › dashboard office survives a failed floor load (30.7s)
+
+  3 passed (2.4m)
+EXIT=0

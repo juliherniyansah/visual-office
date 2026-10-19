@@ -1,0 +1,3 @@
+diff pixels (t0 vs t600): 185
+diff bbox: {"minX":920,"minY":463,"maxX":941,"maxY":491} of 1280x800
+ANIMATION: PASS

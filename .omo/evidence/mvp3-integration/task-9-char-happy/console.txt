@@ -1,0 +1,4 @@
+console errors: []
+page errors: []
+setKTX2Loader errors: 0
+CONSOLE: PASS

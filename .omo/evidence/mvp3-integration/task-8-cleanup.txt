@@ -1,0 +1,98 @@
+Todo 8 — Cleanup komponen prosedural lama
+============================================
+
+Files deleted:
+  - apps/web/src/components/office/FloorPlane.tsx
+  - apps/web/src/components/office/DeskMarkers.tsx
+  - apps/web/src/components/office/Agent.tsx
+
+---
+BEFORE deletion — grep across apps/web/src + apps/web/e2e
+---
+
+1) FloorPlane|DeskMarkers
+   apps/web/src:
+     /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/FloorPlane.tsx:6: export function FloorPlane({ floorId }: { floorId: FloorId }) {
+     /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/DeskMarkers.tsx:9: export function DeskMarkers() {
+   apps/web/e2e: 0 hits
+
+2) from './Agent' / from "./Agent" / from '../office/Agent'
+   apps/web/src: 0 hits
+   apps/web/e2e: 0 hits
+
+3) AGENT_DEFINITIONS|findAgentDesk
+   apps/web/src:
+     /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/Agent.tsx:4: import { AGENT_DEFINITIONS, findAgentDesk, type AgentId, type AgentStatus } from '@redhunter/shared';
+     /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/Agent.tsx:17: const agent = AGENT_DEFINITIONS.find((a) => a.id === agentId);
+     /home/programer/work/redhunter-reborn/visual-office/apps/web/src/components/office/Agent.tsx:18: const placement = findAgentDesk(agentId);
+   apps/web/e2e: 0 hits
+
+4) deskToWorld (extra check; deskLayout.ts must stay for floorCenter)
+   apps/web/src before deletion:
+     apps/web/src/components/office/Agent.tsx:5: import { deskToWorld } from './deskLayout';
+     apps/web/src/components/office/Agent.tsx:21: const worldPos = deskToWorld(placement.floorId, placement.deskId);
+     apps/web/src/components/office/deskLayout.ts:13: export function deskToWorld(floorId: FloorId, deskId: string): THREE.Vector3 {
+
+Conclusion before deletion: no references outside the 3 files themselves.
+
+---
+AFTER deletion — grep across apps/web/src + apps/web/e2e
+---
+
+1) FloorPlane|DeskMarkers
+   apps/web/src: 0 hits
+   apps/web/e2e: 0 hits
+
+2) from './Agent' / from "./Agent" / from '../office/Agent'
+   apps/web/src: 0 hits
+   apps/web/e2e: 0 hits
+
+3) AGENT_DEFINITIONS|findAgentDesk
+   apps/web/src: 0 hits
+   apps/web/e2e: 0 hits
+
+4) deskToWorld
+   apps/web/src after deletion:
+     apps/web/src/components/office/deskLayout.ts:13: export function deskToWorld(floorId: FloorId, deskId: string): THREE.Vector3 {
+   (only the definition remains; kept because deskLayout.ts is required for floorCenter)
+
+---
+TypeScript typecheck
+---
+
+Command: (cd apps/web && bunx tsc --noEmit)
+
+Before deletion EXIT=1 (restored the 3 orphan files via git show HEAD to verify):
+  src/components/office/OfficeCanvas.tsx(32,58): TS2345 ExtendLoader/KTX2Loader mismatch
+  src/components/office/OfficeCanvas.tsx(33,57): TS2345 ExtendLoader/KTX2Loader mismatch
+  src/components/office/useHqGltf.ts(18,26): TS2345 KTX2Loader mismatch
+
+After deletion EXIT=1:
+  src/components/office/OfficeCanvas.tsx(32,58): TS2345 ExtendLoader/KTX2Loader mismatch
+  src/components/office/OfficeCanvas.tsx(33,57): TS2345 ExtendLoader/KTX2Loader mismatch
+  src/components/office/useHqGltf.ts(18,26): TS2345 KTX2Loader mismatch
+
+Note: the typecheck failures are identical before and after deletion. They are pre-existing and unrelated to the cleanup (OfficeCanvas.tsx and useHqGltf.ts KTX2Loader type mismatch). Task 8 did not modify either file per the MUST NOT list.
+
+---
+Biome lint on touched scope (apps/web/src/components/office)
+---
+
+Command: bunx biome lint apps/web/src/components/office
+EXIT=1
+
+Reported issues (all pre-existing; none mention the deleted files or missing imports):
+  - OfficeCanvas.tsx: useImportType warning (import * as THREE, import { type AgentStatuses })
+  - FloorSelector.tsx: a11y/useButtonType error (missing type="button")
+
+No new lint errors introduced by deleting the 3 orphan files.
+
+---
+Kept files
+---
+  - apps/web/src/components/office/deskLayout.ts (still imported by OfficeCanvas.tsx for floorCenter)
+  - apps/web/src/components/office/constants.ts (still imported by OfficeCanvas.tsx for AgentStatuses type)
+  - apps/web/src/components/office/focusContext.ts, CameraRig.tsx, WebGLErrorBoundary.tsx, FloorSelector.tsx unchanged
+
+---
+End of evidence

@@ -1,0 +1,161 @@
+{
+  "S1": {
+    "hq_shell": 1,
+    "floor_1": 1,
+    "char_base": 1,
+    "floor_2": 0,
+    "floor_3": 0,
+    "floor_4": 0,
+    "basis_js": 2,
+    "basis_wasm": 2,
+    "label": true,
+    "char": {
+      "x": 7,
+      "y": 0,
+      "z": -6
+    },
+    "stats": {
+      "floorId": 1,
+      "calls": 568,
+      "triangles": 576326,
+      "fps": 0
+    },
+    "uniqueColorsSampled": 8274
+  },
+  "S6": {
+    "char": {
+      "x": 7,
+      "y": 0,
+      "z": -6
+    },
+    "dist": 0,
+    "pixelDiff": {
+      "changed": 201,
+      "total": 1024000,
+      "ratio": 0.0001962890625
+    }
+  },
+  "S2": {
+    "floor_2": 1,
+    "floor_3": 0,
+    "floor_4": 0,
+    "stats": {
+      "floorId": 2,
+      "calls": 296,
+      "triangles": 380033,
+      "fps": 0
+    }
+  },
+  "S3": {
+    "floor_1": 2,
+    "char": {
+      "x": 7,
+      "y": 0,
+      "z": -6
+    },
+    "char_base": 2
+  },
+  "S4": {
+    "floor_3": {
+      "fetchedBefore": 0,
+      "fetchedAfter": 1,
+      "sampleA": {
+        "floorId": 3,
+        "calls": 305,
+        "triangles": 388681,
+        "fps": 3
+      },
+      "sampleB": {
+        "floorId": 3,
+        "calls": 305,
+        "triangles": 388681,
+        "fps": 2
+      }
+    },
+    "floor_4": {
+      "fetchedBefore": 0,
+      "fetchedAfter": 1,
+      "sampleA": {
+        "floorId": 4,
+        "calls": 307,
+        "triangles": 391679,
+        "fps": 3
+      },
+      "sampleB": {
+        "floorId": 4,
+        "calls": 307,
+        "triangles": 391679,
+        "fps": 4
+      }
+    },
+    "floor_1_recheck": {
+      "sampleA": {
+        "floorId": 1,
+        "calls": 303,
+        "triangles": 364045,
+        "fps": 2
+      },
+      "sampleB": {
+        "floorId": 1,
+        "calls": 303,
+        "triangles": 364045,
+        "fps": 2
+      }
+    },
+    "floor_2_recheck": {
+      "sampleA": {
+        "floorId": 2,
+        "calls": 296,
+        "triangles": 380033,
+        "fps": 1
+      },
+      "sampleB": {
+        "floorId": 2,
+        "calls": 296,
+        "triangles": 380033,
+        "fps": 2
+      }
+    },
+    "totalFloorFetches": {
+      "1": 3,
+      "2": 2,
+      "3": 1,
+      "4": 1
+    }
+  },
+  "S5": {
+    "fullPage": {
+      "changed": 70512,
+      "total": 1024000,
+      "ratio": 0.068859375
+    },
+    "canvasOnly": {
+      "changed": 70512,
+      "total": 933120,
+      "ratio": 0.07556584362139918
+    }
+  },
+  "S8": {
+    "afterF3": {
+      "selectorVisible": false,
+      "canvasCount": 0,
+      "bodyText": "Visual Office\nf3@redhunter.local\n•\nAdmin\nLogout\nWebGL not available\nYour browser or device does not support 3D rendering.",
+      "stats": {
+        "floorId": 1,
+        "calls": 568,
+        "triangles": 576326,
+        "fps": 2
+      }
+    },
+    "f1ok": "locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button').filter({ hasText: 'F1 · Lobby & Server Room' })\u001b[22m\n",
+    "f2ok": "locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button').filter({ hasText: 'F2 · Domain Floor' })\u001b[22m\n",
+    "canvasAfter": 0,
+    "net": [
+      {
+        "url": "/models/floor_3.glb",
+        "status": "FAILED",
+        "failure": "net::ERR_FAILED"
+      }
+    ]
+  }
+}
